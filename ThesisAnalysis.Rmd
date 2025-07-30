@@ -1,0 +1,141 @@
+---
+title: "Untitled"
+author: "Linus Widmer"
+date: "2025-07-21"
+output: html_document
+---
+
+load library
+```{r}
+library(dplyr)
+```
+
+load scripts
+```{r}
+source("C:/Users/LinusWidmer/Documents/word_catalog.R")
+```
+
+
+global variables
+```{r}
+MMB_pressured_items = c("MMBi1", "MMBi2", "MMBi3", "MMBi4", "MMBi5")
+MMB_autonomous_items = c("MMBi6", "MMBi7", "MMBi8", "MMBi9")
+WFCT_aggression_items = c("WFCTagg1", "WFCTagg2", "WFCTagg3", "WFCTagg4", "WFCTagg5", "WFCTagg6", "WFCTagg7", "WFCTagg8", "WFCTagg9", "WFCTagg10")
+WFCT_anxiety_items = c("WFCTanx1", "WFCTanx2", "WFCTanx3", "WFCTanx4", "WFCTanx5", "WFCTanx6", "WFCTanx7", "WFCTanx8", "WFCTanx9", "WFCTanx10")
+demographic_items = c("AGE", "EDU","EDUPUPIL", "OCCDEGREE", "SEX", "GER")
+manipulation_items = c("threatCondition", "GKFEEDBACK", "OPENFEEDBACK", "GKSELF", "SUS", "SUSTEXT", "DEBRIEFCONSENT")
+all_items = c("id", MMB_pressured_items, MMB_autonomous_items, WFCT_aggression_items, WFCT_anxiety_items, demographic_items, manipulation_items)
+```
+
+## read data
+```{r}
+df = read.csv("C:/Users/LinusWidmer/Downloads/results-survey371132.csv")
+```
+
+## sanitize data
+```{r}
+df = df %>% filter(lastpage == 31)
+df = df %>% select(all_of(all_items))
+count(df)$n
+```
+
+## Exclusion Criteria 
+
+1. Debrief consent = Y
+2. Study inclusion Criteria 
+ 2.1 AGE >= 18
+ 2.2 SEX = M
+ 2.3 GER = Muttersprache
+3. Manipulation Control
+  3.1. GKFEEDBACK = depending on ThreatCondition
+  3.2. OPENFEEDBACK auswerten
+  3.3. SUS & SUSTEXT auswerten
+4. WFCT comprehension check
+  => More than 50% are real words...
+
+Debrief Consent
+```{r}
+df = df %>% 
+  filter(DEBRIEFCONSENT == "Y")
+count(df)$n
+```
+
+Study inclusion criteria
+```{r}
+df = df %>% 
+  filter(AGE >= 18) %>% 
+  filter(SEX == "AO01") 
+  # %>% filter(GER == "AO05")
+count(df)$n
+```
+
+Manipulation control
+```{r}
+# if threatCondition == "threat"
+  # GKFEEDBACK == "AO02" | "GKFEEDBACK == "AO02"
+# if threatCondition == "noThreat"
+  # GKFEEDACK == "AO04"
+
+table(df$GKFEEDBACK, df$threatCondition)
+table(df$GKSELF)
+
+```
+
+
+WFCT comprehension check
+```{r}
+
+# Function to compute percentage of valid words
+compute_score <- function(row) {
+  total <- 0
+  correct <- 0
+  
+  for (key in WFCT_aggression_items) {
+    participant_word <-  tolower(row[[key]])
+    valid_words <- word_catalog[[key]]$word
+    
+    if (!is.na(participant_word) && participant_word %in% valid_words) {
+      correct <- correct + 1
+    }
+    total <- total + 1
+  }
+  
+  return((correct / total))
+}
+
+# Apply the function row-wise to df
+df$validWordCompletionScore <- apply(df, 1, compute_score)
+```
+
+exclude participants with less than 50% valid word completions
+
+```{r}
+df = df %>% filter(validWordCompletionScore >= 0.5)
+count(df)$n
+```
+
+```{r}
+compute_aggressive_score <- function(row) {
+  count <- 0
+  total <- length(WFCT_aggression_items)
+  
+  for (key in WFCT_aggression_items) {
+    participant_word <- tolower(row[[key]])
+    
+    if (!is.na(participant_word)) {
+      word_df <- word_catalog[[key]]
+      match_row <- word_df[word_df$word == participant_word, ]
+      
+      if (nrow(match_row) > 0 && match_row$encoding == "A") {
+        count <- count + 1
+      }
+    }
+  }
+  
+  return(count / total)
+}
+
+df$aggressiveWordCompletionScore <- apply(df, 1, compute_aggressive_score)
+```
+
+
