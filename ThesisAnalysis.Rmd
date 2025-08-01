@@ -9,6 +9,8 @@ load library
 ```{r}
 library(dplyr)
 library(here)
+library(ggplot2)
+library(stringr)
 ```
 
 load scripts
@@ -29,6 +31,29 @@ all_items = c("id", MMB_pressured_items, MMB_autonomous_items, WFCT_aggression_i
 WFCT_all_items <- c(WFCT_aggression_items, WFCT_anxiety_items)
 ```
 
+```{r}
+edu_labels <- c(
+  "AO01" = "Noch kein Abschluss/Schüler",
+  "AO02" = "Schule beendet ohne Abschluss",
+  "AO03" = "Haupt-/ Volksschule",
+  "AO04" = "Mittlerer Schulabschluss / Realschule / mittlere Reife",
+  "AO05" = "Fachhochschulreife / Fachoberschule",
+  "AO06" = "Abitur, allgemeine oder fachgebundene Hochschulreife / (EOS)"
+)
+
+occ_labels <- c(
+  "AO01" = "Noch keinen Berufsabschluss",
+  "AO02" = "Lehre (beruflich-betrieblich)",
+  "AO03" = "Ausbildung an Berufsfachschule, Handelsschule (beruflich- schulische Ausbildung)",
+  "AO04" = "Fachschule (Meister-, Technikerschule, Berufs- oder Fachakademie)",
+  "AO05" = "Fachhochschule / Ingenieurschule",
+  "AO06" = "Universität / Hochschule",
+  "AO07" = "Anderen Berufsabschluss (z.B. im Ausland erworben)"
+)
+
+```
+
+
 ## read data
 ```{r}
 df = read.csv("results-survey371132.csv")
@@ -40,6 +65,19 @@ df = df %>% filter(lastpage == 31)
 df = df %>% select(all_of(all_items))
 count(df)$n
 ```
+
+```{r}
+df$EDU_label <- factor(
+  str_wrap(edu_labels[df$EDU], width = 25),  # Wrap at 25 characters
+  levels = str_wrap(edu_labels, width = 25)
+)
+
+df$OCC_label <- factor(
+  str_wrap(occ_labels[df$OCC], width = 25),  # Wrap at 25 characters
+  levels = str_wrap(occ_labels, width = 25)
+)
+```
+
 
 ## Exclusion Criteria 
 
@@ -156,6 +194,47 @@ df$anxiousWordCompletionScore <- apply(df, 1, compute_WFCT_score, WFCT_items = W
 table(df$anxiousWordCompletionScore)
 ```
 
+## Descriptive Analysis
+
+### Age
+```{r}
+mean(df$AGE)
+sd(df$AGE)
+```
+
+## Educational Degree
+
+```{r}
+# table(df$EDU)
+ggplot(df, aes(x = EDU_label)) +
+  geom_bar(fill = "#4E79A7") +
+  labs(
+    title = "Was ist ihr höchster Schulabschluss?",
+    x = NULL,
+    y = "Anzahl"
+  ) +
+  theme_minimal() +
+  coord_flip()
+
+```
+
+
+```{r}
+
+ggplot(df, aes(x = OCC_label)) +
+  geom_bar(fill = "#59A14F") +
+  labs(
+    title = "Welchen höchsten beruflichen Abschluss haben Sie?",
+    x = NULL,
+    y = "Anzahl"
+  ) +
+  theme_minimal() +
+  coord_flip()
+
+```
+
+
+## Helper
 
 ```{r}
 get_non_existing_words <- function(df, WFCT_items) {
