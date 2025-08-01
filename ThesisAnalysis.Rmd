@@ -26,6 +26,7 @@ WFCT_anxiety_items = c("WFCTanx1", "WFCTanx2", "WFCTanx3", "WFCTanx4", "WFCTanx5
 demographic_items = c("AGE", "EDU","EDUPUPIL", "OCCDEGREE", "SEX", "GER")
 manipulation_items = c("threatCondition", "GKFEEDBACK", "OPENFEEDBACK", "GKSELF", "SUS", "SUSTEXT", "DEBRIEFCONSENT")
 all_items = c("id", MMB_pressured_items, MMB_autonomous_items, WFCT_aggression_items, WFCT_anxiety_items, demographic_items, manipulation_items)
+WFCT_all_items <- c(WFCT_aggression_items, WFCT_anxiety_items)
 ```
 
 ## read data
@@ -54,7 +55,7 @@ count(df)$n
 4. WFCT comprehension check
   => More than 50% are real words...
 
-Debrief Consent
+### Debrief Consent
 ```{r}
 df = df %>% 
   filter(DEBRIEFCONSENT == "Y")
@@ -91,8 +92,8 @@ compute_score <- function(row) {
   total <- 0
   correct <- 0
   
-  for (key in WFCT_aggression_items) {
-    participant_word <-  tolower(row[[key]])
+  for (key in WFCT_all_items) {
+    participant_word <- tolower(row[[key]])
     valid_words <- word_catalog[[key]]$word
     
     if (!is.na(participant_word) && participant_word %in% valid_words) {
@@ -101,7 +102,7 @@ compute_score <- function(row) {
     total <- total + 1
   }
   
-  return((correct / total))
+  return(correct / total)
 }
 
 # Apply the function row-wise to df
@@ -113,14 +114,18 @@ exclude participants with less than 50% valid word completions
 ```{r}
 df = df %>% filter(validWordCompletionScore >= 0.5)
 count(df)$n
+table(df$validWordCompletionScore)
 ```
 
+## Compute dependent variables
+
 ```{r}
-compute_aggressive_score <- function(row) {
+# function to compute number of relative number aggressive/anxious responses to items 
+compute_WFCT_score <- function(row, WFCT_items) {
   count <- 0
-  total <- length(WFCT_aggression_items)
+  total <- length(WFCT_items)
   
-  for (key in WFCT_aggression_items) {
+  for (key in WFCT_items) {
     participant_word <- tolower(row[[key]])
     
     if (!is.na(participant_word)) {
@@ -135,8 +140,20 @@ compute_aggressive_score <- function(row) {
   
   return(count / total)
 }
+```
 
-df$aggressiveWordCompletionScore <- apply(df, 1, compute_aggressive_score)
+
+```{r}
+df$aggressiveWordCompletionScore <- apply(df, 1, compute_WFCT_score, WFCT_items = WFCT_aggression_items)
+
+table(df$aggressiveWordCompletionScore)
+```
+
+
+```{r}
+df$anxiousWordCompletionScore <- apply(df, 1, compute_WFCT_score, WFCT_items = WFCT_anxiety_items)
+
+table(df$anxiousWordCompletionScore)
 ```
 
 
