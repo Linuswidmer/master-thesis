@@ -94,6 +94,82 @@ all_aggs <- list(
   WFCTagg10 = agg10_word_list
 )
 
+anx1_word_list = list(
+  c('sorgen', 'A'),
+  c('morgen', 'N'),
+  c('borgen', 'N')
+)
+
+anx2_word_list = list(
+  c('bangen', 'A'),
+  c('fangen', 'N'),
+  c('wangen', 'N'),
+  c('sangen', 'N'),
+  c('rangen', 'N')
+)
+
+anx3_word_list = list(
+  c('reue', 'A'),
+  c('neue', 'N')
+)
+
+anx4_word_list = list(
+  c('trost', 'A'),
+  c('prost', 'N')
+)
+
+anx5_word_list = list(
+  c('last', 'A'),
+  c('mast', 'N'),
+  c('fast', 'N'),
+  c('rast', 'N'),
+  c('bast', 'N'),
+  c('hast', 'N')
+)
+
+anx6_word_list = list(
+  c('leere', 'A'),
+  c('beere', 'N')
+)
+
+anx7_word_list = list(
+  c('fern', 'A'),
+  c('kern', 'N'),
+  c('gern', 'N'),
+  c('lern', 'N'),
+  c('bern', 'N')
+)
+
+anx8_word_list = list(
+  c('fessel', 'A'),
+  c('kessel', 'N'),
+  c('sessel', 'N'),
+  c('nessel', 'N')
+)
+
+anx9_word_list = list(
+  c('panisch', 'A'),
+  c('manisch', 'N')
+)
+
+anx10_word_list = list(
+  c('panne', 'A'),
+  c('kanne', 'N'),
+  c('tanne', 'N')
+)
+
+all_anxs <- list(
+  WFCTanx1 = anx1_word_list,
+  WFCTanx2 = anx2_word_list,
+  WFCTanx3 = anx3_word_list,
+  WFCTanx4 = anx4_word_list,
+  WFCTanx5 = anx5_word_list,
+  WFCTanx6 = anx6_word_list,
+  WFCTanx7 = anx7_word_list,
+  WFCTanx8 = anx8_word_list,
+  WFCTanx9 = anx9_word_list,
+  WFCTanx10 = anx10_word_list
+)
 
 word_catalog <- list()
 
@@ -105,4 +181,15 @@ for (agg_name in names(all_aggs)) {
   }))
   
   word_catalog[[agg_name]] <- df
+}
+
+
+for (anx_name in names(all_anxs)) {
+  anx_data <- all_anxs[[anx_name]]
+  
+  df <- do.call(rbind, lapply(anx_data, function(entry) {
+    data.frame(word = entry[1], encoding = entry[2], stringsAsFactors = FALSE)
+  }))
+  
+  word_catalog[[anx_name]] <- df
 }
