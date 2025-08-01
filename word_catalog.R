@@ -115,7 +115,8 @@ anx3_word_list = list(
 
 anx4_word_list = list(
   c('trost', 'A'),
-  c('prost', 'N')
+  c('prost', 'N'),
+  c('frost', 'N')
 )
 
 anx5_word_list = list(
