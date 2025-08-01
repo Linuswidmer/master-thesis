@@ -8,15 +8,16 @@ output: html_document
 load library
 ```{r}
 library(dplyr)
+library(here)
 ```
 
 load scripts
 ```{r}
-source("C:/Users/LinusWidmer/Documents/word_catalog.R")
+source("word_catalog.R")
 ```
 
 
-global variables
+global variables for items
 ```{r}
 MMB_pressured_items = c("MMBi1", "MMBi2", "MMBi3", "MMBi4", "MMBi5")
 MMB_autonomous_items = c("MMBi6", "MMBi7", "MMBi8", "MMBi9")
@@ -29,7 +30,7 @@ all_items = c("id", MMB_pressured_items, MMB_autonomous_items, WFCT_aggression_i
 
 ## read data
 ```{r}
-df = read.csv("C:/Users/LinusWidmer/Downloads/results-survey371132.csv")
+df = read.csv("results-survey371132.csv")
 ```
 
 ## sanitize data
