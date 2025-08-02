@@ -51,6 +51,13 @@ occ_labels <- c(
   "AO07" = "Anderen Berufsabschluss (z.B. im Ausland erworben)"
 )
 
+gkfeedback_labels = c(
+  "AO01" = "Sehr typisch weiblich",
+  "AO02" = "Eher typisch weiblich",
+  "AO03" = "Weder typisch männlich noch typisch weiblich",
+  "AO04" = "Eher typisch männlich",
+  "AO05" = "Sehr typisch männlich"
+)
 ```
 
 
@@ -75,6 +82,11 @@ df$EDU_label <- factor(
 df$OCC_label <- factor(
   str_wrap(occ_labels[df$OCC], width = 25),  # Wrap at 25 characters
   levels = str_wrap(occ_labels, width = 25)
+)
+
+df$GKFEEDBACK_label = factor(
+  str_wrap(gkfeedback_labels[df$GKFEEDBACK], width = 25),  # Wrap at 25 characters
+  levels = str_wrap(gkfeedback_labels, width = 25)
 )
 ```
 
@@ -118,6 +130,21 @@ Manipulation control
 
 table(df$GKFEEDBACK, df$threatCondition)
 table(df$GKSELF)
+
+ggplot(df, aes(x = GKFEEDBACK_label, fill = threatCondition)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "GK-Feedback nach Bedingung",
+    x = NULL,
+    y = "Anzahl",
+    fill = "Bedingung"
+  ) +
+  theme_minimal() +
+  coord_flip() +
+  theme(
+    axis.text.y = element_text(size = 10),
+    legend.position = "top"
+  )
 
 ```
 
