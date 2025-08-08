@@ -22,12 +22,12 @@ edu_labels <- c(
 
 occ_labels <- c(
   "AO01" = "Noch keinen Berufsabschluss",
-  "AO02" = "Lehre (beruflich-betrieblich)",
-  "AO03" = "Ausbildung an Berufsfachschule, Handelsschule (beruflich- schulische Ausbildung)",
-  "AO04" = "Fachschule (Meister-, Technikerschule, Berufs- oder Fachakademie)",
-  "AO05" = "Fachhochschule / Ingenieurschule",
-  "AO06" = "Universität / Hochschule",
-  "AO07" = "Anderen Berufsabschluss (z.B. im Ausland erworben)"
+  "AO03" = "Lehre (beruflich-betrieblich)",
+  "AO04" = "Ausbildung an Berufsfachschule, Handelsschule (beruflich- schulische Ausbildung)",
+  "AO05" = "Fachschule (Meister-, Technikerschule, Berufs- oder Fachakademie)",
+  "AO06" = "Fachhochschule / Ingenieurschule",
+  "AO07" = "Universität / Hochschule",
+  "AO08" = "Anderen Berufsabschluss (z.B. im Ausland erworben)"
 )
 
 gkfeedback_labels = c(
