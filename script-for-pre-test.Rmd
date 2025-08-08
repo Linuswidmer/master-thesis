@@ -11,43 +11,22 @@ library(dplyr)
 library(here)
 library(ggplot2)
 library(stringr)
+library(R.utils)
 ```
 
 load scripts
 ```{r}
 source("word-catalog.R")
 source("items-and-labels.R")
+source("data-preprocessing.R")
+source("utils.R")
 ```
 
-## read data
+## Load and Preprocess data
 ```{r}
-df = read.csv("data/results-pre-test.csv")
+df_raw = read.csv("data/results-pre-test.csv")
+df = preprocessData(df_raw, all_items)
 ```
-
-## sanitize data
-```{r}
-df = df %>% filter(lastpage == 31)
-df = df %>% select(all_of(all_items))
-count(df)$n
-```
-
-```{r}
-df$EDU_label <- factor(
-  str_wrap(edu_labels[df$EDU], width = 25),  # Wrap at 25 characters
-  levels = str_wrap(edu_labels, width = 25)
-)
-
-df$OCC_label <- factor(
-  str_wrap(occ_labels[df$OCC], width = 25),  # Wrap at 25 characters
-  levels = str_wrap(occ_labels, width = 25)
-)
-
-df$GKFEEDBACK_label = factor(
-  str_wrap(gkfeedback_labels[df$GKFEEDBACK], width = 25),  # Wrap at 25 characters
-  levels = str_wrap(gkfeedback_labels, width = 25)
-)
-```
-
 
 ## Exclusion Criteria 
 
@@ -69,6 +48,7 @@ df = df %>%
   filter(DEBRIEFCONSENT == "Y")
 count(df)$n
 ```
+
 
 Study inclusion criteria
 ```{r}
@@ -107,84 +87,11 @@ ggplot(df, aes(x = GKFEEDBACK_label, fill = threatCondition)) +
 ```
 
 
-WFCT comprehension check
-```{r}
-
-# Function to compute percentage of valid words
-compute_score <- function(row) {
-  total <- 0
-  correct <- 0
-  
-  for (key in WFCT_all_items) {
-    participant_word <- tolower(row[[key]])
-    valid_words <- word_catalog[[key]]$word
-    
-    if (!is.na(participant_word) && participant_word %in% valid_words) {
-      correct <- correct + 1
-    }
-    total <- total + 1
-  }
-  
-  return(correct / total)
-}
-
-# Apply the function row-wise to df
-df$validWordCompletionScore <- apply(df, 1, compute_score)
-```
-
-exclude participants with less than 50% valid word completions
-
-```{r}
-df = df %>% filter(validWordCompletionScore >= 0.5)
-count(df)$n
-table(df$validWordCompletionScore)
-```
-
-## Compute dependent variables
-
-```{r}
-# function to compute number of relative number aggressive/anxious responses to items 
-compute_WFCT_score <- function(row, WFCT_items) {
-  count <- 0
-  total <- length(WFCT_items)
-  
-  for (key in WFCT_items) {
-    participant_word <- tolower(row[[key]])
-    
-    if (!is.na(participant_word)) {
-      word_df <- word_catalog[[key]]
-      match_row <- word_df[word_df$word == participant_word, ]
-      
-      if (nrow(match_row) > 0 && match_row$encoding == "A") {
-        count <- count + 1
-      }
-    }
-  }
-  
-  return(count / total)
-}
-```
-
-
-```{r}
-df$aggressiveWordCompletionScore <- apply(df, 1, compute_WFCT_score, WFCT_items = WFCT_aggression_items)
-
-table(df$aggressiveWordCompletionScore)
-```
-
-
-```{r}
-df$anxiousWordCompletionScore <- apply(df, 1, compute_WFCT_score, WFCT_items = WFCT_anxiety_items)
-
-table(df$anxiousWordCompletionScore)
-```
-
 ## Descriptive Analysis
 
 ### Age
 ```{r}
-mean(df$AGE)
-sd(df$AGE)
+meanAndSD(df$AGE, "AGE")
 ```
 
 ## Educational Degree
@@ -217,33 +124,4 @@ ggplot(df, aes(x = OCC_label)) +
   coord_flip()
 
 ```
-
-
-## Helper
-
-```{r}
-get_non_existing_words <- function(df, WFCT_items) {
-  non_matches <- list()
-  
-  for (key in WFCT_items) {
-    non_matches[[key]] <- character(0)  # initialize empty vector
-    
-    for (i in seq_len(nrow(df))) {
-      word <- tolower(df[[key]][i])
-      
-      if (!is.na(word)) {
-        valid_words <- tolower(word_catalog[[key]]$word)
-        
-        if (!(word %in% valid_words)) {
-          non_matches[[key]] <- c(non_matches[[key]], word)
-        }
-      }
-    }
-  }
-  
-  return(non_matches)
-}
-get_non_existing_words(df, WFCT_all_items)
-```
-
 
