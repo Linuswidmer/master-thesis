@@ -4,13 +4,6 @@ printNumberOfParticipants = function(df) {
   printf('Number of Observations: %d', n)
 }
 
-meanAndSD = function(col, name) {
-  m = mean(col)
-  sd = sd(col)
-  
-  printf("[%s] Mean: %.2f SD: %.2f",name, m, sd)
-}
-
 get_non_existing_words <- function(df, WFCT_items) {
   non_matches <- list()
   
