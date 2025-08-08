@@ -106,7 +106,7 @@ plotEDU()
 plotOCC()
 ```
 
-## Aggressice and Anxious Word Completions
+## Aggressive and Anxious Word Completions
 
 ```{r}
 plotWordCompletions("aggressiveWordCompletionScore")
@@ -129,6 +129,38 @@ df %>%
   )
 ```
 
+## Motivation for Masculine Behaviour
+```{r}
 
+df$mmb_autonomous_score = rowMeans(
+    df[MMB_autonomous_items],
+    na.rm = TRUE
+  )
+
+df$mmb_pressured_score = rowMeans(
+    df[MMB_pressured_items],
+    na.rm = TRUE
+  )
+```
+
+
+```{r}
+plotHist("mmb_autonomous_score", c(1,7))
+plotHist("mmb_pressured_score", c(1,7))
+```
+
+```{r}
+df %>%
+  summarise(
+    mean_autonomous = round(mean(mmb_autonomous_score, na.rm = TRUE), 2),
+    sd_autonomous = round(sd(mmb_autonomous_score, na.rm = TRUE), 2),
+  )
+
+df %>%
+  summarise(
+    mean_pressured = round(mean(mmb_pressured_score, na.rm = TRUE), 2),
+    sd_pressured = round(sd(mmb_pressured_score, na.rm = TRUE), 2)
+  )
+```
 
 

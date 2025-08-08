@@ -23,7 +23,7 @@ plotOCC = function() {
 }
 
 plotWordCompletions <- function(score_col) {
-  score_sym <- sym(score_col)  # turn string into a symbol
+  score_sym <- sym(score_col)
   
   df %>%
     group_by(threatCondition) %>%
@@ -40,4 +40,23 @@ plotWordCompletions <- function(score_col) {
     ) +
     theme_minimal() +
     theme(legend.position = "none")
+}
+
+plotHist <- function(score_col, x_range = NULL) {
+  score_sym <- sym(score_col)
+  
+  p = ggplot(df, aes(x = !!score_sym)) +
+    geom_histogram(binwidth = 0.05, fill = "#59A14F", color = "black") +
+    labs(
+      title = paste("Histogram of", score_col),
+      x = score_col,
+      y = "Count"
+    ) +
+    theme_minimal()
+  
+  if (!is.null(x_range) && length(x_range) == 2) {
+    p <- p + coord_cartesian(xlim = x_range)
+  }
+  
+  p
 }
