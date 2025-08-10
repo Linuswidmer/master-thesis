@@ -12,6 +12,9 @@ library(here)
 library(ggplot2)
 library(stringr)
 library(R.utils)
+library(rlang)
+library(tidyr)
+library(jtools)
 ```
 
 load scripts
@@ -148,6 +151,11 @@ df$mmb_pressured_score = rowMeans(
 plotHist("mmb_autonomous_score", c(1,7))
 plotHist("mmb_pressured_score", c(1,7))
 ```
+
+```{r}
+plotBox(c("mmb_autonomous_score", "mmb_pressured_score"))
+```
+
 
 ```{r}
 df %>%

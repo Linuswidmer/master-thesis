@@ -60,3 +60,18 @@ plotHist <- function(score_col, x_range = NULL) {
   
   p
 }
+
+plotBox = function(cols) {
+  cols <- as.character(cols)
+  
+  long_df <- df %>%
+    pivot_longer(cols = all_of(cols), names_to = "variable", values_to = "value")
+  
+  ggboxplot(long_df, x = "variable", y = "value", 
+            fill = "threatCondition",  palette = c("#D3D3D3", "#808080"), xlab = "Motivation for Masculine Behaviour") + 
+    theme_apa()
+}
+
+# ggboxplot(summary.re, x = "variable", y = "value", 
+#           palette = c("#D3D3D3", "#808080"), ylab = "% correct", xlab = "condition age", ylim = c(25,100), fill = "conditionAge", ) + labs(y = "% correct", x = "", fill = c("Elderly, Young")) + theme_apa() + geom_hline(yintercept=50, linetype="dashed")  + theme_apa() 
+# plotBoth + theme(legend.position = "None")
