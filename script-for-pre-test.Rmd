@@ -15,6 +15,7 @@ library(R.utils)
 library(rlang)
 library(tidyr)
 library(jtools)
+library(ggpubr)
 ```
 
 load scripts
@@ -153,7 +154,7 @@ plotHist("mmb_pressured_score", c(1,7))
 ```
 
 ```{r}
-plotBox(c("mmb_autonomous_score", "mmb_pressured_score"))
+plotBox(c("aggressiveWordCompletionScore", "anxiousWordCompletionScore"))
 ```
 
 
