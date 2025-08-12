@@ -76,5 +76,10 @@ addQuestionLabelToDataframe = function(df) {
     str_wrap(gkfeedback_labels[df$GKFEEDBACK], width = 25),  # Wrap at 25 characters
     levels = str_wrap(gkfeedback_labels, width = 25)
   )
+  
+  df$GKSELF_label = factor(
+    str_wrap(gkfeedback_labels[df$GKSELF], width = 25),  # Wrap at 25 characters
+    levels = str_wrap(gkfeedback_labels, width = 25)
+  )
   return(df)
 }

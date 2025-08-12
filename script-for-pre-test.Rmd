@@ -66,29 +66,20 @@ count(df)$n
 
 Manipulation control
 ```{r}
-# if threatCondition == "threat"
-  # GKFEEDBACK == "AO02" | "GKFEEDBACK == "AO02"
-# if threatCondition == "noThreat"
-  # GKFEEDACK == "AO04"
 
-table(df$GKFEEDBACK, df$threatCondition)
-table(df$GKSELF)
-
-ggplot(df, aes(x = GKFEEDBACK_label, fill = threatCondition)) +
-  geom_bar(position = "dodge") +
+plotBarHorizontal("GKFEEDBACK_label", "threatCondition") +
   labs(
-    title = "GK-Feedback nach Bedingung",
+    # title = "Welche Rückmeldung haben SIe erhalten?",
     x = NULL,
     y = "Anzahl",
     fill = "Bedingung"
-  ) +
-  theme_minimal() +
-  coord_flip() +
-  theme(
-    axis.text.y = element_text(size = 10),
-    legend.position = "top"
   )
 
+```
+
+```{r}
+table(df$GKFEEDBACK, df$threatCondition)
+table(df$GKSELF)
 ```
 
 
@@ -106,16 +97,27 @@ df %>%
 ## Educational and OCcupational Degree
 
 ```{r}
-plotEDU()
-plotOCC()
+plotBarHorizontal("EDU_label") + 
+  labs(
+    x = NULL,
+    y = "Anzahl"
+  ) 
+
+plotBarHorizontal("OCC_label") + 
+  labs(
+    x = NULL,
+    y = "Anzahl"
+  ) 
+
+plotBarHorizontal("GKSELF_label") + 
+  labs(
+    x = NULL,
+    y = "Anzahl"
+  ) 
 ```
 
 ## Aggressive and Anxious Word Completions
 
-```{r}
-plotWordCompletions("aggressiveWordCompletionScore")
-plotWordCompletions("anxiousWordCompletionScore")
-```
 
 ```{r}
 df %>%
@@ -132,6 +134,11 @@ df %>%
     sd_anxious = round(sd(anxiousWordCompletionScore, na.rm = TRUE), 2)
   )
 ```
+
+```{r}
+plotBox(c("aggressiveWordCompletionScore", "anxiousWordCompletionScore"), "threatCondition")
+```
+
 
 ## Motivation for Masculine Behaviour
 ```{r}
@@ -151,10 +158,9 @@ df$mmb_pressured_score = rowMeans(
 ```{r}
 plotHist("mmb_autonomous_score", c(1,7))
 plotHist("mmb_pressured_score", c(1,7))
-```
 
-```{r}
-plotBox(c("aggressiveWordCompletionScore", "anxiousWordCompletionScore"))
+p = plotBox(c("mmb_autonomous_score", "mmb_pressured_score"))
+ggpar(p, ylim = c(1, 7))
 ```
 
 
@@ -171,5 +177,7 @@ df %>%
     sd_pressured = round(sd(mmb_pressured_score, na.rm = TRUE), 2)
   )
 ```
+
+
 
 
