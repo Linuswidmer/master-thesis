@@ -49,16 +49,20 @@ plotBox <- function(cols, fill_var = NULL) {
       long_df, 
       x = "variable", 
       y = "value", 
-      fill = fill_var, 
-      palette = c("#D3D3D3", "#808080")
-    ) + theme_apa()
+      fill = fill_var,
+      width = 0.4,
+      palette = c("#D3D3D3", "#808080"),
+      ggtheme = theme_apa()
+    )
   } else {
     p <- ggboxplot(
       long_df, 
       x = "variable", 
       y = "value", 
-      palette = c("#D3D3D3", "#808080")
-    ) + theme_apa()
+      width = 0.4,
+      palette = c("#D3D3D3", "#808080"),
+      ggtheme = theme_apa()
+    )
   }
   
   return(p)

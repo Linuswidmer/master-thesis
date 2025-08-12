@@ -175,19 +175,6 @@ plotBox(c("aggressiveWordCompletionScore", "anxiousWordCompletionScore"), "threa
 
 ### Motivation for Masculine Behaviour
 
-```{r}
-
-df$mmb_autonomous_score = rowMeans(
-    df[MMB_autonomous_items],
-    na.rm = TRUE
-  )
-
-df$mmb_pressured_score = rowMeans(
-    df[MMB_pressured_items],
-    na.rm = TRUE
-  )
-```
-
 
 ```{r}
 plotHist("mmb_autonomous_score", c(1,7))
