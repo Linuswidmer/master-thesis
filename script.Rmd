@@ -29,12 +29,15 @@ source("items-and-labels.R")
 source("data-preprocessing.R")
 source("visualization.R")
 source("utils.R")
+source("simulation.R")
 ```
 
 ## Load and Preprocess data
 ```{r}
-df_raw = read.csv("data/results.csv")
-df = preprocessData(df_raw, all_items)
+# df_raw = read.csv("data/results.csv")
+# df = preprocessData(df_raw, all_items)
+
+df = simulate_data()
 ```
 
 ## Inclusion Criteria 
@@ -197,7 +200,11 @@ df %>%
 ### MMB predicting anxious/aggressive cognition by threat condition
 
 ```{r}
+plotLine("mmb_pressured_score", "aggressiveWordCompletionScore", condition = "threatCondition", df = df)
+```
 
+```{r}
+plotLine("mmb_autonomous_score", "anxiousWordCompletionScore", condition = "threatCondition", df = df)
 ```
 
 
