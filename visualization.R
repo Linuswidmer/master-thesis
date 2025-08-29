@@ -79,3 +79,25 @@ plotBox <- function(cols, fill_var = NULL) {
   
   return(p)
 }
+
+plotLine <- function(x, y, condition = NULL, df) {
+  x_sym <- sym(x)
+  y_sym <- sym(y)
+  
+  if (!is.null(condition)) {
+    cond_sym <- sym(condition)
+    p <- ggplot(df, aes(x = !!x_sym, y = !!y_sym, color = !!cond_sym)) +
+      geom_point(alpha = 0.5) +
+      geom_smooth(method = "lm", se = TRUE) +
+      theme_minimal() +
+      labs(x = x, y = y, color = condition)
+  } else {
+    p <- ggplot(df, aes(x = !!x_sym, y = !!y_sym)) +
+      geom_point(alpha = 0.5) +
+      geom_smooth(method = "lm", se = TRUE, color = "blue") +
+      theme_minimal() +
+      labs(x = x, y = y)
+  }
+  
+  return(p)
+}
