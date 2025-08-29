@@ -20,12 +20,11 @@ encodeWordCompletions = function(df) {
   
   
   df$aggressiveWordCompletionScore <- rowMeans(
-    df[WFCT_aggression_items],
-    na.rm = TRUE                # ignore missing values
+    replace(df[WFCT_aggression_items], is.na(df[WFCT_aggression_items]), 0)
   )
+  
   df$anxiousWordCompletionScore <- rowMeans(
-    df[WFCT_anxiety_items],
-    na.rm = TRUE                # ignore missing values
+    replace(df[WFCT_anxiety_items], is.na(df[WFCT_anxiety_items]), 0)
   )
   
   # arc sine square root transformation of word completion scores
