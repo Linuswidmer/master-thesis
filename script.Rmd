@@ -20,6 +20,8 @@ library(rlang)
 library(tidyr)
 library(jtools)
 library(ggpubr)
+library(lavaan)
+library(corrplot)
 ```
 
 load scripts
@@ -150,7 +152,53 @@ df %>%
 plotBox("validWordCompletionScore")
 ```
 
-### Motivation for Masculine Behaviour
+# Factor analysis: Motivation for Masculine Behaviour
+
+## Visualize using corrplot
+```{r}
+# Select only the MMBi items
+mmb_items <- df[, MMB_items]
+
+# Compute correlation matrix
+cor_matrix <- cor(mmb_items)
+
+corrplot(cor_matrix, type="upper", order="hclust", 
+         tl.col="black", tl.srt=45)
+```
+
+
+## Test assumed model with CFA
+
+```{r}
+cfa_model <- '
+  # latent variables
+  Pressured =~ MMBi1 + MMBi2 + MMBi3 + MMBi4 + MMBi5
+  Autonomous =~ MMBi6 + MMBi7 + MMBi8 + MMBi9
+'
+
+fit <- cfa(cfa_model, data = df, std.lv = TRUE)
+
+summary(fit, fit.measures = TRUE, standardized = TRUE)
+```
+
+
+## Compute Scores
+
+```{r}
+MMB_pressured_items = c("MMBi1", "MMBi2", "MMBi3", "MMBi4", "MMBi5")
+MMB_autonomous_items = c("MMBi6", "MMBi7", "MMBi8", "MMBi9")
+
+df$mmb_autonomous_score = rowMeans(
+  df[MMB_autonomous_items],
+  na.rm = TRUE
+)
+
+df$mmb_pressured_score = rowMeans(
+  df[MMB_pressured_items],
+  na.rm = TRUE
+)
+```
+
 
 ```{r}
 plotHist("mmb_autonomous_score", c(1,7))
@@ -160,7 +208,10 @@ p = plotBox(c("mmb_autonomous_score", "mmb_pressured_score"))
 ggpar(p, ylim = c(1, 7))
 ```
 
-### Visualization Hypothesis 1a & 1b
+
+# Hypothesis Testing
+
+## Visualization Hypothesis 1a & 1b
 
 Aggessive and axious word completions by threat condition
 ```{r}
@@ -197,7 +248,7 @@ df %>%
   )
 ```
 
-### Visualization Hypothesis 2a & 2b
+## Visualization Hypothesis 2a & 2b
 
 2a: Moderation autonomous motivation for masculine behavior on aggressive word completions
 ```{r}

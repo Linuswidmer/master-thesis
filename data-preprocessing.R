@@ -33,16 +33,6 @@ encodeWordCompletions = function(df) {
   
   df$validWordCompletionScore <- rowSums(!is.na(df[WFCT_all_items])) / length(WFCT_all_items)
   
-  df$mmb_autonomous_score = rowMeans(
-    df[MMB_autonomous_items],
-    na.rm = TRUE
-  )
-  
-  df$mmb_pressured_score = rowMeans(
-    df[MMB_pressured_items],
-    na.rm = TRUE
-  )
-  
   return (df)
 }
 

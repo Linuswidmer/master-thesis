@@ -21,9 +21,18 @@ simulate_data <- function(n = 100,
   # Condition assignment
   threatCondition <- sample(c("noThreat", "threat"), n, replace = TRUE)
   
-  # Motivation scores
-  mmb_autonomous_score <- rtruncnorm(n, mean = 5,   sd = 2,   minval = 1, maxval = 7)
-  mmb_pressured_score  <- rtruncnorm(n, mean = 3.5, sd = 1.5, minval = 1, maxval = 7)
+  # --- Simulate MMB items ---
+  # Pressured facet (items 1–5)
+  pressured_items <- replicate(5, round(rtruncnorm(n, mean = 3.5, sd = 1.5, minval = 1, maxval = 7)))
+  colnames(pressured_items) <- paste0("MMBi", 1:5)
+  
+  # Autonomous facet (items 6–9)
+  autonomous_items <- replicate(4, round(rtruncnorm(n, mean = 5, sd = 2, minval = 1, maxval = 7)))
+  colnames(autonomous_items) <- paste0("MMBi", 6:9)
+  
+  # Compute aggregated scores
+  mmb_pressured_score  <- rowMeans(pressured_items)
+  mmb_autonomous_score <- rowMeans(autonomous_items)
   
   # Threat effect coefficients
   beta_autonomous <- 0.05  # how much autonomous increases anxious words under threat
@@ -55,8 +64,9 @@ simulate_data <- function(n = 100,
     maxval = 1
   )
   
-  aggressiveWordCompletionScoreTransformed = asin(sqrt(aggressiveWordCompletionScore))
-  anxiousWordCompletionScoreTransformed = asin(sqrt(anxiousWordCompletionScore)) 
+  # Transformations
+  aggressiveWordCompletionScoreTransformed <- asin(sqrt(aggressiveWordCompletionScore))
+  anxiousWordCompletionScoreTransformed    <- asin(sqrt(anxiousWordCompletionScore)) 
   
   # Combine into dataframe
   data <- data.frame(
@@ -68,8 +78,8 @@ simulate_data <- function(n = 100,
     aggressiveWordCompletionScoreTransformed,
     anxiousWordCompletionScore,
     anxiousWordCompletionScoreTransformed,
-    mmb_autonomous_score,
-    mmb_pressured_score
+    pressured_items,
+    autonomous_items
   )
   
   return(data)
