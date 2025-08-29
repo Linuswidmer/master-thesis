@@ -28,6 +28,10 @@ encodeWordCompletions = function(df) {
     na.rm = TRUE                # ignore missing values
   )
   
+  # arc sine square root transformation of word completion scores
+  df$aggressiveWordCompletionScoreTransformed = asin(sqrt(df$aggressiveWordCompletionScore))
+  df$anxiousWordCompletionScoreTransformed = asin(sqrt(df$anxiousWordCompletionScore)) 
+  
   df$validWordCompletionScore <- rowSums(!is.na(df[WFCT_all_items])) / length(WFCT_all_items)
   
   df$mmb_autonomous_score = rowMeans(

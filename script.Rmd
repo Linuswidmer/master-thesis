@@ -149,7 +149,23 @@ df %>%
 ```{r}
 plotBox("validWordCompletionScore")
 ```
-### Aggressive and Anxious Word Completions
+
+### Motivation for Masculine Behaviour
+
+```{r}
+plotHist("mmb_autonomous_score", c(1,7))
+plotHist("mmb_pressured_score", c(1,7))
+
+p = plotBox(c("mmb_autonomous_score", "mmb_pressured_score"))
+ggpar(p, ylim = c(1, 7))
+```
+
+### Visualization Hypothesis 1a & 1b
+
+Aggessive and axious word completions by threat condition
+```{r}
+plotBox(c("aggressiveWordCompletionScore", "anxiousWordCompletionScore"), "threatCondition")
+```
 
 ```{r}
 df %>%
@@ -168,22 +184,6 @@ df %>%
 ```
 
 ```{r}
-plotBox(c("aggressiveWordCompletionScore", "anxiousWordCompletionScore"), "threatCondition")
-```
-
-
-### Motivation for Masculine Behaviour
-
-```{r}
-plotHist("mmb_autonomous_score", c(1,7))
-plotHist("mmb_pressured_score", c(1,7))
-
-p = plotBox(c("mmb_autonomous_score", "mmb_pressured_score"))
-ggpar(p, ylim = c(1, 7))
-```
-
-
-```{r}
 df %>%
   summarise(
     mean_autonomous = round(mean(mmb_autonomous_score, na.rm = TRUE), 2),
@@ -197,14 +197,16 @@ df %>%
   )
 ```
 
-### MMB predicting anxious/aggressive cognition by threat condition
+### Visualization Hypothesis 2a & 2b
 
+2a: Moderation autonomous motivation for masculine behavior on aggressive word completions
 ```{r}
-plotLine("mmb_pressured_score", "aggressiveWordCompletionScore", condition = "threatCondition", df = df)
+plotLine("mmb_autonomous_score", "anxiousWordCompletionScoreTransformed", condition = "threatCondition", df = df)
 ```
 
+2b: Moderation pressured motivation for masculine behavior on aggressive word completions
 ```{r}
-plotLine("mmb_autonomous_score", "anxiousWordCompletionScore", condition = "threatCondition", df = df)
+plotLine("mmb_pressured_score", "aggressiveWordCompletionScoreTransformed", condition = "threatCondition", df = df)
 ```
 
 

@@ -55,6 +55,9 @@ simulate_data <- function(n = 100,
     maxval = 1
   )
   
+  aggressiveWordCompletionScoreTransformed = asin(sqrt(aggressiveWordCompletionScore))
+  anxiousWordCompletionScoreTransformed = asin(sqrt(anxiousWordCompletionScore)) 
+  
   # Combine into dataframe
   data <- data.frame(
     id = 1:n,
@@ -62,7 +65,9 @@ simulate_data <- function(n = 100,
     GER = "AO05",
     threatCondition,
     aggressiveWordCompletionScore,
+    aggressiveWordCompletionScoreTransformed,
     anxiousWordCompletionScore,
+    anxiousWordCompletionScoreTransformed,
     mmb_autonomous_score,
     mmb_pressured_score
   )
