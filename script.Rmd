@@ -1,0 +1,206 @@
+---
+title: "Untitled"
+output: html_document
+date: "2025-08-29"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+load library
+```{r message=FALSE, warning=FALSE}
+library(dplyr)
+library(here)
+library(ggplot2)
+library(stringr)
+library(R.utils)
+library(rlang)
+library(tidyr)
+library(jtools)
+library(ggpubr)
+```
+
+load scripts
+```{r}
+source("word-catalog.R")
+source("items-and-labels.R")
+source("data-preprocessing.R")
+source("visualization.R")
+source("utils.R")
+```
+
+## Load and Preprocess data
+```{r}
+df_raw = read.csv("data/results.csv")
+df = preprocessData(df_raw, all_items)
+```
+
+## Inclusion Criteria 
+
+1. Debrief consent = Y
+2. Demographic Criteria 
+ 2.1 AGE >= 18
+ 2.2 SEX = M
+ 2.3 GER = Muttersprache
+3. Suspicion
+  3.1. OPENFEEDBACK auswerten
+  3.2. SUS & SUSTEXT auswerten
+4. WFCT comprehension check
+  => More than 50% are real words...
+
+### 1. Debrief Consent
+```{r}
+df = df %>% 
+  filter(DEBRIEFCONSENT == "Y")
+count(df)$n
+```
+
+### 2. Demographic criteria
+```{r}
+df = df %>% 
+  filter(AGE >= 18) %>% 
+  filter(SEX == "AO01") %>% 
+  filter(GER == "AO05")
+count(df)$n
+```
+
+### 3. Suspicion
+
+TODO
+
+### 4. WFCT comprehension
+
+```{r}
+df = df %>% 
+  filter(validWordCompletionScore >= 0.5)
+count(df)$n
+```
+
+## Descriptive Analysis
+
+### Age
+```{r}
+df %>%
+  summarise(
+    mean_age = round(mean(AGE, na.rm = TRUE), 2),
+    sd_age = round(sd(AGE, na.rm = TRUE), 2),
+  )
+```
+
+### Manipulation Check
+
+```{r}
+## [GKFEEDBACK] Welche Rückmeldung haben Sie im Verlauf der Studie zu Ihrem Wissen in geschlechtsspezifischen Themen erhalten?
+## Scale 1 to 10
+
+plotHist("GKFEEDBACK",c(1,10),  "threatCondition") +
+  labs(
+    # title = "Welche Rückmeldung haben SIe erhalten?",
+    x = NULL,
+    y = "Anzahl",
+    fill = "Bedingung"
+  )
+
+```
+
+```{r}
+## [GKSELF] Wie würden Sie Ihr Wissen in geschlechtsspezifischen Themen einschätzen?
+plotHist("GKSELF", c(1,10)) + 
+  labs(
+    x = NULL,
+    y = "Anzahl"
+  ) 
+```
+
+
+
+### Educational and OCcupational Degree
+
+```{r}
+plotBarHorizontal("EDU_label") + 
+  labs(
+    x = NULL,
+    y = "Anzahl"
+  ) 
+
+plotBarHorizontal("OCC_label") + 
+  labs(
+    x = NULL,
+    y = "Anzahl"
+  ) 
+```
+
+
+### Valid Word Completions
+
+```{r}
+df %>%
+  summarise(
+    mean_valid = round(mean(validWordCompletionScore, na.rm = TRUE), 2),
+    sd_valid = round(sd(validWordCompletionScore, na.rm = TRUE), 2),
+  )
+```
+
+```{r}
+plotBox("validWordCompletionScore")
+```
+### Aggressive and Anxious Word Completions
+
+```{r}
+df %>%
+  group_by(threatCondition) %>%
+  summarise(
+    mean_aggressive = round(mean(aggressiveWordCompletionScore, na.rm = TRUE), 2),
+    sd_aggressive = round(sd(aggressiveWordCompletionScore, na.rm = TRUE), 2),
+  )
+
+df %>%
+  group_by(threatCondition) %>%
+  summarise(
+    mean_anxious = round(mean(anxiousWordCompletionScore, na.rm = TRUE), 2),
+    sd_anxious = round(sd(anxiousWordCompletionScore, na.rm = TRUE), 2)
+  )
+```
+
+```{r}
+plotBox(c("aggressiveWordCompletionScore", "anxiousWordCompletionScore"), "threatCondition")
+```
+
+
+### Motivation for Masculine Behaviour
+
+```{r}
+plotHist("mmb_autonomous_score", c(1,7))
+plotHist("mmb_pressured_score", c(1,7))
+
+p = plotBox(c("mmb_autonomous_score", "mmb_pressured_score"))
+ggpar(p, ylim = c(1, 7))
+```
+
+
+```{r}
+df %>%
+  summarise(
+    mean_autonomous = round(mean(mmb_autonomous_score, na.rm = TRUE), 2),
+    sd_autonomous = round(sd(mmb_autonomous_score, na.rm = TRUE), 2),
+  )
+
+df %>%
+  summarise(
+    mean_pressured = round(mean(mmb_pressured_score, na.rm = TRUE), 2),
+    sd_pressured = round(sd(mmb_pressured_score, na.rm = TRUE), 2)
+  )
+```
+
+### MMB predicting anxious/aggressive cognition by threat condition
+
+```{r}
+
+```
+
+
+
+
+

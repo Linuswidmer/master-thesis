@@ -1,4 +1,3 @@
-
 plotBarHorizontal <- function(col, condition = NULL) {
   col_sym <- sym(col)
   
@@ -19,9 +18,20 @@ plotBarHorizontal <- function(col, condition = NULL) {
 }
 
 
-plotHist <- function(score_col, x_range = NULL) {
+plotHist <- function(score_col, x_range = NULL, condition = NULL) {
   score_sym <- sym(score_col)
   
+  if (!is.null(condition)) {
+    cond_sym <- sym(condition)
+    p = ggplot(df, aes(x = !!score_sym, fill = !!cond_sym)) +
+      geom_histogram(binwidth = 0.05, fill = "#59A14F", color = "black") +
+      labs(
+        title = paste("Histogram of", score_col),
+        x = score_col,
+        y = "Count"
+      ) +
+      theme_minimal()
+  } else {
   p = ggplot(df, aes(x = !!score_sym)) +
     geom_histogram(binwidth = 0.05, fill = "#59A14F", color = "black") +
     labs(
@@ -30,6 +40,8 @@ plotHist <- function(score_col, x_range = NULL) {
       y = "Count"
     ) +
     theme_minimal()
+  }
+  
   
   if (!is.null(x_range) && length(x_range) == 2) {
     p <- p + coord_cartesian(xlim = x_range)
