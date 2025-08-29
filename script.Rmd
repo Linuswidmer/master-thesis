@@ -162,27 +162,54 @@ mmb_items <- df[, MMB_items]
 # Compute correlation matrix
 cor_matrix <- cor(mmb_items)
 
-corrplot(cor_matrix, type="upper", order="hclust", 
-         tl.col="black", tl.srt=45)
+corrplot(cor_matrix, 
+         method = "color",
+         type = "upper",
+         order = "original",  # preserves the column order
+         tl.col = "black",
+         tl.srt = 45,
+         diag = FALSE)
 ```
 
 
-## Test assumed model with CFA
+## CFA for 2 latent factors, uncorrelated
 
+Compute Model
 ```{r}
 cfa_model <- '
   # latent variables
   Pressured =~ MMBi1 + MMBi2 + MMBi3 + MMBi4 + MMBi5
   Autonomous =~ MMBi6 + MMBi7 + MMBi8 + MMBi9
+  
+  # constrain covariance to 0
+  Pressured ~~ 0*Autonomous
 '
 
 fit <- cfa(cfa_model, data = df, std.lv = TRUE)
+```
 
+```{r}
 summary(fit, fit.measures = TRUE, standardized = TRUE)
 ```
 
+Evaluate model fit
+```{r}
+# Extract fit indices
+fit_values <- fitMeasures(fit, c("cfi", "tli", "rmsea", "srmr"))
 
-## Compute Scores
+# Define common criteria
+criteria <- c(cfi = 0.95, tli = 0.95, rmsea = 0.06, srmr = 0.08)
+
+fit_summary <- data.frame(
+  Index = names(fit_values),
+  Value = round(fit_values, 3),
+  Criteria = criteria
+)
+
+print(fit_summary)
+```
+
+## Compute Scores for MMB latent factors
 
 ```{r}
 MMB_pressured_items = c("MMBi1", "MMBi2", "MMBi3", "MMBi4", "MMBi5")
