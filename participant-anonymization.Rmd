@@ -1,0 +1,65 @@
+---
+title: "participant anonymization"
+output: html_document
+date: "2025-10-24"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+source("items-and-labels.R")
+library(dplyr)
+```
+
+
+```{r}
+df_raw = read.csv("data/fragile_masculinity_motivation_raw.csv")
+```
+
+keep only complete responses
+```{r}
+df_raw <- df_raw %>%
+  filter(DEBRIEFCONSENT %in% c("Y", "N"))
+```
+
+delete participant responses where debriefconsent is 'N'
+```{r}
+cols_keep <- c("id", "threatCondition", "DEBRIEFCONSENT")
+no_consent <- df_raw$DEBRIEFCONSENT == "N"
+df_raw[no_consent, !(names(df_raw) %in% cols_keep)] <- NA
+```
+
+review feedback and suspicion text
+```{r}
+df_feedback <- df_raw %>%
+  filter(
+    !(is.na(OPENFEEDBACK) | OPENFEEDBACK == "") |
+    !(is.na(SUSTEXT) | SUSTEXT == "")
+  ) %>%
+  select(id, OPENFEEDBACK, SUSTEXT)
+
+View(df_feedback) 
+```
+
+=> participants indicating technical issues?
+
+
+```{r}
+df_raw$SUSPICIONEXCLUSION = FALSE
+## exclude participants with suspicion here
+```
+
+save only relevant columns
+```{r}
+unanonymized_data = df_raw %>% select(all_of(c(all_items, suspicion_items, "SUSPICIONEXCLUSION")))
+anonymized_data = df_raw %>% select(all_of(c(all_items, "SUSPICIONEXCLUSION")))
+```
+
+
+save final data
+```{r}
+write.csv(anonymized_data,"data/fragile_masculinity_motivation_anonymized.csv", row.names = FALSE)
+write.csv(unanonymized_data,"data/fragile_masculinity_motivation.csv", row.names = FALSE)
+```
