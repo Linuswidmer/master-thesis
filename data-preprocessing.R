@@ -1,5 +1,5 @@
 preprocessData = function(df, all_items) {
-  df = df %>% select(all_of(all_items))
+  # df = df %>% select(all_of(all_items))
   
   df = addQuestionLabelToDataframe(df)
   
@@ -85,4 +85,22 @@ addQuestionLabelToDataframe = function(df) {
     levels = str_wrap(gkfeedback_labels, width = 25)
   )
   return(df)
+}
+
+exclude_participants <- function(df, condition, description = "Exclusion") {
+  before_n <- nrow(df)
+  
+  df_filtered <- df %>% filter({{ condition }})
+  
+  after_n <- nrow(df_filtered)
+  excluded_n <- before_n - after_n
+  
+  cat(
+    glue::glue(
+      "{description}: Excluded {excluded_n} participants ({before_n - after_n} of {before_n}).
+Remaining: {after_n}\n\n"
+    )
+  )
+  
+  return(df_filtered)
 }

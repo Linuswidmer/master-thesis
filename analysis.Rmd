@@ -36,53 +36,35 @@ source("simulation.R")
 
 ## Load and Preprocess data
 ```{r}
-# df_raw = read.csv("data/results.csv")
-# df = preprocessData(df_raw, all_items)
-
-df = simulate_data()
+df_raw = read.csv("data/fragile_masculinity_motivation_anonymized.csv")
+df = preprocessData(df_raw, all_items)
+# df = simulate_data()
 ```
-
 ## Inclusion Criteria 
 
-1. Debrief consent = Y
-2. Demographic Criteria 
- 2.1 AGE >= 18
- 2.2 SEX = M
- 2.3 GER = Muttersprache
-3. Suspicion
-  3.1. OPENFEEDBACK auswerten
-  3.2. SUS & SUSTEXT auswerten
-4. WFCT comprehension check
-  => More than 50% are real words...
-
 ### 1. Debrief Consent
+Participants can withdraw their consent after the debrief
 ```{r}
-df = df %>% 
-  filter(DEBRIEFCONSENT == "Y")
-count(df)$n
+df <- exclude_participants(df, DEBRIEFCONSENT == "Y", "Debrief consent")
 ```
 
 ### 2. Demographic criteria
+Participants have to be older than 18 years, self-identify as male and native level German skills
 ```{r}
-df = df %>% 
-  filter(AGE >= 18) %>% 
-  filter(SEX == "AO01") %>% 
-  filter(GER == "AO05")
-count(df)$n
+df <- exclude_participants(df, AGE >= 18, "Age")
+df <- exclude_participants(df, SEX == "AO01", "Gender")
+df <- exclude_participants(df, GER == "AO05" | GER == "AO04", "German skills")
 ```
-
 ### 3. Suspicion
-
-TODO
-
-### 4. WFCT comprehension
-
+Participants may not indicate a strong suspicion about the study (coded in column SUSPICIONEXCLUSION, free text are excluded in anonymous data set)
 ```{r}
-df = df %>% 
-  filter(validWordCompletionScore >= 0.5)
-count(df)$n
+df <- exclude_participants(df, SUSPICIONEXCLUSION == FALSE, "Suspicion")
 ```
-
+### 4. WFCT comprehension
+Participants should complete more than 50% of word fragments with existing words
+```{r}
+df <- exclude_participants(df, validWordCompletionScore >= 0.5, "WFCT comprehension")
+```
 ## Descriptive Analysis
 
 ### Age
@@ -212,9 +194,6 @@ print(fit_summary)
 ## Compute Scores for MMB latent factors
 
 ```{r}
-MMB_pressured_items = c("MMBi1", "MMBi2", "MMBi3", "MMBi4", "MMBi5")
-MMB_autonomous_items = c("MMBi6", "MMBi7", "MMBi8", "MMBi9")
-
 df$mmb_autonomous_score = rowMeans(
   df[MMB_autonomous_items],
   na.rm = TRUE
