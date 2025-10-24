@@ -36,8 +36,8 @@ source("simulation.R")
 
 ## Load and Preprocess data
 ```{r}
-df_raw = read.csv("data/fragile_masculinity_motivation_anonymized.csv")
-df = preprocessData(df_raw, all_items)
+df = read.csv("data/fragile_masculinity_motivation_anonymized.csv")
+df = preprocessData(df, all_items)
 # df = simulate_data()
 ```
 ## Inclusion Criteria 
@@ -94,7 +94,7 @@ plotHist("GKFEEDBACK",c(1,10),  "threatCondition") +
 
 ```{r}
 ## [GKSELF] Wie würden Sie Ihr Wissen in geschlechtsspezifischen Themen einschätzen?
-plotHist("GKSELF", c(1,10)) + 
+plotHist("GKSELF", c(1,10), "threatCondition") + 
   labs(
     x = NULL,
     y = "Anzahl"
@@ -104,6 +104,12 @@ plotHist("GKSELF", c(1,10)) +
 
 
 ### Educational and OCcupational Degree
+
+```{r}
+freq_table(df, EDU_label)
+freq_table(df, OCC_label)
+```
+
 
 ```{r}
 plotBarHorizontal("EDU_label") + 
@@ -116,27 +122,23 @@ plotBarHorizontal("OCC_label") +
   labs(
     x = NULL,
     y = "Anzahl"
-  ) 
+  )
 ```
 
 
 ### Valid Word Completions
 
 ```{r}
-df %>%
-  summarise(
-    mean_valid = round(mean(validWordCompletionScore, na.rm = TRUE), 2),
-    sd_valid = round(sd(validWordCompletionScore, na.rm = TRUE), 2),
-  )
+summary_mean_sd(df, "validWordCompletionScore")
 ```
 
 ```{r}
 plotBox("validWordCompletionScore")
 ```
 
-# Factor analysis: Motivation for Masculine Behaviour
+## Factor analysis: Motivation for Masculine Behaviour
 
-## Visualize using corrplot
+### Visualize using corrplot
 ```{r}
 # Select only the MMBi items
 mmb_items <- df[, MMB_items]
