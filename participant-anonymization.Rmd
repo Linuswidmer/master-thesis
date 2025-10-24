@@ -31,6 +31,11 @@ no_consent <- df_raw$DEBRIEFCONSENT == "N"
 df_raw[no_consent, !(names(df_raw) %in% cols_keep)] <- NA
 ```
 
+investigate debrief consent
+```{r}
+table(df_raw$DEBRIEFCONSENT, df_raw$threatCondition)
+```
+
 review feedback and suspicion text
 ```{r}
 df_feedback <- df_raw %>%
@@ -57,6 +62,7 @@ unanonymized_data = df_raw %>% select(all_of(c(all_items, suspicion_items, "SUSP
 anonymized_data = df_raw %>% select(all_of(c(all_items, "SUSPICIONEXCLUSION")))
 ```
 
+Connection between debrief consent and threatCondition
 
 save final data
 ```{r}
