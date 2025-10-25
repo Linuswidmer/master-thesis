@@ -5,6 +5,8 @@ preprocessData = function(df, all_items) {
   
   df = encodeWordCompletions(df)
   
+  df$threatCondition <- factor(df$threatCondition, levels = c("threat", "noThreat"))
+  
   printNumberOfParticipants(df)
   return(df)
 }

@@ -226,14 +226,34 @@ Aggressive and anxious word completions by threat condition
 plotBox(c("aggressiveWordCompletionScore", "anxiousWordCompletionScore"), "threatCondition")
 ```
 
+### Hypothesis 1a t-test
+
 ```{r}
 summary_mean_sd(df, aggressiveWordCompletionScore, group = 'threatCondition')
+```
+
+```{r}
+t.test(
+  aggressiveWordCompletionScoreTransformed ~ threatCondition,
+  data = df,
+  alternative = "greater"
+)
+```
+
+
+### Hypothesis 1b t-test
+```{r}
 summary_mean_sd(df, anxiousWordCompletionScore, group = 'threatCondition')
 ```
 
-## t-test
+```{r}
+t.test(
+  anxiousWordCompletionScoreTransformed ~ threatCondition,
+  data = df,
+  alternative = "greater"
+)
+```
 
-...
 
 ## Visualization Hypothesis 2a & 2b
 
@@ -248,6 +268,8 @@ plotLine("mmb_pressured_score", "aggressiveWordCompletionScoreTransformed", cond
 ```
 
 
+## t-test 
 
+...
 
 
