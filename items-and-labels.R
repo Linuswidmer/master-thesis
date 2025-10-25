@@ -1,14 +1,12 @@
 ## ITEMS
 
-MMB_items = c("MMBi1", "MMBi2", "MMBi3", "MMBi4", "MMBi5", "MMBi6", "MMBi7", "MMBi8", "MMBi9")
-MMB_pressured_items = c("MMBi1", "MMBi2", "MMBi3", "MMBi4", "MMBi5")
-MMB_autonomous_items = c("MMBi6", "MMBi7", "MMBi8", "MMBi9")
+MMB_item_codes = c("MMBi1", "MMBi2", "MMBi3", "MMBi4", "MMBi5", "MMBi6", "MMBi7", "MMBi8", "MMBi9")
 WFCT_aggression_items = c("WFCTagg1", "WFCTagg2", "WFCTagg3", "WFCTagg4", "WFCTagg5", "WFCTagg6", "WFCTagg7", "WFCTagg8", "WFCTagg9", "WFCTagg10")
 WFCT_anxiety_items = c("WFCTanx1", "WFCTanx2", "WFCTanx3", "WFCTanx4", "WFCTanx5", "WFCTanx6", "WFCTanx7", "WFCTanx8", "WFCTanx9", "WFCTanx10")
 demographic_items = c("AGE", "EDU","EDUPUPIL", "OCCDEGREE", "SEX", "GER")
 manipulation_items = c("threatCondition", "GKFEEDBACK", "DEBRIEFCONSENT", "GKSELF")
 suspicion_items = c("OPENFEEDBACK", "SUS", "SUSTEXT")
-all_items = c('id', MMB_pressured_items, MMB_autonomous_items, WFCT_aggression_items, WFCT_anxiety_items, demographic_items, manipulation_items)
+all_items = c('id', MMB_item_codes, WFCT_anxiety_items, demographic_items, manipulation_items)
 WFCT_all_items <- c(WFCT_aggression_items, WFCT_anxiety_items)
 
 ## LABELS
