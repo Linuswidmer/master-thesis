@@ -27,16 +27,29 @@ get_non_existing_words <- function(df, WFCT_items) {
 }
 # get_non_existing_words(df, WFCT_all_items)
 
-summary_mean_sd <- function(data, column, digits = 2) {
-  col_sym <- rlang::sym(column)
+summary_mean_sd <- function(data, column, group = NULL, digits = 2) {
+  col_sym <- ensym(column)
   
-  data %>%
-    summarise(
-      mean = round(mean(!!col_sym, na.rm = TRUE), digits),
-      sd   = round(sd(!!col_sym, na.rm = TRUE), digits)
-    )
+  if (!is.null(group)) {
+    group_sym <- ensym(group)
+    
+    data %>%
+      group_by(!!group_sym) %>%
+      summarise(
+        mean = round(mean(!!col_sym, na.rm = TRUE), digits),
+        sd   = round(sd(!!col_sym, na.rm = TRUE), digits),
+        n    = sum(!is.na(!!col_sym)),
+        .groups = "drop"
+      )
+  } else {
+    data %>%
+      summarise(
+        mean = round(mean(!!col_sym, na.rm = TRUE), digits),
+        sd   = round(sd(!!col_sym, na.rm = TRUE), digits),
+        n    = sum(!is.na(!!col_sym))
+      )
+  }
 }
-
 freq_table <- function(data, column) {
   col_sym <- rlang::ensym(column)  # tidy evaluation
   col_levels <- levels(factor(data[[as_string(col_sym)]])) # get all unique levels

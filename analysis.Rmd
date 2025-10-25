@@ -144,7 +144,7 @@ plotBox("validWordCompletionScore")
 mmb_items <- df[, MMB_items]
 
 # Compute correlation matrix
-cor_matrix <- cor(mmb_items)
+cor_matrix <- cor(mmb_items, use = "pairwise.complete.obs")
 
 corrplot(cor_matrix, 
          method = "color",
@@ -221,40 +221,19 @@ ggpar(p, ylim = c(1, 7))
 
 ## Visualization Hypothesis 1a & 1b
 
-Aggessive and axious word completions by threat condition
+Aggressive and anxious word completions by threat condition
 ```{r}
 plotBox(c("aggressiveWordCompletionScore", "anxiousWordCompletionScore"), "threatCondition")
 ```
 
 ```{r}
-df %>%
-  group_by(threatCondition) %>%
-  summarise(
-    mean_aggressive = round(mean(aggressiveWordCompletionScore, na.rm = TRUE), 2),
-    sd_aggressive = round(sd(aggressiveWordCompletionScore, na.rm = TRUE), 2),
-  )
-
-df %>%
-  group_by(threatCondition) %>%
-  summarise(
-    mean_anxious = round(mean(anxiousWordCompletionScore, na.rm = TRUE), 2),
-    sd_anxious = round(sd(anxiousWordCompletionScore, na.rm = TRUE), 2)
-  )
+summary_mean_sd(df, aggressiveWordCompletionScore, group = 'threatCondition')
+summary_mean_sd(df, anxiousWordCompletionScore, group = 'threatCondition')
 ```
 
-```{r}
-df %>%
-  summarise(
-    mean_autonomous = round(mean(mmb_autonomous_score, na.rm = TRUE), 2),
-    sd_autonomous = round(sd(mmb_autonomous_score, na.rm = TRUE), 2),
-  )
+## t-test
 
-df %>%
-  summarise(
-    mean_pressured = round(mean(mmb_pressured_score, na.rm = TRUE), 2),
-    sd_pressured = round(sd(mmb_pressured_score, na.rm = TRUE), 2)
-  )
-```
+...
 
 ## Visualization Hypothesis 2a & 2b
 
