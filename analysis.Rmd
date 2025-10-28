@@ -149,6 +149,29 @@ efa_result <- fa(mmb_items, nfactors = 2, rotate = "oblimin", fm = "ml")
 print(efa_result, cut = 0.3)   # only loadings > .30
 ```
 
+### Compute Model
+```{r}
+efa_model <- '
+  # latent variables
+  Pressured =~ MMBi1 + MMBi2 + MMBi3 + MMBi4 + MMBi5
+  Autonomous =~ MMBi6 + MMBi7 + MMBi8 + MMBi9
+  
+  Pressured ~~ Autonomous
+'
+
+fit_efa <- cfa(efa_model, data = df, std.lv = TRUE)
+```
+
+```{r}
+summary(fit_efa, fit.measures = TRUE, standardized = TRUE)
+```
+
+### Evaluate model fit
+```{r}
+efa_fit_summary <- summarizeFitIndices(fit_efa)
+print(efa_fit_summary)
+```
+
 Define latent factor structure
 ```{r}
 MMB_pressured_items = c("MMBi1", "MMBi2", "MMBi3", "MMBi4", "MMBi5")
@@ -270,6 +293,11 @@ plotHist("mmb_pressured_score", c(1,7))
 p = plotBox(c("mmb_autonomous_score", "mmb_pressured_score"))
 ggpar(p, ylim = c(1, 7))
 ```
+
+```{r}
+cor(df$mmb_autonomous_score, df$mmb_pressured_score)
+```
+
 
 Reliabilty MMB Scales
 ```{r}
