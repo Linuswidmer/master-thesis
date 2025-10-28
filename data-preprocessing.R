@@ -7,7 +7,7 @@ preprocessData = function(df, all_items) {
   
   df$threatCondition <- factor(df$threatCondition, levels = c("threat", "noThreat"))
   
-  printNumberOfParticipants(df)
+  printNumberOfParticipants(df, "threatCondition")
   return(df)
 }
 

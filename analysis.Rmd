@@ -41,7 +41,6 @@ source("inference-statistics.R")
 ```{r}
 df = read.csv("data/fragile_masculinity_motivation_anonymized.csv")
 df = preprocessData(df, all_items)
-# df = simulate_data()
 ```
 ## Inclusion Criteria 
 

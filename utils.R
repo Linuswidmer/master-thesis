@@ -1,7 +1,14 @@
-printNumberOfParticipants = function(df) {
-  n = count(df)$n
+printNumberOfParticipants <- function(df, condition) {
+  condition_sym <- rlang::ensym(condition)
   
-  printf('Number of Observations: %d', n)
+  n = count(df)$n 
+  printf('Number of Observations: %d\n', n)
+  
+  df %>%
+    dplyr::count(!!condition_sym) %>%
+    dplyr::mutate(msg = paste0("Condition ", !!condition_sym, ": ", n, " participants")) %>%
+    dplyr::pull(msg) %>%
+    cat(sep = "\n")
 }
 
 get_non_existing_words <- function(df, WFCT_items) {
