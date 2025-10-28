@@ -35,6 +35,7 @@ source("visualization.R")
 source("utils.R")
 source("simulation.R")
 source("inference-statistics.R")
+source("factor-analysis.R")
 ```
 
 ## Load and Preprocess data
@@ -90,28 +91,17 @@ cfa_model <- '
   Pressured ~~ 0*Autonomous
 '
 
-fit <- cfa(cfa_model, data = df, std.lv = TRUE)
+fit_cfa <- cfa(cfa_model, data = df, std.lv = TRUE)
 ```
 
 ```{r}
-summary(fit, fit.measures = TRUE, standardized = TRUE)
+summary(fit_cfa, fit.measures = TRUE, standardized = TRUE)
 ```
 
 ### Evaluate model fit
 ```{r}
-# Extract fit indices
-fit_values <- fitMeasures(fit, c("cfi", "tli", "rmsea", "srmr"))
-
-# Define common criteria
-criteria <- c(cfi = 0.95, tli = 0.95, rmsea = 0.06, srmr = 0.08)
-
-fit_summary <- data.frame(
-  Index = names(fit_values),
-  Value = round(fit_values, 3),
-  Criteria = criteria
-)
-
-print(fit_summary)
+cfa_fit_summary <- summarizeFitIndices(fit_cfa)
+print(cfa_fit_summary)
 ```
 
 ## Exploratory Factor Analysis
@@ -189,6 +179,11 @@ df <- exclude_participants(df, !is.na(mmb_pressured_score), "Missing MMB Pressur
 
 
 # Descriptive Analysis Final Sample
+
+## Conditions
+```{r}
+printNumberOfParticipants(df, "threatCondition")
+```
 
 ## Age
 ```{r}
