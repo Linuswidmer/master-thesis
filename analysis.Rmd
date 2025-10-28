@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 load library
-```{r message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE, include=FALSE}
 library(dplyr)
 library(here)
 library(ggplot2)
@@ -23,6 +23,7 @@ library(ggpubr)
 library(lavaan)
 library(corrplot)
 library(psych)
+library(car)
 ```
 
 load scripts
@@ -33,6 +34,7 @@ source("data-preprocessing.R")
 source("visualization.R")
 source("utils.R")
 source("simulation.R")
+source("inference-statistics.R")
 ```
 
 ## Load and Preprocess data
@@ -231,10 +233,7 @@ Compute reliabilty
 ```{r}
 omega(mmb_items[, MMB_pressured_items])
 omega(mmb_items[, MMB_autonomous_items])
-
 ```
-
-
 
 ## Compute Scores for MMB latent factors
 
@@ -271,16 +270,36 @@ plotBox(c("aggressiveWordCompletionScore", "anxiousWordCompletionScore"), "threa
 
 ### Hypothesis 1a t-test
 
+#### Assumption 1: Normality withing each group 
+
+Check Visually
+```{r}
+check_normality_qq(df, aggressiveWordCompletionScoreTransformed, threatCondition)
+```
+-> data points should be roughly on the line
+
+
+```{r}
+check_normality_hist(df, aggressiveWordCompletionScoreTransformed, threatCondition)
+```
+-> should roughly resemble a normal distribution
+
+#### Assumption 2: Homogenity of variance
+
+Levene Test
+```{r}
+check_homogeneity(df, aggressiveWordCompletionScoreTransformed, threatCondition)
+```
+p > .05 → equal variances (use Student’s t-test: var.equal = TRUE)
+
+
 ```{r}
 summary_mean_sd(df, aggressiveWordCompletionScore, group = 'threatCondition')
 ```
 
 ```{r}
-t.test(
-  aggressiveWordCompletionScoreTransformed ~ threatCondition,
-  data = df,
-  alternative = "greater"
-)
+run_ttest(df, aggressiveWordCompletionScoreTransformed, threatCondition,
+          alternative = "greater", var_equal = TRUE)
 ```
 
 
