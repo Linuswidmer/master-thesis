@@ -6,7 +6,7 @@ WFCT_anxiety_items = c("WFCTanx1", "WFCTanx2", "WFCTanx3", "WFCTanx4", "WFCTanx5
 demographic_items = c("AGE", "EDU","EDUPUPIL", "OCCDEGREE", "SEX", "GER")
 manipulation_items = c("threatCondition", "GKFEEDBACK", "DEBRIEFCONSENT", "GKSELF")
 suspicion_items = c("OPENFEEDBACK", "SUS", "SUSTEXT")
-all_items = c('id', MMB_item_codes, WFCT_anxiety_items, demographic_items, manipulation_items)
+all_items = c('id', MMB_item_codes, WFCT_aggression_items, WFCT_anxiety_items, demographic_items, manipulation_items)
 WFCT_all_items <- c(WFCT_aggression_items, WFCT_anxiety_items)
 
 ## LABELS
