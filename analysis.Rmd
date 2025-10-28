@@ -304,16 +304,37 @@ run_ttest(df, aggressiveWordCompletionScoreTransformed, threatCondition,
 
 
 ### Hypothesis 1b t-test
+
+#### Assumption 1: Normality withing each group 
+
+Check Visually
+```{r}
+check_normality_qq(df, anxiousWordCompletionScoreTransformed, threatCondition)
+```
+-> data points should be roughly on the line
+
+
+```{r}
+check_normality_hist(df, anxiousWordCompletionScoreTransformed, threatCondition)
+```
+-> should roughly resemble a normal distribution
+
+#### Assumption 2: Homogenity of variance
+
+Levene Test
+```{r}
+check_homogeneity(df, anxiousWordCompletionScoreTransformed, threatCondition)
+```
+p > .05 → equal variances (use Student’s t-test: var.equal = TRUE)
+
 ```{r}
 summary_mean_sd(df, anxiousWordCompletionScore, group = 'threatCondition')
 ```
 
+Run inference statistic
 ```{r}
-t.test(
-  anxiousWordCompletionScoreTransformed ~ threatCondition,
-  data = df,
-  alternative = "greater"
-)
+run_ttest(df, anxiousWordCompletionScoreTransformed, threatCondition,
+          alternative = "greater", var_equal = TRUE)
 ```
 
 
