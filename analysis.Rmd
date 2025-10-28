@@ -239,19 +239,7 @@ summary_gkfeedback
 
 
 ```{r}
-plotHist("GKFEEDBACK", c(1, 10), "threatCondition") +
-  geom_vline(
-    data = summary_gkfeedback,
-    aes(xintercept = mean, color = threatCondition),
-    linetype = "dashed",
-    linewidth = 1
-  ) +
-  labs(
-    x = NULL,
-    y = "Count",
-    fill = "Condition",
-    color = "Condition"
-  )
+plotHist("GKFEEDBACK", c(1, 10), "threatCondition") 
 ```
 
 
@@ -264,19 +252,7 @@ summary_gkself
 ```
 
 ```{r}
-plotHist("GKSELF", c(1, 10), "threatCondition") +
-  geom_vline(
-    data = summary_gkself,
-    aes(xintercept = mean, color = threatCondition),
-    linetype = "dashed",
-    linewidth = 1
-  ) +
-  labs(
-    x = NULL,
-    y = "Count",
-    fill = "Condition",
-    color = "Condition"
-  )
+plotHist("GKSELF", c(1, 10), "threatCondition")
 ```
 
 

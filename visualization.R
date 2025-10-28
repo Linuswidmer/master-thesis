@@ -19,35 +19,56 @@ plotBarHorizontal <- function(col, condition = NULL) {
 
 
 plotHist <- function(score_col, x_range = NULL, condition = NULL) {
+  
+  palette = c("#D3D3D3", "#808080")
   score_sym <- sym(score_col)
+  
+  # Common theme
+  common_theme <- theme_apa() +
+    theme(
+      axis.title.y = element_text(face = "bold"),
+      axis.title.x = element_text(face = "bold")
+    )
+  
+  # Common y-axis scale
+  common_scale <- scale_y_continuous(expand = c(0,0))
   
   if (!is.null(condition)) {
     cond_sym <- sym(condition)
-    p = ggplot(df, aes(x = !!score_sym, fill = !!cond_sym)) +
-      geom_histogram(binwidth = 0.4,color = "black", position = "dodge", alpha = 0.7) +
+    
+    # Ensure the column is a factor
+    df[[condition]] <- factor(df[[condition]])
+    
+    p <- ggplot(df, aes(x = !!score_sym, fill = !!cond_sym)) +
+      geom_histogram(binwidth = 0.4, color = "black", position = "dodge", alpha = 0.7) +
+      scale_fill_manual(values = palette, name = "Condition") +  # legend title
+      common_theme +
+      common_scale +
       labs(
         title = paste("Histogram of", score_col),
         x = score_col,
         y = "Count"
-      ) +
-      theme_minimal()
+      )
   } else {
-    p = ggplot(df, aes(x = !!score_sym)) +
-      geom_histogram(binwidth = 0.4, fill = "#59A14F", color = "black") +
+    p <- ggplot(df, aes(x = !!score_sym)) +
+      geom_histogram(binwidth = 0.4, fill = palette[1], color = "black") +
+      common_theme +
+      common_scale +
       labs(
         title = paste("Histogram of", score_col),
         x = score_col,
         y = "Count"
-      ) +
-      theme_minimal()
+      )
   }
   
+  # Apply x-axis range if specified
   if (!is.null(x_range) && length(x_range) == 2) {
     p <- p + coord_cartesian(xlim = x_range)
   }
   
-  p
+  return(p)
 }
+
 
 
 plotBox <- function(cols, fill_var = NULL) {
