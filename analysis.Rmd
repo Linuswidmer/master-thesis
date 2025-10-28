@@ -81,30 +81,55 @@ df %>%
 
 ### Manipulation Check
 
+#### Gender Knowledge Feedback
+[GKFEEDBACK] Welche Rückmeldung haben Sie im Verlauf der Studie zu Ihrem Wissen in geschlechtsspezifischen Themen erhalten?
+Scale 1 to 10
 ```{r}
-## [GKFEEDBACK] Welche Rückmeldung haben Sie im Verlauf der Studie zu Ihrem Wissen in geschlechtsspezifischen Themen erhalten?
-## Scale 1 to 10
+summary_gkfeedback <- summary_mean_sd(df, GKFEEDBACK, "threatCondition")
+summary_gkfeedback
+```
 
-plotHist("GKFEEDBACK",c(1,10),  "threatCondition") +
+
+```{r}
+plotHist("GKFEEDBACK", c(1, 10), "threatCondition") +
+  geom_vline(
+    data = summary_gkfeedback,
+    aes(xintercept = mean, color = threatCondition),
+    linetype = "dashed",
+    linewidth = 1
+  ) +
   labs(
-    # title = "Welche Rückmeldung haben SIe erhalten?",
     x = NULL,
-    y = "Anzahl",
-    fill = "Bedingung"
+    y = "Count",
+    fill = "Condition",
+    color = "Condition"
   )
+```
 
+
+#### Self evaluation of Gender Knowledge
+[GKSELF] Wie würden Sie Ihr Wissen in geschlechtsspezifischen Themen einschätzen?
+
+```{r}
+summary_gkself <- summary_mean_sd(df, GKSELF, "threatCondition")
+summary_gkself
 ```
 
 ```{r}
-## [GKSELF] Wie würden Sie Ihr Wissen in geschlechtsspezifischen Themen einschätzen?
-plotHist("GKSELF", c(1,10), "threatCondition") + 
+plotHist("GKSELF", c(1, 10), "threatCondition") +
+  geom_vline(
+    data = summary_gkself,
+    aes(xintercept = mean, color = threatCondition),
+    linetype = "dashed",
+    linewidth = 1
+  ) +
   labs(
     x = NULL,
-    y = "Anzahl"
-  ) 
+    y = "Count",
+    fill = "Condition",
+    color = "Condition"
+  )
 ```
-
-
 
 ### Educational and OCcupational Degree
 
