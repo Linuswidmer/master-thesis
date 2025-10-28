@@ -24,6 +24,8 @@ library(lavaan)
 library(corrplot)
 library(psych)
 library(car)
+library(knitr)
+library(kableExtra)
 ```
 
 load scripts
@@ -148,6 +150,46 @@ fa.parallel(mmb_items, fa = "fa", n.iter = 100, show.legend = TRUE, main = "Para
 efa_result <- fa(mmb_items, nfactors = 2, rotate = "oblimin", fm = "ml")
 print(efa_result, cut = 0.3)   # only loadings > .30
 ```
+
+Print loading table
+```{r}
+
+# Create loadings matrix
+loadings_matrix <- as.data.frame(efa_result$loadings[1:length(mmb_labels), ])
+
+# Format table
+loading_table <- data.frame(
+  Item   = MMB_item_codes,
+  Label  = mmb_labels,
+  Factor1 = round(loadings_matrix$ML1, 2),
+  Factor2 = round(loadings_matrix$ML2, 2)
+)
+
+# Hide loadings < .30
+loading_table <- loading_table %>%
+  mutate(
+    Factor1 = ifelse(abs(Factor1) < 0.30, "", as.character(Factor1)),
+    Factor2 = ifelse(abs(Factor2) < 0.30, "", as.character(Factor2))
+  )
+
+# Render nice APA-style table
+loading_table %>%
+  kbl(
+    caption = "EFA Loadings for MMB Items (2-Factor Solution)",
+    align = "lccc",
+    booktabs = TRUE
+  ) %>%
+  kable_styling(
+    full_width = FALSE,
+    position = "center",
+    bootstrap_options = c("striped", "hover", "condensed"),
+    latex_options = "hold_position"
+  ) %>%
+  row_spec(0, bold = TRUE, background = "#f2f2f2") %>%   # Light gray header
+  row_spec(1:nrow(loading_table), background = "white", color = "black")
+
+```
+
 
 ### Compute Model
 ```{r}
