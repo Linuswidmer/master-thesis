@@ -68,6 +68,14 @@ Participants should complete more than 50% of word fragments with existing words
 ```{r}
 df <- exclude_participants(df, validWordCompletionScore >= 0.5, "WFCT comprehension")
 ```
+### 5. Incomplete Responses
+
+```{r}
+df <- exclude_participants(df, !is.na(aggressiveWordCompletionScore), "Missing Aggressive Word Completion Score")
+df <- exclude_participants(df, !is.na(anxiousWordCompletionScore), "Missing Anxious Word Completion Score")
+```
+
+
 ## Descriptive Analysis
 
 ### Age
@@ -362,6 +370,16 @@ run_ttest(df, anxiousWordCompletionScoreTransformed, threatCondition,
           alternative = "greater", var_equal = TRUE)
 ```
 
+# Moderation of Threat Response 
+
+## Inclusion Criteria
+
+Has to have score of MMB Scales
+```{r}
+df <- exclude_participants(df, !is.na(mmb_autonomous_score), "Missing MMB Autonomous Score")
+df <- exclude_participants(df, !is.na(mmb_pressured_score), "Missing MMB Pressured Score")
+```
+
 
 ## Visualization Hypothesis 2a & 2b
 
@@ -369,11 +387,69 @@ run_ttest(df, anxiousWordCompletionScoreTransformed, threatCondition,
 ```{r}
 plotLine("mmb_autonomous_score", "anxiousWordCompletionScoreTransformed", condition = "threatCondition", df = df)
 ```
-
 2b: Moderation pressured motivation for masculine behavior on aggressive word completions
 ```{r}
 plotLine("mmb_pressured_score", "aggressiveWordCompletionScoreTransformed", condition = "threatCondition", df = df)
 ```
+
+## Hypothesis 2a 
+
+### Multiple linear regression
+
+Establish model
+```{r}
+model_anxious <- lm(anxiousWordCompletionScoreTransformed ~ threatCondition * mmb_autonomous_score, data = df)
+```
+
+#### Assumption 1: Normality 
+
+```{r}
+plot(model_anxious, which = 2)
+```
+
+-> Q-Q plot points roughly on the line → residuals ~ normal.
+-> identify possible outliers (highly influential points)
+
+
+#### Assumption 2: Outliers
+
+Examine outliers via residuals
+```{r}
+res <- residuals(model_anxious)
+
+# Standardized residuals
+res_std <- rstandard(model_anxious)
+
+# Flag extreme residuals
+outliers <- which(abs(res_std) > 2)
+outliers
+
+```
+
+Examine outliers via cook's distance
+```{r}
+influential_obs <- df
+influential_obs$cooksd <- cooks.distance(model_anxious)
+
+n <- nrow(df)
+k <- length(coef(model_anxious)) - 1
+threshold <- 4 / (n - k - 1)
+
+
+influential_obs %>%
+  filter(cooksd > threshold)
+```
+Cook’s distance > 4/(n-k-1) → potentially influential
+
+
+Inference statistics
+```{r}
+summary(model_anxious)
+```
+
+
+
+
 
 
 ## t-test 

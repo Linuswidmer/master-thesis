@@ -88,13 +88,13 @@ plotLine <- function(x, y, condition = NULL, df) {
     cond_sym <- sym(condition)
     p <- ggplot(df, aes(x = !!x_sym, y = !!y_sym, color = !!cond_sym)) +
       geom_point(alpha = 0.5) +
-      geom_smooth(method = "lm", se = TRUE) +
+      geom_smooth(method = "lm", se = FALSE) +
       theme_minimal() +
       labs(x = x, y = y, color = condition)
   } else {
     p <- ggplot(df, aes(x = !!x_sym, y = !!y_sym)) +
       geom_point(alpha = 0.5) +
-      geom_smooth(method = "lm", se = TRUE, color = "blue") +
+      geom_smooth(method = "lm", se = FALSE, color = "blue") +
       theme_minimal() +
       labs(x = x, y = y)
   }
