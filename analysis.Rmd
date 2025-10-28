@@ -75,108 +75,12 @@ df <- exclude_participants(df, !is.na(aggressiveWordCompletionScore), "Missing A
 df <- exclude_participants(df, !is.na(anxiousWordCompletionScore), "Missing Anxious Word Completion Score")
 ```
 
+# Factor Structure Motivation for Masculine Behaviour
 
-## Descriptive Analysis
+## Confirmatory Factor Analysis
+Testing the proposed 2 factor structure by Stanaland & Gaither (2021)
 
-### Age
-```{r}
-df %>%
-  summarise(
-    mean_age = round(mean(AGE, na.rm = TRUE), 2),
-    sd_age = round(sd(AGE, na.rm = TRUE), 2),
-  )
-```
-
-### Manipulation Check
-
-#### Gender Knowledge Feedback
-[GKFEEDBACK] Welche Rückmeldung haben Sie im Verlauf der Studie zu Ihrem Wissen in geschlechtsspezifischen Themen erhalten?
-Scale 1 to 10
-```{r}
-summary_gkfeedback <- summary_mean_sd(df, GKFEEDBACK, "threatCondition")
-summary_gkfeedback
-```
-
-
-```{r}
-plotHist("GKFEEDBACK", c(1, 10), "threatCondition") +
-  geom_vline(
-    data = summary_gkfeedback,
-    aes(xintercept = mean, color = threatCondition),
-    linetype = "dashed",
-    linewidth = 1
-  ) +
-  labs(
-    x = NULL,
-    y = "Count",
-    fill = "Condition",
-    color = "Condition"
-  )
-```
-
-
-#### Self evaluation of Gender Knowledge
-[GKSELF] Wie würden Sie Ihr Wissen in geschlechtsspezifischen Themen einschätzen?
-
-```{r}
-summary_gkself <- summary_mean_sd(df, GKSELF, "threatCondition")
-summary_gkself
-```
-
-```{r}
-plotHist("GKSELF", c(1, 10), "threatCondition") +
-  geom_vline(
-    data = summary_gkself,
-    aes(xintercept = mean, color = threatCondition),
-    linetype = "dashed",
-    linewidth = 1
-  ) +
-  labs(
-    x = NULL,
-    y = "Count",
-    fill = "Condition",
-    color = "Condition"
-  )
-```
-
-### Educational and OCcupational Degree
-
-```{r}
-freq_table(df, EDU_label)
-freq_table(df, OCC_label)
-```
-
-
-```{r}
-plotBarHorizontal("EDU_label") + 
-  labs(
-    x = NULL,
-    y = "Anzahl"
-  ) 
-
-plotBarHorizontal("OCC_label") + 
-  labs(
-    x = NULL,
-    y = "Anzahl"
-  )
-```
-
-
-### Valid Word Completions
-
-```{r}
-summary_mean_sd(df, "validWordCompletionScore")
-```
-
-```{r}
-plotBox("validWordCompletionScore")
-```
-
-## Confirmatory Factor analysis: Motivation for Masculine Behaviour
-
-### CFA for 2 latent factors, uncorrelated
-
-Compute Model
+### Compute Model
 ```{r}
 cfa_model <- '
   # latent variables
@@ -194,7 +98,7 @@ fit <- cfa(cfa_model, data = df, std.lv = TRUE)
 summary(fit, fit.measures = TRUE, standardized = TRUE)
 ```
 
-Evaluate model fit
+### Evaluate model fit
 ```{r}
 # Extract fit indices
 fit_values <- fitMeasures(fit, c("cfi", "tli", "rmsea", "srmr"))
@@ -239,7 +143,7 @@ KMO(mmb_items)
 cortest.bartlett(cor(mmb_items))
 ```
 KMO (Kaiser-Meyer-Olkin) should be > 0.6 (ideally > 0.8)
-Bartlett’s test should be significant (p < .05)\
+Bartlett’s test should be significant (p < .05)
 
 
 ### EFA Determine the number of latent factors
@@ -262,13 +166,7 @@ MMB_pressured_items = c("MMBi1", "MMBi2", "MMBi3", "MMBi4", "MMBi5")
 MMB_autonomous_items = c("MMBi6", "MMBi7", "MMBi8", "MMBi9")
 ```
 
-Compute reliabilty
-```{r}
-omega(mmb_items[, MMB_pressured_items])
-omega(mmb_items[, MMB_autonomous_items])
-```
-
-## Compute Scores for MMB latent factors
+### Compute Scores for MMB latent factors
 
 ```{r}
 df$mmb_autonomous_score = rowMeans(
@@ -282,6 +180,118 @@ df$mmb_pressured_score = rowMeans(
 )
 ```
 
+### Inclusion Critera 5
+
+Has to have score of MMB Scales
+```{r}
+df <- exclude_participants(df, !is.na(mmb_autonomous_score), "Missing MMB Autonomous Score")
+df <- exclude_participants(df, !is.na(mmb_pressured_score), "Missing MMB Pressured Score")
+```
+
+
+# Descriptive Analysis Final Sample
+
+## Age
+```{r}
+summary_mean_sd(df, AGE)
+```
+
+## Educational Degree
+
+```{r}
+freq_table(df, EDU_label)
+```
+
+
+```{r}
+plotBarHorizontal("EDU_label") + 
+  labs(
+    x = NULL,
+    y = "Anzahl"
+  ) 
+```
+
+## Occupational Degree
+
+```{r}
+freq_table(df, OCC_label)
+```
+
+
+```{r}
+plotBarHorizontal("OCC_label") + 
+  labs(
+    x = NULL,
+    y = "Anzahl"
+  )
+```
+
+
+## Manipulation Check
+
+### Gender Knowledge Feedback
+[GKFEEDBACK] Welche Rückmeldung haben Sie im Verlauf der Studie zu Ihrem Wissen in geschlechtsspezifischen Themen erhalten?
+Scale 1 to 10
+```{r}
+summary_gkfeedback <- summary_mean_sd(df, GKFEEDBACK, "threatCondition")
+summary_gkfeedback
+```
+
+
+```{r}
+plotHist("GKFEEDBACK", c(1, 10), "threatCondition") +
+  geom_vline(
+    data = summary_gkfeedback,
+    aes(xintercept = mean, color = threatCondition),
+    linetype = "dashed",
+    linewidth = 1
+  ) +
+  labs(
+    x = NULL,
+    y = "Count",
+    fill = "Condition",
+    color = "Condition"
+  )
+```
+
+
+### Self evaluation of Gender Knowledge
+[GKSELF] Wie würden Sie Ihr Wissen in geschlechtsspezifischen Themen einschätzen?
+
+```{r}
+summary_gkself <- summary_mean_sd(df, GKSELF, "threatCondition")
+summary_gkself
+```
+
+```{r}
+plotHist("GKSELF", c(1, 10), "threatCondition") +
+  geom_vline(
+    data = summary_gkself,
+    aes(xintercept = mean, color = threatCondition),
+    linetype = "dashed",
+    linewidth = 1
+  ) +
+  labs(
+    x = NULL,
+    y = "Count",
+    fill = "Condition",
+    color = "Condition"
+  )
+```
+
+
+## Valid Word Completions
+
+```{r}
+summary_mean_sd(df, "validWordCompletionScore")
+```
+
+```{r}
+plotBox("validWordCompletionScore")
+```
+
+
+## Motivation for Masculine Behaviour
 
 ```{r}
 plotHist("mmb_autonomous_score", c(1,7))
@@ -291,19 +301,25 @@ p = plotBox(c("mmb_autonomous_score", "mmb_pressured_score"))
 ggpar(p, ylim = c(1, 7))
 ```
 
+Reliabilty MMB Scales
+```{r}
+omega(mmb_items[, MMB_pressured_items])
+omega(mmb_items[, MMB_autonomous_items])
+```
 
-# Hypothesis Testing
 
-## Visualization Hypothesis 1a & 1b
+# Hypothesis 1a & 1b
+
+## Visualization
 
 Aggressive and anxious word completions by threat condition
 ```{r}
 plotBox(c("aggressiveWordCompletionScore", "anxiousWordCompletionScore"), "threatCondition")
 ```
 
-### Hypothesis 1a t-test
+## Hypothesis 1a t-test
 
-#### Assumption 1: Normality withing each group 
+### Assumption 1: Normality withing each group 
 
 Check Visually
 ```{r}
@@ -317,7 +333,7 @@ check_normality_hist(df, aggressiveWordCompletionScoreTransformed, threatConditi
 ```
 -> should roughly resemble a normal distribution
 
-#### Assumption 2: Homogenity of variance
+### Assumption 2: Homogeneity of variance
 
 Levene Test
 ```{r}
@@ -336,9 +352,9 @@ run_ttest(df, aggressiveWordCompletionScoreTransformed, threatCondition,
 ```
 
 
-### Hypothesis 1b t-test
+## Hypothesis 1b t-test
 
-#### Assumption 1: Normality withing each group 
+### Assumption 1: Normality withing each group 
 
 Check Visually
 ```{r}
@@ -352,7 +368,7 @@ check_normality_hist(df, anxiousWordCompletionScoreTransformed, threatCondition)
 ```
 -> should roughly resemble a normal distribution
 
-#### Assumption 2: Homogenity of variance
+### Assumption 2: Homogeneity of variance
 
 Levene Test
 ```{r}
@@ -370,18 +386,9 @@ run_ttest(df, anxiousWordCompletionScoreTransformed, threatCondition,
           alternative = "greater", var_equal = TRUE)
 ```
 
-# Moderation of Threat Response 
+# Hypothesis 2a & 2b: Moderation of Threat Response 
 
-## Inclusion Criteria
-
-Has to have score of MMB Scales
-```{r}
-df <- exclude_participants(df, !is.na(mmb_autonomous_score), "Missing MMB Autonomous Score")
-df <- exclude_participants(df, !is.na(mmb_pressured_score), "Missing MMB Pressured Score")
-```
-
-
-## Visualization Hypothesis 2a & 2b
+## Visualization
 
 2a: Moderation autonomous motivation for masculine behavior on aggressive word completions
 ```{r}
@@ -441,19 +448,18 @@ influential_obs %>%
 ```
 Cook’s distance > 4/(n-k-1) → potentially influential
 
+#### Assumption 3: No Multikollinearity
+```{r}
+cor(df$mmb_autonomous_score, as.numeric(factor(df$threatCondition, levels = c("noThreat", "threat"))) - 1)
+```
+-> would also make no sense, since I randomly assign threatCondition
+
+
 
 Inference statistics
 ```{r}
 summary(model_anxious)
 ```
 
-
-
-
-
-
-## t-test 
-
-...
 
 
