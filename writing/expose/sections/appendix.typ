@@ -1,26 +1,6 @@
 #import "@preview/versatile-apa:7.1.2": apa-figure
 
-
-// = Final thoughts
-// #lorem(50)
-
-// == Thoughts on the future
-// #lorem(20)
-
-// #lorem(30)
-
-// === Future work
-// #lorem(50)
-
-// ==== Fourth level
-// #lorem(100)
-
-// = Acknowledgements
-// #lorem(50)
-
 = Materials Supplement
-
-Hier auch immer die Englische Version (Original) zu den Items geben!
 
 == Motivation For Masculine Behavior
 Answered on a 7 point Likert Scale ranging from "Stimme überhaupt nicht zu" to "Stimme voll und ganz zu"

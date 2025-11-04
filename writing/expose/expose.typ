@@ -75,32 +75,12 @@ Chair of Social and Organizational Psychology
 #include "sections/introduction.typ"
 #include "sections/methods.typ"
 
-// #pagebreak()
-// #include "sections/quotes.typ"
-
-// #pagebreak()
-// #include "sections/computer-code.typ"
-
-// #pagebreak()
-// #include "sections/math.typ"
-
 #pagebreak()
 #bibliography(
   "bibliography/ref.bib", // or ref.yml
   full: true,
   title: auto,
 )
-
-
-
-// #pagebreak()
-// #include "sections/footnote.typ"
-
-// #pagebreak()
-// #include "sections/tables.typ"
-
-// #pagebreak()
-// #include "sections/figures.typ"
 
 #pagebreak()
 = Declaration of Independence
