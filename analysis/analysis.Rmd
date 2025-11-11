@@ -91,12 +91,14 @@ df <- exclude_participants(
 # Factor Structure Motivation for Masculine Behaviour
 
 ## Confirmatory Factor Analysis
+
+### Two-Factor Uncorrelated
 Testing the proposed 2 factor structure by Stanaland & Gaither (2021)
 
-### Compute Model
-2 factors, no covariance between factors
+=> 2 factors
+=> no covariance between factors
 ```{r}
-cfa_model <- "
+model_twof <- "
   # latent variables
   Pressured =~ MMBi1 + MMBi2 + MMBi3 + MMBi4 + MMBi5
   Autonomous =~ MMBi6 + MMBi7 + MMBi8 + MMBi9
@@ -104,19 +106,14 @@ cfa_model <- "
   # constrain covariance to 0
   Pressured ~~ 0*Autonomous
 "
-
-fit_cfa <- cfa(cfa_model, data = df, std.lv = TRUE)
 ```
 
 ```{r}
-summary(fit_cfa, fit.measures = TRUE, standardized = TRUE)
+results_twof <- run_cfa_model(model_twof, df, model_name = "Two-Factor Uncorrelated", show_mi = FALSE)
 ```
 
-### Evaluate model fit
-```{r}
-cfa_fit_summary <- summarizeFitIndices(fit_cfa)
-print(cfa_fit_summary)
-```
+Interpretation
+...
 
 ## Exploratory Factor Analysis
 
@@ -153,7 +150,8 @@ Bartlett’s test should be significant (p < .05)
 ### EFA Determine the number of latent factors
 
 ```{r}
-fa.parallel(mmb_items, fm = "ml",
+fa.parallel(mmb_items,
+  fm = "ml",
   fa = "fa", n.iter = 100, show.legend = TRUE,
   main = "Parallel Analysis Scree Plot"
 )
@@ -163,14 +161,14 @@ fa.parallel(mmb_items, fm = "ml",
 
 ### Compute EFA
 ```{r}
-efa_result <- fa(mmb_items, nfactors = 2, rotate = "oblimin", fm = "ml")
-print(efa_result, cut = 0.3) # only loadings > .30
+efa_result_twof <- fa(mmb_items, nfactors = 2, rotate = "oblimin", fm = "ml")
+print(efa_result_twof, cut = 0.3) # only loadings > .30
 ```
 
 Print loading table
 ```{r}
 # Create loadings matrix
-loadings_matrix <- as.data.frame(efa_result$loadings[1:length(mmb_labels), ])
+loadings_matrix <- as.data.frame(efa_result_twof$loadings[1:length(mmb_labels), ])
 
 # Format table
 loading_table <- data.frame(
@@ -204,29 +202,56 @@ loading_table %>%
   row_spec(1:nrow(loading_table), background = "white", color = "black")
 ```
 
+=> EFA suggests a two factor model
 
-### Compute Model
+### Two-Factor Correlated
+
+#### Compute Model
+2 latent factors, correlation allowed between factors
 ```{r}
-efa_model <- "
+model_twof_cor <- "
   # latent variables
   Pressured =~ MMBi1 + MMBi2 + MMBi3 + MMBi4 + MMBi5
   Autonomous =~ MMBi6 + MMBi7 + MMBi8 + MMBi9
 
+  # allow correlation between factors
   Pressured ~~ Autonomous
 "
-
-fit_efa <- cfa(efa_model, data = df, std.lv = TRUE)
 ```
 
 ```{r}
-summary(fit_efa, fit.measures = TRUE, standardized = TRUE)
+results_twof_cor <- run_cfa_model(model_twof_cor, df, model_name = "Two-Factor Correlated", show_mi = TRUE)
 ```
 
-### Evaluate model fit
+Interpretation
+...
+
+Mod Indices suggest
+...
+
+### Two-Factor Correlated + Residuals
+
+=> 2 latent factors
+=> correlation allowed between factors
+=> allow correlated residuals
 ```{r}
-efa_fit_summary <- summarizeFitIndices(fit_efa)
-print(efa_fit_summary)
+model_twof_cor_mod <- "
+  # latent variables
+  Pressured =~ MMBi1 + MMBi2 + MMBi3 + MMBi4 + MMBi5
+  Autonomous =~ MMBi6 + MMBi7 + MMBi7 + MMBi8
+
+  Pressured ~~ Autonomous
+
+  # theory-based correlated residuals
+  MMBi7 ~~ MMBi8
+  MMBi6 ~~ MMBi7
+"
 ```
+
+Interpretation
+...
+
+### Compute Scores for MMB latent factors
 
 Define latent factor structure
 ```{r}
@@ -234,8 +259,7 @@ mmb_pressured_items <- c("MMBi1", "MMBi2", "MMBi3", "MMBi4", "MMBi5")
 mmb_autonomous_items <- c("MMBi6", "MMBi7", "MMBi8", "MMBi9")
 ```
 
-### Compute Scores for MMB latent factors
-
+Compute scores
 ```{r}
 df$mmb_autonomous_score <- rowMeans(
   df[mmb_autonomous_items],
@@ -540,3 +564,8 @@ Inference statistics
 ```{r}
 summary(model_anxious)
 ```
+
+
+# Post Hoc Analysis
+
+...
