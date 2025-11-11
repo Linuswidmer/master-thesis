@@ -8,6 +8,9 @@ date: "2025-08-29"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+``` {r}
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+```
 
 load library
 ```{r message=FALSE, warning=FALSE, include=FALSE}
@@ -42,7 +45,7 @@ source("factor-analysis.R")
 
 ## Load and Preprocess data
 ```{r}
-df <- read.csv("data/fragile_masculinity_motivation_anonymized.csv")
+df <- read.csv("../data/fragile_masculinity_motivation_anonymized.csv")
 df <- preprocessData(df, all_items)
 ```
 ## Inclusion Criteria 
@@ -519,8 +522,8 @@ k <- length(coef(model_anxious)) - 1
 threshold <- 4 / (n - k - 1)
 
 
-influential_obs %>%
-  filter(cooksd > threshold)
+# influential_obs %>%
+  # filter(cooksd > threshold)
 ```
 Cook’s distance > 4/(n-k-1) → potentially influential
 
