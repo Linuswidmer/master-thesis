@@ -92,17 +92,35 @@ addQuestionLabelToDataframe = function(df) {
 exclude_participants <- function(df, condition, description = "Exclusion") {
   before_n <- nrow(df)
   
-  df_filtered <- df %>% filter({{ condition }})
-  
+  # Participants who pass
+  df_filtered <- df %>% dplyr::filter({{ condition }})
   after_n <- nrow(df_filtered)
   excluded_n <- before_n - after_n
   
-  cat(
-    glue::glue(
-      "{description}: Excluded {excluded_n} participants ({before_n - after_n} of {before_n}).
-Remaining: {after_n}\n\n"
-    )
-  )
+  cat(glue::glue(
+    "{description}: Excluded {excluded_n} participants ({excluded_n} of {before_n}).\nRemaining: {after_n}\n\n"
+  ))
+  
+  # Only show details if there were exclusions
+  if (excluded_n > 0) {
+    # Participants who FAIL the condition
+    df_excluded <- df %>% dplyr::filter(!({{ condition }}))
+    
+    # Automatically extract variable names used in the condition
+    cond_vars <- all.vars(rlang::get_expr(enquo(condition)))
+    
+    # Summarize excluded responses for each variable in the condition
+    for (var in cond_vars) {
+      cat(glue::glue("Excluded responses summary for `{var}`:\n"))
+      
+      excluded_summary <- df_excluded %>%
+        dplyr::count(.data[[var]], name = "n") %>%
+        dplyr::arrange(desc(n))
+      
+      print(excluded_summary)
+      cat("\n")
+    }
+  }
   
   return(df_filtered)
 }
