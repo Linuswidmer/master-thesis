@@ -29,8 +29,8 @@ source("utils.R")
 
 ## Load and Preprocess data
 ```{r}
-df_raw = read.csv("data/results-pre-test.csv")
-df = preprocessData(df_raw, all_items)
+df_raw <- read.csv("data/results-pre-test.csv")
+df <- preprocessData(df_raw, all_items)
 ```
 
 ## Inclusion Criteria 
@@ -48,7 +48,7 @@ df = preprocessData(df_raw, all_items)
 
 ### 1. Debrief Consent
 ```{r}
-df = df %>% 
+df <- df %>%
   filter(DEBRIEFCONSENT == "Y")
 count(df)$n
 ```
@@ -56,10 +56,10 @@ count(df)$n
 
 ### 2. Demographic criteria
 ```{r}
-df = df %>% 
-  filter(AGE >= 18) %>% 
-  filter(SEX == "AO01") 
-  # %>% filter(GER == "AO05") 
+df <- df %>%
+  filter(AGE >= 18) %>%
+  filter(SEX == "AO01")
+# %>% filter(GER == "AO05")
 count(df)$n
 ```
 
@@ -70,7 +70,7 @@ TODO
 ### 4. WFCT comprehension
 
 ```{r}
-df = df %>% 
+df <- df %>%
   filter(validWordCompletionScore >= 0.5)
 count(df)$n
 ```
@@ -98,7 +98,6 @@ plotBarHorizontal("GKFEEDBACK_label", "threatCondition") +
     y = "Anzahl",
     fill = "Bedingung"
   )
-
 ```
 
 ```{r}
@@ -109,11 +108,11 @@ table(df$GKSELF)
 
 ```{r}
 ## [GKSELF] Wie würden Sie Ihr Wissen in geschlechtsspezifischen Themen einschätzen?
-plotBarHorizontal("GKSELF_label") + 
+plotBarHorizontal("GKSELF_label") +
   labs(
     x = NULL,
     y = "Anzahl"
-  ) 
+  )
 ```
 
 
@@ -121,17 +120,17 @@ plotBarHorizontal("GKSELF_label") +
 ### Educational and OCcupational Degree
 
 ```{r}
-plotBarHorizontal("EDU_label") + 
+plotBarHorizontal("EDU_label") +
   labs(
     x = NULL,
     y = "Anzahl"
-  ) 
+  )
 
-plotBarHorizontal("OCC_label") + 
+plotBarHorizontal("OCC_label") +
   labs(
     x = NULL,
     y = "Anzahl"
-  ) 
+  )
 ```
 
 ### Valid Word Completions
@@ -177,10 +176,10 @@ plotBox(c("aggressiveWordCompletionScore", "anxiousWordCompletionScore"), "threa
 
 
 ```{r}
-plotHist("mmb_autonomous_score", c(1,7))
-plotHist("mmb_pressured_score", c(1,7))
+plotHist("mmb_autonomous_score", c(1, 7))
+plotHist("mmb_pressured_score", c(1, 7))
 
-p = plotBox(c("mmb_autonomous_score", "mmb_pressured_score"))
+p <- plotBox(c("mmb_autonomous_score", "mmb_pressured_score"))
 ggpar(p, ylim = c(1, 7))
 ```
 

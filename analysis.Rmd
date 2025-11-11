@@ -42,8 +42,8 @@ source("factor-analysis.R")
 
 ## Load and Preprocess data
 ```{r}
-df = read.csv("data/fragile_masculinity_motivation_anonymized.csv")
-df = preprocessData(df, all_items)
+df <- read.csv("data/fragile_masculinity_motivation_anonymized.csv")
+df <- preprocessData(df, all_items)
 ```
 ## Inclusion Criteria 
 
@@ -68,13 +68,22 @@ df <- exclude_participants(df, SUSPICIONEXCLUSION == FALSE, "Suspicion")
 ### 4. WFCT comprehension
 Participants should complete more than 50% of word fragments with existing words
 ```{r}
-df <- exclude_participants(df, validWordCompletionScore >= 0.5, "WFCT comprehension")
+df <- exclude_participants(
+  df, validWordCompletionScore >= 0.5,
+  "WFCT comprehension"
+)
 ```
 ### 5. Incomplete Responses
 
 ```{r}
-df <- exclude_participants(df, !is.na(aggressiveWordCompletionScore), "Missing Aggressive Word Completion Score")
-df <- exclude_participants(df, !is.na(anxiousWordCompletionScore), "Missing Anxious Word Completion Score")
+df <- exclude_participants(
+  df, !is.na(aggressiveWordCompletionScore),
+  "Missing Aggressive Word Completion Score"
+)
+df <- exclude_participants(
+  df, !is.na(anxiousWordCompletionScore),
+  "Missing Anxious Word Completion Score"
+)
 ```
 
 # Factor Structure Motivation for Masculine Behaviour
@@ -84,14 +93,14 @@ Testing the proposed 2 factor structure by Stanaland & Gaither (2021)
 
 ### Compute Model
 ```{r}
-cfa_model <- '
+cfa_model <- "
   # latent variables
   Pressured =~ MMBi1 + MMBi2 + MMBi3 + MMBi4 + MMBi5
   Autonomous =~ MMBi6 + MMBi7 + MMBi8 + MMBi9
-  
+
   # constrain covariance to 0
   Pressured ~~ 0*Autonomous
-'
+"
 
 fit_cfa <- cfa(cfa_model, data = df, std.lv = TRUE)
 ```
@@ -119,13 +128,14 @@ mmb_items <- df %>%
 # Compute correlation matrix
 cor_matrix <- cor(mmb_items)
 
-corrplot(cor_matrix, 
-         method = "color",
-         type = "upper",
-         order = "original",  # preserves the column order
-         tl.col = "black",
-         tl.srt = 45,
-         diag = FALSE)
+corrplot(cor_matrix,
+  method = "color",
+  type = "upper",
+  order = "original", # preserves the column order
+  tl.col = "black",
+  tl.srt = 45,
+  diag = FALSE
+)
 ```
 ### Check sampling adequacy for EFA 
 
@@ -136,11 +146,13 @@ cortest.bartlett(cor(mmb_items))
 KMO (Kaiser-Meyer-Olkin) should be > 0.6 (ideally > 0.8)
 Bartlett’s test should be significant (p < .05)
 
-
 ### EFA Determine the number of latent factors
 
 ```{r}
-fa.parallel(mmb_items, fa = "fa", n.iter = 100, show.legend = TRUE, main = "Parallel Analysis Scree Plot")
+fa.parallel(mmb_items,
+  fa = "fa", n.iter = 100, show.legend = TRUE,
+  main = "Parallel Analysis Scree Plot"
+)
 ```
 => look for the elbow of the pot
 => Eigenvalues ?
@@ -148,19 +160,18 @@ fa.parallel(mmb_items, fa = "fa", n.iter = 100, show.legend = TRUE, main = "Para
 ### Compute EFA
 ```{r}
 efa_result <- fa(mmb_items, nfactors = 2, rotate = "oblimin", fm = "ml")
-print(efa_result, cut = 0.3)   # only loadings > .30
+print(efa_result, cut = 0.3) # only loadings > .30
 ```
 
 Print loading table
 ```{r}
-
 # Create loadings matrix
 loadings_matrix <- as.data.frame(efa_result$loadings[1:length(mmb_labels), ])
 
 # Format table
 loading_table <- data.frame(
-  Item   = MMB_item_codes,
-  Label  = mmb_labels,
+  Item = MMB_item_codes,
+  Label = mmb_labels,
   Factor1 = round(loadings_matrix$ML1, 2),
   Factor2 = round(loadings_matrix$ML2, 2)
 )
@@ -185,21 +196,20 @@ loading_table %>%
     bootstrap_options = c("striped", "hover", "condensed"),
     latex_options = "hold_position"
   ) %>%
-  row_spec(0, bold = TRUE, background = "#f2f2f2") %>%   # Light gray header
+  row_spec(0, bold = TRUE, background = "#f2f2f2") %>% # Light gray header
   row_spec(1:nrow(loading_table), background = "white", color = "black")
-
 ```
 
 
 ### Compute Model
 ```{r}
-efa_model <- '
+efa_model <- "
   # latent variables
   Pressured =~ MMBi1 + MMBi2 + MMBi3 + MMBi4 + MMBi5
   Autonomous =~ MMBi6 + MMBi7 + MMBi8 + MMBi9
-  
+
   Pressured ~~ Autonomous
-'
+"
 
 fit_efa <- cfa(efa_model, data = df, std.lv = TRUE)
 ```
@@ -216,20 +226,20 @@ print(efa_fit_summary)
 
 Define latent factor structure
 ```{r}
-MMB_pressured_items = c("MMBi1", "MMBi2", "MMBi3", "MMBi4", "MMBi5")
-MMB_autonomous_items = c("MMBi6", "MMBi7", "MMBi8", "MMBi9")
+mmb_pressured_items <- c("MMBi1", "MMBi2", "MMBi3", "MMBi4", "MMBi5")
+mmb_autonomous_items <- c("MMBi6", "MMBi7", "MMBi8", "MMBi9")
 ```
 
 ### Compute Scores for MMB latent factors
 
 ```{r}
-df$mmb_autonomous_score = rowMeans(
-  df[MMB_autonomous_items],
+df$mmb_autonomous_score <- rowMeans(
+  df[mmb_autonomous_items],
   na.rm = TRUE
 )
 
-df$mmb_pressured_score = rowMeans(
-  df[MMB_pressured_items],
+df$mmb_pressured_score <- rowMeans(
+  df[mmb_pressured_items],
   na.rm = TRUE
 )
 ```
@@ -238,8 +248,14 @@ df$mmb_pressured_score = rowMeans(
 
 Has to have score of MMB Scales
 ```{r}
-df <- exclude_participants(df, !is.na(mmb_autonomous_score), "Missing MMB Autonomous Score")
-df <- exclude_participants(df, !is.na(mmb_pressured_score), "Missing MMB Pressured Score")
+df <- exclude_participants(
+  df, !is.na(mmb_autonomous_score),
+  "Missing MMB Autonomous Score"
+)
+df <- exclude_participants(
+  df, !is.na(mmb_pressured_score),
+  "Missing MMB Pressured Score"
+)
 ```
 
 
@@ -261,14 +277,15 @@ summary_mean_sd(df, AGE)
 freq_table(df, EDU_label)
 ```
 
-
 ```{r}
-plotBarHorizontal("EDU_label") + 
+plotBarHorizontal("EDU_label") +
   labs(
     x = NULL,
     y = "Anzahl"
-  ) 
+  )
 ```
+
+=> if participants indicated "AO01" => include analysis of no_edu
 
 ## Occupational Degree
 
@@ -276,15 +293,13 @@ plotBarHorizontal("EDU_label") +
 freq_table(df, OCC_label)
 ```
 
-
 ```{r}
-plotBarHorizontal("OCC_label") + 
+plotBarHorizontal("OCC_label") +
   labs(
     x = NULL,
     y = "Anzahl"
   )
 ```
-
 
 ## Manipulation Check
 
@@ -298,7 +313,7 @@ summary_gkfeedback
 
 
 ```{r}
-plotHist("GKFEEDBACK", c(1, 10), "threatCondition") 
+plotHist("GKFEEDBACK", c(1, 10), "threatCondition")
 ```
 
 
@@ -329,10 +344,10 @@ plotBox("validWordCompletionScore")
 ## Motivation for Masculine Behaviour
 
 ```{r}
-plotHist("mmb_autonomous_score", c(1,7))
-plotHist("mmb_pressured_score", c(1,7))
+plotHist("mmb_autonomous_score", c(1, 7))
+plotHist("mmb_pressured_score", c(1, 7))
 
-p = plotBox(c("mmb_autonomous_score", "mmb_pressured_score"))
+p <- plotBox(c("mmb_autonomous_score", "mmb_pressured_score"))
 ggpar(p, ylim = c(1, 7))
 ```
 
@@ -343,8 +358,8 @@ cor(df$mmb_autonomous_score, df$mmb_pressured_score)
 
 Reliabilty MMB Scales
 ```{r}
-omega(mmb_items[, MMB_pressured_items])
-omega(mmb_items[, MMB_autonomous_items])
+omega(mmb_items[, mmb_pressured_items])
+omega(mmb_items[, mmb_autonomous_items])
 ```
 
 
@@ -354,7 +369,10 @@ omega(mmb_items[, MMB_autonomous_items])
 
 Aggressive and anxious word completions by threat condition
 ```{r}
-plotBox(c("aggressiveWordCompletionScore", "anxiousWordCompletionScore"), "threatCondition")
+plotBox(
+  c("aggressiveWordCompletionScore", "anxiousWordCompletionScore"),
+  "threatCondition"
+)
 ```
 
 ## Hypothesis 1a t-test
@@ -363,13 +381,19 @@ plotBox(c("aggressiveWordCompletionScore", "anxiousWordCompletionScore"), "threa
 
 Check Visually
 ```{r}
-check_normality_qq(df, aggressiveWordCompletionScoreTransformed, threatCondition)
+check_normality_qq(
+  df, aggressiveWordCompletionScoreTransformed,
+  threatCondition
+)
 ```
 -> data points should be roughly on the line
 
 
 ```{r}
-check_normality_hist(df, aggressiveWordCompletionScoreTransformed, threatCondition)
+check_normality_hist(
+  df, aggressiveWordCompletionScoreTransformed,
+  threatCondition
+)
 ```
 -> should roughly resemble a normal distribution
 
@@ -377,18 +401,22 @@ check_normality_hist(df, aggressiveWordCompletionScoreTransformed, threatConditi
 
 Levene Test
 ```{r}
-check_homogeneity(df, aggressiveWordCompletionScoreTransformed, threatCondition)
+check_homogeneity(
+  df, aggressiveWordCompletionScoreTransformed,
+  threatCondition
+)
 ```
 p > .05 → equal variances (use Student’s t-test: var.equal = TRUE)
 
 
 ```{r}
-summary_mean_sd(df, aggressiveWordCompletionScore, group = 'threatCondition')
+summary_mean_sd(df, aggressiveWordCompletionScore, group = "threatCondition")
 ```
 
 ```{r}
 run_ttest(df, aggressiveWordCompletionScoreTransformed, threatCondition,
-          alternative = "greater", var_equal = TRUE)
+  alternative = "greater", var_equal = TRUE
+)
 ```
 
 
@@ -404,7 +432,10 @@ check_normality_qq(df, anxiousWordCompletionScoreTransformed, threatCondition)
 
 
 ```{r}
-check_normality_hist(df, anxiousWordCompletionScoreTransformed, threatCondition)
+check_normality_hist(
+  df, anxiousWordCompletionScoreTransformed,
+  threatCondition
+)
 ```
 -> should roughly resemble a normal distribution
 
@@ -417,13 +448,14 @@ check_homogeneity(df, anxiousWordCompletionScoreTransformed, threatCondition)
 p > .05 → equal variances (use Student’s t-test: var.equal = TRUE)
 
 ```{r}
-summary_mean_sd(df, anxiousWordCompletionScore, group = 'threatCondition')
+summary_mean_sd(df, anxiousWordCompletionScore, group = "threatCondition")
 ```
 
 Run inference statistic
 ```{r}
 run_ttest(df, anxiousWordCompletionScoreTransformed, threatCondition,
-          alternative = "greater", var_equal = TRUE)
+  alternative = "greater", var_equal = TRUE
+)
 ```
 
 # Hypothesis 2a & 2b: Moderation of Threat Response 
@@ -432,11 +464,15 @@ run_ttest(df, anxiousWordCompletionScoreTransformed, threatCondition,
 
 2a: Moderation autonomous motivation for masculine behavior on aggressive word completions
 ```{r}
-plotLine("mmb_autonomous_score", "anxiousWordCompletionScoreTransformed", condition = "threatCondition", df = df)
+plotLine("mmb_autonomous_score", "anxiousWordCompletionScoreTransformed",
+  condition = "threatCondition", df = df
+)
 ```
 2b: Moderation pressured motivation for masculine behavior on aggressive word completions
 ```{r}
-plotLine("mmb_pressured_score", "aggressiveWordCompletionScoreTransformed", condition = "threatCondition", df = df)
+plotLine("mmb_pressured_score", "aggressiveWordCompletionScoreTransformed",
+  condition = "threatCondition", df = df
+)
 ```
 
 ## Hypothesis 2a 
@@ -445,7 +481,8 @@ plotLine("mmb_pressured_score", "aggressiveWordCompletionScoreTransformed", cond
 
 Establish model
 ```{r}
-model_anxious <- lm(anxiousWordCompletionScoreTransformed ~ threatCondition * mmb_autonomous_score, data = df)
+model_anxious <- lm(anxiousWordCompletionScoreTransformed ~
+  threatCondition * mmb_autonomous_score, data = df)
 ```
 
 #### Assumption 1: Normality 
@@ -470,7 +507,6 @@ res_std <- rstandard(model_anxious)
 # Flag extreme residuals
 outliers <- which(abs(res_std) > 2)
 outliers
-
 ```
 
 Examine outliers via cook's distance
@@ -490,16 +526,13 @@ Cook’s distance > 4/(n-k-1) → potentially influential
 
 #### Assumption 3: No Multikollinearity
 ```{r}
-cor(df$mmb_autonomous_score, as.numeric(factor(df$threatCondition, levels = c("noThreat", "threat"))) - 1)
+cor(df$mmb_autonomous_score, as.numeric(factor(df$threatCondition,
+  levels = c("noThreat", "threat")
+)) - 1)
 ```
 -> would also make no sense, since I randomly assign threatCondition
-
-
 
 Inference statistics
 ```{r}
 summary(model_anxious)
 ```
-
-
-

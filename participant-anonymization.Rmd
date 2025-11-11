@@ -15,7 +15,7 @@ library(dplyr)
 
 
 ```{r}
-df_raw = read.csv("data/fragile_masculinity_motivation_raw.csv")
+df_raw <- read.csv("data/fragile_masculinity_motivation_raw.csv")
 ```
 
 keep only complete responses
@@ -41,31 +41,31 @@ review feedback and suspicion text
 df_feedback <- df_raw %>%
   filter(
     !(is.na(OPENFEEDBACK) | OPENFEEDBACK == "") |
-    !(is.na(SUSTEXT) | SUSTEXT == "")
+      !(is.na(SUSTEXT) | SUSTEXT == "")
   ) %>%
   select(id, OPENFEEDBACK, SUSTEXT)
 
-View(df_feedback) 
+View(df_feedback)
 ```
 
 => participants indicating technical issues?
 
 
 ```{r}
-df_raw$SUSPICIONEXCLUSION = FALSE
+df_raw$SUSPICIONEXCLUSION <- FALSE
 ## exclude participants with suspicion here
 ```
 
 save only relevant columns
 ```{r}
-unanonymized_data = df_raw %>% select(all_of(c(all_items, suspicion_items, "SUSPICIONEXCLUSION")))
-anonymized_data = df_raw %>% select(all_of(c(all_items, "SUSPICIONEXCLUSION")))
+unanonymized_data <- df_raw %>% select(all_of(c(all_items, suspicion_items, "SUSPICIONEXCLUSION")))
+anonymized_data <- df_raw %>% select(all_of(c(all_items, "SUSPICIONEXCLUSION")))
 ```
 
 Connection between debrief consent and threatCondition
 
 save final data
 ```{r}
-write.csv(anonymized_data,"data/fragile_masculinity_motivation_anonymized.csv", row.names = FALSE)
-write.csv(unanonymized_data,"data/fragile_masculinity_motivation.csv", row.names = FALSE)
+write.csv(anonymized_data, "data/fragile_masculinity_motivation_anonymized.csv", row.names = FALSE)
+write.csv(unanonymized_data, "data/fragile_masculinity_motivation.csv", row.names = FALSE)
 ```
