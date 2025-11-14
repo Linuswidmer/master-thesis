@@ -9,13 +9,14 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 source("items-and-labels.R")
 library(dplyr)
 ```
 
 
 ```{r}
-df_raw <- read.csv("data/fragile_masculinity_motivation_raw.csv")
+df_raw <- read.csv("../data/fragile_masculinity_motivation_raw.csv")
 ```
 
 keep only complete responses
@@ -66,6 +67,6 @@ Connection between debrief consent and threatCondition
 
 save final data
 ```{r}
-write.csv(anonymized_data, "data/fragile_masculinity_motivation_anonymized.csv", row.names = FALSE)
-write.csv(unanonymized_data, "data/fragile_masculinity_motivation.csv", row.names = FALSE)
+write.csv(anonymized_data, "../data/fragile_masculinity_motivation_anonymized.csv", row.names = FALSE)
+write.csv(unanonymized_data, "../data/fragile_masculinity_motivation.csv", row.names = FALSE)
 ```
