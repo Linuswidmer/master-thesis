@@ -90,7 +90,6 @@ addQuestionLabelToDataframe <- function(df) {
 }
 
 exclude_participants <- function(df, condition, vars = NULL, description = "Exclusion") {
-
   before_n <- nrow(df)
   df_filtered <- df %>% dplyr::filter({{ condition }})
   after_n <- nrow(df_filtered)
@@ -102,7 +101,6 @@ exclude_participants <- function(df, condition, vars = NULL, description = "Excl
 
   # Only show details if there were exclusions AND vars were provided
   if (excluded_n > 0 && !is.null(vars)) {
-
     df_excluded <- df %>% dplyr::filter(!({{ condition }}))
 
     for (var in vars) {

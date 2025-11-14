@@ -30,6 +30,7 @@ library(knitr)
 library(kableExtra)
 library(semTools)
 library(boot)
+library(mirt)
 ```
 
 load scripts
@@ -291,7 +292,7 @@ Interpretation
 
 Check reliability
 ``` {r}
-fit_twof_cor_mod <- cfa(model_twof_cor_mod, data = df, std.lv = TRUE) 
+fit_twof_cor_mod <- cfa(model_twof_cor_mod, data = df, std.lv = TRUE)
 rel <- reliability(fit_twof_cor_mod)
 print(rel)
 ```
@@ -308,9 +309,9 @@ compute factor scored for autonomous and pressured motivation
 ### Compute Scores for MMB latent factors
 
 ```{r}
-fs_reg  <- lavPredict(fit_twof_cor_mod, method = "regression")
+fs_reg <- lavPredict(fit_twof_cor_mod, method = "regression")
 
-df$mmb_pressured_score  <- scale(fs_reg[, "Pressured"])
+df$mmb_pressured_score <- scale(fs_reg[, "Pressured"])
 df$mmb_autonomous_score <- scale(fs_reg[, "Autonomous"])
 ```
 
@@ -348,11 +349,11 @@ Inspect Correlation
 cor_aggr <- psych::polychoric(df_threat[WFCT_aggression_items])$rho
 
 corrplot::corrplot(cor_aggr,
-                   type = "upper",       
-                   order = 'hclust',
-                   tl.col = "black",
-                   tl.srt = 45
-                   )
+  type = "upper",
+  order = "hclust",
+  tl.col = "black",
+  tl.srt = 45
+)
 ```
 
 Descriptive
@@ -375,15 +376,16 @@ psych::alpha(df[WFCT_aggression_items], check.keys = FALSE)
 Check Dimensionality
 ```{r}
 efa_aggr <- psych::fa(df[WFCT_aggression_items],
-                      nfactors = 1,
-                      fm = "ml",
-                      cor = "poly")
+  nfactors = 1,
+  fm = "ml",
+  cor = "poly"
+)
 
 efa_aggr
 ```
 
 ```{r}
-WFCT_aggression_items_clean = setdiff(WFCT_aggression_items, c("WFCTagg1", "WFCTagg2", "WFCTagg3", "WFCTagg5", "WFCTagg7", "WFCTagg9"))
+WFCT_aggression_items_clean <- setdiff(WFCT_aggression_items, c("WFCTagg1", "WFCTagg2", "WFCTagg3", "WFCTagg5", "WFCTagg7", "WFCTagg9"))
 ```
 
 
@@ -391,15 +393,31 @@ WFCT_aggression_items_clean = setdiff(WFCT_aggression_items, c("WFCTagg1", "WFCT
 psych::alpha(df[WFCT_aggression_items_clean])
 ```
 
-Item response theory
 ```{r}
 efa_aggr <- psych::fa(df[WFCT_aggression_items_clean],
-                      nfactors = 1,
-                      fm = "ml",
-                      cor = "poly")
+  nfactors = 1,
+  fm = "ml",
+  cor = "poly"
+)
 
 efa_aggr
 ```
+
+### Item response theory
+```{r}
+irt_aggr <- mirt(df[WFCT_aggression_items_clean], 1, itemtype = "2PL", verbose = FALSE)
+
+# Check model summary
+summary(irt_aggr)
+```
+Interpretation:
+
+
+```{r}
+df$aggressive_latent <- fscores(irt_aggr, method = "EAP") # expected a posteriori
+df$aggressive_latent_z <- scale(df$aggressive_latent)
+```
+
 
 ## Anxious Cognition
 
@@ -407,12 +425,12 @@ efa_aggr
 cor_anx <- psych::polychoric(df[WFCT_anxiety_items])$rho
 
 corrplot::corrplot(cor_anx,
-                   method = "color",
-                   type = "upper",       
-                   order = 'hclust',
-                   tl.col = "black",
-                   tl.srt = 45
-                   )
+  method = "color",
+  type = "upper",
+  order = "hclust",
+  tl.col = "black",
+  tl.srt = 45
+)
 ```
 
 ```{r}
@@ -507,7 +525,6 @@ plotBox("validWordCompletionScore")
 TODO: Table...
 
 ```{r}
-
 ```
 
 ```{r}
