@@ -28,6 +28,8 @@ library(psych)
 library(car)
 library(knitr)
 library(kableExtra)
+library(semTools)
+library(boot)
 ```
 
 load scripts
@@ -52,27 +54,39 @@ df <- preprocessData(df, all_items)
 ### 1. Debrief Consent
 Participants that withdrew their consent after the debrief are excluded
 ```{r}
-df <- exclude_participants(df, DEBRIEFCONSENT == "Y", "Debrief consent")
+df <- exclude_participants(
+  df,
+  DEBRIEFCONSENT == "Y",
+  vars = "DEBRIEFCONSENT",
+  description = "Debrief consent"
+)
 ```
 
 ### 2. Demographic criteria
 Participants have to be older than 18 years, self-identify as male and native level German skills
 ```{r}
-df <- exclude_participants(df, AGE >= 18, "Age")
-df <- exclude_participants(df, SEX == "AO01", "Gender")
-df <- exclude_participants(df, GER == "AO05" | GER == "AO04", "German skills")
+df <- exclude_participants(df, AGE >= 18, vars = "AGE", description = "Age")
+df <- exclude_participants(df, SEX == "AO01", vars = "SEX", description = "Gender")
+df <- exclude_participants(df, GER %in% c("AO04", "AO05"), vars = "GER", description = "German skills")
 ```
 ### 3. Suspicion
 Participants may not indicate a strong suspicion about the study (coded in column SUSPICIONEXCLUSION, free text are excluded in anonymous data set)
 ```{r}
-df <- exclude_participants(df, SUSPICIONEXCLUSION == FALSE, "Suspicion")
+df <- exclude_participants(
+  df,
+  SUSPICIONEXCLUSION == FALSE,
+  vars = "SUSPICIONEXCLUSION",
+  description = "Suspicion"
+)
 ```
 ### 4. WFCT comprehension
 Participants should complete more than 50% of word fragments with existing words
 ```{r}
 df <- exclude_participants(
-  df, validWordCompletionScore >= 0.5,
-  "WFCT comprehension"
+  df,
+  validWordCompletionScore >= 0.5,
+  vars = "validWordCompletionScore",
+  description = "WFCT comprehension"
 )
 ```
 ### 5. Incomplete Responses
@@ -80,11 +94,31 @@ Participants that did not complete any of the word fragments for aggressive and 
 ```{r}
 df <- exclude_participants(
   df, !is.na(aggressiveWordCompletionScore),
-  "Missing Aggressive Word Completion Score"
+  vars = "aggressiveWordCompletionScore",
+  description = "Missing Aggressive Word Completion Score"
 )
+
 df <- exclude_participants(
   df, !is.na(anxiousWordCompletionScore),
-  "Missing Anxious Word Completion Score"
+  vars = "anxiousWordCompletionScore",
+  description = "Missing Anxious Word Completion Score"
+)
+```
+
+### 6. Responses to Motivation for Masculine Behaviour
+```{r}
+df <- exclude_participants(
+  df,
+  rowSums(!is.na(df[mmb_pressured_items])) >= 1,
+  vars = mmb_pressured_items,
+  description = "Missing all Pressured items"
+)
+
+df <- exclude_participants(
+  df,
+  rowSums(!is.na(df[mmb_autonomous_items])) >= 1,
+  vars = mmb_autonomous_items,
+  description = "Missing all Autonomous items"
 )
 ```
 
@@ -238,23 +272,53 @@ Mod Indices suggest
 model_twof_cor_mod <- "
   # latent variables
   Pressured =~ MMBi1 + MMBi2 + MMBi3 + MMBi4 + MMBi5
-  Autonomous =~ MMBi6 + MMBi7 + MMBi7 + MMBi8
+  Autonomous =~ MMBi6 + MMBi7 + MMBi8 + MMBi9
 
   Pressured ~~ Autonomous
 
   # theory-based correlated residuals
   MMBi7 ~~ MMBi8
-  MMBi6 ~~ MMBi7
 "
 ```
 
+``` {r}
+results_twof_cor_mod <- run_cfa_model(model_twof_cor_mod, df, model_name = "Two-Factor Correlated Modified", show_mi = TRUE)
+```
+
 Interpretation
+
+## Reliabilty of MMB Model
+
+Check reliability
+``` {r}
+fit_twof_cor_mod <- cfa(model_twof_cor_mod, data = df, std.lv = TRUE) 
+rel <- reliability(fit_twof_cor_mod)
+print(rel)
+```
+
+Interpretation:
+values ≥ .70 (acceptable), ≥ .80 (good).
+=> Alpha assumes tau-equivalence (all items same loading), which isn’t true here,
+so we trust omega more
+
 ...
 
+=> reliability is sufficient, so we use the proposed factor structure to 
+compute factor scored for autonomous and pressured motivation 
 ### Compute Scores for MMB latent factors
 
-Define latent factor structure
 ```{r}
+fs_reg  <- lavPredict(fit_twof_cor_mod, method = "regression")
+
+df$mmb_pressured_score  <- scale(fs_reg[, "Pressured"])
+df$mmb_autonomous_score <- scale(fs_reg[, "Autonomous"])
+```
+
+Interpretation:
+...
+
+<!-- Define latent factor structure -->
+<!-- ```{r}
 mmb_pressured_items <- c("MMBi1", "MMBi2", "MMBi3", "MMBi4", "MMBi5")
 mmb_autonomous_items <- c("MMBi6", "MMBi7", "MMBi8", "MMBi9")
 ```
@@ -270,21 +334,7 @@ df$mmb_pressured_score <- rowMeans(
   df[mmb_pressured_items],
   na.rm = TRUE
 )
-```
-
-### Inclusion Critera 5
-
-Has to have score of MMB Scales
-```{r}
-df <- exclude_participants(
-  df, !is.na(mmb_autonomous_score),
-  "Missing MMB Autonomous Score"
-)
-df <- exclude_participants(
-  df, !is.na(mmb_pressured_score),
-  "Missing MMB Pressured Score"
-)
-```
+``` -->
 
 
 # Descriptive Analysis Final Sample
@@ -371,23 +421,22 @@ plotBox("validWordCompletionScore")
 
 ## Motivation for Masculine Behaviour
 
+Table...
+
 ```{r}
-plotHist("mmb_autonomous_score", c(1, 7))
-plotHist("mmb_pressured_score", c(1, 7))
+
+```
+
+```{r}
+plotHist("mmb_autonomous_score", c(-5, 5))
+plotHist("mmb_pressured_score", c(-5, 5))
 
 p <- plotBox(c("mmb_autonomous_score", "mmb_pressured_score"))
-ggpar(p, ylim = c(1, 7))
+ggpar(p, ylim = c(-5, 5))
 ```
 
 ```{r}
 cor(df$mmb_autonomous_score, df$mmb_pressured_score)
-```
-
-
-Reliabilty MMB Scales
-```{r}
-omega(mmb_items[, mmb_pressured_items])
-omega(mmb_items[, mmb_autonomous_items])
 ```
 
 

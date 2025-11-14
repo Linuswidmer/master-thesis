@@ -9,6 +9,9 @@ suspicion_items <- c("OPENFEEDBACK", "SUS", "SUSTEXT")
 all_items <- c("id", MMB_item_codes, WFCT_aggression_items, WFCT_anxiety_items, demographic_items, manipulation_items)
 WFCT_all_items <- c(WFCT_aggression_items, WFCT_anxiety_items)
 
+mmb_pressured_items <- c("MMBi1", "MMBi2", "MMBi3", "MMBi4", "MMBi5")
+mmb_autonomous_items <- c("MMBi6", "MMBi7", "MMBi8", "MMBi9")
+
 mmb_labels <- c(
   "Allgemein verhalte ich mich männlich, weil ich die Akzeptanz und Anerkennung anderer möchte",
   "Allgemein bin ich männlich, weil das von mir erwartet wird",
