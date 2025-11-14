@@ -317,14 +317,10 @@ df$mmb_autonomous_score <- scale(fs_reg[, "Autonomous"])
 Interpretation:
 ...
 
-<!-- Define latent factor structure -->
-<!-- ```{r}
-mmb_pressured_items <- c("MMBi1", "MMBi2", "MMBi3", "MMBi4", "MMBi5")
-mmb_autonomous_items <- c("MMBi6", "MMBi7", "MMBi8", "MMBi9")
-```
+TODO: also compute and report scores with rowMeans
 
 Compute scores
-```{r}
+<!-- ```{r}
 df$mmb_autonomous_score <- rowMeans(
   df[mmb_autonomous_items],
   na.rm = TRUE
@@ -337,7 +333,94 @@ df$mmb_pressured_score <- rowMeans(
 ``` -->
 
 
-# Descriptive Analysis Final Sample
+# Factor Structure Aggressive and Anxious Cognition
+
+
+## Aggressive Cognition
+
+```{r}
+df_threat <- df %>%
+  filter(threatCondition == "threat")
+```
+
+Inspect Correlation
+```{r}
+cor_aggr <- psych::polychoric(df_threat[WFCT_aggression_items])$rho
+
+corrplot::corrplot(cor_aggr,
+                   type = "upper",       
+                   order = 'hclust',
+                   tl.col = "black",
+                   tl.srt = 45
+                   )
+```
+
+Descriptive
+```{r}
+summary_mean_sd(df, WFCT_aggression_items)
+```
+
+Int
+erpretation:
+Items with extremely low variance carry almost no information.
+They can destabilize factor analysis (loadings = extreme, communalities very low/high).
+
+-> item 5 has an incredibly low mean (Heywood case) 
+
+Check reliability
+```{r}
+psych::alpha(df[WFCT_aggression_items], check.keys = FALSE)
+```
+
+Check Dimensionality
+```{r}
+efa_aggr <- psych::fa(df[WFCT_aggression_items],
+                      nfactors = 1,
+                      fm = "ml",
+                      cor = "poly")
+
+efa_aggr
+```
+
+```{r}
+WFCT_aggression_items_clean = setdiff(WFCT_aggression_items, c("WFCTagg1", "WFCTagg2", "WFCTagg3", "WFCTagg5", "WFCTagg7", "WFCTagg9"))
+```
+
+
+```{r}
+psych::alpha(df[WFCT_aggression_items_clean])
+```
+
+Item response theory
+```{r}
+efa_aggr <- psych::fa(df[WFCT_aggression_items_clean],
+                      nfactors = 1,
+                      fm = "ml",
+                      cor = "poly")
+
+efa_aggr
+```
+
+## Anxious Cognition
+
+```{r}
+cor_anx <- psych::polychoric(df[WFCT_anxiety_items])$rho
+
+corrplot::corrplot(cor_anx,
+                   method = "color",
+                   type = "upper",       
+                   order = 'hclust',
+                   tl.col = "black",
+                   tl.srt = 45
+                   )
+```
+
+```{r}
+psych::describe(df[WFCT_anxiety_items])
+```
+
+
+# Descriptive Analysis
 
 ## Conditions
 ```{r}
@@ -346,7 +429,7 @@ printNumberOfParticipants(df, "threatCondition")
 
 ## Age
 ```{r}
-summary_mean_sd(df, AGE)
+summary_mean_sd(df, "AGE")
 ```
 
 ## Educational Degree
@@ -385,7 +468,7 @@ plotBarHorizontal("OCC_label") +
 [GKFEEDBACK] Welche Rückmeldung haben Sie im Verlauf der Studie zu Ihrem Wissen in geschlechtsspezifischen Themen erhalten?
 Scale 1 to 10
 ```{r}
-summary_gkfeedback <- summary_mean_sd(df, GKFEEDBACK, "threatCondition")
+summary_gkfeedback <- summary_mean_sd(df, "GKFEEDBACK", "threatCondition")
 summary_gkfeedback
 ```
 
@@ -399,7 +482,7 @@ plotHist("GKFEEDBACK", c(1, 10), "threatCondition")
 [GKSELF] Wie würden Sie Ihr Wissen in geschlechtsspezifischen Themen einschätzen?
 
 ```{r}
-summary_gkself <- summary_mean_sd(df, GKSELF, "threatCondition")
+summary_gkself <- summary_mean_sd(df, "GKSELF", "threatCondition")
 summary_gkself
 ```
 
@@ -421,7 +504,7 @@ plotBox("validWordCompletionScore")
 
 ## Motivation for Masculine Behaviour
 
-Table...
+TODO: Table...
 
 ```{r}
 
@@ -487,7 +570,7 @@ p > .05 → equal variances (use Student’s t-test: var.equal = TRUE)
 
 
 ```{r}
-summary_mean_sd(df, aggressiveWordCompletionScore, group = "threatCondition")
+summary_mean_sd(df, "aggressiveWordCompletionScore", group = "threatCondition")
 ```
 
 ```{r}
@@ -525,7 +608,7 @@ check_homogeneity(df, anxiousWordCompletionScoreTransformed, threatCondition)
 p > .05 → equal variances (use Student’s t-test: var.equal = TRUE)
 
 ```{r}
-summary_mean_sd(df, anxiousWordCompletionScore, group = "threatCondition")
+summary_mean_sd(df, "anxiousWordCompletionScore", group = "threatCondition")
 ```
 
 Run inference statistic

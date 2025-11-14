@@ -34,29 +34,66 @@ get_non_existing_words <- function(df, WFCT_items) {
 }
 # get_non_existing_words(df, WFCT_all_items)
 
-summary_mean_sd <- function(data, column, group = NULL, digits = 2) {
-  col_sym <- ensym(column)
-
+summary_mean_sd <- function(data, columns, group = NULL, digits = 2) {
+  
+  cols_syms <- rlang::syms(columns)
+  
   if (!is.null(group)) {
-    group_sym <- ensym(group)
-
-    data %>%
+    group_sym <- rlang::ensym(group)
+    
+    # Summarise each column within the group
+    summary_tbl <- data %>%
       group_by(!!group_sym) %>%
-      summarise(
-        mean = round(mean(!!col_sym, na.rm = TRUE), digits),
-        sd = round(sd(!!col_sym, na.rm = TRUE), digits),
-        n = sum(!is.na(!!col_sym)),
-        .groups = "drop"
-      )
+      summarise(across(all_of(columns),
+                       list(
+                         mean = ~round(mean(.x, na.rm = TRUE), digits),
+                         sd   = ~round(sd(.x, na.rm = TRUE), digits),
+                         n    = ~sum(!is.na(.x))
+                       ),
+                       .names = "{.col}_{.fn}"),
+                .groups = "drop")
+    
+    # Pivot longer, excluding the group column
+    summary_long <- summary_tbl %>%
+      pivot_longer(
+        cols = -!!group_sym,          # exclude group
+        names_to = c("variable", "stat"),
+        names_sep = "_",
+        values_to = "value"
+      ) %>%
+      pivot_wider(
+        names_from = stat,
+        values_from = value
+      ) %>%
+      relocate(!!group_sym)
+    
   } else {
-    data %>%
-      summarise(
-        mean = round(mean(!!col_sym, na.rm = TRUE), digits),
-        sd   = round(sd(!!col_sym, na.rm = TRUE), digits),
-        n    = sum(!is.na(!!col_sym))
+    # Summarise without grouping
+    summary_tbl <- data %>%
+      summarise(across(all_of(columns),
+                       list(
+                         mean = ~round(mean(.x, na.rm = TRUE), digits),
+                         sd   = ~round(sd(.x, na.rm = TRUE), digits),
+                         n    = ~sum(!is.na(.x))
+                       ),
+                       .names = "{.col}_{.fn}"))
+    
+    summary_long <- summary_tbl %>%
+      pivot_longer(
+        cols = everything(),
+        names_to = c("variable", "stat"),
+        names_sep = "_",
+        values_to = "value"
+      ) %>%
+      pivot_wider(
+        names_from = stat,
+        values_from = value
       )
   }
+  
+  return(summary_long)
 }
+
 freq_table <- function(data, column) {
   col_sym <- rlang::ensym(column) # tidy evaluation
   col_levels <- levels(factor(data[[as_string(col_sym)]])) # get all unique levels
