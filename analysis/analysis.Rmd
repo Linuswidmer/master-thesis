@@ -31,6 +31,7 @@ library(kableExtra)
 library(semTools)
 library(boot)
 library(mirt)
+library(gridExtra)
 ```
 
 load scripts
@@ -334,21 +335,6 @@ df$regAutonomous <- scale(fs_reg[, "Autonomous"])
 Interpretation:
 ...
 
-TODO: also compute and report scores with rowMeans
-
-Compute scores
-<!-- ```{r}
-df$regAutonomous <- rowMeans(
-  df[mmb_autonomous_items],
-  na.rm = TRUE
-)
-
-df$regPressured <- rowMeans(
-  df[mmb_pressured_items],
-  na.rm = TRUE
-)
-``` -->
-
 
 # Factor Structure Aggressive and Anxious Cognition
 
@@ -538,31 +524,31 @@ plotBox("validWordCompletionScore")
 
 ## Motivation for Masculine Behaviour
 
-### Row Means
+### Histogram
 ```{r}
-summary_mean_sd(df, c("rowmeansAutonomous", "rowmeansPressured"))
+summary_mean_sd(df, c("rowmeansAutonomous", "rowmeansPressured", "regAutonomous", "regPressured"))
 ```
 
 ```{r}
-plotHist("rowmeansAutonomous", c(0, 7))
-plotHist("rowmeansPressured", c(0, 7))
+rm_aut_hist <- plotHist("rowmeansAutonomous", c(0, 7))
+rm_pres_hist <- plotHist("rowmeansPressured", c(0, 7))
+reg_aut_hist <- plotHist("regAutonomous", c(-5, 5))
+reg_pres_hist <- plotHist("regPressured", c(-5, 5))
 
-p <- plotBox(c("rowmeansAutonomous", "rowmeansPressured"))
-ggpar(p, ylim = c(0,7))
+grid.arrange(rm_aut_hist, rm_pres_hist, reg_aut_hist, reg_pres_hist, ncol = 2)
 ```
 
-### Regression scores
+-> regression scoring decreses reduces measurement error at the price of losing variance
 
 ```{r}
-summary_mean_sd(df, c("regAutonomous", "regPressured"))
-```
+rm_box <- plotBox(c("rowmeansAutonomous", "rowmeansPressured"))
+ggpar(rm_box, ylim = c(0,7))
 
-```{r}
-plotHist("regAutonomous", c(-5, 5))
-plotHist("regPressured", c(-5, 5))
+reg_box <- plotBox(c("regAutonomous", "regPressured"))
+ggpar(rm_box, ylim = c(-5, 5))
 
-p <- plotBox(c("regAutonomous", "regPressured"))
-ggpar(p, ylim = c(-5, 5))
+
+grid.arrange(ggpar(rm_box, ylim = c(0,7)), ggpar(reg_box, ylim = c(-5, 5)), ncol  = 2)
 ```
 
 ```{r}
