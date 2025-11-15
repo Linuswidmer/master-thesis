@@ -90,7 +90,7 @@ df <- exclude_participants(
   description = "WFCT comprehension"
 )
 ```
-### 5. Incomplete Responses
+### 5. WFCT Incomplete Responses
 Participants that did not complete any of the word fragments for aggressive and anxious cognition
 ```{r}
 df <- exclude_participants(
@@ -149,6 +149,20 @@ results_twof <- run_cfa_model(model_twof, df, model_name = "Two-Factor Uncorrela
 
 Interpretation
 ...
+
+compute rowmeans either way for descriptive analysis 
+
+```{r}
+df$rowmeansAutonomous <- rowMeans(
+  df[mmb_autonomous_items],
+  na.rm = TRUE
+)
+
+df$rowmeansPressured <- rowMeans(
+  df[mmb_pressured_items],
+  na.rm = TRUE
+)
+```
 
 ## Exploratory Factor Analysis
 
@@ -262,7 +276,8 @@ Interpretation
 ...
 
 Mod Indices suggest
-...
+A correlation between Item 5 and 9, This makes conceptually sense, because they
+bith deal with anti femininity. 
 
 ### Two-Factor Correlated + Residuals
 
@@ -278,7 +293,7 @@ model_twof_cor_mod <- "
   Pressured ~~ Autonomous
 
   # theory-based correlated residuals
-  MMBi7 ~~ MMBi8
+  MMBi5 ~~ MMBi9
 "
 ```
 
@@ -287,6 +302,7 @@ results_twof_cor_mod <- run_cfa_model(model_twof_cor_mod, df, model_name = "Two-
 ```
 
 Interpretation
+...
 
 ## Reliabilty of MMB Model
 
@@ -298,7 +314,7 @@ print(rel)
 ```
 
 Interpretation:
-values ≥ .70 (acceptable), ≥ .80 (good).
+Omega values ≥ .70 (acceptable), ≥ .80 (good).
 => Alpha assumes tau-equivalence (all items same loading), which isn’t true here,
 so we trust omega more
 
@@ -311,8 +327,8 @@ compute factor scored for autonomous and pressured motivation
 ```{r}
 fs_reg <- lavPredict(fit_twof_cor_mod, method = "regression")
 
-df$mmb_pressured_score <- scale(fs_reg[, "Pressured"])
-df$mmb_autonomous_score <- scale(fs_reg[, "Autonomous"])
+df$regPressured <- scale(fs_reg[, "Pressured"])
+df$regAutonomous <- scale(fs_reg[, "Autonomous"])
 ```
 
 Interpretation:
@@ -322,12 +338,12 @@ TODO: also compute and report scores with rowMeans
 
 Compute scores
 <!-- ```{r}
-df$mmb_autonomous_score <- rowMeans(
+df$regAutonomous <- rowMeans(
   df[mmb_autonomous_items],
   na.rm = TRUE
 )
 
-df$mmb_pressured_score <- rowMeans(
+df$regPressured <- rowMeans(
   df[mmb_pressured_items],
   na.rm = TRUE
 )
@@ -522,21 +538,35 @@ plotBox("validWordCompletionScore")
 
 ## Motivation for Masculine Behaviour
 
-TODO: Table...
-
+### Row Means
 ```{r}
+summary_mean_sd(df, c("rowmeansAutonomous", "rowmeansPressured"))
 ```
 
 ```{r}
-plotHist("mmb_autonomous_score", c(-5, 5))
-plotHist("mmb_pressured_score", c(-5, 5))
+plotHist("rowmeansAutonomous", c(0, 7))
+plotHist("rowmeansPressured", c(0, 7))
 
-p <- plotBox(c("mmb_autonomous_score", "mmb_pressured_score"))
+p <- plotBox(c("rowmeansAutonomous", "rowmeansPressured"))
+ggpar(p, ylim = c(0,7))
+```
+
+### Regression scores
+
+```{r}
+summary_mean_sd(df, c("regAutonomous", "regPressured"))
+```
+
+```{r}
+plotHist("regAutonomous", c(-5, 5))
+plotHist("regPressured", c(-5, 5))
+
+p <- plotBox(c("regAutonomous", "regPressured"))
 ggpar(p, ylim = c(-5, 5))
 ```
 
 ```{r}
-cor(df$mmb_autonomous_score, df$mmb_pressured_score)
+cor(df$regAutonomous, df$regPressured)
 ```
 
 
@@ -641,13 +671,13 @@ run_ttest(df, anxiousWordCompletionScoreTransformed, threatCondition,
 
 2a: Moderation autonomous motivation for masculine behavior on aggressive word completions
 ```{r}
-plotLine("mmb_autonomous_score", "anxiousWordCompletionScoreTransformed",
+plotLine("regAutonomous", "anxiousWordCompletionScoreTransformed",
   condition = "threatCondition", df = df
 )
 ```
 2b: Moderation pressured motivation for masculine behavior on aggressive word completions
 ```{r}
-plotLine("mmb_pressured_score", "aggressiveWordCompletionScoreTransformed",
+plotLine("regPressured", "aggressiveWordCompletionScoreTransformed",
   condition = "threatCondition", df = df
 )
 ```
@@ -659,7 +689,7 @@ plotLine("mmb_pressured_score", "aggressiveWordCompletionScoreTransformed",
 Establish model
 ```{r}
 model_anxious <- lm(anxiousWordCompletionScoreTransformed ~
-  threatCondition * mmb_autonomous_score, data = df)
+  threatCondition * regAutonomous, data = df)
 ```
 
 #### Assumption 1: Normality 
@@ -703,7 +733,7 @@ Cook’s distance > 4/(n-k-1) → potentially influential
 
 #### Assumption 3: No Multikollinearity
 ```{r}
-cor(df$mmb_autonomous_score, as.numeric(factor(df$threatCondition,
+cor(df$regAutonomous, as.numeric(factor(df$threatCondition,
   levels = c("noThreat", "threat")
 )) - 1)
 ```
