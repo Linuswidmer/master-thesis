@@ -46,6 +46,8 @@ source("inference-statistics.R")
 source("factor-analysis.R")
 ```
 
+# 1. Setup and Study Inclusion Criteria
+
 ## Load and Preprocess data
 ```{r}
 df <- read.csv("../data/fragile_masculinity_motivation_anonymized.csv")
@@ -124,11 +126,127 @@ df <- exclude_participants(
 )
 ```
 
-# Factor Structure Motivation for Masculine Behaviour
+# 2. Descriptive Analysis of Sample
 
-## Confirmatory Factor Analysis
+## Conditions
+```{r}
+printNumberOfParticipants(df, "threatCondition")
+```
 
-### Two-Factor Uncorrelated
+## Age
+```{r}
+summary_mean_sd(df, "AGE")
+```
+
+## Educational Degree
+
+```{r}
+freq_table(df, EDU_label)
+```
+
+```{r}
+plotBarHorizontal("EDU_label") +
+  labs(
+    x = NULL,
+    y = "Anzahl"
+  )
+```
+
+=> if participants indicated "AO01" => include analysis of no_edu
+
+## Occupational Degree
+
+```{r}
+freq_table(df, OCC_label)
+```
+
+```{r}
+plotBarHorizontal("OCC_label") +
+  labs(
+    x = NULL,
+    y = "Anzahl"
+  )
+```
+
+# 3. Manipulation Check
+
+### Gender Knowledge Feedback
+[GKFEEDBACK] Welche Rückmeldung haben Sie im Verlauf der Studie zu Ihrem Wissen in geschlechtsspezifischen Themen erhalten?
+Scale 1 to 10
+```{r}
+summary_gkfeedback <- summary_mean_sd(df, "GKFEEDBACK", "threatCondition")
+summary_gkfeedback
+```
+
+```{r}
+plotHist("GKFEEDBACK", c(1, 10), "threatCondition")
+```
+
+Interpretation:
+...
+
+### Self evaluation of Gender Knowledge
+
+[GKSELF] Wie würden Sie Ihr Wissen in geschlechtsspezifischen Themen einschätzen?
+```{r}
+summary_gkself <- summary_mean_sd(df, "GKSELF", "threatCondition")
+summary_gkself
+```
+
+```{r}
+plotHist("GKSELF", c(1, 10), "threatCondition")
+```
+
+Interpretation:
+...
+
+## Valid Word Completions
+
+```{r}
+summary_mean_sd(df, "validWordCompletionScore")
+```
+
+```{r}
+plotBox("validWordCompletionScore")
+```
+
+Interpretation:
+...
+
+# Test Quality Criteria: Motivation for Masculine Behaviour
+*Objectives:*
+- Assess the *validity* and *reliability* of the scale Motivation for Masculine
+Behaviour (MMB) 
+- Compute participant latent trait scores
+
+*Methodology*
+- Visualization * Descriptives => Construct validity
+- CFA and EFA to => construct validity
+- McDonald's Omega => Reliabiltiy
+- Regression scoring => latent trait scores
+
+## Construct Validity 
+
+### Visualization & Descriptives
+
+```{r}
+cor_mmb <- psych::polychoric(df[MMB_item_codes])$rho
+
+corrplot(cor_mmb,
+  method = "color",
+  type = "upper",
+  order = "original", 
+  tl.col = "black",
+  tl.srt = 45,
+  diag = FALSE
+)
+```
+
+```{r}
+summary_mean_sd(df, MMB_item_codes)
+```
+
+### Two-Factor Uncorrelated CFA
 Testing the proposed 2 factor structure by Stanaland & Gaither (2021)
 
 => 2 factors
@@ -142,53 +260,16 @@ model_twof <- "
   # constrain covariance to 0
   Pressured ~~ 0*Autonomous
 "
-```
 
-```{r}
 results_twof <- run_cfa_model(model_twof, df, model_name = "Two-Factor Uncorrelated", show_mi = FALSE)
 ```
 
 Interpretation
 ...
 
-compute rowmeans either way for descriptive analysis 
+### Exploratory Factor Analysis
 
-```{r}
-df$rowmeansAutonomous <- rowMeans(
-  df[mmb_autonomous_items],
-  na.rm = TRUE
-)
-
-df$rowmeansPressured <- rowMeans(
-  df[mmb_pressured_items],
-  na.rm = TRUE
-)
-```
-
-## Exploratory Factor Analysis
-
-### Visualize using corrplot
-
-```{r}
-mmb_items <- df %>%
-  select(all_of(MMB_item_codes)) %>%
-  select(where(is.numeric)) %>%
-  na.omit()
-
-# Compute correlation matrix
-cor_matrix <- cor(mmb_items)
-
-corrplot(cor_matrix,
-  method = "color",
-  type = "upper",
-  order = "original", # preserves the column order
-  tl.col = "black",
-  tl.srt = 45,
-  diag = FALSE
-)
-```
-
-### Check sampling adequacy for EFA 
+#### Check sampling adequacy for EFA 
 
 ```{r}
 KMO(mmb_items)
@@ -197,7 +278,7 @@ cortest.bartlett(cor(mmb_items), n = nrow(df))
 KMO (Kaiser-Meyer-Olkin) should be > 0.6 (ideally > 0.8)
 Bartlett’s test should be significant (p < .05)
 
-### EFA Determine the number of latent factors
+#### Determine the number of latent factors
 
 ```{r}
 fa.parallel(mmb_items,
@@ -206,10 +287,14 @@ fa.parallel(mmb_items,
   main = "Parallel Analysis Scree Plot"
 )
 ```
+Interpretation
 => look for the elbow of the pot
 => Eigenvalues ?
 
-### Compute EFA
+=> EFA suggests a two factor model
+
+#### Compute EFA
+
 ```{r}
 efa_result_twof <- fa(mmb_items, nfactors = 2, rotate = "oblimin", fm = "ml")
 print(efa_result_twof, cut = 0.3) # only loadings > .30
@@ -252,11 +337,8 @@ loading_table %>%
   row_spec(1:nrow(loading_table), background = "white", color = "black")
 ```
 
-=> EFA suggests a two factor model
+### Two-Factor Correlated CFA
 
-### Two-Factor Correlated
-
-#### Compute Model
 2 latent factors, correlation allowed between factors
 ```{r}
 model_twof_cor <- "
@@ -267,9 +349,7 @@ model_twof_cor <- "
   # allow correlation between factors
   Pressured ~~ Autonomous
 "
-```
 
-```{r}
 results_twof_cor <- run_cfa_model(model_twof_cor, df, model_name = "Two-Factor Correlated", show_mi = TRUE)
 ```
 
@@ -280,7 +360,7 @@ Mod Indices suggest
 A correlation between Item 5 and 9, This makes conceptually sense, because they
 bith deal with anti femininity. 
 
-### Two-Factor Correlated + Residuals
+#### Two-Factor Correlated + Residuals CFA
 
 => 2 latent factors
 => correlation allowed between factors
@@ -296,18 +376,15 @@ model_twof_cor_mod <- "
   # theory-based correlated residuals
   MMBi5 ~~ MMBi9
 "
-```
 
-``` {r}
 results_twof_cor_mod <- run_cfa_model(model_twof_cor_mod, df, model_name = "Two-Factor Correlated Modified", show_mi = TRUE)
 ```
 
 Interpretation
 ...
 
-## Reliabilty of MMB Model
+## Reliability
 
-Check reliability
 ``` {r}
 fit_twof_cor_mod <- cfa(model_twof_cor_mod, data = df, std.lv = TRUE)
 rel <- reliability(fit_twof_cor_mod)
@@ -323,8 +400,10 @@ so we trust omega more
 
 => reliability is sufficient, so we use the proposed factor structure to 
 compute factor scored for autonomous and pressured motivation 
-### Compute Scores for MMB latent factors
 
+## Latent Trait Scores
+
+Use regression scoring from the chosen model, to compute latent trait scores
 ```{r}
 fs_reg <- lavPredict(fit_twof_cor_mod, method = "regression")
 
@@ -332,45 +411,97 @@ df$regPressured <- scale(fs_reg[, "Pressured"])
 df$regAutonomous <- scale(fs_reg[, "Autonomous"])
 ```
 
-Interpretation:
+Row means
+```{r}
+df$rowmeansAutonomous <- rowMeans(
+  df[mmb_autonomous_items],
+  na.rm = TRUE
+)
+
+df$rowmeansPressured <- rowMeans(
+  df[mmb_pressured_items],
+  na.rm = TRUE
+)
+```
+
+### Visualization & Descriptives
+```{r}
+summary_mean_sd(df, c("rowmeansAutonomous", "rowmeansPressured", "regAutonomous", "regPressured"))
+```
+
+```{r}
+rm_aut_hist <- plotHist("rowmeansAutonomous", c(0, 7))
+rm_pres_hist <- plotHist("rowmeansPressured", c(0, 7))
+reg_aut_hist <- plotHist("regAutonomous", c(-5, 5))
+reg_pres_hist <- plotHist("regPressured", c(-5, 5))
+
+grid.arrange(rm_aut_hist, rm_pres_hist, reg_aut_hist, reg_pres_hist, ncol = 2)
+```
+
+-> regression scoring decreses reduces measurement error at the price of losing variance
+
+```{r}
+rm_box <- plotBox(c("rowmeansAutonomous", "rowmeansPressured"))
+ggpar(rm_box, ylim = c(0,7))
+
+reg_box <- plotBox(c("regAutonomous", "regPressured"))
+ggpar(rm_box, ylim = c(-5, 5))
+
+
+grid.arrange(ggpar(rm_box, ylim = c(0,7)), ggpar(reg_box, ylim = c(-5, 5)), ncol  = 2)
+```
+
+```{r}
+cor(df$regAutonomous, df$regPressured)
+cor(df$rowmeansAutonomous, df$rowmeansPressured)
+```
+Interpretation
 ...
 
 
-# Factor Structure Aggressive and Anxious Cognition
-
+# Factor Structure Aggressive Cognition
 
 ## Aggressive Cognition
 
+Assessing factor structure for aggressive cognition items. These should only show a
+response in the threat condition
 ```{r}
 df_threat <- df %>%
   filter(threatCondition == "threat")
 ```
+
+### Visualization & Descriptives
 
 Inspect Correlation
 ```{r}
 cor_aggr <- psych::polychoric(df_threat[WFCT_aggression_items])$rho
 
 corrplot::corrplot(cor_aggr,
+  method = "color",
   type = "upper",
-  order = "hclust",
+  order = "original",
   tl.col = "black",
-  tl.srt = 45
+  tl.srt = 45,
+  diag = FALSE
 )
 ```
 
-Descriptive
+Interpretation:
+...
+
 ```{r}
 summary_mean_sd(df, WFCT_aggression_items)
 ```
 
-Int
-erpretation:
+Interpretation:
+...
+
 Items with extremely low variance carry almost no information.
 They can destabilize factor analysis (loadings = extreme, communalities very low/high).
 
 -> item 5 has an incredibly low mean (Heywood case) 
 
-Check reliability
+### Reliability of Scale
 ```{r}
 psych::alpha(df[WFCT_aggression_items], check.keys = FALSE)
 ```
@@ -386,10 +517,12 @@ efa_aggr <- psych::fa(df[WFCT_aggression_items],
 efa_aggr
 ```
 
+
+### Adapt Scale for a better fit
+
 ```{r}
 WFCT_aggression_items_clean <- setdiff(WFCT_aggression_items, c("WFCTagg1", "WFCTagg2", "WFCTagg3", "WFCTagg5", "WFCTagg7", "WFCTagg9"))
 ```
-
 
 ```{r}
 psych::alpha(df[WFCT_aggression_items_clean])
@@ -420,8 +553,11 @@ df$aggressive_latent <- fscores(irt_aggr, method = "EAP") # expected a posterior
 df$aggressive_latent_z <- scale(df$aggressive_latent)
 ```
 
+# Factor Structure Anxious Cognition
 
 ## Anxious Cognition
+
+### Visualization
 
 ```{r}
 cor_anx <- psych::polychoric(df[WFCT_anxiety_items])$rho
@@ -429,130 +565,15 @@ cor_anx <- psych::polychoric(df[WFCT_anxiety_items])$rho
 corrplot::corrplot(cor_anx,
   method = "color",
   type = "upper",
-  order = "hclust",
+  order = "original",
   tl.col = "black",
-  tl.srt = 45
+  tl.srt = 45,
+  diag = FALSE
 )
 ```
 
 ```{r}
 psych::describe(df[WFCT_anxiety_items])
-```
-
-
-# Descriptive Analysis
-
-## Conditions
-```{r}
-printNumberOfParticipants(df, "threatCondition")
-```
-
-## Age
-```{r}
-summary_mean_sd(df, "AGE")
-```
-
-## Educational Degree
-
-```{r}
-freq_table(df, EDU_label)
-```
-
-```{r}
-plotBarHorizontal("EDU_label") +
-  labs(
-    x = NULL,
-    y = "Anzahl"
-  )
-```
-
-=> if participants indicated "AO01" => include analysis of no_edu
-
-## Occupational Degree
-
-```{r}
-freq_table(df, OCC_label)
-```
-
-```{r}
-plotBarHorizontal("OCC_label") +
-  labs(
-    x = NULL,
-    y = "Anzahl"
-  )
-```
-
-## Manipulation Check
-
-### Gender Knowledge Feedback
-[GKFEEDBACK] Welche Rückmeldung haben Sie im Verlauf der Studie zu Ihrem Wissen in geschlechtsspezifischen Themen erhalten?
-Scale 1 to 10
-```{r}
-summary_gkfeedback <- summary_mean_sd(df, "GKFEEDBACK", "threatCondition")
-summary_gkfeedback
-```
-
-
-```{r}
-plotHist("GKFEEDBACK", c(1, 10), "threatCondition")
-```
-
-
-### Self evaluation of Gender Knowledge
-[GKSELF] Wie würden Sie Ihr Wissen in geschlechtsspezifischen Themen einschätzen?
-
-```{r}
-summary_gkself <- summary_mean_sd(df, "GKSELF", "threatCondition")
-summary_gkself
-```
-
-```{r}
-plotHist("GKSELF", c(1, 10), "threatCondition")
-```
-
-
-## Valid Word Completions
-
-```{r}
-summary_mean_sd(df, "validWordCompletionScore")
-```
-
-```{r}
-plotBox("validWordCompletionScore")
-```
-
-
-## Motivation for Masculine Behaviour
-
-### Histogram
-```{r}
-summary_mean_sd(df, c("rowmeansAutonomous", "rowmeansPressured", "regAutonomous", "regPressured"))
-```
-
-```{r}
-rm_aut_hist <- plotHist("rowmeansAutonomous", c(0, 7))
-rm_pres_hist <- plotHist("rowmeansPressured", c(0, 7))
-reg_aut_hist <- plotHist("regAutonomous", c(-5, 5))
-reg_pres_hist <- plotHist("regPressured", c(-5, 5))
-
-grid.arrange(rm_aut_hist, rm_pres_hist, reg_aut_hist, reg_pres_hist, ncol = 2)
-```
-
--> regression scoring decreses reduces measurement error at the price of losing variance
-
-```{r}
-rm_box <- plotBox(c("rowmeansAutonomous", "rowmeansPressured"))
-ggpar(rm_box, ylim = c(0,7))
-
-reg_box <- plotBox(c("regAutonomous", "regPressured"))
-ggpar(rm_box, ylim = c(-5, 5))
-
-
-grid.arrange(ggpar(rm_box, ylim = c(0,7)), ggpar(reg_box, ylim = c(-5, 5)), ncol  = 2)
-```
-
-```{r}
-cor(df$regAutonomous, df$regPressured)
 ```
 
 
