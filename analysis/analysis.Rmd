@@ -246,6 +246,9 @@ corrplot(cor_mmb,
 summary_mean_sd(df, MMB_item_codes)
 ```
 
+Interpratation:
+...
+
 ### Two-Factor Uncorrelated CFA
 Testing the proposed 2 factor structure by Stanaland & Gaither (2021)
 
@@ -272,8 +275,8 @@ Interpretation
 #### Check sampling adequacy for EFA 
 
 ```{r}
-KMO(mmb_items)
-cortest.bartlett(cor(mmb_items), n = nrow(df))
+KMO(cor_mmb)
+cortest.bartlett(cor_mmb, n = nrow(df))
 ```
 KMO (Kaiser-Meyer-Olkin) should be > 0.6 (ideally > 0.8)
 Bartlett’s test should be significant (p < .05)
@@ -281,7 +284,7 @@ Bartlett’s test should be significant (p < .05)
 #### Determine the number of latent factors
 
 ```{r}
-fa.parallel(mmb_items,
+fa.parallel(cor_mmb,
   fm = "ml",
   fa = "fa", n.iter = 100, show.legend = TRUE,
   main = "Parallel Analysis Scree Plot"
@@ -296,7 +299,7 @@ Interpretation
 #### Compute EFA
 
 ```{r}
-efa_result_twof <- fa(mmb_items, nfactors = 2, rotate = "oblimin", fm = "ml")
+efa_result_twof <- fa(df[MMB_item_codes], nfactors = 2, rotate = "oblimin", fm = "ml")
 print(efa_result_twof, cut = 0.3) # only loadings > .30
 ```
 
@@ -455,26 +458,61 @@ grid.arrange(ggpar(rm_box, ylim = c(0,7)), ggpar(reg_box, ylim = c(-5, 5)), ncol
 cor(df$regAutonomous, df$regPressured)
 cor(df$rowmeansAutonomous, df$rowmeansPressured)
 ```
+
 Interpretation
 ...
 
 
-# Factor Structure Aggressive Cognition
+# Test Quality Criteria: Aggressive Cognition
+*Objectives:*
+- Assess the *validity* and *reliability* of the scale for aggressive cognition
+- Compute participant latent trait scores
 
-## Aggressive Cognition
+*Methodology*
+-
 
-Assessing factor structure for aggressive cognition items. These should only show a
-response in the threat condition
-```{r}
-df_threat <- df %>%
-  filter(threatCondition == "threat")
-```
+## Construct Validity
 
 ### Visualization & Descriptives
 
-Inspect Correlation
 ```{r}
-cor_aggr <- psych::polychoric(df_threat[WFCT_aggression_items])$rho
+summary_mean_sd(df, WFCT_aggression_items)
+```
+
+Interpretation:
+- *Low Means:* 
+- *Missing Values:* ...
+
+
+```{r}
+
+# 2. Tetrachoric correlation matrix
+tetra_corr <- tetrachoric(aggr_clean)$rho
+
+# 3. KMO & Bartlett
+KMO(tetra_corr)
+cortest.bartlett(tetra_corr, n = nrow(df_threat))
+
+# 4. EFA
+fa(tetra_corr, nfactors = 1, n.obs = nrow(df_threat))
+
+tetra_corr <- tetrachoric(aggr_clean)$rho
+fa(tetra_corr, nfactors = 1, n.obs = nrow(df_threat))
+model <- "
+  Aggression =~ WFCTagg2 + WFCTagg3 + WFCTagg4  + WFCTagg6 + WFCTagg7 + WFCTagg10
+"
+fit <- cfa(model, data = aggr_clean, estimator = "WLSMV",
+           ordered = colnames(aggr_clean))
+summary(fit, fit.measures = TRUE, standardized = TRUE)
+```
+
+```{r}
+bad_items <- c("WFCTagg1", "WFCTagg3","WFCTagg4", "WFCTagg5")
+WFCT_aggr_clean <- df[ , setdiff(WFCT_aggression_items, bad_items)]
+``` 
+
+```{r}
+cor_aggr <- psych::tetrachoric(WFCT_aggr_clean)$rho
 
 corrplot::corrplot(cor_aggr,
   method = "color",
@@ -485,68 +523,77 @@ corrplot::corrplot(cor_aggr,
   diag = FALSE
 )
 ```
+-> a tetrachoric correlation is used, because responses are always binary 
+(aggressive, vs. non-aggressive)
 
 Interpretation:
 ...
 
-```{r}
-summary_mean_sd(df, WFCT_aggression_items)
-```
-
-Interpretation:
-...
 
 Items with extremely low variance carry almost no information.
 They can destabilize factor analysis (loadings = extreme, communalities very low/high).
 
--> item 5 has an incredibly low mean (Heywood case) 
 
-### Reliability of Scale
+### One-Factor CFA
+
 ```{r}
-psych::alpha(df[WFCT_aggression_items], check.keys = FALSE)
+model_aggr_onef <- "
+  Aggression =~ WFCTagg1 + WFCTagg2 + WFCTagg3 + WFCTagg4 + WFCTagg5 + WFCTagg6 + WFCTagg7 + WFCTagg8 + WFCTagg9 + WFCTagg10
+"
+
+results_aggr_onef <- run_cfa_model(model_aggr_onef, df, model_name = "Aggression One-Factor", show_mi = FALSE)
 ```
 
-Check Dimensionality
+Interpretation
+...
+
+### Exploratory Factory Analysis
+
+#### Check sampling adequacy for EFA 
+
 ```{r}
-efa_aggr <- psych::fa(df[WFCT_aggression_items],
-  nfactors = 1,
+KMO(cor_aggr)
+cortest.bartlett(cor_aggr, n = nrow(df))
+```
+
+KMO (Kaiser-Meyer-Olkin) should be > 0.6 (ideally > 0.8)
+Bartlett’s test should be significant (p < .05)
+
+Interpretation:
+-  The KMO is extremely low, indicating that the items do not firm a common
+factor
+- 
+
+#### Determine the number of latent factors
+
+```{r}
+fa.parallel(WFCT_aggr_clean,
   fm = "ml",
-  cor = "poly"
+  fa = "fa", n.iter = 100, show.legend = TRUE,
+  main = "Parallel Analysis Scree Plot"
 )
-
-efa_aggr
 ```
+Interpretation
+=> look for the elbow of the pot
+=> Eigenvalues 
 
+=> EFA suggests ...
 
-### Adapt Scale for a better fit
+### Compute EFA
 
 ```{r}
-WFCT_aggression_items_clean <- setdiff(WFCT_aggression_items, c("WFCTagg1", "WFCTagg2", "WFCTagg3", "WFCTagg5", "WFCTagg7", "WFCTagg9"))
+efa_result_aggr_onef <- fa(cor_aggr, nfactors = 1)
 ```
 
+## Reliability
 ```{r}
-psych::alpha(df[WFCT_aggression_items_clean])
+psych::alpha(WFCT_aggr_clean, check.keys = FALSE)
 ```
 
-```{r}
-efa_aggr <- psych::fa(df[WFCT_aggression_items_clean],
-  nfactors = 1,
-  fm = "ml",
-  cor = "poly"
-)
-
-efa_aggr
-```
-
-### Item response theory
-```{r}
-irt_aggr <- mirt(df[WFCT_aggression_items_clean], 1, itemtype = "2PL", verbose = FALSE)
-
-# Check model summary
-summary(irt_aggr)
-```
+TOD
 Interpretation:
 
+## Latent Trait Scores
 
 ```{r}
 df$aggressive_latent <- fscores(irt_aggr, method = "EAP") # expected a posteriori
