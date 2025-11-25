@@ -88,7 +88,7 @@ Participants should complete more than 50% of word fragments with existing words
 ```{r}
 df <- exclude_participants(
   df,
-  validWordCompletionScore >= 0.5,
+  validWordCompletionScore >= 0.8,
   vars = "validWordCompletionScore",
   description = "WFCT comprehension"
 )
@@ -249,6 +249,19 @@ summary_mean_sd(df, MMB_item_codes)
 Interpratation:
 ...
 
+### Check sampling adequacy for Factory Analysis
+
+```{r}
+KMO(cor_mmb)
+cortest.bartlett(cor_mmb, n = nrow(df))
+```
+KMO (Kaiser-Meyer-Olkin) should be > 0.6 (ideally > 0.8)
+Bartlett’s test should be significant (p < .05)
+
+Interpretation:
+...
+
+
 ### Two-Factor Uncorrelated CFA
 Testing the proposed 2 factor structure by Stanaland & Gaither (2021)
 
@@ -271,15 +284,6 @@ Interpretation
 ...
 
 ### Exploratory Factor Analysis
-
-#### Check sampling adequacy for EFA 
-
-```{r}
-KMO(cor_mmb)
-cortest.bartlett(cor_mmb, n = nrow(df))
-```
-KMO (Kaiser-Meyer-Olkin) should be > 0.6 (ideally > 0.8)
-Bartlett’s test should be significant (p < .05)
 
 #### Determine the number of latent factors
 
@@ -483,31 +487,8 @@ Interpretation:
 - *Low Means:* 
 - *Missing Values:* ...
 
-
 ```{r}
-
-# 2. Tetrachoric correlation matrix
-tetra_corr <- tetrachoric(aggr_clean)$rho
-
-# 3. KMO & Bartlett
-KMO(tetra_corr)
-cortest.bartlett(tetra_corr, n = nrow(df_threat))
-
-# 4. EFA
-fa(tetra_corr, nfactors = 1, n.obs = nrow(df_threat))
-
-tetra_corr <- tetrachoric(aggr_clean)$rho
-fa(tetra_corr, nfactors = 1, n.obs = nrow(df_threat))
-model <- "
-  Aggression =~ WFCTagg2 + WFCTagg3 + WFCTagg4  + WFCTagg6 + WFCTagg7 + WFCTagg10
-"
-fit <- cfa(model, data = aggr_clean, estimator = "WLSMV",
-           ordered = colnames(aggr_clean))
-summary(fit, fit.measures = TRUE, standardized = TRUE)
-```
-
-```{r}
-bad_items <- c("WFCTagg1", "WFCTagg3","WFCTagg4", "WFCTagg5")
+bad_items <- c("WFCTagg1", "WFCTagg2", "WFCTagg3","WFCTagg4", "WFCTagg5", "WFCTagg7", "WFCTagg9")
 WFCT_aggr_clean <- df[ , setdiff(WFCT_aggression_items, bad_items)]
 ``` 
 
@@ -529,9 +510,20 @@ corrplot::corrplot(cor_aggr,
 Interpretation:
 ...
 
+#### Check sampling adequacy for Factor Analysis
 
-Items with extremely low variance carry almost no information.
-They can destabilize factor analysis (loadings = extreme, communalities very low/high).
+```{r}
+KMO(cor_aggr)
+cortest.bartlett(cor_aggr, n = nrow(df))
+```
+
+KMO (Kaiser-Meyer-Olkin) should be > 0.6 (ideally > 0.8)
+Bartlett’s test should be significant (p < .05)
+
+Interpretation:
+-  The KMO is extremely low, indicating that the items are not suited for a 
+factor analysis
+- This is because the items share very little variance ...
 
 
 ### One-Factor CFA
@@ -548,21 +540,6 @@ Interpretation
 ...
 
 ### Exploratory Factory Analysis
-
-#### Check sampling adequacy for EFA 
-
-```{r}
-KMO(cor_aggr)
-cortest.bartlett(cor_aggr, n = nrow(df))
-```
-
-KMO (Kaiser-Meyer-Olkin) should be > 0.6 (ideally > 0.8)
-Bartlett’s test should be significant (p < .05)
-
-Interpretation:
--  The KMO is extremely low, indicating that the items do not firm a common
-factor
-- 
 
 #### Determine the number of latent factors
 
