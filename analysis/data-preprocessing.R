@@ -20,19 +20,6 @@ encodeWordCompletions <- function(df) {
     df[[key]] <- recode_WFCT_column(df[[key]], key)
   }
 
-
-  df$aggressiveWordCompletionScore <- rowMeans(
-    replace(df[WFCT_aggression_items], is.na(df[WFCT_aggression_items]), 0)
-  )
-
-  df$anxiousWordCompletionScore <- rowMeans(
-    replace(df[WFCT_anxiety_items], is.na(df[WFCT_anxiety_items]), 0)
-  )
-
-  # arc sine square root transformation of word completion scores
-  df$aggressiveWordCompletionScoreTransformed <- asin(sqrt(df$aggressiveWordCompletionScore))
-  df$anxiousWordCompletionScoreTransformed <- asin(sqrt(df$anxiousWordCompletionScore))
-
   df$validWordCompletionScore <- rowSums(!is.na(df[WFCT_all_items])) / length(WFCT_all_items)
 
   return(df)

@@ -88,28 +88,14 @@ Participants should complete more than 50% of word fragments with existing words
 ```{r}
 df <- exclude_participants(
   df,
-  validWordCompletionScore >= 0.8,
+  validWordCompletionScore >= 0.5,
   vars = "validWordCompletionScore",
   description = "WFCT comprehension"
 )
 ```
-### 5. WFCT Incomplete Responses
-Participants that did not complete any of the word fragments for aggressive and anxious cognition
-```{r}
-df <- exclude_participants(
-  df, !is.na(aggressiveWordCompletionScore),
-  vars = "aggressiveWordCompletionScore",
-  description = "Missing Aggressive Word Completion Score"
-)
 
-df <- exclude_participants(
-  df, !is.na(anxiousWordCompletionScore),
-  vars = "anxiousWordCompletionScore",
-  description = "Missing Anxious Word Completion Score"
-)
-```
-
-### 6. Responses to Motivation for Masculine Behaviour
+### 5. Responses to Motivation for Masculine Behaviour
+Participants should respond to at least one item of each MMB scale
 ```{r}
 df <- exclude_participants(
   df,
@@ -525,66 +511,57 @@ Interpretation:
 factor analysis
 - This is because the items share very little variance ...
 
-
-### One-Factor CFA
-
-```{r}
-model_aggr_onef <- "
-  Aggression =~ WFCTagg1 + WFCTagg2 + WFCTagg3 + WFCTagg4 + WFCTagg5 + WFCTagg6 + WFCTagg7 + WFCTagg8 + WFCTagg9 + WFCTagg10
-"
-
-results_aggr_onef <- run_cfa_model(model_aggr_onef, df, model_name = "Aggression One-Factor", show_mi = FALSE)
-```
-
-Interpretation
-...
-
-### Exploratory Factory Analysis
-
-#### Determine the number of latent factors
-
-```{r}
-fa.parallel(WFCT_aggr_clean,
-  fm = "ml",
-  fa = "fa", n.iter = 100, show.legend = TRUE,
-  main = "Parallel Analysis Scree Plot"
-)
-```
-Interpretation
-=> look for the elbow of the pot
-=> Eigenvalues 
-
-=> EFA suggests ...
-
-### Compute EFA
-
-```{r}
-efa_result_aggr_onef <- fa(cor_aggr, nfactors = 1)
-```
-
 ## Reliability
 ```{r}
 psych::alpha(WFCT_aggr_clean, check.keys = FALSE)
 ```
 
-TOD
 Interpretation:
 
 ## Latent Trait Scores
 
 ```{r}
-df$aggressive_latent <- fscores(irt_aggr, method = "EAP") # expected a posteriori
-df$aggressive_latent_z <- scale(df$aggressive_latent)
+df$aggressiveWordCompletionScore <- rowMeans(
+  replace(df[WFCT_aggression_items], is.na(df[WFCT_aggression_items]), 0)
+)
+
+df$aggressiveWordCompletionScoreTransformed <- asin(sqrt(df$aggressiveWordCompletionScore))
 ```
 
-# Factor Structure Anxious Cognition
+```{r}
+summary_mean_sd(df, c("aggressiveWordCompletionScore"))
+```
 
-## Anxious Cognition
+## Summary
+...
 
-### Visualization
+# Test Quality Criteria: Anxious Cognition
+*Objectives:*
+- Assess the *validity* and *reliability* of the scale for anxious cognition
+- Compute participant latent trait scores
+
+*Methodology*
+-
+
+## Construct Validity
+
+### Visualization & Descriptives
 
 ```{r}
-cor_anx <- psych::polychoric(df[WFCT_anxiety_items])$rho
+summary_mean_sd(df, WFCT_anxiety_items)
+```
+
+Interpretation:
+- *Low Means:* 
+- *Missing Values:* ...
+
+```{r}
+bad_items <- c("WFCTanx2", "WFCTanx8","WFCTanx10")
+WFCT_anx_clean <- df[ , setdiff(WFCT_anxiety_items, bad_items)]
+``` 
+
+```{r}
+cor_anx <- psych::tetrachoric(WFCT_anx_clean)$rho
 
 corrplot::corrplot(cor_anx,
   method = "color",
@@ -595,11 +572,43 @@ corrplot::corrplot(cor_anx,
   diag = FALSE
 )
 ```
+-> a tetrachoric correlation is used, because responses are always binary 
+(aggressive, vs. non-aggressive)
+
+Interpretation:
+...
+
+#### Check sampling adequacy for Factor Analysis
 
 ```{r}
-psych::describe(df[WFCT_anxiety_items])
+KMO(cor_anx)
+cortest.bartlett(cor_anx, n = nrow(df))
 ```
 
+KMO (Kaiser-Meyer-Olkin) should be > 0.6 (ideally > 0.8)
+Bartlett’s test should be significant (p < .05)
+
+Interpretation:
+-  The KMO is extremely low, indicating that the items are not suited for a 
+factor analysis
+- This is because the items share very little variance ...
+
+## Reliability
+```{r}
+psych::alpha(WFCT_anx_clean, check.keys = FALSE)
+```
+
+## Latent Trait Scores
+
+```{r}
+df$anxiousWordCompletionScore <- rowMeans(
+  replace(df[WFCT_anxiety_items], is.na(df[WFCT_anxiety_items]), 0)
+)
+
+df$anxiousWordCompletionScoreTransformed <- asin(sqrt(df$anxiousWordCompletionScore))
+```
+
+## Summary
 
 # Hypothesis 1a & 1b
 
@@ -611,6 +620,10 @@ plotBox(
   c("aggressiveWordCompletionScore", "anxiousWordCompletionScore"),
   "threatCondition"
 )
+```
+
+```{r}
+summary_mean_sd(df, c("aggressiveWordCompletionScore", "anxiousWordCompletionScore"))
 ```
 
 ## Hypothesis 1a t-test
