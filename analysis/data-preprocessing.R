@@ -49,7 +49,8 @@ recode_WFCT_column <- function(col, key) {
     full_match <- word_df[word_df$word == word_lower, ]
     if (nrow(full_match) == 1) {
       return(ifelse(full_match$encoding == "A", 1,
-             ifelse(full_match$encoding == "N", 0, NA)))
+        ifelse(full_match$encoding == "N", 0, NA)
+      ))
     }
 
     ##
@@ -60,7 +61,7 @@ recode_WFCT_column <- function(col, key) {
       letter_matches <- word_df[word_df$first_letter == word_lower, ]
 
       if (nrow(letter_matches) == 0) {
-        return(NA)  # letter does not correspond to any catalog word
+        return(NA) # letter does not correspond to any catalog word
       }
 
       encodings <- unique(letter_matches$encoding)

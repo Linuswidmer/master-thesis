@@ -221,7 +221,7 @@ cor_mmb <- psych::polychoric(df[MMB_item_codes])$rho
 corrplot(cor_mmb,
   method = "color",
   type = "upper",
-  order = "original", 
+  order = "original",
   tl.col = "black",
   tl.srt = 45,
   diag = FALSE
@@ -435,13 +435,13 @@ grid.arrange(rm_aut_hist, rm_pres_hist, reg_aut_hist, reg_pres_hist, ncol = 2)
 
 ```{r}
 rm_box <- plotBox(c("rowmeansAutonomous", "rowmeansPressured"))
-ggpar(rm_box, ylim = c(0,7))
+ggpar(rm_box, ylim = c(0, 7))
 
 reg_box <- plotBox(c("regAutonomous", "regPressured"))
 ggpar(rm_box, ylim = c(-5, 5))
 
 
-grid.arrange(ggpar(rm_box, ylim = c(0,7)), ggpar(reg_box, ylim = c(-5, 5)), ncol  = 2)
+grid.arrange(ggpar(rm_box, ylim = c(0, 7)), ggpar(reg_box, ylim = c(-5, 5)), ncol = 2)
 ```
 
 ```{r}
@@ -474,8 +474,8 @@ Interpretation:
 - *Missing Values:* ...
 
 ```{r}
-bad_items <- c("WFCTagg1", "WFCTagg2", "WFCTagg3","WFCTagg4", "WFCTagg5", "WFCTagg7", "WFCTagg9")
-WFCT_aggr_clean <- df[ , setdiff(WFCT_aggression_items, bad_items)]
+bad_items <- c("WFCTagg1", "WFCTagg2", "WFCTagg3", "WFCTagg4", "WFCTagg5", "WFCTagg7", "WFCTagg9")
+WFCT_aggr_clean <- df[, setdiff(WFCT_aggression_items, bad_items)]
 ``` 
 
 ```{r}
@@ -556,8 +556,8 @@ Interpretation:
 - *Missing Values:* ...
 
 ```{r}
-bad_items <- c("WFCTanx2", "WFCTanx8","WFCTanx10")
-WFCT_anx_clean <- df[ , setdiff(WFCT_anxiety_items, bad_items)]
+bad_items <- c("WFCTanx2", "WFCTanx8", "WFCTanx10")
+WFCT_anx_clean <- df[, setdiff(WFCT_anxiety_items, bad_items)]
 ``` 
 
 ```{r}

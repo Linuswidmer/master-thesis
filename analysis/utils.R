@@ -47,9 +47,9 @@ summary_mean_sd <- function(data, columns, group = NULL, digits = 2) {
         across(all_of(columns),
           list(
             mean = ~ round(mean(.x, na.rm = TRUE), digits),
-            sd   = ~ round(sd(.x, na.rm = TRUE), digits),
-            n    = ~ sum(!is.na(.x)),
-            missing   = ~ sum(is.na(.x))
+            sd = ~ round(sd(.x, na.rm = TRUE), digits),
+            n = ~ sum(!is.na(.x)),
+            missing = ~ sum(is.na(.x))
           ),
           .names = "{.col}_{.fn}"
         ),
@@ -75,9 +75,9 @@ summary_mean_sd <- function(data, columns, group = NULL, digits = 2) {
       summarise(across(all_of(columns),
         list(
           mean = ~ round(mean(.x, na.rm = TRUE), digits),
-          sd   = ~ round(sd(.x, na.rm = TRUE), digits),
-          n    = ~ sum(!is.na(.x)),
-          missing   = ~ sum(is.na(.x))
+          sd = ~ round(sd(.x, na.rm = TRUE), digits),
+          n = ~ sum(!is.na(.x)),
+          missing = ~ sum(is.na(.x))
         ),
         .names = "{.col}_{.fn}"
       ))
