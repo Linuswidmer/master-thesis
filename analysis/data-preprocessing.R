@@ -43,28 +43,57 @@ recode_WFCT_column <- function(col, key) {
   # Get the catalog for this WFCT item
   word_df <- word_catalog[[key]]
 
-  # Make sure word_df has lowercase words for matching
+  # Ensure lowercase
   word_df$word <- tolower(word_df$word)
+
+  # Also extract first letters of all words
+  word_df$first_letter <- substr(word_df$word, 1, 1)
 
   sapply(col, function(word) {
     if (is.na(word) || word == "") {
-      return(NA) # empty or missing
+      return(NA)
     }
+
     word_lower <- tolower(word)
 
-    match_row <- word_df[word_df$word == word_lower, ]
-    if (nrow(match_row) == 0) {
-      return(NA) # not in catalog
+    ##
+    ## 1. FULL-WORD MATCH
+    ##
+    full_match <- word_df[word_df$word == word_lower, ]
+    if (nrow(full_match) == 1) {
+      return(ifelse(full_match$encoding == "A", 1,
+             ifelse(full_match$encoding == "N", 0, NA)))
     }
-    if (match_row$encoding == "A") {
-      return(1)
-    } else if (match_row$encoding == "N") {
-      return(0)
-    } else {
-      return(NA) # in case there are other encodings
+
+    ##
+    ## 2. FIRST LETTER MATCH
+    ##
+    # If the participant typed exactly one character
+    if (nchar(word_lower) == 1) {
+      letter_matches <- word_df[word_df$first_letter == word_lower, ]
+
+      if (nrow(letter_matches) == 0) {
+        return(NA)  # letter does not correspond to any catalog word
+      }
+
+      encodings <- unique(letter_matches$encoding)
+
+      # If the letter maps unambiguously to A or N
+      if (length(encodings) == 1) {
+        return(ifelse(encodings == "A", 1, 0))
+      } else {
+        # Letter corresponds to both aggressive AND neutral words
+        return(NA)
+      }
     }
+
+    ##
+    ## 3. Otherwise no match
+    ##
+    return(NA)
   })
 }
+
 
 addQuestionLabelToDataframe <- function(df) {
   df$EDU_label <- factor(
