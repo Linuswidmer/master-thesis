@@ -18,7 +18,9 @@ agg3_word_list <- list(
   c("gier", "A"),
   c("bier", "N"),
   c("tier", "N"),
-  c("vier", "N")
+  c("vier", "N"),
+  c("hier", "N"),
+  c("pier", "N")
 )
 
 agg4_word_list <- list(
@@ -28,7 +30,9 @@ agg4_word_list <- list(
   c("sage", "N"),
   c("lage", "N"),
   c("page", "N"),
-  c("jage", "N")
+  c("jage", "N"),
+  c("gage", "N"),
+  c("zage", "N")
 )
 
 agg5_word_list <- list(
@@ -62,7 +66,8 @@ agg7_word_list <- list(
 agg8_word_list <- list(
   c("toben", "A"),
   c("loben", "N"),
-  c("hoben", "N")
+  c("hoben", "N"),
+  c("roben", "N")
 )
 
 agg9_word_list <- list(
@@ -72,7 +77,10 @@ agg9_word_list <- list(
   c("tagen", "N"),
   c("magen", "N"),
   c("ragen", "N"),
-  c("nagen", "N")
+  c("nagen", "N"),
+  c("lagen", "N"),
+  c("zagen", "N"),
+  c("hagen", "N")
 )
 
 agg10_word_list <- list(
@@ -105,7 +113,9 @@ anx2_word_list <- list(
   c("fangen", "N"),
   c("wangen", "N"),
   c("sangen", "N"),
-  c("rangen", "N")
+  c("rangen", "N"),
+  c("langen", "N"),
+  c("zangen", "N")
 )
 
 anx3_word_list <- list(
@@ -125,12 +135,15 @@ anx5_word_list <- list(
   c("fast", "N"),
   c("rast", "N"),
   c("bast", "N"),
-  c("hast", "N")
+  c("hast", "N"),
+  c("gast", "N")
 )
 
 anx6_word_list <- list(
   c("leere", "A"),
-  c("beere", "N")
+  c("beere", "N"),
+  c("heere", "N"),
+  c("teere", "N")
 )
 
 anx7_word_list <- list(
@@ -156,7 +169,8 @@ anx9_word_list <- list(
 anx10_word_list <- list(
   c("panne", "A"),
   c("kanne", "N"),
-  c("tanne", "N")
+  c("tanne", "N"),
+  c("wanne", "N")
 )
 
 all_anxs <- list(
