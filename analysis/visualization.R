@@ -18,7 +18,7 @@ plotBarHorizontal <- function(col, condition = NULL) {
 }
 
 
-plotHist <- function(score_col, x_range = NULL, condition = NULL) {
+plotHist <- function(score_col, x_range = NULL, condition = NULL, binwidth = 0.4) {
   palette <- c("#D3D3D3", "#808080")
   score_sym <- sym(score_col)
 
@@ -39,7 +39,7 @@ plotHist <- function(score_col, x_range = NULL, condition = NULL) {
     df[[condition]] <- factor(df[[condition]])
 
     p <- ggplot(df, aes(x = !!score_sym, fill = !!cond_sym)) +
-      geom_histogram(binwidth = 0.4, color = "black", position = "dodge", alpha = 0.7) +
+      geom_histogram(binwidth = binwidth, color = "black", position = "dodge", alpha = 0.7) +
       scale_fill_manual(values = palette, name = "Condition") + # legend title
       common_theme +
       common_scale +
@@ -50,7 +50,7 @@ plotHist <- function(score_col, x_range = NULL, condition = NULL) {
       )
   } else {
     p <- ggplot(df, aes(x = !!score_sym)) +
-      geom_histogram(binwidth = 0.4, fill = palette[1], color = "black") +
+      geom_histogram(binwidth = binwidth, fill = palette[1], color = "black") +
       common_theme +
       common_scale +
       labs(

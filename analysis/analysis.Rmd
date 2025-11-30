@@ -1,6 +1,9 @@
 ---
-title: "Analysis script for master thesis: Motivated Responses to a Masculinity Threat in a German Cultural Context"
-output: html_document
+title: 'Analysis script for master thesis: Motivated Responses to a Masculinity Threat
+  in a German Cultural Context'
+output:
+  html_document: default
+  pdf_document: default
 date: "2025-08-29"
 ---
 
@@ -35,7 +38,7 @@ library(gridExtra)
 ```
 
 load scripts
-```{r}
+```{r message=FALSE, warning=FALSE, include=FALSE}
 source("word-catalog.R")
 source("items-and-labels.R")
 source("data-preprocessing.R")
@@ -46,16 +49,17 @@ source("inference-statistics.R")
 source("factor-analysis.R")
 ```
 
-# 1. Setup and Study Inclusion Criteria
-
 ## Load and Preprocess data
 ```{r}
 df <- read.csv("../data/fragile_masculinity_motivation_anonymized.csv")
 df <- preprocessData(df, all_items)
 ```
+
+# 1. Setup and Study Inclusion Criteria
+
 ## Inclusion Criteria 
 
-### 1. Debrief Consent
+### 1.1 Debrief Consent
 Participants that withdrew their consent after the debrief are excluded
 ```{r}
 df <- exclude_participants(
@@ -66,14 +70,14 @@ df <- exclude_participants(
 )
 ```
 
-### 2. Demographic criteria
+### 1.2 Demographic criteria
 Participants have to be older than 18 years, self-identify as male and native level German skills
 ```{r}
 df <- exclude_participants(df, AGE >= 18, vars = "AGE", description = "Age")
 df <- exclude_participants(df, SEX == "AO01", vars = "SEX", description = "Gender")
 df <- exclude_participants(df, GER %in% c("AO04", "AO05"), vars = "GER", description = "German skills")
 ```
-### 3. Suspicion
+### 1.3 Suspicion
 Participants may not indicate a strong suspicion about the study (coded in column SUSPICIONEXCLUSION, free text are excluded in anonymous data set)
 ```{r}
 df <- exclude_participants(
@@ -83,7 +87,7 @@ df <- exclude_participants(
   description = "Suspicion"
 )
 ```
-### 4. WFCT comprehension
+### 1.4 WFCT comprehension
 Participants should complete more than 50% of word fragments with existing words
 ```{r}
 df <- exclude_participants(
@@ -94,7 +98,7 @@ df <- exclude_participants(
 )
 ```
 
-### 5. Responses to Motivation for Masculine Behaviour
+### 1.5 Responses to Motivation for Masculine Behaviour
 Participants should respond to at least one item of each MMB scale
 ```{r}
 df <- exclude_participants(
@@ -114,17 +118,23 @@ df <- exclude_participants(
 
 # 2. Descriptive Analysis of Sample
 
-## Conditions
+## Demographics
+
+### 2.1 Conditions
 ```{r}
 printNumberOfParticipants(df, "threatCondition")
 ```
 
-## Age
+### 2.2 Age
 ```{r}
 summary_mean_sd(df, "AGE")
 ```
 
-## Educational Degree
+```{r}
+plotHist("AGE")
+```
+
+### 2.3 Educational Degree
 
 ```{r}
 freq_table(df, EDU_label)
@@ -142,7 +152,7 @@ plotBarHorizontal("EDU_label") +
 freq_table(df, EDUPUPIL_label)
 ```
 
-## Occupational Degree
+### 2.4 Occupational Degree
 
 ```{r}
 freq_table(df, OCC_label)
@@ -156,9 +166,9 @@ plotBarHorizontal("OCC_label") +
   )
 ```
 
-# 3. Manipulation Check
+## Manipulation Check
 
-### Gender Knowledge Feedback
+### 3.1 Gender Knowledge Feedback
 [GKFEEDBACK] Welche Rückmeldung haben Sie im Verlauf der Studie zu Ihrem Wissen in geschlechtsspezifischen Themen erhalten?
 Scale 1 to 10
 ```{r}
@@ -174,7 +184,7 @@ Interpretation:
 - There is a clar split between the two conditions, meaning that participants paid attention to the feedback
 on the GenderKnoledge task and that the feedback was comprehensible
 
-### Self evaluation of Gender Knowledge
+### 3.2 Self evaluation of Gender Knowledge
 
 [GKSELF] Wie würden Sie Ihr Wissen in geschlechtsspezifischen Themen einschätzen?
 ```{r}
@@ -191,7 +201,7 @@ Interpretation:
 - This shows that the feedback did have an effect on the self perception of gender knowledge
 - The split is not very clear though...
 
-## Valid Word Completions
+## 3.4 Valid Word Completions
 
 ```{r}
 summary_mean_sd(df, "validWordCompletionScore")
@@ -204,6 +214,51 @@ plotBox("validWordCompletionScore")
 Interpretation:
 - Participants with a score lower than 50% were excluded
 - Generally participants were able to complete the WCFT
+
+### 3.5 Motivation for Masculine Behaviour
+
+```{r}
+plots <- lapply(MMB_item_codes, function(item) {
+  plotHist(item, c(1, 7), condition = NULL, binwidth = 1)
+})
+
+do.call(grid.arrange, c(plots, ncol = 3))
+```
+
+Interpretation:
+- 
+
+```{r}
+summary_mean_sd(df, MMB_item_codes)
+```
+
+### 3.6 Aggressive Cognition
+
+```{r warning=FALSE}
+plots <- lapply(WFCT_aggression_items, function(item) {
+  plotHist(item, c(0, 1), condition = NULL, binwidth = 1)
+})
+
+do.call(grid.arrange, c(plots, ncol = 4))
+```
+
+```{r}
+summary_mean_sd(df, WFCT_aggression_items)
+```
+
+### 3.6 Anxious Cognition
+
+```{r warning=FALSE}
+plots <- lapply(WFCT_anxiety_items, function(item) {
+  plotHist(item, c(0, 1), condition = NULL, binwidth = 1)
+})
+
+do.call(grid.arrange, c(plots, ncol = 4))
+```
+
+```{r}
+summary_mean_sd(df, WFCT_anxiety_items)
+```
 
 # Test Quality Criteria: Motivation for Masculine Behaviour
 *Objectives:*
@@ -476,27 +531,14 @@ Interpretation
 - Compute participant latent trait scores
 
 *Methodology*
--
+- Visualization & Descriptives
 
 ## Construct Validity
 
 ### Visualization & Descriptives
 
 ```{r}
-summary_mean_sd(df, WFCT_aggression_items)
-```
-
-Interpretation:
-- *Low Means:* 
-- *Missing Values:* ...
-
-```{r}
-bad_items <- c("WFCTagg1", "WFCTagg2", "WFCTagg3", "WFCTagg4", "WFCTagg5", "WFCTagg7", "WFCTagg9")
-WFCT_aggr_clean <- df[, setdiff(WFCT_aggression_items, bad_items)]
-``` 
-
-```{r}
-cor_aggr <- psych::tetrachoric(WFCT_aggr_clean)$rho
+cor_aggr <- psych::tetrachoric( df[, WFCT_aggression_items])$rho
 
 corrplot::corrplot(cor_aggr,
   method = "color",
@@ -508,10 +550,20 @@ corrplot::corrplot(cor_aggr,
 )
 ```
 -> a tetrachoric correlation is used, because responses are always binary 
-(aggressive, vs. non-aggressive)
+(aggressive, vs. non-aggressive response)
 
 Interpretation:
-...
+- The correlation plot shows no clear pattern between the items
+- If all items were to measure the same latent construct (aggressive cognition)
+we would expect (somewhat) positive correlations between all the items
+
+```{r}
+summary_mean_sd(df, WFCT_aggression_items)
+```
+
+Interpretation:
+- *Low Means:* On items 1, 2, 3, 4, 5, 7
+- *Missing Values:* 10% missings on items 7, 8, 9, 10
 
 #### Check sampling adequacy for Factor Analysis
 
@@ -526,11 +578,11 @@ Bartlett’s test should be significant (p < .05)
 Interpretation:
 -  The KMO is extremely low, indicating that the items are not suited for a 
 factor analysis
-- This is because the items share very little variance ...
+- This is because the items share very little variance (are not correlating)
 
 ## Reliability
 ```{r}
-psych::alpha(WFCT_aggr_clean, check.keys = FALSE)
+psych::alpha(cor_aggr, check.keys = FALSE)
 ```
 
 Interpretation:
