@@ -1,19 +1,24 @@
 ---
-title: 'Analysis script for master thesis: Motivated Responses to a Masculinity Threat
+title: 'Thesis Script: Motivated Responses to a Masculinity Threat
   in a German Cultural Context'
 output:
   pdf_document:
     latex_engine: xelatex
   html_document: default
-date: "2025-08-29"
+  word_document: default
+date: "2025-11-30"
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-```{r message=FALSE, warning=FALSE, include=FALSE}
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+knitr::opts_chunk$set(
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  fig.align = "center",
+  fig.pos = "!H",
+  fig.width = 6,
+  fig.height = 4
+)
 ```
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}
@@ -38,29 +43,25 @@ library(mirt)
 library(gridExtra)
 ```
 
-load scripts
 ```{r message=FALSE, warning=FALSE, include=FALSE}
-source("word-catalog.R")
-source("items-and-labels.R")
-source("data-preprocessing.R")
-source("visualization.R")
-source("utils.R")
-source("simulation.R")
-source("inference-statistics.R")
-source("factor-analysis.R")
+source(here("analysis", "word-catalog.R"))
+source(here("analysis", "items-and-labels.R"))
+source(here("analysis", "data-preprocessing.R"))
+source(here("analysis", "visualization.R"))
+source(here("analysis", "utils.R"))
+source(here("analysis", "simulation.R"))
+source(here("analysis", "inference-statistics.R"))
+source(here("analysis", "factor-analysis.R"))
 ```
 
-## Load and Preprocess data
 ```{r}
-df <- read.csv("../data/fragile_masculinity_motivation_anonymized.csv")
+df <- read.csv(here("data", "fragile_masculinity_motivation_anonymized.csv"))
 df <- preprocessData(df, all_items)
 ```
 
-# 1. Setup and Study Inclusion Criteria
+# 1. Study Inclusion Criteria
 
-## Inclusion Criteria 
-
-### 1.1 Debrief Consent
+## 1.1 Debrief Consent
 Participants that withdrew their consent after the debrief are excluded
 ```{r}
 df <- exclude_participants(
@@ -71,14 +72,15 @@ df <- exclude_participants(
 )
 ```
 
-### 1.2 Demographic criteria
+## 1.2 Demographic criteria
 Participants have to be older than 18 years, self-identify as male and native level German skills
 ```{r}
 df <- exclude_participants(df, AGE >= 18, vars = "AGE", description = "Age")
 df <- exclude_participants(df, SEX == "AO01", vars = "SEX", description = "Gender")
 df <- exclude_participants(df, GER %in% c("AO04", "AO05"), vars = "GER", description = "German skills")
 ```
-### 1.3 Suspicion
+
+## 1.3 Suspicion
 Participants may not indicate a strong suspicion about the study (coded in column SUSPICIONEXCLUSION, free text are excluded in anonymous data set)
 ```{r}
 df <- exclude_participants(
@@ -88,7 +90,8 @@ df <- exclude_participants(
   description = "Suspicion"
 )
 ```
-### 1.4 WFCT comprehension
+
+## 1.4 WFCT comprehension
 Participants should complete more than 50% of word fragments with existing words
 ```{r}
 df <- exclude_participants(
@@ -99,7 +102,7 @@ df <- exclude_participants(
 )
 ```
 
-### 1.5 Responses to Motivation for Masculine Behaviour
+## 1.5 Responses to Motivation for Masculine Behaviour
 Participants should respond to at least one item of each MMB scale
 ```{r}
 df <- exclude_participants(
@@ -117,16 +120,9 @@ df <- exclude_participants(
 )
 ```
 
-# 2. Descriptive Analysis of Sample
+# 2. Demographics
 
-## 2.1 Demographics
-
-### 2.1.1 Conditions
-```{r}
-printNumberOfParticipants(df, "threatCondition")
-```
-
-### 2.1.2 Age
+## 2.2 Age
 ```{r}
 summary_mean_sd(df, "AGE")
 ```
@@ -135,7 +131,7 @@ summary_mean_sd(df, "AGE")
 plotHist("AGE", c(0, 70), condition = NULL, binwidth = 1)
 ```
 
-### 2.1.3 Educational Degree
+## 2.3 Educational Degree
 
 ```{r}
 freq_table(df, EDU_label)
@@ -153,7 +149,7 @@ plotBarHorizontal("EDU_label") +
 freq_table(df, EDUPUPIL_label)
 ```
 
-### 2.1.4 Occupational Degree
+## 2.4 Occupational Degree
 
 ```{r}
 freq_table(df, OCC_label)
@@ -167,9 +163,14 @@ plotBarHorizontal("OCC_label") +
   )
 ```
 
-## 2.2 Manipulation Check
+# 3. Experimental Manipulation Check
 
-### 2.2.1 Gender Knowledge Feedback
+## 3.1 Conditions
+```{r}
+printNumberOfParticipants(df, "threatCondition")
+```
+
+## 3.2 Gender Knowledge Feedback
 [GKFEEDBACK] Welche Rückmeldung haben Sie im Verlauf der Studie zu Ihrem Wissen in geschlechtsspezifischen Themen erhalten?
 Scale 1 to 10
 ```{r}
@@ -181,11 +182,12 @@ summary_gkfeedback
 plotHist("GKFEEDBACK", c(1, 10), "threatCondition")
 ```
 
-Interpretation:
+**Interpretation**
+
 - There is a clar split between the two conditions, meaning that participants paid attention to the feedback
 on the GenderKnoledge task and that the feedback was comprehensible
 
-### 2.2.3 Self evaluation of Gender Knowledge
+## 3.3 Self evaluation of Gender Knowledge
 
 [GKSELF] Wie würden Sie Ihr Wissen in geschlechtsspezifischen Themen einschätzen?
 ```{r}
@@ -197,12 +199,13 @@ summary_gkself
 plotHist("GKSELF", c(1, 10), "threatCondition")
 ```
 
-Interpretation:
+**Interpretation**
+
 - The mean of self evalutated gender knowledge is lower in the threat condition, than noThreat condition
 - This shows that the feedback did have an effect on the self perception of gender knowledge
 - The split is not very clear though...
 
-## 2.2.4 Valid Word Completions
+## 3.4 Valid Word Completions
 
 ```{r}
 summary_mean_sd(df, "validWordCompletionScore")
@@ -212,13 +215,14 @@ summary_mean_sd(df, "validWordCompletionScore")
 plotBox("validWordCompletionScore")
 ```
 
-Interpretation:
+**Interpretation**
+
 - Participants with a score lower than 50% were excluded
 - Generally participants were able to complete the WCFT
 
-### 2.2.5 Motivation for Masculine Behaviour
+## 3.5 Motivation for Masculine Behaviour
 
-```{r, fig.width=10, fig.height=12}
+```{r}
 plots <- lapply(MMB_item_codes, function(item) {
   plotHist(item, c(1, 7), condition = NULL, binwidth = 1)
 })
@@ -226,16 +230,14 @@ plots <- lapply(MMB_item_codes, function(item) {
 do.call(grid.arrange, c(plots, ncol = 3))
 ```
 
-Interpretation:
-- 
 
 ```{r}
 summary_mean_sd(df, MMB_item_codes)
 ```
 
-### 2.2.6 Aggressive Cognition
+## 3.6 Aggressive Cognition
 
-```{r warning = FALSE, fig.width=10, fig.height=12, fig.align='center'}
+```{r}
 plots <- lapply(WFCT_aggression_items, function(item) {
   plotHist(item, c(0, 1), condition = NULL, binwidth = 1)
 })
@@ -247,9 +249,9 @@ do.call(grid.arrange, c(plots, ncol = 4))
 summary_mean_sd(df, WFCT_aggression_items)
 ```
 
-### 2.2.7 Anxious Cognition
+## 3.7 Anxious Cognition
 
-```{r warning=FALSE, fig.width=10, fig.height=12, fig.align='center'}
+```{r}
 plots <- lapply(WFCT_anxiety_items, function(item) {
   plotHist(item, c(0, 1), condition = NULL, binwidth = 1)
 })
@@ -261,21 +263,24 @@ do.call(grid.arrange, c(plots, ncol = 4))
 summary_mean_sd(df, WFCT_anxiety_items)
 ```
 
-# 3. Test Quality Criteria: Motivation for Masculine Behaviour
+# 4. Test Quality Criteria: Motivation for Masculine Behaviour
+
 *Objectives:*
+
 - Assess the *validity* and *reliability* of the scale Motivation for Masculine
 Behaviour (MMB) 
 - Compute participant latent trait scores
 
-*Methodology*
+*Methodology:*
+
 - Visualization & Descriptives
 - CFA and EFA to => construct validity
 - McDonald's Omega => Reliabiltiy
 - Regression scoring => latent trait scores
 
-## 3.1 Construct Validity 
+## 4.1 Construct Validity 
 
-### 3.1.1 Visualization & Descriptives
+### 4.1.1 Visualization & Descriptives
 
 ```{r}
 cor_mmb <- psych::polychoric(df[MMB_item_codes])$rho
@@ -290,7 +295,8 @@ corrplot(cor_mmb,
 )
 ```
 
-Interpretation:
+**Interpretation**
+
 - The correlation plit shows a very clear block for MMB 1-5 items (pressured scale)
 - The block for for autonomous items (MMB 6 - 9) is way less clear
 
@@ -298,13 +304,14 @@ Interpretation:
 summary_mean_sd(df, MMB_item_codes)
 ```
 
-Interpretation:
+**Interpretation**
+
 - The item scores ranged between 1 and 7
 - Most items show a mean in the center of the scale
 - Item MMBi7 shows a very high mean (5.27). "Ich bin gerne männlich"  
 - Generally, the items do not show bottom or ceiling effects, and there is some variance to the responses
 
-### 3.1.2 Check sampling adequacy for Factory Analysis
+### 4.1.2 Check sampling adequacy for Factory Analysis
 
 ```{r}
 KMO(cor_mmb)
@@ -313,17 +320,18 @@ cortest.bartlett(cor_mmb, n = nrow(df))
 KMO (Kaiser-Meyer-Olkin) should be > 0.6 (ideally > 0.8)
 Bartlett’s test should be significant (p < .05)
 
-Interpretation:
+**Interpretation**
+
 - The overall KMO is 0.86 showing a good smapling adequacy for factor analysis
 - Individual scores of items are good as well, except MMBi7, which has a sufficient, yet lower KMO value (0.72) due to it's ceiling effect
 - The Bartlett test is significant as well, showing a sampling adequacy for factor analysis
 
-### 3.1.3 Two-Factor Uncorrelated CFA
+### 4.1.3 Two-Factor Uncorrelated CFA
 Testing the proposed 2 factor structure by Stanaland & Gaither (2021)
 
-=> 2 factors
-=> no covariance between factors
-```{r}
+- 2 factors
+- no covariance between factors
+```{r, cache=TRUE}
 model_twof <- "
   # latent variables
   Pressured =~ MMBi1 + MMBi2 + MMBi3 + MMBi4 + MMBi5
@@ -336,33 +344,35 @@ model_twof <- "
 results_twof <- run_cfa_model(model_twof, df, model_name = "Two-Factor Uncorrelated", show_mi = TRUE)
 ```
 
-Interpretation
+**Interpretation**
+
 - None of the model fit indices is satisfying
 - Mod Indices suggest a correlation between latent pressured and autonomous factors
 
-### 3.1.4 Exploratory Factor Analysis
+### 4.1.4 Exploratory Factor Analysis
 
 #### Determine the number of latent factors
 
-```{r}
+```{r, cache=TRUE}
 fa.parallel(cor_mmb,
   fm = "ml",
   fa = "fa", n.iter = 100, show.legend = TRUE,
   main = "Parallel Analysis Scree Plot"
 )
 ```
-Interpretation
+**Interpretation:**
+
 - The "elbow" of the scree plot suggest a two factor model
 
 #### Compute EFA
 
-```{r}
+```{r, cache=TRUE}
 efa_result_twof <- fa(df[MMB_item_codes], nfactors = 2, rotate = "oblimin", fm = "ml")
 print(efa_result_twof, cut = 0.3) # only loadings > .30
 ```
 
-Print loading table
-```{r warning=FALSE}
+
+```{r warning=FALSE, cache=TRUE}
 # Create loadings matrix
 loadings_matrix <- as.data.frame(efa_result_twof$loadings[1:length(mmb_labels), ])
 
@@ -394,18 +404,21 @@ loading_table %>%
     bootstrap_options = c("striped", "hover", "condensed"),
     latex_options = "hold_position"
   ) %>%
-  row_spec(0, bold = TRUE, background = "#f2f2f2") %>% # Light gray header
+  column_spec(2, width = "10cm") %>%  
+  row_spec(0, bold = TRUE, background = "#f2f2f2") %>%
   row_spec(1:nrow(loading_table), background = "white", color = "black")
 ```
 
-Interpretation:
+**Interpretation**
+
 - EFA sows a very distinct factor for pressured motivation
 - The factor for autonomous motivation is less clear and MMBi9 shows loadings on both factors
 
-### 3.1.5 Two-Factor Correlated CFA
+### 4.1.5 Two-Factor Correlated CFA
 
-2 latent factors, correlation allowed between factors
-```{r}
+- 2 latent factors, 
+- correlation allowed between factors
+```{r, cache=TRUE}
 model_twof_cor <- "
   # latent variables
   Pressured =~ MMBi1 + MMBi2 + MMBi3 + MMBi4 + MMBi5
@@ -419,15 +432,16 @@ results_twof_cor <- run_cfa_model(model_twof_cor, df, model_name = "Two-Factor C
 ```
 
 Interpretation
+
 - Allowing for a correlation between latent factors creates a better fit but still not sufficient
 - Mod indices suggest A correlation between Item MMBi5 and MMBi9, This makes conceptually sense, because they both deal with anti femininity. 
 
-#### 3.1.6 Two-Factor Correlated + Residuals CFA
+### 4.1.6 Two-Factor Correlated + Residuals CFA
 
-=> 2 latent factors
-=> correlation allowed between factors
-=> allow correlated residuals
-```{r}
+- 2 latent factors
+- correlation allowed between factors
+- allow correlated residuals
+```{r, cache=TRUE}
 model_twof_cor_mod <- "
   # latent variables
   Pressured =~ MMBi1 + MMBi2 + MMBi3 + MMBi4 + MMBi5
@@ -444,10 +458,11 @@ model_twof_cor_mod <- "
 results_twof_cor_mod <- run_cfa_model(model_twof_cor_mod, df, model_name = "Two-Factor Correlated Modified", show_mi = TRUE)
 ```
 
-Interpretation
+**Interpretation**
+
 - ...
 
-## 3.2 Reliability
+## 4.2 Reliability
 
 ``` {r}
 fit_twof_cor_mod <- cfa(model_twof_cor_mod, data = df, std.lv = TRUE)
@@ -455,7 +470,8 @@ rel <- reliability(fit_twof_cor_mod)
 print(rel)
 ```
 
-Interpretation:
+**Interpretation**
+
 - Pressured scale shows an excellent reliability (> .9)
 - Autonomous scale shows an acceptable reliability (> .7)
 => reliability is sufficient, so we use the proposed factor structure to 
@@ -466,9 +482,9 @@ Omega values ≥ .70 (acceptable), ≥ .80 (good).
 so we trust omega more
 
 
-## 3.3 Latent Trait Scores
+## 4.3 Latent Trait Scores
 
-### 3.3.1 Compute Scores
+### 4.3.1 Compute Scores
 
 Use regression scoring from the chosen model, to compute latent trait scores
 ```{r}
@@ -491,7 +507,7 @@ df$rowmeansPressured <- rowMeans(
 )
 ```
 
-### 3.3.2 Visualization & Descriptives
+### 4.3.2 Visualization & Descriptives
 ```{r}
 summary_mean_sd(df, c("rowmeansAutonomous", "rowmeansPressured", "regAutonomous", "regPressured"))
 ```
@@ -523,22 +539,25 @@ cor(df$regAutonomous, df$regPressured)
 cor(df$rowmeansAutonomous, df$rowmeansPressured)
 ```
 
-Interpretation
+**Interpretation**
+
 - moderate to high correlation between pressured and autonomous factor
 - the correlation increases with the regression scores (because factors are modeled as correlative) 
 
 
-# 4. Test Quality Criteria: Aggressive Cognition
+# 5. Test Quality Criteria: Aggressive Cognition
 *Objectives:*
+
 - Assess the *validity* and *reliability* of the scale for aggressive cognition
 - Compute participant latent trait scores
 
-*Methodology*
+*Methodology:*
+
 - Visualization & Descriptives
 
-## 4.1 Construct Validity
+## 5.1 Construct Validity
 
-### 4.1.1 Visualization & Descriptives
+### 5.1.1 Visualization & Descriptives
 
 ```{r warning=FALSE}
 cor_aggr <- psych::tetrachoric( df[, WFCT_aggression_items])$rho
@@ -555,7 +574,8 @@ corrplot::corrplot(cor_aggr,
 -> a tetrachoric correlation is used, because responses are always binary 
 (aggressive, vs. non-aggressive response)
 
-Interpretation:
+**Interpretation**
+
 - The correlation plot shows no clear pattern between the items
 - If all items were to measure the same latent construct (aggressive cognition)
 we would expect (somewhat) positive correlations between all the items
@@ -564,11 +584,12 @@ we would expect (somewhat) positive correlations between all the items
 summary_mean_sd(df, WFCT_aggression_items)
 ```
 
-Interpretation:
+**Interpretation**
+
 - *Low Means:* On items 1, 2, 3, 4, 5, 7
 - *Missing Values:* 10% missings on items 7, 8, 9, 10
 
-### 4.1.2 Check sampling adequacy for Factor Analysis
+### 5.1.2 Check sampling adequacy for Factor Analysis
 
 ```{r}
 KMO(cor_aggr)
@@ -578,21 +599,22 @@ cortest.bartlett(cor_aggr, n = nrow(df))
 KMO (Kaiser-Meyer-Olkin) should be > 0.6 (ideally > 0.8)
 Bartlett’s test should be significant (p < .05)
 
-Interpretation:
+**Interpretation**
+
 -  The KMO is extremely low, indicating that the items are not suited for a 
 factor analysis
 - This is because the items share very little variance (are not correlating)
 
-## 4.2 Reliability
+## 5.2 Reliability
 ```{r}
 psych::alpha(cor_aggr, check.keys = FALSE)
 ```
 
-Interpretation:
+**Interpretation**
 
-## 4.3 Latent Trait Scores
+## 5.3 Latent Trait Scores
 
-### 4.3.1 Compute Scores
+### 5.3.1 Compute Scores
 ```{r}
 df$aggressiveWordCompletionScore <- rowMeans(
   replace(df[WFCT_aggression_items], is.na(df[WFCT_aggression_items]), 0)
@@ -601,7 +623,7 @@ df$aggressiveWordCompletionScore <- rowMeans(
 df$aggressiveWordCompletionScoreTransformed <- asin(sqrt(df$aggressiveWordCompletionScore))
 ```
 
-### 4.3.2 Visualization & Descriptives
+### 5.3.2 Visualization & Descriptives
 
 ```{r}
 summary_mean_sd(df, c("aggressiveWordCompletionScore"))
@@ -614,29 +636,21 @@ plotHist("aggressiveWordCompletionScore", c(0, 1), condition = NULL, binwidth = 
 ## Summary
 ...
 
-# 5. Test Quality Criteria: Anxious Cognition
+# 6. Test Quality Criteria: Anxious Cognition
+
 *Objectives:*
+
 - Assess the *validity* and *reliability* of the scale for anxious cognition
 - Compute participant latent trait scores
 
-*Methodology*
--
+*Methodology:*
 
-## 5.1 Construct Validity
+- Descriptives * Visualization
 
-### 5.1.1 Visualization & Descriptives
-
-```{r}
-summary_mean_sd(df, WFCT_anxiety_items)
-```
-
-Interpretation:
-- *Low Means:* 
-- *Missing Values:* ...
-
+## 6.1 Construct Validity
 
 ```{r}
-cor_anx <- psych::tetrachoric(WFCT_anx_clean)$rho
+cor_anx <- psych::tetrachoric(df[, WFCT_anxiety_items])$rho
 
 corrplot::corrplot(cor_anx,
   method = "color",
@@ -650,10 +664,24 @@ corrplot::corrplot(cor_anx,
 -> a tetrachoric correlation is used, because responses are always binary 
 (aggressive, vs. non-aggressive)
 
-Interpretation:
-...
+### 6.1.1 Visualization & Descriptives
 
-### 5.1.2 Check sampling adequacy for Factor Analysis
+```{r}
+summary_mean_sd(df, WFCT_anxiety_items)
+```
+
+**Interpretation**
+
+- *Low Means:* 
+- *Missing Values:* ...
+
+
+
+**Interpretation**
+
+- ...
+
+### 6.1.2 Check sampling adequacy for Factor Analysis
 
 ```{r}
 KMO(cor_anx)
@@ -663,19 +691,20 @@ cortest.bartlett(cor_anx, n = nrow(df))
 KMO (Kaiser-Meyer-Olkin) should be > 0.6 (ideally > 0.8)
 Bartlett’s test should be significant (p < .05)
 
-Interpretation:
+**Interpretation**
+
 -  The KMO is extremely low, indicating that the items are not suited for a 
 factor analysis
 - This is because the items share very little variance ...
 
-## 5.2 Reliability
+## 6.2 Reliability
 ```{r}
-psych::alpha(WFCT_anx_clean, check.keys = FALSE)
+psych::alpha(cor_anx, check.keys = FALSE)
 ```
 
-## 5.3 Latent Trait Scores
+## 6.3 Latent Trait Scores
 
-### 5.3.1 Compute Scores
+### 6.3.1 Compute Scores
 ```{r}
 df$anxiousWordCompletionScore <- rowMeans(
   replace(df[WFCT_anxiety_items], is.na(df[WFCT_anxiety_items]), 0)
@@ -684,7 +713,7 @@ df$anxiousWordCompletionScore <- rowMeans(
 df$anxiousWordCompletionScoreTransformed <- asin(sqrt(df$anxiousWordCompletionScore))
 ```
 
-### 5.3.2 Visualization & Descriptives
+### 6.3.2 Visualization & Descriptives
 ```{r}
 summary_mean_sd(df, c("anxiousWordCompletionScore"))
 ```

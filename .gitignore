@@ -4,3 +4,6 @@ data/
 master-thesis.code-workspace
 analysis.html
 analysis.tex
+
+analysis_files
+analysis_cache
