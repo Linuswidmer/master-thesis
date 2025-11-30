@@ -89,6 +89,11 @@ addQuestionLabelToDataframe <- function(df) {
     levels = str_wrap(edu_labels, width = 25)
   )
 
+  df$EDUPUPIL_label <- factor(
+    str_wrap(edupupil_label[df$EDUPUPIL], width = 25), # Wrap at 25 characters
+    levels = str_wrap(edupupil_label, width = 25)
+  )
+
   df$OCC_label <- factor(
     str_wrap(occ_labels[df$OCC], width = 25), # Wrap at 25 characters
     levels = str_wrap(occ_labels, width = 25)

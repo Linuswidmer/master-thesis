@@ -45,6 +45,13 @@ occ_labels <- c(
   "AO08" = "Anderen Berufsabschluss (z.B. im Ausland erworben)"
 )
 
+edupupil_label <- c(
+  "AO01" = "Haupt-/ Volksschule",
+  "AO02" = "Mittlerer Schulabschluss/Realschule/mittlere Reife",
+  "AO03" = "Fachhochschulreife/ Fachoberschule",
+  "AO04" = "Abitur, allgemeine oder fachgebundene Hochschulreife/ (EOS)"
+)
+
 gkfeedback_labels <- c(
   "AO01" = "Sehr typisch weiblich",
   "AO02" = "Eher typisch weiblich",

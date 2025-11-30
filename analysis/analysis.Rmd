@@ -138,7 +138,10 @@ plotBarHorizontal("EDU_label") +
   )
 ```
 
-=> if participants indicated "AO01" => include analysis of no_edu
+```{r}
+freq_table(df, EDUPUPIL_label)
+```
+
 
 ## Occupational Degree
 
