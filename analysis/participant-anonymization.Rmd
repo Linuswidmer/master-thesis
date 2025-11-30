@@ -49,12 +49,13 @@ df_feedback <- df_raw %>%
 View(df_feedback)
 ```
 
-=> participants indicating technical issues?
-
-
 ```{r}
 df_raw$SUSPICIONEXCLUSION <- FALSE
-## exclude participants with suspicion here
+
+ids_to_exclude <- c(252, 355, 365, 371, 421, 459, 466, 477, 502)
+
+df_raw$SUSPICIONEXCLUSION[df_raw$id %in% ids_to_exclude] <- TRUE
+
 ```
 
 save only relevant columns
@@ -65,7 +66,6 @@ anonymized_data <- df_raw %>% select(all_of(c(all_items, "SUSPICIONEXCLUSION")))
 
 Connection between debrief consent and threatCondition
 
-save final data
 ```{r}
 write.csv(anonymized_data, "../data/fragile_masculinity_motivation_anonymized.csv", row.names = FALSE)
 write.csv(unanonymized_data, "../data/fragile_masculinity_motivation.csv", row.names = FALSE)
