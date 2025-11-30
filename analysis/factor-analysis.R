@@ -24,10 +24,10 @@ run_cfa_model <- function(model_syntax, data, model_name = "CFA_Model", show_mi 
 
   fit <- cfa(model_syntax, data = data, std.lv = TRUE)
 
-  # cat("\n-------------------------\n")
-  # cat("MODEL SUMMARY\n")
-  # cat("-------------------------\n")
-  # print(summary(fit, fit.measures = TRUE, standardized = TRUE))
+  cat("\n-------------------------\n")
+  cat("MODEL SUMMARY\n")
+  cat("-------------------------\n")
+  print(summary(fit, fit.measures = TRUE, standardized = TRUE))
 
   cat("\n-------------------------\n")
   cat("MODEL FIT INDICES\n")

@@ -142,7 +142,6 @@ plotBarHorizontal("EDU_label") +
 freq_table(df, EDUPUPIL_label)
 ```
 
-
 ## Occupational Degree
 
 ```{r}
@@ -172,7 +171,8 @@ plotHist("GKFEEDBACK", c(1, 10), "threatCondition")
 ```
 
 Interpretation:
-...
+- There is a clar split between the two conditions, meaning that participants paid attention to the feedback
+on the GenderKnoledge task and that the feedback was comprehensible
 
 ### Self evaluation of Gender Knowledge
 
@@ -187,7 +187,9 @@ plotHist("GKSELF", c(1, 10), "threatCondition")
 ```
 
 Interpretation:
-...
+- The mean of self evalutated gender knowledge is lower in the threat condition, than noThreat condition
+- This shows that the feedback did have an effect on the self perception of gender knowledge
+- The split is not very clear though...
 
 ## Valid Word Completions
 
@@ -200,7 +202,8 @@ plotBox("validWordCompletionScore")
 ```
 
 Interpretation:
-...
+- Participants with a score lower than 50% were excluded
+- Generally participants were able to complete the WCFT
 
 # Test Quality Criteria: Motivation for Masculine Behaviour
 *Objectives:*
@@ -209,7 +212,7 @@ Behaviour (MMB)
 - Compute participant latent trait scores
 
 *Methodology*
-- Visualization * Descriptives => Construct validity
+- Visualization * Descriptives
 - CFA and EFA to => construct validity
 - McDonald's Omega => Reliabiltiy
 - Regression scoring => latent trait scores
@@ -231,12 +234,19 @@ corrplot(cor_mmb,
 )
 ```
 
+Interpretation:
+- The correlation plit shows a very clear block for MMB 1-5 items (pressured scale)
+- The block for for autonomous items (MMB 6 - 9) is way less clear
+
 ```{r}
 summary_mean_sd(df, MMB_item_codes)
 ```
 
-Interpratation:
-...
+Interpretation:
+- The item scores ranged between 1 and 7
+- Most items show a mean in the center of the scale
+- Item MMBi7 shows a very high mean (5.27). "Ich bin gerne männlich"  
+- Generally, the items do not show bottom or ceiling effects, and there is some variance to the responses
 
 ### Check sampling adequacy for Factory Analysis
 
@@ -248,8 +258,9 @@ KMO (Kaiser-Meyer-Olkin) should be > 0.6 (ideally > 0.8)
 Bartlett’s test should be significant (p < .05)
 
 Interpretation:
-...
-
+- The overall KMO is 0.86 showing a good smapling adequacy for factor analysis
+- Individual scores of items are good as well, except MMBi7, which has a sufficient, yet lower KMO value (0.72) due to it's ceiling effect
+- The Bartlett test is significant as well, showing a sampling adequacy for factor analysis
 
 ### Two-Factor Uncorrelated CFA
 Testing the proposed 2 factor structure by Stanaland & Gaither (2021)
@@ -266,11 +277,12 @@ model_twof <- "
   Pressured ~~ 0*Autonomous
 "
 
-results_twof <- run_cfa_model(model_twof, df, model_name = "Two-Factor Uncorrelated", show_mi = FALSE)
+results_twof <- run_cfa_model(model_twof, df, model_name = "Two-Factor Uncorrelated", show_mi = TRUE)
 ```
 
 Interpretation
-...
+- None of the model fit indices is satisfying
+- Mod Indices suggest a correlation between latent pressured and autonomous factors
 
 ### Exploratory Factor Analysis
 
@@ -284,10 +296,7 @@ fa.parallel(cor_mmb,
 )
 ```
 Interpretation
-=> look for the elbow of the pot
-=> Eigenvalues ?
-
-=> EFA suggests a two factor model
+- The "elbow" of the scree plot suggest a two factor model
 
 #### Compute EFA
 
@@ -333,6 +342,10 @@ loading_table %>%
   row_spec(1:nrow(loading_table), background = "white", color = "black")
 ```
 
+Interpretation:
+- EFA sows a very distinct factor for pressured motivation
+- The factor for autonomous motivation is less clear and MMBi9 shows loadings on both factors
+
 ### Two-Factor Correlated CFA
 
 2 latent factors, correlation allowed between factors
@@ -350,11 +363,8 @@ results_twof_cor <- run_cfa_model(model_twof_cor, df, model_name = "Two-Factor C
 ```
 
 Interpretation
-...
-
-Mod Indices suggest
-A correlation between Item 5 and 9, This makes conceptually sense, because they
-bith deal with anti femininity. 
+- Allowing for a correlation between latent factors creates a better fit but still not sufficient
+- Mod indices suggest A correlation between Item MMBi5 and MMBi9, This makes conceptually sense, because they both deal with anti femininity. 
 
 #### Two-Factor Correlated + Residuals CFA
 
@@ -370,14 +380,16 @@ model_twof_cor_mod <- "
   Pressured ~~ Autonomous
 
   # theory-based correlated residuals
+  MMBi3 ~~ MMBi4
   MMBi5 ~~ MMBi9
+  MMBi7 ~~ MMBi8
 "
 
 results_twof_cor_mod <- run_cfa_model(model_twof_cor_mod, df, model_name = "Two-Factor Correlated Modified", show_mi = TRUE)
 ```
 
 Interpretation
-...
+- ...
 
 ## Reliability
 
@@ -388,14 +400,15 @@ print(rel)
 ```
 
 Interpretation:
-Omega values ≥ .70 (acceptable), ≥ .80 (good).
-=> Alpha assumes tau-equivalence (all items same loading), which isn’t true here,
-so we trust omega more
-
-...
-
+- Pressured scale shows an excellent reliability (> .9)
+- Autonomous scale shows an acceptable reliability (> .7)
 => reliability is sufficient, so we use the proposed factor structure to 
 compute factor scored for autonomous and pressured motivation 
+
+Omega values ≥ .70 (acceptable), ≥ .80 (good).
+=> Alpha assumes tau-equivalence (all items same loading), which isn't true here,
+so we trust omega more
+
 
 ## Latent Trait Scores
 
@@ -407,7 +420,7 @@ df$regPressured <- scale(fs_reg[, "Pressured"])
 df$regAutonomous <- scale(fs_reg[, "Autonomous"])
 ```
 
-Row means
+Also compute Row means for visualizations
 ```{r}
 df$rowmeansAutonomous <- rowMeans(
   df[mmb_autonomous_items],
@@ -434,14 +447,14 @@ reg_pres_hist <- plotHist("regPressured", c(-5, 5))
 grid.arrange(rm_aut_hist, rm_pres_hist, reg_aut_hist, reg_pres_hist, ncol = 2)
 ```
 
--> regression scoring decreses reduces measurement error at the price of losing variance
+-> regression scoring reduces measurement error at the price of losing variance
 
 ```{r}
 rm_box <- plotBox(c("rowmeansAutonomous", "rowmeansPressured"))
-ggpar(rm_box, ylim = c(0, 7))
+# ggpar(rm_box, ylim = c(0, 7))
 
 reg_box <- plotBox(c("regAutonomous", "regPressured"))
-ggpar(rm_box, ylim = c(-5, 5))
+# ggpar(rm_box, ylim = c(-5, 5))
 
 
 grid.arrange(ggpar(rm_box, ylim = c(0, 7)), ggpar(reg_box, ylim = c(-5, 5)), ncol = 2)
@@ -453,7 +466,8 @@ cor(df$rowmeansAutonomous, df$rowmeansPressured)
 ```
 
 Interpretation
-...
+- moderate to high correlation between pressured and autonomous factor
+- the correlation increases with the regression scores (because factors are modeled as correlative) 
 
 
 # Test Quality Criteria: Aggressive Cognition
