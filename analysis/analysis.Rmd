@@ -3,7 +3,12 @@ title: 'Thesis Script: Motivated Responses to a Masculinity Threat
   in a German Cultural Context'
 output:
   pdf_document:
+    df_print: default
     latex_engine: xelatex
+    keep_tex: true
+    highlight: tango
+    includes:
+      in_header: header.tex
   html_document: default
   word_document: default
 date: "2025-11-30"
@@ -331,7 +336,7 @@ Testing the proposed 2 factor structure by Stanaland & Gaither (2021)
 
 - 2 factors
 - no covariance between factors
-```{r, cache=TRUE}
+```{r }
 model_twof <- "
   # latent variables
   Pressured =~ MMBi1 + MMBi2 + MMBi3 + MMBi4 + MMBi5
@@ -353,7 +358,7 @@ results_twof <- run_cfa_model(model_twof, df, model_name = "Two-Factor Uncorrela
 
 #### Determine the number of latent factors
 
-```{r, cache=TRUE}
+```{r }
 fa.parallel(cor_mmb,
   fm = "ml",
   fa = "fa", n.iter = 100, show.legend = TRUE,
@@ -366,13 +371,13 @@ fa.parallel(cor_mmb,
 
 #### Compute EFA
 
-```{r, cache=TRUE}
+```{r }
 efa_result_twof <- fa(df[MMB_item_codes], nfactors = 2, rotate = "oblimin", fm = "ml")
 print(efa_result_twof, cut = 0.3) # only loadings > .30
 ```
 
 
-```{r warning=FALSE, cache=TRUE}
+```{r warning=FALSE }
 # Create loadings matrix
 loadings_matrix <- as.data.frame(efa_result_twof$loadings[1:length(mmb_labels), ])
 
@@ -418,7 +423,7 @@ loading_table %>%
 
 - 2 latent factors, 
 - correlation allowed between factors
-```{r, cache=TRUE}
+```{r,  }
 model_twof_cor <- "
   # latent variables
   Pressured =~ MMBi1 + MMBi2 + MMBi3 + MMBi4 + MMBi5
@@ -441,7 +446,7 @@ Interpretation
 - 2 latent factors
 - correlation allowed between factors
 - allow correlated residuals
-```{r, cache=TRUE}
+```{r }
 model_twof_cor_mod <- "
   # latent variables
   Pressured =~ MMBi1 + MMBi2 + MMBi3 + MMBi4 + MMBi5
@@ -645,9 +650,11 @@ plotHist("aggressiveWordCompletionScore", c(0, 1), condition = NULL, binwidth = 
 
 *Methodology:*
 
-- Descriptives * Visualization
+- Descriptives & Visualization
 
 ## 6.1 Construct Validity
+
+### 6.1.1 Visualization & Descriptives
 
 ```{r}
 cor_anx <- psych::tetrachoric(df[, WFCT_anxiety_items])$rho
@@ -664,7 +671,6 @@ corrplot::corrplot(cor_anx,
 -> a tetrachoric correlation is used, because responses are always binary 
 (aggressive, vs. non-aggressive)
 
-### 6.1.1 Visualization & Descriptives
 
 ```{r}
 summary_mean_sd(df, WFCT_anxiety_items)
@@ -737,7 +743,7 @@ plotBox(
 ```
 
 ```{r}
-summary_mean_sd(df, c("aggressiveWordCompletionScore", "anxiousWordCompletionScore"))
+summary_mean_sd(df, c("aggressiveWordCompletionScore", "anxiousWordCompletionScore"), "threatCondition")
 ```
 
 ## Hypothesis 1a t-test
