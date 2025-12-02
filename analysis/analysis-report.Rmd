@@ -1,6 +1,7 @@
 ---
-title: 'Thesis Script: Motivated Responses to a Masculinity Threat
+title: 'Analysis Report: Motivated Responses to a Masculinity Threat
   in a German Cultural Context'
+output_dir: ../
 output:
   pdf_document:
     df_print: default
@@ -8,10 +9,10 @@ output:
     keep_tex: true
     highlight: tango
     includes:
-      in_header: header.tex
+      in_header: tex/header.tex
   html_document: default
   word_document: default
-date: "2025-11-30"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
 ---
 
 ```{r setup, include=FALSE}
