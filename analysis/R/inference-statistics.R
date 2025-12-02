@@ -27,6 +27,10 @@ check_normality_hist <- function(data, dv, group, binwidth = NULL) {
     )
 }
 
+# shapiro.test(df %>% 
+#   filter(threatCondition == "noThreat") %>% 
+#   pull(GKSELF)) 
+
 check_homogeneity <- function(data, dv, group) {
   dv_sym <- ensym(dv)
   group_sym <- ensym(group)

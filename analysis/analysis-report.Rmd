@@ -195,6 +195,21 @@ plotHist("GKFEEDBACK", c(1, 10), "threatCondition")
 on the GenderKnoledge task and that the feedback was comprehensible
 
 ## 3.3 Self evaluation of Gender Knowledge
+*Objectives:*
+
+- Testing if self evaluated gender knowledge is significantly less in the threat Condition
+
+*Methodology:*
+
+- Visualization & Descriptives
+- Prerequisites for inference statistics (homogeneity, normal distribution)
+- Inference Statistics (t-test)
+
+### 3.3.1 Visualization & Descriptives
+
+```{r}
+plotHist("GKSELF", c(1, 10), "threatCondition")
+```
 
 [GKSELF] Wie würden Sie Ihr Wissen in geschlechtsspezifischen Themen einschätzen?
 ```{r}
@@ -202,15 +217,46 @@ summary_gkself <- summary_mean_sd(df, "GKSELF", "threatCondition")
 summary_gkself
 ```
 
-```{r}
-plotHist("GKSELF", c(1, 10), "threatCondition")
-```
-
 **Interpretation**
 
-- The mean of self evalutated gender knowledge is lower in the threat condition, than noThreat condition
-- This shows that the feedback did have an effect on the self perception of gender knowledge
-- The split is not very clear though...
+- The mean of self evalutated gender knowledge is lower in the threat condition, 
+than noThreat condition
+
+### 3.3.2 Inference Statistical Comparison
+
+Normality of distribution
+```{r}
+check_normality_hist(
+  df, GKSELF,
+  threatCondition
+)
+```
+
+Homogenity of Variance (Levene Test)
+```{r}
+check_homogeneity(
+  df, aggressiveWordCompletionScoreTransformed,
+  threatCondition
+)
+```
+p > .05 → equal variances (use Student’s t-test: var.equal = TRUE)
+
+**Interpretation:**
+
+- A visual inspection confirms normally distributed data for both conditions
+- The Levene test confirms homogeneity of variance
+
+```{r}
+run_ttest(df, GKSELF, threatCondition,
+  alternative = "less", var_equal = TRUE 
+)
+```
+
+**Interpretation:**
+
+- The p-value is highly significant (p < 0.01) showing that the threat condition
+had a significant effect on the self evaluation of gender specific knowledge 
+(i.e. lower self evaluation)
 
 ## 3.4 Valid Word Completions
 
@@ -753,7 +799,12 @@ save_plot(agg_anx_by_threat_boxplot, "aggressive-anxious-cognition-by-threat-box
 summary_mean_sd(df, c("aggressiveWordCompletionScore", "anxiousWordCompletionScore"), "threatCondition")
 ```
 
-## Hypothesis 1a t-test
+## 7.2 Inference statistics
+*Objectives:*
+
+- Test if there is a statistically significant difference between the threat conditions
+
+Hypothesis 1a t-test
 
 ### Assumption 1: Normality withing each group 
 
