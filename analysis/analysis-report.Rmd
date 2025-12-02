@@ -560,6 +560,12 @@ df$rowmeansPressured <- rowMeans(
 )
 ```
 
+Decide which computation to use for later analysis
+```{r}
+df$pressuredMotivation = df$regPressured
+df$autonomousMotivation = df$regAutonomous
+```
+
 ### 4.3.2 Visualization & Descriptives
 ```{r}
 summary_mean_sd(df, c("rowmeansAutonomous", "rowmeansPressured", "regAutonomous", "regPressured"))
@@ -578,11 +584,7 @@ grid.arrange(rm_aut_hist, rm_pres_hist, reg_aut_hist, reg_pres_hist, ncol = 2)
 
 ```{r}
 rm_box <- plotBox(c("rowmeansAutonomous", "rowmeansPressured"))
-# ggpar(rm_box, ylim = c(0, 7))
-
 reg_box <- plotBox(c("regAutonomous", "regPressured"))
-# ggpar(rm_box, ylim = c(-5, 5))
-
 
 grid.arrange(ggpar(rm_box, ylim = c(0, 7)), ggpar(reg_box, ylim = c(-5, 5)), ncol = 2)
 ```
@@ -781,52 +783,57 @@ plotHist("anxiousWordCompletionScore", c(0, 1), condition = NULL, binwidth = 0.1
 - lorem ipsum
 - dolor sit amet
 
-# 7. Hypothesis 1a & 1b
+# 7. Effect of Threat Condition on Aggressive Cognition (Hypothesis 1a)
+
+*Objectives:*
+
+- Assess if there is a statistically significant effect of threat condition on
+aggressive cognition
+
+*Methodology:*
+
+- Visualization & Descriptives
+- Prerequisites for inference statistics (homogeneity, normal distribution)
+- Inference Statistics (...)
 
 ## 7.1 Visualization & Descriptives
 
-Aggressive and anxious word completions by threat condition
 ```{r}
-agg_anx_by_threat_boxplot <- plotBox(
-  c("aggressiveWordCompletionScore", "anxiousWordCompletionScore"),
-  "threatCondition"
-)
-agg_anx_by_threat_boxplot
-save_plot(agg_anx_by_threat_boxplot, "aggressive-anxious-cognition-by-threat-boxplot")
+plotBox("aggressiveWordCompletionScore", "threatCondition")
 ```
 
 ```{r}
-summary_mean_sd(df, c("aggressiveWordCompletionScore", "anxiousWordCompletionScore"), "threatCondition")
+summary_mean_sd(df, "aggressiveWordCompletionScore", "threatCondition")
 ```
 
-## 7.2 Inference statistics
-*Objectives:*
+## 7.2 Prerequisites for Inference Statistics
 
-- Test if there is a statistically significant difference between the threat conditions
-
-Hypothesis 1a t-test
-
-### Assumption 1: Normality withing each group 
+### 7.2.1 Assumption 1: Normality withing each group 
 
 Check Visually
 ```{r}
+agg_qq <- check_normality_qq(
+  df, aggressiveWordCompletionScoreTransformed,
+  threatCondition
+)
+agg_hist <- check_normality_hist(
+  df, aggressiveWordCompletionScoreTransformed,
+  threatCondition
+)
+
+plotHist("aggressiveWordCompletionScore", c(0, 1), condition = "threatCondition", binwidth = 0.1)
+
+grid.arrange(agg_qq, agg_hist, ncol = 1)
+
 check_normality_qq(
-  df, aggressiveWordCompletionScoreTransformed,
+  df, aggressiveWordCompletionScore,
   threatCondition
 )
 ```
--> data points should be roughly on the line
+qq-plot -> data points should be roughly on the line
+hist -> should roughly resemble a normal distribution
 
-
-```{r}
-check_normality_hist(
-  df, aggressiveWordCompletionScoreTransformed,
-  threatCondition
-)
-```
--> should roughly resemble a normal distribution
-
-### Assumption 2: Homogeneity of variance
+### 7.2.2 Assumption 2: Homogeneity of variance
 
 Levene Test
 ```{r}
@@ -837,10 +844,13 @@ check_homogeneity(
 ```
 p > .05 → equal variances (use Student’s t-test: var.equal = TRUE)
 
+**Interpretation:**
 
-```{r}
-summary_mean_sd(df, "aggressiveWordCompletionScore", group = "threatCondition")
-```
+- Normality within each group is not given. 
+A visual inspection shows a zero inflated distribution
+- Homogeneity of variance is given
+
+## 7.3 Inference Statistics
 
 ```{r}
 run_ttest(df, aggressiveWordCompletionScoreTransformed, threatCondition,
@@ -849,7 +859,88 @@ run_ttest(df, aggressiveWordCompletionScoreTransformed, threatCondition,
 ```
 
 
+```{r}
+TotalTrials <- 10
+
+df$SuccessCount <- df$aggressiveWordCompletionScore * TotalTrials 
+
+df$FailureCount <- TotalTrials - df$SuccessCount
+
+df$SuccessFailureMatrix <- cbind(df$SuccessCount, df$FailureCount)
+
+glm_model <- glm(
+  SuccessFailureMatrix ~ threatCondition, 
+  data = df, 
+  family = quasibinomial
+)
+
+summary(glm_model)
+```
+
+```{r}
+plot(glm_model, which = 4) 
+
+cooks_dist <- cooks.distance(glm_model)
+
+N <- nobs(glm_model) 
+K <- length(coef(glm_model)) 
+
+threshold <- 4 / (N - K) 
+
+cat("Calculated Cook's Distance Threshold:", round(threshold, 4), "\n")
+
+influential_indices <- which(cooks_dist > threshold)
+
+cat("\n--- Extreme Outliers (Exceeding Threshold) ---\n")
+if (length(influential_indices) > 0) {
+  print(df[influential_indices, ]) 
+  
+  cat("\nCook's Distance values for these points:\n")
+  print(cooks_dist[influential_indices])
+} else {
+  cat("No observations exceeded the Cook's Distance threshold of", round(threshold, 4), "\n")
+}
+```
+
+
+```{r}
+is_not_influential <- cooks_dist <= threshold
+
+df_clean <- df[is_not_influential, ]
+
+cat("\n--- Data Cleaning Summary ---\n")
+cat("Original rows:", N, "\n")
+cat("Excluded rows (outliers):", length(influential_indices), "\n")
+cat("Cleaned rows:", nrow(df_clean), "\n")
+```
+
+```{r}
+summary_mean_sd(df_clean, "aggressiveWordCompletionScore", "threatCondition")
+```
+
+```{r}
+# Rerun the GLM on the cleaned data
+glm_model_clean <- glm(
+  SuccessFailureMatrix ~ threatCondition, 
+  data = df_clean, 
+  family = quasibinomial
+)
+
+summary(glm_model_clean)
+```
+
 ## Hypothesis 1b t-test
+
+## 7.1 Visualization & Descriptives
+
+```{r}
+plotBox("anxiousWordCompletionScore", "threatCondition")
+```
+
+```{r}
+summary_mean_sd(df, "anxiousWordCompletionScore", "threatCondition")
+```
+
 
 ### Assumption 1: Normality withing each group 
 
@@ -967,6 +1058,43 @@ summary(model_anxious)
 ```
 
 
-# Post Hoc Analysis
+
+# Post Hoc Exploratory Analysis
+
+using GKSELF as a dependent variable, can we check if MMB moderates the impact of threatCondition on GKSELF
+
+```{r}
+plotBox("GKSELF", "threatCondition")
+```
+
+```{r}
+plotLine("pressuredMotivation", "GKSELF",
+  condition = "threatCondition", df = df
+)
+```
+
+
+```{r}
+model_gkself <- lm(GKSELF ~
+  threatCondition * rowmeansAutonomous, data = df)
+
+summary(model_gkself)
+```
 
 ...
+
+## Additional Visualization & Descriptives
+
+Aggressive and anxious word completions by threat condition
+```{r}
+agg_anx_by_threat_boxplot <- plotBox(
+  c("aggressiveWordCompletionScore", "anxiousWordCompletionScore"),
+  "threatCondition"
+)
+agg_anx_by_threat_boxplot
+save_plot(agg_anx_by_threat_boxplot, "aggressive-anxious-cognition-by-threat-boxplot")
+```
+
+```{r}
+summary_mean_sd(df, c("aggressiveWordCompletionScore", "anxiousWordCompletionScore"), "threatCondition")
+```
