@@ -58,6 +58,7 @@ source(here("analysis/R", "utils.R"))
 source(here("analysis/R", "simulation.R"))
 source(here("analysis/R", "inference-statistics.R"))
 source(here("analysis/R", "factor-analysis.R"))
+source(here("analysis/R", "export-helpers.R"))
 ```
 
 ```{r}
@@ -729,18 +730,23 @@ summary_mean_sd(df, c("anxiousWordCompletionScore"))
 plotHist("anxiousWordCompletionScore", c(0, 1), condition = NULL, binwidth = 0.1)
 ```
 
-## Summary
+## 6.4 Summary
 
-# Hypothesis 1a & 1b
+- lorem ipsum
+- dolor sit amet
 
-## Visualization
+# 7. Hypothesis 1a & 1b
+
+## 7.1 Visualization & Descriptives
 
 Aggressive and anxious word completions by threat condition
 ```{r}
-plotBox(
+agg_anx_by_threat_boxplot <- plotBox(
   c("aggressiveWordCompletionScore", "anxiousWordCompletionScore"),
   "threatCondition"
 )
+agg_anx_by_threat_boxplot
+save_plot(agg_anx_by_threat_boxplot, "aggressive-anxious-cognition-by-threat-boxplot")
 ```
 
 ```{r}
