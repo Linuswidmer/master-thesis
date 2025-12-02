@@ -235,7 +235,7 @@ check_normality_hist(
 Homogenity of Variance (Levene Test)
 ```{r}
 check_homogeneity(
-  df, aggressiveWordCompletionScoreTransformed,
+  df, GKSELF,
   threatCondition
 )
 ```
@@ -674,18 +674,17 @@ psych::alpha(cor_aggr, check.keys = FALSE)
 df$aggressiveWordCompletionScore <- rowMeans(
   replace(df[WFCT_aggression_items], is.na(df[WFCT_aggression_items]), 0)
 )
-
-df$aggressiveWordCompletionScoreTransformed <- asin(sqrt(df$aggressiveWordCompletionScore))
+df$aggressiveCognition <-df$aggressiveWordCompletionScore
 ```
 
 ### 5.3.2 Visualization & Descriptives
 
 ```{r}
-summary_mean_sd(df, c("aggressiveWordCompletionScore"))
+summary_mean_sd(df, "aggressiveCognition")
 ```
 
 ```{r}
-plotHist("aggressiveWordCompletionScore", c(0, 1), condition = NULL, binwidth = 0.1)
+plotHist("aggressiveCognition", c(0, 1), condition = NULL, binwidth = 0.1)
 ```
 
 ## Summary
@@ -794,19 +793,24 @@ aggressive cognition
 
 - Visualization & Descriptives
 - Prerequisites for inference statistics (homogeneity, normal distribution)
-- Inference Statistics (...)
+- Inference Statistics (Generalized Linear Model)
 
 ## 7.1 Visualization & Descriptives
 
 ```{r}
-plotBox("aggressiveWordCompletionScore", "threatCondition")
+plotBox("aggressiveCognition", "threatCondition")
 ```
 
 ```{r}
-summary_mean_sd(df, "aggressiveWordCompletionScore", "threatCondition")
+summary_mean_sd(df, "aggressiveCognition", "threatCondition")
 ```
 
 ## 7.2 Prerequisites for Inference Statistics
+
+Transforming values to ensure independence between value and variance
+```{r}
+df$aggressiveWordCompletionScoreTransformed <- asin(sqrt(df$aggressiveWordCompletionScore))
+```
 
 ### 7.2.1 Assumption 1: Normality withing each group 
 
@@ -821,8 +825,6 @@ agg_hist <- check_normality_hist(
   threatCondition
 )
 
-plotHist("aggressiveWordCompletionScore", c(0, 1), condition = "threatCondition", binwidth = 0.1)
-
 grid.arrange(agg_qq, agg_hist, ncol = 1)
 
 check_normality_qq(
@@ -832,6 +834,10 @@ check_normality_qq(
 ```
 qq-plot -> data points should be roughly on the line
 hist -> should roughly resemble a normal distribution
+
+**Interpretation:**
+
+- Transformed aggressive cognition scores show a zero inflation, thus we cannot assume a normality 
 
 ### 7.2.2 Assumption 2: Homogeneity of variance
 
