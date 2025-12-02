@@ -49,7 +49,7 @@ Chair of Social and Organizational Psychology
   ],
 
   // Professional-specific fields
-  running-head: [Masculinity, Motivation & Identity Threat],
+  running-head: [Masculinity, Motivation & Identity Threat], // Motivation, Masculinity & Threat
   // author-notes: [
   //   #include-orcid([Author Name], "0000-0000-0000-0000")
 

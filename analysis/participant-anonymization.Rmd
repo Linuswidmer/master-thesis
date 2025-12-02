@@ -4,19 +4,15 @@ output: html_document
 date: "2025-10-24"
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 ```{r}
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-source("items-and-labels.R")
 library(dplyr)
+library(here)
+source(here("analysis/R", "items-and-labels.R"))
 ```
 
 
 ```{r}
-df_raw <- read.csv("../data/fragile_masculinity_motivation_raw.csv")
+df_raw <- read.csv(here("data", "fragile_masculinity_motivation_raw.csv"))
 ```
 
 keep only complete responses

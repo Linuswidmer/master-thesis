@@ -49,14 +49,14 @@ library(gridExtra)
 ```
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}
-source(here("analysis", "word-catalog.R"))
-source(here("analysis", "items-and-labels.R"))
-source(here("analysis", "data-preprocessing.R"))
-source(here("analysis", "visualization.R"))
-source(here("analysis", "utils.R"))
-source(here("analysis", "simulation.R"))
-source(here("analysis", "inference-statistics.R"))
-source(here("analysis", "factor-analysis.R"))
+source(here("analysis/R", "word-catalog.R"))
+source(here("analysis/R", "items-and-labels.R"))
+source(here("analysis/R", "data-preprocessing.R"))
+source(here("analysis/R", "visualization.R"))
+source(here("analysis/R", "utils.R"))
+source(here("analysis/R", "simulation.R"))
+source(here("analysis/R", "inference-statistics.R"))
+source(here("analysis/R", "factor-analysis.R"))
 ```
 
 ```{r}
