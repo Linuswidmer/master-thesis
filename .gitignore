@@ -1,6 +1,7 @@
 .RHistory
 .RData
-data/
+data/*
+!data/fragile_masculinity_motivation_anonymized.csv
 master-thesis.code-workspace
 analysis.html
 analysis.tex
