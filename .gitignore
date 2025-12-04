@@ -4,7 +4,7 @@ data/*
 !data/fragile_masculinity_motivation_anonymized.csv
 master-thesis.code-workspace
 analysis.html
-analysis.tex
+analysis-report.tex
 
 analysis-report_files
 analysis_cache

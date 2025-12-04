@@ -19,8 +19,7 @@ This repository contains the data analysis for a master thesis investigating how
 
 ### Prerequisites
 
-- R (version 4.0 or higher recommended)
-- RStudio (optional, but recommended)
+- R (version 4.2 or higher recommended)
 
 ### Installation
 
@@ -33,7 +32,7 @@ source("analysis/R/install_packages.R")
 
 ### Running the Analysis
 
-Open `analysis/analysis-report.Rmd` in RStudio and knit to PDF, or run:
+Open `analysis/analysis-report.Rmd` in RStudio - and run or knit to pdf
 
 ```r
 rmarkdown::render("analysis/analysis-report.Rmd")
