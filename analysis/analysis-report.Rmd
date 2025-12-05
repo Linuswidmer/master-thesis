@@ -48,6 +48,7 @@ library(semTools)
 library(boot)
 library(mirt)
 library(gridExtra)
+library(DHARMa)
 ```
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}
@@ -794,7 +795,7 @@ aggressive cognition
 
 - Visualization & Descriptives
 - Check assumptions for t-test (normality, homogeneity)
-- Since assumptions are violated: Quasibinomial GLM on proportion data
+- Since assumptions are violated: Binomial GLM on proportion data
 
 ## 7.1 Visualization & Descriptives
 
@@ -835,18 +836,17 @@ grid.arrange(agg_qq, agg_hist, ncol = 1)
 check_homogeneity(df, aggressiveWordCompletionScoreTransformed, threatCondition)
 ```
 
-## 7.3 Inference Statistics: Quasibinomial GLM
+## 7.3 Inference Statistics: Binomial GLM
 
 Since the outcome is a proportion (number of aggressive completions out of 10 trials)
-and assumptions for parametric tests are violated, we use a quasibinomial GLM.
-The quasibinomial family accounts for overdispersion in binomial data.
+and assumptions for parametric tests are violated, we use a binomial GLM.
 
 ### 7.3.1 Fit Model
 
 ```{r}
 N_TRIALS_AGGRESSION <- 10
 
-glm_agg <- run_quasibinomial_glm(
+glm_agg <- run_binomial_glm(
   data = df,
   score_col = "aggressiveWordCompletionScore",
   predictor = "threatCondition",
@@ -856,7 +856,13 @@ glm_agg <- run_quasibinomial_glm(
 summary(glm_agg$model)
 ```
 
-### 7.3.2 Model Diagnostics: Cook's Distance
+### 7.3.2 Model Diagnostics: Residuals
+
+```{r}
+check_glm_residual_normality(glm_agg$model)
+```
+
+### 7.3.3 Model Diagnostics: Cook's Distance
 
 ```{r}
 plot(glm_agg$model, which = 4)
@@ -867,7 +873,7 @@ diag_agg <- glm_cooks_diagnostics(glm_agg$model)
 print_cooks_summary(diag_agg)
 ```
 
-### 7.3.3 Sensitivity Analysis: Model without Influential Observations
+### 7.3.4 Sensitivity Analysis: Model without Influential Observations
 
 ```{r}
 glm_agg_clean <- glm_remove_influential(glm_agg, diag_agg, "threatCondition")
@@ -881,10 +887,10 @@ summary_mean_sd(glm_agg_clean$data_clean, "aggressiveWordCompletionScore", "thre
 summary(glm_agg_clean$model_clean)
 ```
 
-### 7.3.4 Results Summary
+### 7.3.5 Results Summary
 
 ```{r}
-glm_summary_table(glm_agg$model, "Aggressive Cognition GLM (Full Sample)") %>%
+ummary_table(glm_agg$model, "Aggressive Cognition GLM (Full Sample)") %>%
   kbl(caption = "GLM Results: Effect of Threat Condition on Aggressive Cognition") %>%
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
 ```
@@ -904,7 +910,7 @@ anxious cognition
 
 - Visualization & Descriptives
 - Check assumptions for t-test (normality, homogeneity)
-- Since assumptions are violated: Quasibinomial GLM on proportion data
+- Since assumptions are violated: Binomial GLM on proportion data
 
 ## 8.1 Visualization & Descriptives
 
@@ -944,17 +950,17 @@ grid.arrange(anx_qq, anx_hist, ncol = 1)
 check_homogeneity(df, anxiousWordCompletionScoreTransformed, threatCondition)
 ```
 
-## 8.3 Inference Statistics: Quasibinomial GLM
+## 8.3 Inference Statistics: Binomial GLM
 
 Since the outcome is a proportion (number of anxious completions out of 10 trials)
-and assumptions for parametric tests are violated, we use a quasibinomial GLM.
+and assumptions for parametric tests are violated, we use a binomial GLM.
 
 ### 8.3.1 Fit Model
 
 ```{r}
 N_TRIALS_ANXIETY <- 10
 
-glm_anx <- run_quasibinomial_glm(
+glm_anx <- run_binomial_glm(
   data = df,
   score_col = "anxiousWordCompletionScore",
   predictor = "threatCondition",
@@ -964,7 +970,14 @@ glm_anx <- run_quasibinomial_glm(
 summary(glm_anx$model)
 ```
 
-### 8.3.2 Model Diagnostics: Cook's Distance
+### 8.3.2 Model Diagnostics: Residuals
+
+```{r}
+check_glm_residual_normality(glm_anx$model)
+```
+
+
+### 8.3.3 Model Diagnostics: Cook's Distance
 
 ```{r}
 plot(glm_anx$model, which = 4)
@@ -975,7 +988,7 @@ diag_anx <- glm_cooks_diagnostics(glm_anx$model)
 print_cooks_summary(diag_anx)
 ```
 
-### 8.3.3 Sensitivity Analysis: Model without Influential Observations
+### 8.3.4 Sensitivity Analysis: Model without Influential Observations
 
 ```{r}
 glm_anx_clean <- glm_remove_influential(glm_anx, diag_anx, "threatCondition")
@@ -989,10 +1002,10 @@ summary_mean_sd(glm_anx_clean$data_clean, "anxiousWordCompletionScore", "threatC
 summary(glm_anx_clean$model_clean)
 ```
 
-### 8.3.4 Results Summary
+### 8.3.5 Results Summary
 
 ```{r}
-glm_summary_table(glm_anx$model, "Anxious Cognition GLM (Full Sample)") %>%
+ummary_table(glm_anx$model, "Anxious Cognition GLM (Full Sample)") %>%
   kbl(caption = "GLM Results: Effect of Threat Condition on Anxious Cognition") %>%
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
 ```
@@ -1012,7 +1025,7 @@ threat condition on aggressive cognition
 
 - Visualization & Descriptives
 - Check assumptions for multiple linear regression
-- Since assumptions are violated: Quasibinomial GLM with interaction term
+- Since assumptions are violated: Binomial GLM with interaction term
 
 ## 9.1 Visualization
 
@@ -1048,9 +1061,9 @@ grid.arrange(agg_mod_qq, agg_mod_hist, ncol = 1)
 
 - Even after arcsine-sqrt transformation, the outcome shows zero-inflation
 - Normality assumption for linear regression is violated
-- Therefore we use a quasibinomial GLM with interaction term
+- Therefore we use a binomial GLM with interaction term
 
-## 9.3 Inference Statistics: Quasibinomial GLM with Moderation
+## 9.3 Inference Statistics: Binomial GLM with Moderation
 
 We model the interaction between threat condition and pressured motivation to test
 whether pressured motivation moderates the effect of threat on aggressive cognition.
@@ -1058,7 +1071,7 @@ whether pressured motivation moderates the effect of threat on aggressive cognit
 ### 9.3.1 Fit Model
 
 ```{r}
-glm_agg_mod <- run_quasibinomial_glm_moderation(
+glm_agg_mod <- run_binomial_glm_moderation(
   data = df,
   score_col = "aggressiveWordCompletionScore",
   predictor = "threatCondition",
@@ -1102,7 +1115,7 @@ summary(glm_agg_mod_clean$model_clean)
 ### 9.3.5 Results Summary
 
 ```{r}
-glm_summary_table(glm_agg_mod$model, "Aggressive Cognition Moderation GLM") %>%
+ummary_table(glm_agg_mod$model, "Aggressive Cognition Moderation GLM") %>%
   kbl(caption = "GLM Results: Moderation of Threat Effect by Pressured Motivation on Aggressive Cognition") %>%
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
 ```
@@ -1124,7 +1137,7 @@ threat condition on anxious cognition
 
 - Visualization & Descriptives
 - Check assumptions for multiple linear regression
-- Since assumptions are violated: Quasibinomial GLM with interaction term
+- Since assumptions are violated: Binomial GLM with interaction term
 
 ## 10.1 Visualization
 
@@ -1160,9 +1173,9 @@ grid.arrange(anx_mod_qq, anx_mod_hist, ncol = 1)
 
 - Even after arcsine-sqrt transformation, the outcome shows zero-inflation
 - Normality assumption for linear regression is violated
-- Therefore we use a quasibinomial GLM with interaction term
+- Therefore we use a binomial GLM with interaction term
 
-## 10.3 Inference Statistics: Quasibinomial GLM with Moderation
+## 10.3 Inference Statistics: Binomial GLM with Moderation
 
 We model the interaction between threat condition and autonomous motivation to test
 whether autonomous motivation moderates the effect of threat on anxious cognition.
@@ -1170,7 +1183,7 @@ whether autonomous motivation moderates the effect of threat on anxious cognitio
 ### 10.3.1 Fit Model
 
 ```{r}
-glm_anx_mod <- run_quasibinomial_glm_moderation(
+glm_anx_mod <- run_binomial_glm_moderation(
   data = df,
   score_col = "anxiousWordCompletionScore",
   predictor = "threatCondition",
@@ -1214,7 +1227,7 @@ summary(glm_anx_mod_clean$model_clean)
 ### 10.3.5 Results Summary
 
 ```{r}
-glm_summary_table(glm_anx_mod$model, "Anxious Cognition Moderation GLM") %>%
+ummary_table(glm_anx_mod$model, "Anxious Cognition Moderation GLM") %>%
   kbl(caption = "GLM Results: Moderation of Threat Effect by Autonomous Motivation on Anxious Cognition") %>%
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
 ```

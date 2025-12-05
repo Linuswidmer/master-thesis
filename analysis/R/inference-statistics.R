@@ -57,14 +57,17 @@ run_ttest <- function(data, dv, group, alternative = "two.sided", var_equal = FA
 # Quasibinomial GLM for proportion data (e.g., word completion scores)
 # -----------------------------------------------------------------------------
 
-#' Fit a quasibinomial GLM for proportion outcome data
+#' Fit a binomial/quasibinomial GLM for proportion outcome data
 #'
 #' @param data Data frame containing the variables
 #' @param score_col Name of the proportion score column (0-1 scale)
 #' @param predictor Name of the predictor variable (e.g., "threatCondition")
 #' @param n_trials Number of trials used to compute the proportion
+#' @param use_quasibinomial If TRUE uses quasibinomial (handles overdispersion),
+#'        if FALSE uses binomial (compatible with DHARMa diagnostics). Default FALSE.
 #' @return A list containing the GLM model and diagnostic information
-run_quasibinomial_glm <- function(data, score_col, predictor, n_trials) {
+run_binomial_glm <- function(data, score_col, predictor, n_trials,
+                                  use_quasibinomial = FALSE) {
   # Create success/failure counts
   data$glm_success <- data[[score_col]] * n_trials
   data$glm_failure <- n_trials - data$glm_success
@@ -72,7 +75,8 @@ run_quasibinomial_glm <- function(data, score_col, predictor, n_trials) {
 
   # Fit the model
   formula <- as.formula(paste("glm_response ~", predictor))
-  model <- glm(formula, data = data, family = quasibinomial)
+  glm_family <- if (use_quasibinomial) quasibinomial else binomial
+  model <- glm(formula, data = data, family = glm_family)
 
   # Return model and data with response matrix
   list(
@@ -119,11 +123,13 @@ print_cooks_summary <- function(diagnostics) {
 
 #' Remove influential observations and refit GLM
 #'
-#' @param glm_result Output from run_quasibinomial_glm()
+#' @param glm_result Output from run_binomial_glm()
 #' @param diagnostics Output from glm_cooks_diagnostics()
 #' @param predictor Name of the predictor variable
+#' @param use_quasibinomial If TRUE uses quasibinomial, if FALSE uses binomial. Default FALSE.
 #' @return A list with cleaned data, new model, and summary
-glm_remove_influential <- function(glm_result, diagnostics, predictor) {
+glm_remove_influential <- function(glm_result, diagnostics, predictor,
+                                   use_quasibinomial = FALSE) {
   if (diagnostics$n_influential == 0) {
     cat("No influential observations to remove.\n")
     return(list(
@@ -139,7 +145,8 @@ glm_remove_influential <- function(glm_result, diagnostics, predictor) {
 
   # Refit model
   formula <- as.formula(paste("glm_response ~", predictor))
-  model_clean <- glm(formula, data = data_clean, family = quasibinomial)
+  glm_family <- if (use_quasibinomial) quasibinomial else binomial
+  model_clean <- glm(formula, data = data_clean, family = glm_family)
 
   cat("--- Data Cleaning Summary ---\n")
   cat("Original observations:", diagnostics$n_total, "\n")
@@ -165,8 +172,8 @@ glm_summary_table <- function(model, model_name = NULL) {
     Term = rownames(coefs),
     Estimate = round(coefs[, "Estimate"], 4),
     SE = round(coefs[, "Std. Error"], 4),
-    t_value = round(coefs[, "t value"], 3),
-    p_value = coefs[, "Pr(>|t|)"]
+    z_value = round(coefs[, "z value"], 3),
+    p_value = coefs[, "Pr(>|z|)"]
   )
 
   # Add significance stars
@@ -192,15 +199,18 @@ glm_summary_table <- function(model, model_name = NULL) {
 # Quasibinomial GLM with Moderation (Interaction Effects)
 # -----------------------------------------------------------------------------
 
-#' Fit a quasibinomial GLM with a moderator (interaction term)
+#' Fit a binomial GLM with a moderator (interaction term)
 #'
 #' @param data Data frame containing the variables
 #' @param score_col Name of the proportion score column (0-1 scale)
 #' @param predictor Name of the main predictor variable (e.g., "threatCondition")
 #' @param moderator Name of the continuous moderator variable (e.g., "pressuredMotivation")
 #' @param n_trials Number of trials used to compute the proportion
+#' @param use_quasibinomial If TRUE uses quasibinomial (handles overdispersion),
+#'        if FALSE uses binomial (compatible with DHARMa diagnostics). Default FALSE.
 #' @return A list containing the GLM model and the data with response matrix
-run_quasibinomial_glm_moderation <- function(data, score_col, predictor, moderator, n_trials) {
+run_binomial_glm_moderation <- function(data, score_col, predictor, moderator, n_trials,
+                                             use_quasibinomial = FALSE) {
   # Create success/failure counts
   data$glm_success <- data[[score_col]] * n_trials
   data$glm_failure <- n_trials - data$glm_success
@@ -208,7 +218,8 @@ run_quasibinomial_glm_moderation <- function(data, score_col, predictor, moderat
 
   # Fit the model with interaction term
   formula <- as.formula(paste("glm_response ~", predictor, "*", moderator))
-  model <- glm(formula, data = data, family = quasibinomial)
+  glm_family <- if (use_quasibinomial) quasibinomial else binomial
+  model <- glm(formula, data = data, family = glm_family)
 
   list(
     model = model,
@@ -218,12 +229,14 @@ run_quasibinomial_glm_moderation <- function(data, score_col, predictor, moderat
 
 #' Remove influential observations and refit moderation GLM
 #'
-#' @param glm_result Output from run_quasibinomial_glm_moderation()
+#' @param glm_result Output from run_binomial_glm_moderation()
 #' @param diagnostics Output from glm_cooks_diagnostics()
 #' @param predictor Name of the predictor variable
 #' @param moderator Name of the moderator variable
+#' @param use_quasibinomial If TRUE uses quasibinomial, if FALSE uses binomial. Default FALSE.
 #' @return A list with cleaned data, new model, and summary
-glm_remove_influential_moderation <- function(glm_result, diagnostics, predictor, moderator) {
+glm_remove_influential_moderation <- function(glm_result, diagnostics, predictor, moderator,
+                                              use_quasibinomial = FALSE) {
   if (diagnostics$n_influential == 0) {
     cat("No influential observations to remove.\n")
     return(list(
@@ -239,7 +252,8 @@ glm_remove_influential_moderation <- function(glm_result, diagnostics, predictor
 
   # Refit model with interaction
   formula <- as.formula(paste("glm_response ~", predictor, "*", moderator))
-  model_clean <- glm(formula, data = data_clean, family = quasibinomial)
+  glm_family <- if (use_quasibinomial) quasibinomial else binomial
+  model_clean <- glm(formula, data = data_clean, family = glm_family)
 
   cat("--- Data Cleaning Summary ---\n")
   cat("Original observations:", diagnostics$n_total, "\n")
@@ -278,20 +292,16 @@ check_multicollinearity <- function(data, predictor, moderator,
   invisible(correlation)
 }
 
-#' Check normality of residuals for a GLM model
+#' Check residuals for a GLM model using DHARMa simulation-based diagnostics
+#'
+#' For binomial/quasibinomial GLMs, standard Q-Q plots against a normal distribution
+#' are inappropriate. This function uses DHARMa to create randomized quantile residuals
+#' via simulation, which should be uniformly distributed if the model is correct.
 #'
 #' @param model A GLM model object
-#' @return A ggplot object with Q-Q plot of deviance residuals
-check_glm_residual_normality <- function(model) {
-  residuals_df <- data.frame(residuals = residuals(model, type = "deviance"))
-
-  ggplot(residuals_df, aes(sample = residuals)) +
-    stat_qq() +
-    stat_qq_line() +
-    theme_minimal() +
-    labs(
-      title = "Q-Q Plot of Deviance Residuals",
-      x = "Theoretical Quantiles",
-      y = "Sample Quantiles"
-    )
+#' @param n_sim Number of simulations for DHARMa (default 1000)
+#' @return A DHARMa residual plot (Q-Q plot against uniform distribution + residuals vs predicted)
+check_glm_residual_normality <- function(model, n_sim = 1000) {
+  sim_output <- DHARMa::simulateResiduals(fittedModel = model, n = n_sim)
+  plot(sim_output)
 }
