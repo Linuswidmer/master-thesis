@@ -986,84 +986,221 @@ glm_summary_table(glm_anx$model, "Anxious Cognition GLM (Full Sample)") %>%
 
 - ...
 
-# Hypothesis 2a & 2b: Moderation of Threat Response 
+# 9. Moderation: Pressured Motivation on Aggressive Cognition (Hypothesis 2a)
 
-## Visualization
+*Objectives:*
 
-2a: Moderation autonomous motivation for masculine behavior on aggressive word completions
+- Assess if pressured motivation for masculine behaviour moderates the effect of
+threat condition on aggressive cognition
+
+*Methodology:*
+
+- Visualization & Descriptives
+- Check assumptions for multiple linear regression
+- Since assumptions are violated: Quasibinomial GLM with interaction term
+
+## 9.1 Visualization
+
 ```{r}
-plotLine("regAutonomous", "anxiousWordCompletionScoreTransformed",
+plotLine("pressuredMotivation", "aggressiveWordCompletionScore",
   condition = "threatCondition", df = df
 )
 ```
-2b: Moderation pressured motivation for masculine behavior on aggressive word completions
+
+## 9.2 Check Linear Regression Assumptions
+
+### 9.2.1 Multicollinearity
+
 ```{r}
-plotLine("regPressured", "aggressiveWordCompletionScoreTransformed",
+check_multicollinearity(df, "threatCondition", "pressuredMotivation")
+```
+
+**Interpretation:**
+
+- Since threat condition is randomly assigned, we expect no correlation with the moderator
+
+### 9.2.2 Normality of Outcome
+
+```{r}
+agg_mod_hist <- check_normality_hist(df, aggressiveWordCompletionScoreTransformed, threatCondition)
+agg_mod_hist
+```
+
+**Interpretation:**
+
+- As established in Section 7, the outcome shows zero-inflation
+- Linear regression assumptions are violated, therefore we use a quasibinomial GLM
+
+## 9.3 Inference Statistics: Quasibinomial GLM with Moderation
+
+We model the interaction between threat condition and pressured motivation to test
+whether pressured motivation moderates the effect of threat on aggressive cognition.
+
+### 9.3.1 Fit Model
+
+```{r}
+glm_agg_mod <- run_quasibinomial_glm_moderation(
+  data = df,
+  score_col = "aggressiveWordCompletionScore",
+  predictor = "threatCondition",
+  moderator = "pressuredMotivation",
+  n_trials = N_TRIALS_AGGRESSION
+)
+
+summary(glm_agg_mod$model)
+```
+
+### 9.3.2 Model Diagnostics: Residuals
+
+```{r}
+check_glm_residual_normality(glm_agg_mod$model)
+```
+
+### 9.3.3 Model Diagnostics: Cook's Distance
+
+```{r}
+plot(glm_agg_mod$model, which = 4)
+```
+
+```{r}
+diag_agg_mod <- glm_cooks_diagnostics(glm_agg_mod$model)
+print_cooks_summary(diag_agg_mod)
+```
+
+### 9.3.4 Sensitivity Analysis: Model without Influential Observations
+
+```{r}
+glm_agg_mod_clean <- glm_remove_influential_moderation(
+  glm_agg_mod, diag_agg_mod,
+  "threatCondition", "pressuredMotivation"
+)
+```
+
+```{r}
+summary(glm_agg_mod_clean$model_clean)
+```
+
+### 9.3.5 Results Summary
+
+```{r}
+glm_summary_table(glm_agg_mod$model, "Aggressive Cognition Moderation GLM") %>%
+  kbl(caption = "GLM Results: Moderation of Threat Effect by Pressured Motivation on Aggressive Cognition") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+```
+
+**Interpretation:**
+
+- The interaction term (threatCondition:pressuredMotivation) tests whether pressured
+motivation moderates the effect of threat condition on aggressive cognition
+- ...
+
+# 10. Moderation: Autonomous Motivation on Anxious Cognition (Hypothesis 2b)
+
+*Objectives:*
+
+- Assess if autonomous motivation for masculine behaviour moderates the effect of
+threat condition on anxious cognition
+
+*Methodology:*
+
+- Visualization & Descriptives
+- Check assumptions for multiple linear regression
+- Since assumptions are violated: Quasibinomial GLM with interaction term
+
+## 10.1 Visualization
+
+```{r}
+plotLine("autonomousMotivation", "anxiousWordCompletionScore",
   condition = "threatCondition", df = df
 )
 ```
 
-## Hypothesis 2a 
+## 10.2 Check Linear Regression Assumptions
 
-### Multiple linear regression
-
-Establish model
-```{r}
-model_anxious <- lm(anxiousWordCompletionScoreTransformed ~
-  threatCondition * regAutonomous, data = df)
-```
-
-#### Assumption 1: Normality 
+### 10.2.1 Multicollinearity
 
 ```{r}
-plot(model_anxious, which = 2)
+check_multicollinearity(df, "threatCondition", "autonomousMotivation")
 ```
 
--> Q-Q plot points roughly on the line → residuals ~ normal.
--> identify possible outliers (highly influential points)
+**Interpretation:**
 
+- Since threat condition is randomly assigned, we expect no correlation with the moderator
 
-#### Assumption 2: Outliers
+### 10.2.2 Normality of Outcome
 
-Examine outliers via residuals
 ```{r}
-res <- residuals(model_anxious)
-
-# Standardized residuals
-res_std <- rstandard(model_anxious)
-
-# Flag extreme residuals
-outliers <- which(abs(res_std) > 2)
-outliers
+anx_mod_hist <- check_normality_hist(df, anxiousWordCompletionScore, threatCondition)
+anx_mod_hist
 ```
 
-Examine outliers via cook's distance
+**Interpretation:**
+
+- As established in Section 8, the outcome shows zero-inflation
+- Linear regression assumptions are violated, therefore we use a quasibinomial GLM
+
+## 10.3 Inference Statistics: Quasibinomial GLM with Moderation
+
+We model the interaction between threat condition and autonomous motivation to test
+whether autonomous motivation moderates the effect of threat on anxious cognition.
+
+### 10.3.1 Fit Model
+
 ```{r}
-influential_obs <- df
-influential_obs$cooksd <- cooks.distance(model_anxious)
+glm_anx_mod <- run_quasibinomial_glm_moderation(
+  data = df,
+  score_col = "anxiousWordCompletionScore",
+  predictor = "threatCondition",
+  moderator = "autonomousMotivation",
+  n_trials = N_TRIALS_ANXIETY
+)
 
-n <- nrow(df)
-k <- length(coef(model_anxious)) - 1
-threshold <- 4 / (n - k - 1)
-
-
-# influential_obs %>%
-# filter(cooksd > threshold)
+summary(glm_anx_mod$model)
 ```
-Cook’s distance > 4/(n-k-1) → potentially influential
 
-#### Assumption 3: No Multikollinearity
+### 10.3.2 Model Diagnostics: Residuals
+
 ```{r}
-cor(df$regAutonomous, as.numeric(factor(df$threatCondition,
-  levels = c("noThreat", "threat")
-)) - 1)
+check_glm_residual_normality(glm_anx_mod$model)
 ```
--> would also make no sense, since I randomly assign threatCondition
 
-Inference statistics
+### 10.3.3 Model Diagnostics: Cook's Distance
+
 ```{r}
-summary(model_anxious)
+plot(glm_anx_mod$model, which = 4)
 ```
+
+```{r}
+diag_anx_mod <- glm_cooks_diagnostics(glm_anx_mod$model)
+print_cooks_summary(diag_anx_mod)
+```
+
+### 10.3.4 Sensitivity Analysis: Model without Influential Observations
+
+```{r}
+glm_anx_mod_clean <- glm_remove_influential_moderation(
+  glm_anx_mod, diag_anx_mod,
+  "threatCondition", "autonomousMotivation"
+)
+```
+
+```{r}
+summary(glm_anx_mod_clean$model_clean)
+```
+
+### 10.3.5 Results Summary
+
+```{r}
+glm_summary_table(glm_anx_mod$model, "Anxious Cognition Moderation GLM") %>%
+  kbl(caption = "GLM Results: Moderation of Threat Effect by Autonomous Motivation on Anxious Cognition") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+```
+
+**Interpretation:**
+
+- The interaction term (threatCondition:autonomousMotivation) tests whether autonomous
+motivation moderates the effect of threat condition on anxious cognition
+- ...
 
 
 

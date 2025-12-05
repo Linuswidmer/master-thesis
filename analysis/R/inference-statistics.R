@@ -187,3 +187,111 @@ glm_summary_table <- function(model, model_name = NULL) {
 
   result
 }
+
+# -----------------------------------------------------------------------------
+# Quasibinomial GLM with Moderation (Interaction Effects)
+# -----------------------------------------------------------------------------
+
+#' Fit a quasibinomial GLM with a moderator (interaction term)
+#'
+#' @param data Data frame containing the variables
+#' @param score_col Name of the proportion score column (0-1 scale)
+#' @param predictor Name of the main predictor variable (e.g., "threatCondition")
+#' @param moderator Name of the continuous moderator variable (e.g., "pressuredMotivation")
+#' @param n_trials Number of trials used to compute the proportion
+#' @return A list containing the GLM model and the data with response matrix
+run_quasibinomial_glm_moderation <- function(data, score_col, predictor, moderator, n_trials) {
+  # Create success/failure counts
+  data$glm_success <- data[[score_col]] * n_trials
+  data$glm_failure <- n_trials - data$glm_success
+  data$glm_response <- cbind(data$glm_success, data$glm_failure)
+
+  # Fit the model with interaction term
+  formula <- as.formula(paste("glm_response ~", predictor, "*", moderator))
+  model <- glm(formula, data = data, family = quasibinomial)
+
+  list(
+    model = model,
+    data = data
+  )
+}
+
+#' Remove influential observations and refit moderation GLM
+#'
+#' @param glm_result Output from run_quasibinomial_glm_moderation()
+#' @param diagnostics Output from glm_cooks_diagnostics()
+#' @param predictor Name of the predictor variable
+#' @param moderator Name of the moderator variable
+#' @return A list with cleaned data, new model, and summary
+glm_remove_influential_moderation <- function(glm_result, diagnostics, predictor, moderator) {
+  if (diagnostics$n_influential == 0) {
+    cat("No influential observations to remove.\n")
+    return(list(
+      data_clean = glm_result$data,
+      model_clean = glm_result$model,
+      n_removed = 0
+    ))
+  }
+
+  # Remove influential observations
+  is_not_influential <- diagnostics$cooks_distance <= diagnostics$threshold
+  data_clean <- glm_result$data[is_not_influential, ]
+
+  # Refit model with interaction
+  formula <- as.formula(paste("glm_response ~", predictor, "*", moderator))
+  model_clean <- glm(formula, data = data_clean, family = quasibinomial)
+
+  cat("--- Data Cleaning Summary ---\n")
+  cat("Original observations:", diagnostics$n_total, "\n")
+  cat("Removed (influential):", diagnostics$n_influential, "\n")
+  cat("Remaining observations:", nrow(data_clean), "\n")
+
+  list(
+    data_clean = data_clean,
+    model_clean = model_clean,
+    n_removed = diagnostics$n_influential
+  )
+}
+
+#' Check multicollinearity between predictor and moderator
+#'
+#' @param data Data frame containing the variables
+#' @param predictor Name of the categorical predictor (will be converted to numeric)
+#' @param moderator Name of the continuous moderator
+#' @param predictor_levels Optional: levels for factor conversion (default: c("noThreat", "threat"))
+#' @return Correlation coefficient
+check_multicollinearity <- function(data, predictor, moderator,
+                                     predictor_levels = c("noThreat", "threat")) {
+  predictor_numeric <- as.numeric(factor(data[[predictor]], levels = predictor_levels)) - 1
+  correlation <- cor(predictor_numeric, data[[moderator]], use = "complete.obs")
+
+  cat("Correlation between", predictor, "and", moderator, ":", round(correlation, 4), "\n")
+
+  if (abs(correlation) < 0.3) {
+    cat("Interpretation: Low correlation - no multicollinearity concern\n")
+  } else if (abs(correlation) < 0.7) {
+    cat("Interpretation: Moderate correlation - some multicollinearity possible\n")
+  } else {
+    cat("Interpretation: High correlation - multicollinearity concern\n")
+  }
+
+  invisible(correlation)
+}
+
+#' Check normality of residuals for a GLM model
+#'
+#' @param model A GLM model object
+#' @return A ggplot object with Q-Q plot of deviance residuals
+check_glm_residual_normality <- function(model) {
+  residuals_df <- data.frame(residuals = residuals(model, type = "deviance"))
+
+  ggplot(residuals_df, aes(sample = residuals)) +
+    stat_qq() +
+    stat_qq_line() +
+    theme_minimal() +
+    labs(
+      title = "Q-Q Plot of Deviance Residuals",
+      x = "Theoretical Quantiles",
+      y = "Sample Quantiles"
+    )
+}
