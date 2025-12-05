@@ -808,23 +808,31 @@ summary_mean_sd(df, "aggressiveCognition", "threatCondition")
 
 ## 7.2 Check T-Test Assumptions
 
+To ensure independence between value and variance (as pre-registered), we apply an
+arcsine square root transformation to the proportion scores before checking assumptions.
+
+```{r}
+df$aggressiveWordCompletionScoreTransformed <- asin(sqrt(df$aggressiveWordCompletionScore))
+```
+
 ### 7.2.1 Normality within each group
 
 ```{r}
-agg_qq <- check_normality_qq(df, aggressiveWordCompletionScore, threatCondition)
-agg_hist <- check_normality_hist(df, aggressiveWordCompletionScore, threatCondition)
+agg_qq <- check_normality_qq(df, aggressiveWordCompletionScoreTransformed, threatCondition)
+agg_hist <- check_normality_hist(df, aggressiveWordCompletionScoreTransformed, threatCondition)
 grid.arrange(agg_qq, agg_hist, ncol = 1)
 ```
 
 **Interpretation:**
 
-- The distribution shows zero-inflation (many participants with 0 aggressive completions)
+- Even after arcsine-sqrt transformation, the distribution shows zero-inflation
+  (many participants with 0 aggressive completions)
 - Normality assumption is violated, therefore a t-test is not appropriate
 
 ### 7.2.2 Homogeneity of Variance
 
 ```{r}
-check_homogeneity(df, aggressiveWordCompletionScore, threatCondition)
+check_homogeneity(df, aggressiveWordCompletionScoreTransformed, threatCondition)
 ```
 
 ## 7.3 Inference Statistics: Quasibinomial GLM
@@ -910,23 +918,30 @@ summary_mean_sd(df, "anxiousWordCompletionScore", "threatCondition")
 
 ## 8.2 Check T-Test Assumptions
 
+To ensure independence between value and variance (as pre-registered), we apply an
+arcsine square root transformation to the proportion scores before checking assumptions.
+
+```{r}
+df$anxiousWordCompletionScoreTransformed <- asin(sqrt(df$anxiousWordCompletionScore))
+```
+
 ### 8.2.1 Normality within each group
 
 ```{r}
-anx_qq <- check_normality_qq(df, anxiousWordCompletionScore, threatCondition)
-anx_hist <- check_normality_hist(df, anxiousWordCompletionScore, threatCondition)
+anx_qq <- check_normality_qq(df, anxiousWordCompletionScoreTransformed, threatCondition)
+anx_hist <- check_normality_hist(df, anxiousWordCompletionScoreTransformed, threatCondition)
 grid.arrange(anx_qq, anx_hist, ncol = 1)
 ```
 
 **Interpretation:**
 
-- Similar to aggressive cognition, the distribution shows zero-inflation
+- Even after arcsine-sqrt transformation, the distribution shows zero-inflation
 - Normality assumption is violated, therefore a t-test is not appropriate
 
 ### 8.2.2 Homogeneity of Variance
 
 ```{r}
-check_homogeneity(df, anxiousWordCompletionScore, threatCondition)
+check_homogeneity(df, anxiousWordCompletionScoreTransformed, threatCondition)
 ```
 
 ## 8.3 Inference Statistics: Quasibinomial GLM
@@ -1009,6 +1024,8 @@ plotLine("pressuredMotivation", "aggressiveWordCompletionScore",
 
 ## 9.2 Check Linear Regression Assumptions
 
+Using the arcsine-sqrt transformed scores (as pre-registered) to check assumptions.
+
 ### 9.2.1 Multicollinearity
 
 ```{r}
@@ -1022,14 +1039,16 @@ check_multicollinearity(df, "threatCondition", "pressuredMotivation")
 ### 9.2.2 Normality of Outcome
 
 ```{r}
+agg_mod_qq <- check_normality_qq(df, aggressiveWordCompletionScoreTransformed, threatCondition)
 agg_mod_hist <- check_normality_hist(df, aggressiveWordCompletionScoreTransformed, threatCondition)
-agg_mod_hist
+grid.arrange(agg_mod_qq, agg_mod_hist, ncol = 1)
 ```
 
 **Interpretation:**
 
-- As established in Section 7, the outcome shows zero-inflation
-- Linear regression assumptions are violated, therefore we use a quasibinomial GLM
+- Even after arcsine-sqrt transformation, the outcome shows zero-inflation
+- Normality assumption for linear regression is violated
+- Therefore we use a quasibinomial GLM with interaction term
 
 ## 9.3 Inference Statistics: Quasibinomial GLM with Moderation
 
@@ -1117,6 +1136,8 @@ plotLine("autonomousMotivation", "anxiousWordCompletionScore",
 
 ## 10.2 Check Linear Regression Assumptions
 
+Using the arcsine-sqrt transformed scores (as pre-registered) to check assumptions.
+
 ### 10.2.1 Multicollinearity
 
 ```{r}
@@ -1130,14 +1151,16 @@ check_multicollinearity(df, "threatCondition", "autonomousMotivation")
 ### 10.2.2 Normality of Outcome
 
 ```{r}
-anx_mod_hist <- check_normality_hist(df, anxiousWordCompletionScore, threatCondition)
-anx_mod_hist
+anx_mod_qq <- check_normality_qq(df, anxiousWordCompletionScoreTransformed, threatCondition)
+anx_mod_hist <- check_normality_hist(df, anxiousWordCompletionScoreTransformed, threatCondition)
+grid.arrange(anx_mod_qq, anx_mod_hist, ncol = 1)
 ```
 
 **Interpretation:**
 
-- As established in Section 8, the outcome shows zero-inflation
-- Linear regression assumptions are violated, therefore we use a quasibinomial GLM
+- Even after arcsine-sqrt transformation, the outcome shows zero-inflation
+- Normality assumption for linear regression is violated
+- Therefore we use a quasibinomial GLM with interaction term
 
 ## 10.3 Inference Statistics: Quasibinomial GLM with Moderation
 
