@@ -21,6 +21,7 @@ install.packages(c(
   "psych",
   "car",
   "boot",
+  "DHARMa",
 
   # Structural equation modeling
   "lavaan",
