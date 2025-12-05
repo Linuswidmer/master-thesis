@@ -793,8 +793,8 @@ aggressive cognition
 *Methodology:*
 
 - Visualization & Descriptives
-- Prerequisites for inference statistics (homogeneity, normal distribution)
-- Inference Statistics (Generalized Linear Model)
+- Check assumptions for t-test (normality, homogeneity)
+- Since assumptions are violated: Quasibinomial GLM on proportion data
 
 ## 7.1 Visualization & Descriptives
 
@@ -806,139 +806,99 @@ plotBox("aggressiveCognition", "threatCondition")
 summary_mean_sd(df, "aggressiveCognition", "threatCondition")
 ```
 
-## 7.2 Prerequisites for Inference Statistics
+## 7.2 Check T-Test Assumptions
 
-Transforming values to ensure independence between value and variance
+### 7.2.1 Normality within each group
+
 ```{r}
-df$aggressiveWordCompletionScoreTransformed <- asin(sqrt(df$aggressiveWordCompletionScore))
-```
-
-### 7.2.1 Assumption 1: Normality withing each group 
-
-Check Visually
-```{r}
-agg_qq <- check_normality_qq(
-  df, aggressiveWordCompletionScoreTransformed,
-  threatCondition
-)
-agg_hist <- check_normality_hist(
-  df, aggressiveWordCompletionScoreTransformed,
-  threatCondition
-)
-
+agg_qq <- check_normality_qq(df, aggressiveWordCompletionScore, threatCondition)
+agg_hist <- check_normality_hist(df, aggressiveWordCompletionScore, threatCondition)
 grid.arrange(agg_qq, agg_hist, ncol = 1)
-
-check_normality_qq(
-  df, aggressiveWordCompletionScore,
-  threatCondition
-)
 ```
-qq-plot -> data points should be roughly on the line
-hist -> should roughly resemble a normal distribution
 
 **Interpretation:**
 
-- Transformed aggressive cognition scores show a zero inflation, thus we cannot assume a normality 
+- The distribution shows zero-inflation (many participants with 0 aggressive completions)
+- Normality assumption is violated, therefore a t-test is not appropriate
 
-### 7.2.2 Assumption 2: Homogeneity of variance
+### 7.2.2 Homogeneity of Variance
 
-Levene Test
 ```{r}
-check_homogeneity(
-  df, aggressiveWordCompletionScoreTransformed,
-  threatCondition
-)
+check_homogeneity(df, aggressiveWordCompletionScore, threatCondition)
 ```
-p > .05 → equal variances (use Student’s t-test: var.equal = TRUE)
+
+## 7.3 Inference Statistics: Quasibinomial GLM
+
+Since the outcome is a proportion (number of aggressive completions out of 10 trials)
+and assumptions for parametric tests are violated, we use a quasibinomial GLM.
+The quasibinomial family accounts for overdispersion in binomial data.
+
+### 7.3.1 Fit Model
+
+```{r}
+N_TRIALS_AGGRESSION <- 10
+
+glm_agg <- run_quasibinomial_glm(
+  data = df,
+  score_col = "aggressiveWordCompletionScore",
+  predictor = "threatCondition",
+  n_trials = N_TRIALS_AGGRESSION
+)
+
+summary(glm_agg$model)
+```
+
+### 7.3.2 Model Diagnostics: Cook's Distance
+
+```{r}
+plot(glm_agg$model, which = 4)
+```
+
+```{r}
+diag_agg <- glm_cooks_diagnostics(glm_agg$model)
+print_cooks_summary(diag_agg)
+```
+
+### 7.3.3 Sensitivity Analysis: Model without Influential Observations
+
+```{r}
+glm_agg_clean <- glm_remove_influential(glm_agg, diag_agg, "threatCondition")
+```
+
+```{r}
+summary_mean_sd(glm_agg_clean$data_clean, "aggressiveWordCompletionScore", "threatCondition")
+```
+
+```{r}
+summary(glm_agg_clean$model_clean)
+```
+
+### 7.3.4 Results Summary
+
+```{r}
+glm_summary_table(glm_agg$model, "Aggressive Cognition GLM (Full Sample)") %>%
+  kbl(caption = "GLM Results: Effect of Threat Condition on Aggressive Cognition") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+```
 
 **Interpretation:**
 
-- Normality within each group is not given. 
-A visual inspection shows a zero inflated distribution
-- Homogeneity of variance is given
+- ...
 
-## 7.3 Inference Statistics
+# 8. Effect of Threat Condition on Anxious Cognition (Hypothesis 1b)
 
-```{r}
-run_ttest(df, aggressiveWordCompletionScoreTransformed, threatCondition,
-  alternative = "greater", var_equal = TRUE
-)
-```
+*Objectives:*
 
+- Assess if there is a statistically significant effect of threat condition on
+anxious cognition
 
-```{r}
-TotalTrials <- 10
+*Methodology:*
 
-df$SuccessCount <- df$aggressiveWordCompletionScore * TotalTrials 
+- Visualization & Descriptives
+- Check assumptions for t-test (normality, homogeneity)
+- Since assumptions are violated: Quasibinomial GLM on proportion data
 
-df$FailureCount <- TotalTrials - df$SuccessCount
-
-df$SuccessFailureMatrix <- cbind(df$SuccessCount, df$FailureCount)
-
-glm_model <- glm(
-  SuccessFailureMatrix ~ threatCondition, 
-  data = df, 
-  family = quasibinomial
-)
-
-summary(glm_model)
-```
-
-```{r}
-plot(glm_model, which = 4) 
-
-cooks_dist <- cooks.distance(glm_model)
-
-N <- nobs(glm_model) 
-K <- length(coef(glm_model)) 
-
-threshold <- 4 / (N - K) 
-
-cat("Calculated Cook's Distance Threshold:", round(threshold, 4), "\n")
-
-influential_indices <- which(cooks_dist > threshold)
-
-cat("\n--- Extreme Outliers (Exceeding Threshold) ---\n")
-if (length(influential_indices) > 0) {
-  print(df[influential_indices, ]) 
-  
-  cat("\nCook's Distance values for these points:\n")
-  print(cooks_dist[influential_indices])
-} else {
-  cat("No observations exceeded the Cook's Distance threshold of", round(threshold, 4), "\n")
-}
-```
-
-
-```{r}
-is_not_influential <- cooks_dist <= threshold
-
-df_clean <- df[is_not_influential, ]
-
-cat("\n--- Data Cleaning Summary ---\n")
-cat("Original rows:", N, "\n")
-cat("Excluded rows (outliers):", length(influential_indices), "\n")
-cat("Cleaned rows:", nrow(df_clean), "\n")
-```
-
-```{r}
-summary_mean_sd(df_clean, "aggressiveWordCompletionScore", "threatCondition")
-```
-
-```{r}
-# Rerun the GLM on the cleaned data
-glm_model_clean <- glm(
-  SuccessFailureMatrix ~ threatCondition, 
-  data = df_clean, 
-  family = quasibinomial
-)
-
-summary(glm_model_clean)
-```
-
-## Hypothesis 1b t-test
-
-## 7.1 Visualization & Descriptives
+## 8.1 Visualization & Descriptives
 
 ```{r}
 plotBox("anxiousWordCompletionScore", "threatCondition")
@@ -948,42 +908,83 @@ plotBox("anxiousWordCompletionScore", "threatCondition")
 summary_mean_sd(df, "anxiousWordCompletionScore", "threatCondition")
 ```
 
+## 8.2 Check T-Test Assumptions
 
-### Assumption 1: Normality withing each group 
+### 8.2.1 Normality within each group
 
-Check Visually
 ```{r}
-check_normality_qq(df, anxiousWordCompletionScoreTransformed, threatCondition)
+anx_qq <- check_normality_qq(df, anxiousWordCompletionScore, threatCondition)
+anx_hist <- check_normality_hist(df, anxiousWordCompletionScore, threatCondition)
+grid.arrange(anx_qq, anx_hist, ncol = 1)
 ```
--> data points should be roughly on the line
 
+**Interpretation:**
+
+- Similar to aggressive cognition, the distribution shows zero-inflation
+- Normality assumption is violated, therefore a t-test is not appropriate
+
+### 8.2.2 Homogeneity of Variance
 
 ```{r}
-check_normality_hist(
-  df, anxiousWordCompletionScoreTransformed,
-  threatCondition
+check_homogeneity(df, anxiousWordCompletionScore, threatCondition)
+```
+
+## 8.3 Inference Statistics: Quasibinomial GLM
+
+Since the outcome is a proportion (number of anxious completions out of 10 trials)
+and assumptions for parametric tests are violated, we use a quasibinomial GLM.
+
+### 8.3.1 Fit Model
+
+```{r}
+N_TRIALS_ANXIETY <- 10
+
+glm_anx <- run_quasibinomial_glm(
+  data = df,
+  score_col = "anxiousWordCompletionScore",
+  predictor = "threatCondition",
+  n_trials = N_TRIALS_ANXIETY
 )
-```
--> should roughly resemble a normal distribution
 
-### Assumption 2: Homogeneity of variance
-
-Levene Test
-```{r}
-check_homogeneity(df, anxiousWordCompletionScoreTransformed, threatCondition)
+summary(glm_anx$model)
 ```
-p > .05 → equal variances (use Student’s t-test: var.equal = TRUE)
+
+### 8.3.2 Model Diagnostics: Cook's Distance
 
 ```{r}
-summary_mean_sd(df, "anxiousWordCompletionScore", group = "threatCondition")
+plot(glm_anx$model, which = 4)
 ```
 
-Run inference statistic
 ```{r}
-run_ttest(df, anxiousWordCompletionScoreTransformed, threatCondition,
-  alternative = "greater", var_equal = TRUE
-)
+diag_anx <- glm_cooks_diagnostics(glm_anx$model)
+print_cooks_summary(diag_anx)
 ```
+
+### 8.3.3 Sensitivity Analysis: Model without Influential Observations
+
+```{r}
+glm_anx_clean <- glm_remove_influential(glm_anx, diag_anx, "threatCondition")
+```
+
+```{r}
+summary_mean_sd(glm_anx_clean$data_clean, "anxiousWordCompletionScore", "threatCondition")
+```
+
+```{r}
+summary(glm_anx_clean$model_clean)
+```
+
+### 8.3.4 Results Summary
+
+```{r}
+glm_summary_table(glm_anx$model, "Anxious Cognition GLM (Full Sample)") %>%
+  kbl(caption = "GLM Results: Effect of Threat Condition on Anxious Cognition") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+```
+
+**Interpretation:**
+
+- ...
 
 # Hypothesis 2a & 2b: Moderation of Threat Response 
 
