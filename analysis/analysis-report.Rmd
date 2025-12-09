@@ -896,11 +896,14 @@ glm_summary_table(
   labels = c(
     "(Intercept)" = "Intercept (No Threat)",
     "threatConditionthreat" = "Threat Condition"
-  )
+  ),
+  one_tailed = c("threatConditionthreat" = "positive")
 ) %>%
   kbl(caption = "GLM Results: Effect of Threat Condition on Aggressive Cognition") %>%
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
 ```
+
+*Note on p-value correction:* The hypothesis predicts a directional effect (threat condition increases aggressive cognition). The GLM produces two-tailed p-values by default. For the threat condition coefficient, we apply a one-tailed correction: if the effect is in the expected direction (positive coefficient), p_one-tailed = p_two-tailed / 2; if opposite, p_one-tailed = 1 - (p_two-tailed / 2).
 
 **Interpretation:**
 
@@ -1018,11 +1021,14 @@ glm_summary_table(
   labels = c(
     "(Intercept)" = "Intercept (No Threat)",
     "threatConditionthreat" = "Threat Condition"
-  )
+  ),
+  one_tailed = c("threatConditionthreat" = "positive")
 ) %>%
   kbl(caption = "GLM Results: Effect of Threat Condition on Anxious Cognition") %>%
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
 ```
+
+*Note on p-value correction:* The hypothesis predicts a directional effect (threat condition increases anxious cognition). One-tailed p-values are reported for the threat condition coefficient.
 
 **Interpretation:**
 
@@ -1137,11 +1143,17 @@ glm_summary_table(
     "threatConditionthreat" = "Threat Condition",
     "pressuredMotivation" = "Pressured Motivation",
     "threatConditionthreat:pressuredMotivation" = "Threat x Pressured Motivation"
+  ),
+  one_tailed = c(
+    "threatConditionthreat" = "positive",
+    "threatConditionthreat:pressuredMotivation" = "positive"
   )
 ) %>%
   kbl(caption = "GLM Results: Moderation of Threat Effect by Pressured Motivation on Aggressive Cognition") %>%
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
 ```
+
+*Note on p-value correction:* The hypothesis predicts that pressured motivation positively moderates the effect of threat on aggressive cognition (i.e., higher pressured motivation strengthens the threat effect). One-tailed p-values are reported for the threat condition and interaction coefficients.
 
 **Interpretation:**
 
@@ -1258,11 +1270,17 @@ glm_summary_table(
     "threatConditionthreat" = "Threat Condition",
     "autonomousMotivation" = "Autonomous Motivation",
     "threatConditionthreat:autonomousMotivation" = "Threat x Autonomous Motivation"
+  ),
+  one_tailed = c(
+    "threatConditionthreat" = "positive",
+    "threatConditionthreat:autonomousMotivation" = "positive"
   )
 ) %>%
   kbl(caption = "GLM Results: Moderation of Threat Effect by Autonomous Motivation on Anxious Cognition") %>%
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
 ```
+
+*Note on p-value correction:* The hypothesis predicts that autonomous motivation positively moderates the effect of threat on anxious cognition (i.e., higher autonomous motivation strengthens the threat effect). One-tailed p-values are reported for the threat condition and interaction coefficients.
 
 **Interpretation:**
 

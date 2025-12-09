@@ -170,10 +170,16 @@ glm_remove_influential <- function(glm_result, diagnostics, predictor,
 #' @param model_clean Optional sensitivity analysis GLM model (e.g., without influential obs)
 #' @param labels Optional named vector to rename terms for display
 #'               (e.g., c("threatConditionthreat" = "Threat Condition"))
+#' @param one_tailed Optional named vector specifying directional hypotheses for terms.
+#'        Use "positive" if you expect a positive coefficient, "negative" if negative.
+#'        e.g., c("threatConditionthreat" = "positive")
+#'        One-tailed p-values are calculated as:
+#'        - If effect is in expected direction: p_one = p_two / 2
+#'        - If effect is opposite to expected: p_one = 1 - (p_two / 2)
 #' @return A formatted summary data frame with columns for both models
-glm_summary_table <- function(model, model_clean = NULL, labels = NULL) {
+glm_summary_table <- function(model, model_clean = NULL, labels = NULL, one_tailed = NULL) {
   # Helper to extract and format coefficients from a model
-  extract_coefs <- function(mod, suffix = "") {
+  extract_coefs <- function(mod, suffix = "", one_tailed_spec = NULL) {
     coefs <- summary(mod)$coefficients
 
     df <- data.frame(
@@ -181,11 +187,39 @@ glm_summary_table <- function(model, model_clean = NULL, labels = NULL) {
       Estimate = round(coefs[, "Estimate"], 3),
       SE = round(coefs[, "Std. Error"], 3),
       z = round(coefs[, "z value"], 2),
-      p = coefs[, "Pr(>|z|)"],
+      p_raw = coefs[, "Pr(>|z|)"],
       stringsAsFactors = FALSE
     )
 
-    # Add significance stars
+    # Apply one-tailed correction if specified
+    if (!is.null(one_tailed_spec)) {
+      df$p <- sapply(seq_len(nrow(df)), function(i) {
+        term <- df$Term[i]
+        if (term %in% names(one_tailed_spec)) {
+          expected_dir <- one_tailed_spec[term]
+          estimate <- coefs[term, "Estimate"]
+          p_two <- df$p_raw[i]
+
+          # Check if effect is in expected direction
+          in_expected_dir <- (expected_dir == "positive" && estimate > 0) ||
+                             (expected_dir == "negative" && estimate < 0)
+
+          if (in_expected_dir) {
+            return(p_two / 2)
+          } else {
+            return(1 - (p_two / 2))
+          }
+        }
+        return(df$p_raw[i])
+      })
+    } else {
+      df$p <- df$p_raw
+    }
+
+    # Remove raw p-value column
+    df$p_raw <- NULL
+
+    # Add significance stars (based on corrected p-values)
     df$Sig <- ifelse(df$p < 0.001, "***",
       ifelse(df$p < 0.01, "**",
         ifelse(df$p < 0.05, "*",
@@ -206,11 +240,11 @@ glm_summary_table <- function(model, model_clean = NULL, labels = NULL) {
   }
 
   # Extract coefficients from main model
-  result <- extract_coefs(model)
+  result <- extract_coefs(model, one_tailed_spec = one_tailed)
 
   # If sensitivity model provided, merge the results
   if (!is.null(model_clean)) {
-    clean_coefs <- extract_coefs(model_clean, "_sens")
+    clean_coefs <- extract_coefs(model_clean, "_sens", one_tailed_spec = one_tailed)
     result <- merge(result, clean_coefs, by = "Term", all = TRUE, sort = FALSE)
 
     # Reorder to match original model term order
