@@ -1330,14 +1330,32 @@ agg_anx_by_threat_boxplot <-  plotBox(
       "noThreat" = "No Threat",
       "threat" = "Threat"
     ),
-    legend_title = "Condition"
+    legend_title = "Condition",
+    ylim = c(0, 70),
+    legend_position = "top.left"
   )
 agg_anx_by_threat_boxplot
 save_plot(agg_anx_by_threat_boxplot, "aggressive-anxious-cognition-by-threat-boxplot")
 ```
 
 ```{r}
-
+plotBox(
+    c("aggressiveCognition", "anxiousCognition"),
+    "threatCondition",
+    x_label = "Cognition Type",
+    y_label = "Word Completion Score (%)",
+    var_labels = c(
+      "aggressiveCognition" = "Aggressive",
+      "anxiousCognition" = "Anxious"
+    ),
+    fill_labels = c(
+      "noThreat" = "No Threat",
+      "threat" = "Threat"
+    ),
+    legend_title = "Condition",
+    ylim = c(0, 70),
+    legend_position = "top.left"
+  )
 ```
 
 

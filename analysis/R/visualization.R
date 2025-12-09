@@ -80,9 +80,13 @@ plotHist <- function(score_col, x_range = NULL, condition = NULL, binwidth = 0.4
 #' @param fill_labels Optional named vector to rename the fill variable levels
 #'        e.g., c("noThreat" = "No Threat", "threat" = "Threat")
 #' @param legend_title Optional custom title for the legend (default: fill_var name)
+#' @param ylim Optional numeric vector of length 2 for y-axis limits, e.g., c(0, 100)
+#' @param legend_position Position of legend inside plot: "top.left", "top.right",
+#'        "bottom.left", "bottom.right", or "none" to hide. Default: "top.left"
 #' @return A ggplot boxplot object
 plotBox <- function(cols, fill_var = NULL, x_label = NULL, y_label = NULL,
-                    var_labels = NULL, fill_labels = NULL, legend_title = NULL) {
+                    var_labels = NULL, fill_labels = NULL, legend_title = NULL,
+                    ylim = NULL, legend_position = "top.left") {
   cols <- as.character(cols)
 
   long_df <- df %>%
@@ -141,6 +145,34 @@ plotBox <- function(cols, fill_var = NULL, x_label = NULL, y_label = NULL,
   # Apply custom legend title
   if (!is.null(fill_var) && !is.null(legend_title)) {
     p <- p + labs(fill = legend_title)
+  }
+
+  # Apply y-axis limits with expand = c(0, 0) to remove padding
+  if (!is.null(ylim)) {
+    p <- p + scale_y_continuous(limits = ylim, expand = c(0, 0))
+  }
+
+  # Position legend inside the plot
+  if (!is.null(fill_var) && legend_position != "none") {
+    # Convert position string to coordinates
+    legend_coords <- switch(legend_position,
+      "top.left" = c(0.02, 0.98),
+      "top.right" = c(0.98, 0.98),
+      "bottom.left" = c(0.02, 0.02),
+      "bottom.right" = c(0.98, 0.02),
+      c(0.02, 0.98)  # default to top.left
+    )
+    legend_hjust <- if (grepl("left", legend_position)) 0 else 1
+    legend_vjust <- if (grepl("top", legend_position)) 1 else 0
+
+    p <- p + theme(
+      legend.position = legend_coords,
+      legend.justification = c(legend_hjust, legend_vjust),
+      legend.background = element_rect(fill = "white", color = "black", linewidth = 0.2),
+      legend.key.size = unit(0.4, "cm")
+    )
+  } else if (legend_position == "none") {
+    p <- p + theme(legend.position = "none")
   }
 
   return(p)
