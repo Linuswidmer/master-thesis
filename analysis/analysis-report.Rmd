@@ -1327,5 +1327,24 @@ save_plot(agg_anx_by_threat_boxplot, "aggressive-anxious-cognition-by-threat-box
 ```
 
 ```{r}
+  plotBox(
+    c("aggressiveWordCompletionScore", "anxiousWordCompletionScore"),
+    "threatCondition",
+    x_label = "Cognition Type",
+    y_label = "Word Completion Score (%)",
+    var_labels = c(
+      "aggressiveWordCompletionScore" = "Aggressive",
+      "anxiousWordCompletionScore" = "Anxious"
+    ),
+    fill_labels = c(
+      "noThreat" = "No Threat",
+      "threat" = "Threat"
+    ),
+    legend_title = "Condition"
+  )
+```
+
+
+```{r}
 summary_mean_sd(df, c("aggressiveWordCompletionScore", "anxiousWordCompletionScore"), "threatCondition")
 ```

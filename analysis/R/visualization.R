@@ -69,11 +69,48 @@ plotHist <- function(score_col, x_range = NULL, condition = NULL, binwidth = 0.4
 }
 
 
-plotBox <- function(cols, fill_var = NULL) {
+#' Create APA-style boxplot
+#'
+#' @param cols Character vector of column names to plot
+#' @param fill_var Optional grouping variable for fill color (e.g., "threatCondition")
+#' @param x_label Optional custom label for x-axis (default: "variable")
+#' @param y_label Optional custom label for y-axis (default: "value")
+#' @param var_labels Optional named vector to rename the variables (cols) in the plot
+#'        e.g., c("aggressiveWordCompletionScore" = "Aggressive", "anxiousWordCompletionScore" = "Anxious")
+#' @param fill_labels Optional named vector to rename the fill variable levels
+#'        e.g., c("noThreat" = "No Threat", "threat" = "Threat")
+#' @param legend_title Optional custom title for the legend (default: fill_var name)
+#' @return A ggplot boxplot object
+plotBox <- function(cols, fill_var = NULL, x_label = NULL, y_label = NULL,
+                    var_labels = NULL, fill_labels = NULL, legend_title = NULL) {
   cols <- as.character(cols)
 
   long_df <- df %>%
     pivot_longer(cols = all_of(cols), names_to = "variable", values_to = "value")
+
+  # Apply custom variable labels if provided
+  if (!is.null(var_labels)) {
+    long_df$variable <- ifelse(
+      long_df$variable %in% names(var_labels),
+      var_labels[long_df$variable],
+      long_df$variable
+    )
+    # Preserve order based on input cols
+    label_order <- ifelse(cols %in% names(var_labels), var_labels[cols], cols)
+    long_df$variable <- factor(long_df$variable, levels = label_order)
+  }
+
+  # Apply custom fill labels if provided
+  if (!is.null(fill_var) && !is.null(fill_labels)) {
+    long_df[[fill_var]] <- ifelse(
+      long_df[[fill_var]] %in% names(fill_labels),
+      fill_labels[as.character(long_df[[fill_var]])],
+      as.character(long_df[[fill_var]])
+    )
+    # Preserve order based on original factor levels
+    label_order <- ifelse(names(fill_labels) %in% names(fill_labels), fill_labels, names(fill_labels))
+    long_df[[fill_var]] <- factor(long_df[[fill_var]], levels = label_order)
+  }
 
   if (!is.null(fill_var)) {
     p <- ggboxplot(
@@ -94,6 +131,16 @@ plotBox <- function(cols, fill_var = NULL) {
       palette = c("#D3D3D3", "#808080"),
       ggtheme = theme_apa()
     )
+  }
+
+  # Apply custom axis labels
+  x_lab <- if (!is.null(x_label)) x_label else "variable"
+  y_lab <- if (!is.null(y_label)) y_label else "value"
+  p <- p + labs(x = x_lab, y = y_lab)
+
+  # Apply custom legend title
+  if (!is.null(fill_var) && !is.null(legend_title)) {
+    p <- p + labs(fill = legend_title)
   }
 
   return(p)
