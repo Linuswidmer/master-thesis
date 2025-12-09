@@ -890,7 +890,14 @@ summary(glm_agg_clean$model_clean)
 ### 7.3.5 Results Summary
 
 ```{r}
-glm_summary_table(glm_agg$model, "Aggressive Cognition GLM (Full Sample)") %>%
+glm_summary_table(
+  model = glm_agg$model,
+  model_clean = glm_agg_clean$model_clean,
+  labels = c(
+    "(Intercept)" = "Intercept (No Threat)",
+    "threatConditionthreat" = "Threat Condition"
+  )
+) %>%
   kbl(caption = "GLM Results: Effect of Threat Condition on Aggressive Cognition") %>%
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
 ```
@@ -1005,7 +1012,14 @@ summary(glm_anx_clean$model_clean)
 ### 8.3.5 Results Summary
 
 ```{r}
-ummary_table(glm_anx$model, "Anxious Cognition GLM (Full Sample)") %>%
+glm_summary_table(
+  model = glm_anx$model,
+  model_clean = glm_anx_clean$model_clean,
+  labels = c(
+    "(Intercept)" = "Intercept (No Threat)",
+    "threatConditionthreat" = "Threat Condition"
+  )
+) %>%
   kbl(caption = "GLM Results: Effect of Threat Condition on Anxious Cognition") %>%
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
 ```
@@ -1115,7 +1129,16 @@ summary(glm_agg_mod_clean$model_clean)
 ### 9.3.5 Results Summary
 
 ```{r}
-ummary_table(glm_agg_mod$model, "Aggressive Cognition Moderation GLM") %>%
+glm_summary_table(
+  model = glm_agg_mod$model,
+  model_clean = glm_agg_mod_clean$model_clean,
+  labels = c(
+    "(Intercept)" = "Intercept",
+    "threatConditionthreat" = "Threat Condition",
+    "pressuredMotivation" = "Pressured Motivation",
+    "threatConditionthreat:pressuredMotivation" = "Threat x Pressured Motivation"
+  )
+) %>%
   kbl(caption = "GLM Results: Moderation of Threat Effect by Pressured Motivation on Aggressive Cognition") %>%
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
 ```
@@ -1227,7 +1250,16 @@ summary(glm_anx_mod_clean$model_clean)
 ### 10.3.5 Results Summary
 
 ```{r}
-ummary_table(glm_anx_mod$model, "Anxious Cognition Moderation GLM") %>%
+glm_summary_table(
+  model = glm_anx_mod$model,
+  model_clean = glm_anx_mod_clean$model_clean,
+  labels = c(
+    "(Intercept)" = "Intercept",
+    "threatConditionthreat" = "Threat Condition",
+    "autonomousMotivation" = "Autonomous Motivation",
+    "threatConditionthreat:autonomousMotivation" = "Threat x Autonomous Motivation"
+  )
+) %>%
   kbl(caption = "GLM Results: Moderation of Threat Effect by Autonomous Motivation on Anxious Cognition") %>%
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
 ```

@@ -160,37 +160,74 @@ glm_remove_influential <- function(glm_result, diagnostics, predictor,
   )
 }
 
-#' Format GLM results as a summary table
+#' Format GLM results as a summary table with optional sensitivity analysis
 #'
-#' @param model A GLM model object
-#' @param model_name Optional name for the model
-#' @return A formatted summary data frame
-glm_summary_table <- function(model, model_name = NULL) {
-  coefs <- summary(model)$coefficients
+#' Creates a formatted table comparing the main GLM analysis with a sensitivity
+#' analysis (e.g., model without influential observations). Works for both simple
+#' GLMs with one predictor and moderation GLMs with interaction terms.
+#'
+#' @param model The primary GLM model object (full sample)
+#' @param model_clean Optional sensitivity analysis GLM model (e.g., without influential obs)
+#' @param labels Optional named vector to rename terms for display
+#'               (e.g., c("threatConditionthreat" = "Threat Condition"))
+#' @return A formatted summary data frame with columns for both models
+glm_summary_table <- function(model, model_clean = NULL, labels = NULL) {
+  # Helper to extract and format coefficients from a model
+  extract_coefs <- function(mod, suffix = "") {
+    coefs <- summary(mod)$coefficients
 
-  result <- data.frame(
-    Term = rownames(coefs),
-    Estimate = round(coefs[, "Estimate"], 4),
-    SE = round(coefs[, "Std. Error"], 4),
-    z_value = round(coefs[, "z value"], 3),
-    p_value = coefs[, "Pr(>|z|)"]
-  )
+    df <- data.frame(
+      Term = rownames(coefs),
+      Estimate = round(coefs[, "Estimate"], 3),
+      SE = round(coefs[, "Std. Error"], 3),
+      z = round(coefs[, "z value"], 2),
+      p = coefs[, "Pr(>|z|)"],
+      stringsAsFactors = FALSE
+    )
 
-  # Add significance stars
-  result$Sig <- ifelse(result$p_value < 0.001, "***",
-    ifelse(result$p_value < 0.01, "**",
-      ifelse(result$p_value < 0.05, "*",
-        ifelse(result$p_value < 0.1, ".", "")
+    # Add significance stars
+    df$Sig <- ifelse(df$p < 0.001, "***",
+      ifelse(df$p < 0.01, "**",
+        ifelse(df$p < 0.05, "*",
+          ifelse(df$p < 0.1, ".", "")
+        )
       )
     )
-  )
 
-  result$p_value <- ifelse(result$p_value < 0.001, "< .001",
-                           round(result$p_value, 4))
+    # Format p-values
+    df$p <- ifelse(df$p < 0.001, "< .001", sprintf("%.3f", df$p))
 
-  if (!is.null(model_name)) {
-    attr(result, "model_name") <- model_name
+    # Rename columns with suffix if provided
+    if (suffix != "") {
+      names(df)[names(df) != "Term"] <- paste0(names(df)[names(df) != "Term"], suffix)
+    }
+
+    df
   }
+
+  # Extract coefficients from main model
+  result <- extract_coefs(model)
+
+  # If sensitivity model provided, merge the results
+  if (!is.null(model_clean)) {
+    clean_coefs <- extract_coefs(model_clean, "_sens")
+    result <- merge(result, clean_coefs, by = "Term", all = TRUE, sort = FALSE)
+
+    # Reorder to match original model term order
+    term_order <- rownames(summary(model)$coefficients)
+    result <- result[match(term_order, result$Term), ]
+  }
+
+  # Apply custom labels if provided
+  if (!is.null(labels)) {
+    result$Term <- ifelse(result$Term %in% names(labels),
+                          labels[result$Term],
+                          result$Term)
+  }
+
+  # Reset row names
+
+  rownames(result) <- NULL
 
   result
 }
