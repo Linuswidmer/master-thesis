@@ -676,7 +676,7 @@ psych::alpha(cor_aggr, check.keys = FALSE)
 df$aggressiveWordCompletionScore <- rowMeans(
   replace(df[WFCT_aggression_items], is.na(df[WFCT_aggression_items]), 0)
 )
-df$aggressiveCognition <-df$aggressiveWordCompletionScore
+df$aggressiveCognition <-df$aggressiveWordCompletionScore * 100
 ```
 
 ### 5.3.2 Visualization & Descriptives
@@ -766,8 +766,7 @@ psych::alpha(cor_anx, check.keys = FALSE)
 df$anxiousWordCompletionScore <- rowMeans(
   replace(df[WFCT_anxiety_items], is.na(df[WFCT_anxiety_items]), 0)
 )
-
-df$anxiousWordCompletionScoreTransformed <- asin(sqrt(df$anxiousWordCompletionScore))
+df$anxiousCognition <-df$anxiousWordCompletionScore * 100
 ```
 
 ### 6.3.2 Visualization & Descriptives
@@ -1318,23 +1317,14 @@ summary(model_gkself)
 
 Aggressive and anxious word completions by threat condition
 ```{r}
-agg_anx_by_threat_boxplot <- plotBox(
-  c("aggressiveWordCompletionScore", "anxiousWordCompletionScore"),
-  "threatCondition"
-)
-agg_anx_by_threat_boxplot
-save_plot(agg_anx_by_threat_boxplot, "aggressive-anxious-cognition-by-threat-boxplot")
-```
-
-```{r}
-  plotBox(
-    c("aggressiveWordCompletionScore", "anxiousWordCompletionScore"),
+agg_anx_by_threat_boxplot <-  plotBox(
+    c("aggressiveCognition", "anxiousCognition"),
     "threatCondition",
     x_label = "Cognition Type",
     y_label = "Word Completion Score (%)",
     var_labels = c(
-      "aggressiveWordCompletionScore" = "Aggressive",
-      "anxiousWordCompletionScore" = "Anxious"
+      "aggressiveCognition" = "Aggressive",
+      "anxiousCognition" = "Anxious"
     ),
     fill_labels = c(
       "noThreat" = "No Threat",
@@ -1342,6 +1332,12 @@ save_plot(agg_anx_by_threat_boxplot, "aggressive-anxious-cognition-by-threat-box
     ),
     legend_title = "Condition"
   )
+agg_anx_by_threat_boxplot
+save_plot(agg_anx_by_threat_boxplot, "aggressive-anxious-cognition-by-threat-boxplot")
+```
+
+```{r}
+
 ```
 
 
