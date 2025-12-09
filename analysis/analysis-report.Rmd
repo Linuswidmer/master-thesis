@@ -890,7 +890,7 @@ summary(glm_agg_clean$model_clean)
 ### 7.3.5 Results Summary
 
 ```{r}
-ummary_table(glm_agg$model, "Aggressive Cognition GLM (Full Sample)") %>%
+glm_summary_table(glm_agg$model, "Aggressive Cognition GLM (Full Sample)") %>%
   kbl(caption = "GLM Results: Effect of Threat Condition on Aggressive Cognition") %>%
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
 ```
