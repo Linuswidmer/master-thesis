@@ -1353,7 +1353,7 @@ agg_moderation_pressured_motivation <- plotModeration(
     condition = "threatCondition",
     df = df,
     x_label = "MMB Pressured Score",
-    y_label = "Word Completion Score (%)",
+    y_label = "Agg. Word Completion Score (%)",
     condition_labels = c(
       "noThreat" = "No Threat",
       "threat" = "Threat"
@@ -1373,7 +1373,7 @@ anx_moderation_autonomous_motivation <- plotModeration(
     condition = "threatCondition",
     df = df,
     x_label = "MMB Autonomous Score",
-    y_label = "Word Completion Score (%)",
+    y_label = "Anx. Word Completion Score (%)",
     condition_labels = c(
       "noThreat" = "No Threat",
       "threat" = "Threat"
