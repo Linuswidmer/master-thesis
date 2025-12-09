@@ -1315,6 +1315,8 @@ summary(model_gkself)
 
 ## Additional Visualization & Descriptives
 
+### Masculinity Threat Effects
+
 Aggressive and anxious word completions by threat condition
 ```{r}
 agg_anx_by_threat_boxplot <-  plotBox(
@@ -1339,26 +1341,47 @@ save_plot(agg_anx_by_threat_boxplot, "aggressive-anxious-cognition-by-threat-box
 ```
 
 ```{r}
-plotBox(
-    c("aggressiveCognition", "anxiousCognition"),
-    "threatCondition",
-    x_label = "Cognition Type",
+summary_mean_sd(df, c("aggressiveWordCompletionScore", "anxiousWordCompletionScore"), "threatCondition")
+```
+
+### Modertation of Masculinity Threat Effects
+
+```{r}
+agg_moderation_pressured_motivation <- plotModeration(
+    x = "pressuredMotivation",
+    y = "aggressiveCognition",
+    condition = "threatCondition",
+    df = df,
+    x_label = "Pressured Motivation Score",
     y_label = "Word Completion Score (%)",
-    var_labels = c(
-      "aggressiveCognition" = "Aggressive",
-      "anxiousCognition" = "Anxious"
-    ),
-    fill_labels = c(
+    condition_labels = c(
       "noThreat" = "No Threat",
       "threat" = "Threat"
     ),
     legend_title = "Condition",
-    ylim = c(0, 70),
+    ylim = c(10, 30),
     legend_position = "top.left"
   )
+agg_moderation_pressured_motivation
+save_plot(agg_moderation_pressured_motivation, "aggressive-cognition-pressured-motivation-line-chart")
 ```
 
-
 ```{r}
-summary_mean_sd(df, c("aggressiveWordCompletionScore", "anxiousWordCompletionScore"), "threatCondition")
+anx_moderation_autonomous_motivation <- plotModeration(
+    x = "autonomousMotivation",
+    y = "anxiousCognition",
+    condition = "threatCondition",
+    df = df,
+    x_label = "Autonomous Motivation Score",
+    y_label = "Word Completion Score (%)",
+    condition_labels = c(
+      "noThreat" = "No Threat",
+      "threat" = "Threat"
+    ),
+    legend_title = "Condition",
+    ylim = c(20, 40),
+    legend_position = "top.left"
+  )
+anx_moderation_autonomous_motivation
+save_plot(anx_moderation_autonomous_motivation, "anxious-cognition-autonomous-motivation-line-chart")
 ```
