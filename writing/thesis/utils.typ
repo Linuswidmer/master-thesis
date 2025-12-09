@@ -43,7 +43,7 @@
   let sdFormatted = str(calc.round(sd, digits: 1))
 
   let first = emph("M")
-  let seconf = emph("SD")
+  let second = emph("SD")
 
   text(first + " = " + meanFormatted + ", " + second + " = " + sdFormatted)
 }

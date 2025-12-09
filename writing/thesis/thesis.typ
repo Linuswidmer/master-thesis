@@ -74,6 +74,7 @@ Chair of Social and Organizational Psychology
 = #doc-title
 #include "sections/introduction.typ"
 #include "sections/methods.typ"
+#include "sections/results.typ"
 
 // #pagebreak()
 // #include "sections/quotes.typ"
