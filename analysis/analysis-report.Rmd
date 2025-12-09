@@ -564,8 +564,8 @@ df$rowmeansPressured <- rowMeans(
 
 Decide which computation to use for later analysis
 ```{r}
-df$pressuredMotivation = df$regPressured
-df$autonomousMotivation = df$regAutonomous
+df$pressuredMotivation = df$rowmeansPressured
+df$autonomousMotivation = df$rowmeansAutonomous
 ```
 
 ### 4.3.2 Visualization & Descriptives
@@ -1352,7 +1352,7 @@ agg_moderation_pressured_motivation <- plotModeration(
     y = "aggressiveCognition",
     condition = "threatCondition",
     df = df,
-    x_label = "Pressured Motivation Score",
+    x_label = "MMB Pressured Score",
     y_label = "Word Completion Score (%)",
     condition_labels = c(
       "noThreat" = "No Threat",
@@ -1372,7 +1372,7 @@ anx_moderation_autonomous_motivation <- plotModeration(
     y = "anxiousCognition",
     condition = "threatCondition",
     df = df,
-    x_label = "Autonomous Motivation Score",
+    x_label = "MMB Autonomous Score",
     y_label = "Word Completion Score (%)",
     condition_labels = c(
       "noThreat" = "No Threat",
