@@ -34,5 +34,16 @@
   let first = emph("z")
   let second = emph("p")
 
-  text(first + " = " + z_formatted + " , " + second + " = " + p_text)
+  text(first + " = " + z_formatted + ", " + second + " = " + p_text)
+}
+
+#let reportMeanAndSD(mean: none, sd: none) = {
+
+  let meanFormatted = str(calc.round(mean, digits: 1))
+  let sdFormatted = str(calc.round(sd, digits: 1))
+
+  let first = emph("M")
+  let seconf = emph("SD")
+
+  text(first + " = " + meanFormatted + ", " + second + " = " + sdFormatted)
 }
