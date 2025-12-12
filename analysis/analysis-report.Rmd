@@ -348,6 +348,8 @@ corrplot(cor_mmb,
   tl.srt = 45,
   diag = FALSE
 )
+
+save_corrplot_apa(cor_mmb, "corrplot-mmb")
 ```
 
 **Interpretation**
@@ -618,7 +620,7 @@ cor(df$rowmeansAutonomous, df$rowmeansPressured)
 ### 5.1.1 Visualization & Descriptives
 
 ```{r warning=FALSE}
-cor_aggr <- psych::tetrachoric( df[, WFCT_aggression_items])$rho
+cor_aggr <- psych::tetrachoric(df[, WFCT_aggression_items])$rho
 
 corrplot::corrplot(cor_aggr,
   method = "color",
@@ -628,6 +630,8 @@ corrplot::corrplot(cor_aggr,
   tl.srt = 45,
   diag = FALSE
 )
+
+save_corrplot_apa(cor_aggr, "corrplot-aggressive-cognition")
 ```
 -> a tetrachoric correlation is used, because responses are always binary 
 (aggressive, vs. non-aggressive response)
@@ -719,6 +723,8 @@ corrplot::corrplot(cor_anx,
   tl.srt = 45,
   diag = FALSE
 )
+
+save_corrplot_apa(cor_anx, "corrplot-anxious-cognition")
 ```
 -> a tetrachoric correlation is used, because responses are always binary 
 (aggressive, vs. non-aggressive)

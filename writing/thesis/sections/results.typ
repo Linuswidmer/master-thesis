@@ -49,6 +49,8 @@ The GLM refitted on the reduced sample continued to show no significant effect (
 
 === Factor Structure of Motivation for Masculine Behavior
 
+-> include means, sds and a corrplot
+
 Prior to the moderation analysis, the validity and reliability of the MMB scale were assessed.
 The Kaiser-Meyer-Olkin (KMO) criterion yielded an overall Measure of Sampling Adequacy of .85, indicating the data were suitable for factor analysis.
 The hypothesized two-factor model by #cite(<stanaland2021man>, form: "prose") specified uncorrelated latent factors for Pressured Motivation (Items 1–5) and Autonomous Motivation (Items 6–9).
@@ -141,3 +143,9 @@ Second, participants were asked to self-evaluate their gender knowledge on the s
 Descriptive statistics showed lower self-evaluations in the threat condition (#reportMeanAndSD(mean: 5.71, sd: 1.43)) than in the no-threat condition (#reportMeanAndSD(mean: 6.79, sd: 1.38)).
 A $t$-test confirmed that participants in the threat condition rated their gender knowledge significantly lower than those in the no-threat condition (#reportTStatistic(tValue: 4.735, pValue: 0.00001, df: 154)).
 Together, these results indicate that the manipulation was successful in inducing a perceived threat to masculine identity.
+
+== Test Quality: Aggressive Cognition
+
+-> include means, sds and a corrplot
+
+To assess whether the aggressive word fragment task is a valid and reliable tool for assessing aggressive cognition, internal consistency and reliability will be assessed.
