@@ -108,3 +108,25 @@ freq_table <- function(data, column) {
     mutate(Percent = round(100 * Count / sum(Count), 1)) %>%
     arrange(desc(Count))
 }
+
+summary_binary_counts <- function(data, columns) {
+  # For binary (0/1) items, count negative (0), positive (1), and missing
+  results <- lapply(columns, function(col) {
+    x <- data[[col]]
+    n_missing <- sum(is.na(x))
+    n_negative <- sum(x == 0, na.rm = TRUE)
+    n_positive <- sum(x == 1, na.rm = TRUE)
+    n_total <- n_negative + n_positive
+    pct_positive <- if (n_total > 0) round(100 * n_positive / n_total, 1) else NA
+
+    data.frame(
+      variable = col,
+      negative = n_negative,
+      positive = n_positive,
+      pct_positive = pct_positive,
+      missing = n_missing
+    )
+  })
+
+  do.call(rbind, results)
+}

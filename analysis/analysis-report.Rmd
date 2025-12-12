@@ -644,13 +644,13 @@ save_corrplot_apa(cor_aggr, "corrplot-aggressive-cognition")
 we would expect (somewhat) positive correlations between all the items
 
 ```{r}
-summary_mean_sd(df, WFCT_aggression_items)
+summary_binary_counts(df, WFCT_aggression_items)
 ```
 
 **Interpretation**
 
-- *Low Means:* On items 1, 2, 3, 4, 5, 7
-- *Missing Values:* 10% missings on items 7, 8, 9, 10
+- *Low Positive Response Rates:* Several items show low positive (aggressive) completion rates
+- *Missing Values:* Some missings on items 7, 8, 9, 10
 
 ### 5.1.2 Check sampling adequacy for Factor Analysis
 
@@ -732,12 +732,12 @@ save_corrplot_apa(cor_anx, "corrplot-anxious-cognition")
 
 
 ```{r}
-summary_mean_sd(df, WFCT_anxiety_items)
+summary_binary_counts(df, WFCT_anxiety_items)
 ```
 
 **Interpretation**
 
-- *Low Means:* 
+- *Low Positive Response Rates:* Several items show low positive (anxious) completion rates
 - *Missing Values:* ...
 
 
