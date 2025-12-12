@@ -519,8 +519,12 @@ results_twof_cor_mod <- run_cfa_model(model_twof_cor_mod, df, model_name = "Two-
 
 ``` {r}
 fit_twof_cor_mod <- cfa(model_twof_cor_mod, data = df, std.lv = TRUE)
-rel <- reliability(fit_twof_cor_mod)
-print(rel)
+
+# Compute McDonald's Omega for each factor using compRelSEM
+omega <- compRelSEM(fit_twof_cor_mod, tau.eq = FALSE, ord.scale = FALSE, return.df = TRUE)
+
+cat("McDonald's Omega Reliability Coefficients:\n")
+print(omega)
 ```
 
 **Interpretation**
