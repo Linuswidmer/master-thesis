@@ -14,7 +14,7 @@
   authors: (
     (
       name: [
-        Exposé for the  Master Thesis of
+        Master Thesis of
         
         L i n u s W i d m e r
 
@@ -49,7 +49,7 @@ Chair of Social and Organizational Psychology
   ],
 
   // Professional-specific fields
-  running-head: [Masculinity, Motivation & Identity Threat], // Motivation, Masculinity & Threat
+  running-head: [Motivation, Masculinity & Threat],
   // author-notes: [
   //   #include-orcid([Author Name], "0000-0000-0000-0000")
 
