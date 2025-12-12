@@ -42,14 +42,50 @@ Finally, a sensitivity analysis was performed. After identifying and excluding f
 === Factor Structure Motivation For Masculine Behavior
 
 A crucial predecessor for the moderation analysis was the validation and reliability assessment of the MMB scale.
-The hypothesized two-factor model by @stanaland2021man constrained the factors Pressured motivation (Items 1–5) and Autonomous motivation (Items 6–9) to be uncorrelated.
+The hypothesized two-factor model by #cite(<stanaland2021man>, form: "prose") constrained the factors Pressured motivation (Items 1–5) and Autonomous motivation (Items 6–9) to be uncorrelated.
 A Confirmatory Factor Analysis (CFA) was run to validate this model.
 Computing the Kaiser-Meyer-Olkin criterion on the item correlations yielded an overall Measure of Sampling Adequacy of .85, indicating the data were suitable for factor analysis. The fit indices of the CFA did non satidfy the predefined criteria: (CFI = [TODO], TLI = [TODO], RMSEA = [TODO], SRMR = [TODO]).
 
 To improve model fit and better understand the data structure, an Exploratory Factor Analysis (EFA) with oblimin rotation was conducted. 
 A parallel analysis and scree plot suggested retaining two factors. 
 The resulting factor loadings (displayed in Table (TODO)) showed a strong coherence for the first five items on the first factor (Pressured). 
-However, Item 9, "TODO" displayed a significant cross-loading on both factors (loading on Factor 1 and Factor 2), suggesting poor fit for this item within the intended structure.
+However, Item 9, "It is important to me not to act like a woman" displayed a significant cross-loading on both factors (loading on Factor 1 and Factor 2), suggesting poor fit for this item within the intended structure.
+
+#apa-figure(
+  table(
+    align: (x, y) => if y == 0 and x >= 0 {
+      center
+    } else if x == 0 and y > 0 {
+      left
+    } else {
+      center
+    },
+    columns: (0.5fr, 4fr, 1fr, 1fr),
+    table.hline(),
+    table.header(
+      [Item],
+      [Description],
+      [Factor 1],
+      [Factor 2],
+    ),
+    table.hline(),
+    [1], [I present myself like the man I described because I want others' acceptance and approval.], [.83], [],
+    [2], [I act like the man I described because I want people to like me.], [.90], [],
+    [3], [I don't act like a woman because people wouldn't like me.], [.79], [],
+    [4], [I act like the man I described because that is what people expect from me.], [.89], [],
+    [5], [I am like the man I described around other people because that is how others think I should be.], [.78], [],
+    [6], [It is important to me not to act like a woman.], [], [.69],
+    [7], [It is important to me to behave like the man I described.], [], [.74],
+    [8], [It brings me pleasure if I behave like the man I described.], [], [.80],
+    [9], [I enjoy acting like the man I described.], [.39], [.39],
+    table.hline(),
+  ),
+  caption: [EFA Factor Loadings for Motivation for Masculine Behavior Scale],
+  note: [
+    Factor loadings below .30 are suppressed for clarity. Factor 1 = Pressured Motivation; Factor 2 = Autonomous Motivation. Extraction method: Maximum Likelihood with oblimin rotation.
+  ],
+  label: "table:efa-mmb",
+)
 
 A subsequent CFA was conducted on the original 9 items, allowing for a correlation between the two latent factors. This notably improved model fit (CFI = [TODO], TLI = [TODO], RMSEA = [TODO], SRMR = [TODO]), yet the predefined criteria for fit were still not entirely satisfied.
 
