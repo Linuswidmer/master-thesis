@@ -240,3 +240,57 @@ Unten dargestellt ist dein Testergebnis zusammen mit der Verteilung aller Männe
   note: [_N_ = 154. Items 1–5 = Pressured Motivation subscale; Items 6–9 = Autonomous Motivation subscale. Items rated on a 7-point Likert scale (1 = strongly disagree, 7 = strongly agree).],
   label: "table:mmb-descriptives",
 )
+
+#apa-figure(
+  table(
+    columns: (auto, auto, auto, auto, auto),
+    align: (center, left, center, center, center),
+    stroke: none,
+    table.hline(),
+    table.header(
+      [Item], [Fragment], [_M_], [_SD_], [_n_],
+    ),
+    table.hline(),
+    [1], [\_UT], [.05], [.21], [146],
+    [2], [\_ORN], [.13], [.34], [150],
+    [3], [\_IER], [.07], [.26], [149],
+    [4], [\_AGE], [.08], [.27], [148],
+    [5], [\_UNDE], [.03], [.18], [151],
+    [6], [\_IEB], [.51], [.50], [152],
+    [7], [\_ASS], [.10], [.30], [143],
+    [8], [\_OBEN], [.41], [.49], [140],
+    [9], [\_AGEN], [.23], [.42], [142],
+    [10], [\_AMPF], [.64], [.48], [141],
+    table.hline(),
+  ),
+  caption: [Descriptive Statistics for Aggressive Word Fragment Completion Items],
+  note: [Mean represents proportion of aggressive completions (0 = neutral, 1 = aggressive).],
+  label: "table:wfct-agg-descriptives",
+)
+
+#apa-figure(
+  table(
+    columns: (auto, auto, auto, auto, auto),
+    align: (center, left, center, center, center),
+    stroke: none,
+    table.hline(),
+    table.header(
+      [Item], [Fragment], [_M_], [_SD_], [_n_],
+    ),
+    table.hline(),
+    [1], [\_ORGEN], [.31], [.47], [144],
+    [2], [\_ANGEN], [.03], [.18], [145],
+    [3], [\_EUE], [.85], [.36], [108],
+    [4], [\_ROST], [.26], [.44], [145],
+    [5], [\_AST], [.33], [.47], [140],
+    [6], [\_EERE], [.36], [.48], [148],
+    [7], [\_ERN], [.16], [.37], [144],
+    [8], [\_ESSEL], [.08], [.27], [151],
+    [9], [\_ANISCH], [.86], [.35], [105],
+    [10], [\_ANNE], [.17], [.37], [144],
+    table.hline(),
+  ),
+  caption: [Descriptive Statistics for Anxious Word Fragment Completion Items],
+  note: [Mean represents proportion of anxious completions (0 = neutral, 1 = anxious).],
+  label: "table:wfct-anx-descriptives",
+)

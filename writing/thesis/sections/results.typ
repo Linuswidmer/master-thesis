@@ -151,6 +151,26 @@ Together, these results indicate that the manipulation was successful in inducin
 
 == Test Quality: Aggressive Cognition
 
--> include means, sds and a corrplot
+#apa-figure(
+  image("../images/corrplot-aggressive-cognition.png", width: 70%),
+  caption: [Tetrachoric Correlation Matrix for Aggressive Word Fragment Items],
+  note: [Darker shading indicates stronger positive correlations. Item descriptives are provided in #ref(<table:wfct-agg-descriptives>).],
+  label: "fig:corrplot-aggressive",
+)
 
-To assess whether the aggressive word fragment task is a valid and reliable tool for assessing aggressive cognition, internal consistency and reliability will be assessed.
+To assess whether the aggressive word fragment task is a valid and reliable measure of aggressive cognition, internal consistency was examined (see #ref(<fig:corrplot-aggressive>) for correlations and #ref(<table:wfct-agg-descriptives>) for item descriptives).
+The tetrachoric correlation matrix revealed weak and inconsistent correlations among items, suggesting that the items do not form a coherent unidimensional construct.
+The Kaiser-Meyer-Olkin criterion yielded a Measure of Sampling Adequacy below the acceptable threshold, indicating the data were not suitable for factor analysis.
+
+== Test Quality: Anxious Cognition
+
+#apa-figure(
+  image("../images/corrplot-anxious-cognition.png", width: 70%),
+  caption: [Tetrachoric Correlation Matrix for Anxious Word Fragment Items],
+  note: [Darker shading indicates stronger positive correlations. Item descriptives are provided in #ref(<table:wfct-anx-descriptives>).],
+  label: "fig:corrplot-anxious",
+)
+
+To assess whether the anxious word fragment task is a valid and reliable measure of anxious cognition, internal consistency was examined (see #ref(<fig:corrplot-anxious>) for correlations and #ref(<table:wfct-anx-descriptives>) for item descriptives).
+Similar to the aggressive cognition items, the tetrachoric correlation matrix revealed weak and inconsistent correlations among items.
+The Kaiser-Meyer-Olkin criterion yielded a Measure of Sampling Adequacy below the acceptable threshold, indicating the data were not suitable for factor analysis.
