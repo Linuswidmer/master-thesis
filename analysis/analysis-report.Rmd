@@ -349,7 +349,8 @@ corrplot(cor_mmb,
   diag = FALSE
 )
 
-save_corrplot_apa(cor_mmb, "corrplot-mmb")
+# Save APA-style corrplot with cluster rectangles for items 1-5 (Pressured) and 6-9 (Autonomous)
+save_corrplot_apa(cor_mmb, "corrplot-mmb", cluster_groups = c(1, 5, 6, 9))
 ```
 
 **Interpretation**
