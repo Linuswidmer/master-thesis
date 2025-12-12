@@ -20,143 +20,190 @@
 
 = Materials Supplement
 
-Hier auch immer die Englische Version (Original) zu den Items geben!
-
 == Motivation For Masculine Behavior
-Answered on a 7 point Likert Scale ranging from "Stimme überhaupt nicht zu" to "Stimme voll und ganz zu"
-=== Pressured Motivation Subscale
-+ Im Allgemeinen verhalte ich mich männlich, weil ich die Akzeptanz und Anerkennung anderer möchte.
-+ Im Allgemeinen bin ich männlich, weil das von mir erwartet wird.
-+ Ich verhalte mich männlich, weil ich möchte, dass man mich mag.
-+ Ich verhalte mich in Gegenwart anderer männlich, um ihre Erwartungen zu erfüllen.
-+ Ich bin nicht weiblich, weil ich glaube, dass mich die Leute sonst nicht mögen würden.
-=== Autonomous Motivation Subscale
-+ Es ist mir wichtig, männlich zu sein.
-+ Ich bin gerne männlich
-+ Es macht mich glücklich, wenn ich männlich bin.
-+ Es ist mir wichtig, nicht weiblich zu sein.
 
-#linebreak()
-
-== Gender Knowledge Test
-+ Ein Motorrad mit 8000 Umdrehungen pro Minute erzeugt ein Auspuffgeräusch bei (4000 U/min vs. 8000 U/min)
-+ Um die Leistung eines Motors zu erhöhen, sollte man (den Kraftstoff einspritzen vs. den Hubraum verringern)
-+ In der Natur entspricht eine Zündkerze am ehesten (Sonnenfeuer vs. Blitz)
-+ Karate entstand aus Kampfkünsten, entwickelt in (Japan vs. China) 
-+ Welche Art von Gewehren wurde im Zweiten Weltkrieg oft von Soldaten verwendet? (Gatling vs. Tommy)
-+ Die Rillen im Lauf eines Revolvers sind (spiralförmig vs. glatt)
-+ Wenn man den Schwimmer im Spülkasten austauschen muss, fragt man nach (einer Absperrklappe vs. einem Kugelhahn)
-+ Die Paste, die man zum Löten verwendet, heißt (Gel vs. Flussmittel)
-+ Hugh Hefner veröffentlichte das erste Playboy-Magazin im Jahr (1963 vs. 1953)
-+ In welchem Film tötete Arnold Schwarzenegger mehr Menschen? (True Lies vs. Total Recall)
-+ Laut Olympischen Regeln wiegen Boxhandschuhe in allen Gewichtsklassen (12 Unzen vs. 10 Unzen)
-+ Beim Zuschlagen sollte die Faust worauf gerichtet sein? (hinter das Ziel vs. direkt auf das Ziel)
-+ Beim Zuschlagen kommt die meiste Kraft von (der Geschwindigkeit der Faust vs. dem Oberarm und der Schulter)
-+ Was ist der beste Weg, einen Schlag abzuwehren? (mit dem Unterarm zum Block vs. mit der Hand fangen)
-+ Wenn man ein Auto rammt, um es außer Gefecht zu setzen, sollte man worauf zielen? (hinteren Beifahrerreifen vs. vorderen Fahrerreifen) 
-+ Man trägt Manolo Blahniks am (Kopf vs. Fuß)
-+ Botox glättet Falten vorübergehend durch (Hautbefeuchtung vs. Muskelentspannung)
-+ Die erste Firma, die Haarfärbemittel entwickelte, war (Clairol vs. L’Oréal)
-+ Welches Getränk machte die Sendung "Sex and the City" populär? (Cosmopolitan vs. Manhattan)
-+ In welchem Alter beginnen Kinder typischerweise mit dem Zahnen? (über 1 Jahr vs. unter 1 Jahr)
-+ In welchem Alter sollte die Sauberkeitserziehung sollte beginnen? (36 Monate vs. 12 Monate)
-+ Welches Medikament sollte Kindern nicht gegeben werden? (Ibuprofen vs. Aspirin)
-+ Wie viele Tassen Wasser braucht man, um 1 Tasse Reis zu kochen? (2 Tassen vs. 3 Tassen)
-+ Wie lange können Reste bei Zimmertemperatur bedenkenlos aufbewahrt werden (4 Stunden vs. 2 Stunden)
-+ Wenn kein Backpulver vorhanden ist, ersetzt man es durch Natron und (Salz vs. Weinstein)
-+ Eine Mehlschwitze ist am besten zu beschreiben als (Soße vs. Kuchen)
-+ Im Vergleich zu Männern benötigen Frauen mehr (Eisen vs. Zink)
-+ Welches dieser Lebensmittel enthält einen natürlichen Stimmungsaufheller? (Schokolade vs. Kaviar)
-+ Während der Schwangerschaft tritt morgendliche Übelkeit normalerweise in welchem Trimester auf? (zweites vs. erstes)
-+ Übungen, die das Sexualleben einer Frau verbessern, heißen (Kegel-Übungen vs. Pilates)
-
-== Masculinity Threatening and Non-Threatening Feedback
-Men in the Threat condition received the following feedback:
-
-"Glückwunsch! Du hast gerade den Geschlechtsidentitäts-Fragebogen abgeschlossen.
-Dieser Fragebogen misst, wie deine Geschlechtsidentität mit den anderen Teilnehmenden in Verbindung steht.
-Die Skala der Auswertung geht von -4 (maximaler weiblicher Score) zu 4 (maximal männlicher Score). Dein Geschlechtsidentitäts-Score ist: -0.5.
-
-Interpretation deines Testergebnisses: Dein Score liegt deutlich unter dem Wert, der durchschnittlich bei Männern gemessen wird (2.5). Das bedeutet, dass dein Selbstverständnis mehr weiblich als männlich ist und deutlich weniger männlich als der durchschnittliche Mann.
-
-Unten dargestellt ist dein Testergebnis zusammen mit der Verteilung aller Männer, die am Geschlechtsidentitäts-Fragebogen teilgenommen haben."
-
-#align(center, image("../assets/DistributionMasculinityThreat.png", height: 25%)
+#apa-figure(
+  table(
+    columns: (auto, auto, 1fr, 1fr),
+    align: (center, center, left, left),
+    stroke: none,
+    table.hline(),
+    table.header(
+      [Item], [Subscale], [English (Original)], [German (Translation)],
+    ),
+    table.hline(),
+    [1], [P], [In general, I'm masculine because I want others' acceptance and approval.], [Im Allgemeinen verhalte ich mich männlich, weil ich die Akzeptanz und Anerkennung anderer möchte.],
+    [2], [P], [In general, I'm masculine because that is what people expect from me.], [Im Allgemeinen bin ich männlich, weil das von mir erwartet wird.],
+    [3], [P], [I'm masculine because I want people to like me.], [Ich verhalte mich männlich, weil ich möchte, dass man mich mag.],
+    [4], [P], [I'm masculine around other people because that is how others think I should be.], [Ich verhalte mich in Gegenwart anderer männlich, um ihre Erwartungen zu erfüllen.],
+    [5], [P], [I'm not feminine because people wouldn't like me.], [Ich bin nicht weiblich, weil ich glaube, dass mich die Leute sonst nicht mögen würden.],
+    table.hline(stroke: 0.5pt),
+    [6], [A], [It's important to me to be masculine.], [Es ist mir wichtig, männlich zu sein.],
+    [7], [A], [I enjoy being masculine.], [Ich bin gerne männlich.],
+    [8], [A], [It makes me happy if I'm masculine.], [Es macht mich glücklich, wenn ich männlich bin.],
+    [9], [A], [It is important to me not to be feminine.], [Es ist mir wichtig, nicht weiblich zu sein.],
+    table.hline(),
+  ),
+  caption: [Motivation for Masculine Behavior Scale Items],
+  note: [P = Pressured Motivation subscale; A = Autonomous Motivation subscale. Items rated on a 7-point Likert scale (1 = "Disagree Strongly" to 7 = "Agree Strongly").],
+  label: "table:mmb-items",
 )
 
+== Gender Knowledge Test
+
+#apa-figure(
+  table(
+    columns: (auto, auto, 1fr, 1fr),
+    align: (center, center, left, left),
+    stroke: none,
+    table.hline(),
+    table.header(
+      [Item], [Type], [English (Original)], [German (Translation)],
+    ),
+    table.hline(),
+    [1], [M], [A motorcycle engine turning at 8000 rpms generates an exhaust sound at (4000 rpms vs. 8000 rpms)], [Ein Motorrad mit 8000 Umdrehungen pro Minute erzeugt ein Auspuffgeräusch bei (4000 U/min vs. 8000 U/min)],
+    [2], [M], [To help an engine produce more power you should (inject the fuel vs. reduce displacement)], [Um die Leistung eines Motors zu erhöhen, sollte man (den Kraftstoff einspritzen vs. den Hubraum verringern)],
+    [3], [M], [In nature, the best analogy for a spark plug is (solar fire vs. lightning)], [In der Natur entspricht eine Zündkerze am ehesten (Sonnenfeuer vs. Blitz)],
+    [4], [M], [Karate originated in martial arts developed in (Japan vs. China)], [Karate entstand aus Kampfkünsten, entwickelt in (Japan vs. China)],
+    [5], [M], [Soldiers in WWII often used what type of guns? (Gatling vs. Tommy)], [Welche Art von Gewehren wurde im Zweiten Weltkrieg oft von Soldaten verwendet? (Gatling vs. Tommy)],
+    [6], [M], [The groove inside the barrel of a revolver is (spiraled vs. smooth)], [Die Rillen im Lauf eines Revolvers sind (spiralförmig vs. glatt)],
+    [7], [M], [If you need to replace the tank ball in a toilet, ask for a (flapper vs. ball cock)], [Wenn man den Schwimmer im Spülkasten austauschen muss, fragt man nach (einer Absperrklappe vs. einem Kugelhahn)],
+    [8], [M], [The paste used for soldering joints is called (gel vs. flux)], [Die Paste, die man zum Löten verwendet, heißt (Gel vs. Flussmittel)],
+    [9], [M], [Hugh Hefner first published Playboy magazine in (1963 vs. 1953)], [Hugh Hefner veröffentlichte das erste Playboy-Magazin im Jahr (1963 vs. 1953)],
+    [10], [M], [Arnold Schwarzenegger killed more people in which film? (True Lies vs. Total Recall)], [In welchem Film tötete Arnold Schwarzenegger mehr Menschen? (True Lies vs. Total Recall)],
+    [11], [M], [By Olympic rules, boxing gloves for all weight classes weigh (12 ounces vs. 10 ounces)], [Laut Olympischen Regeln wiegen Boxhandschuhe in allen Gewichtsklassen (12 Unzen vs. 10 Unzen)],
+    [12], [M], [When punching someone, you should aim your fist (a foot beyond target vs. directly at target)], [Beim Zuschlagen sollte die Faust worauf gerichtet sein? (hinter das Ziel vs. direkt auf das Ziel)],
+    [13], [M], [When punching someone, the majority of the force comes from (the speed of your fist vs. your upper arm and shoulder)], [Beim Zuschlagen kommt die meiste Kraft von (der Geschwindigkeit der Faust vs. dem Oberarm und der Schulter)],
+    [14], [M], [What's the best way to deflect a punch? (use the forearm vs. use hand)], [Was ist der beste Weg, einen Schlag abzuwehren? (mit dem Unterarm zum Block vs. mit der Hand fangen)],
+    [15], [M], [When ramming a car to disable it, you should aim for the (rear passenger's tire vs. front driver's tire)], [Wenn man ein Auto rammt, um es außer Gefecht zu setzen, sollte man worauf zielen? (hinteren Beifahrerreifen vs. vorderen Fahrerreifen)],
+    table.hline(stroke: 0.5pt),
+    [16], [F], [You wear Manolo Blahniks on your (head vs. feet)], [Man trägt Manolo Blahniks am (Kopf vs. Fuß)],
+    [17], [F], [Botox temporarily erases wrinkles by (skin hydration vs. muscle paralysis)], [Botox glättet Falten vorübergehend durch (Hautbefeuchtung vs. Muskelentspannung)],
+    [18], [F], [The company first to develop hair coloring was (Clairol vs. L'Oreal)], [Die erste Firma, die Haarfärbemittel entwickelte, war (Clairol vs. L'Oréal)],
+    [19], [F], [The TV show "Sex in the City" popularized which drink? (Cosmopolitan vs. Manhattan)], [Welches Getränk machte die Sendung "Sex and the City" populär? (Cosmopolitan vs. Manhattan)],
+    [20], [F], [Children typically start to teethe when they are (over vs. under) 1 year old?], [In welchem Alter beginnen Kinder typischerweise mit dem Zahnen? (über 1 Jahr vs. unter 1 Jahr)],
+    [21], [F], [Toilet training should start around the age of (36 months vs. 12 months)], [In welchem Alter sollte das Toilettentraining beginnen? (36 Monate vs. 12 Monate)],
+    [22], [F], [Children should not be given which medication? (ibuprofen vs. aspirin)], [Welches Medikament sollte Kindern nicht gegeben werden? (Ibuprofen vs. Aspirin)],
+    [23], [F], [How many cups of water does it take to cook 1 cup of rice? (2 vs. 3)], [Wie viele Tassen Wasser braucht man, um 1 Tasse Reis zu kochen? (2 Tassen vs. 3 Tassen)],
+    [24], [F], [Leftovers can be safely kept at room temperature for up to (4 hours vs. 2 hours)], [Wie lange können Reste bei Zimmertemperatur bedenkenlos aufbewahrt werden? (4 Stunden vs. 2 Stunden)],
+    [25], [F], [If you don't have baking powder, you substitute baking soda plus (salt vs. cream of tartar)], [Wenn kein Backpulver vorhanden ist, ersetzt man es durch Natron und (Salz vs. Weinstein)],
+    [26], [F], [A roux is best described as a (sauce vs. cake)], [Eine Mehlschwitze ist am besten zu beschreiben als (Soße vs. Kuchen)],
+    [27], [F], [Compared to men, women need more (iron vs. zinc)], [Im Vergleich zu Männern benötigen Frauen mehr (Eisen vs. Zink)],
+    [28], [F], [Which of these contains a natural mood enhancer? (chocolate vs. caviar)], [Welches dieser Lebensmittel enthält einen natürlichen Stimmungsaufheller? (Schokolade vs. Kaviar)],
+    [29], [F], [During pregnancy, morning sickness usually occurs in which trimester? (second vs. first)], [Während der Schwangerschaft tritt morgendliche Übelkeit normalerweise in welchem Trimester auf? (zweites vs. erstes)],
+    [30], [F], [Exercises that improve a woman's sex life are called (Kegel's vs. Pilates)], [Übungen, die das Sexualleben einer Frau verbessern, heißen (Kegel-Übungen vs. Pilates)],
+    table.hline(),
+  ),
+  caption: [Gender Knowledge Test Items],
+  note: [M = Masculine-stereotyped knowledge; F = Feminine-stereotyped knowledge. Correct answers are shown in bold in the original study materials. Items adapted from #cite(<vandello2008precarious>, form: "prose").],
+  label: "table:gkt-items",
+)
+
+== Masculinity Threatening and Non-Threatening Feedback
+
+=== Threat Condition
+
+#block(
+  fill: luma(245),
+  inset: 1em,
+  radius: 4pt,
+  [
+    *Glückwunsch – du hast den Geschlechtsspezifischen Wissenstest abgeschlossen!*
+
+    Dieser Test wurde entwickelt, um Unterschiede im Wissen über geschlechtsspezifische Themen zu messen. Frühere Studien zeigen, dass bestimmte Wissensbereiche stärker mit traditionell männlich oder weiblich geprägten Rollen und Selbstbildern verbunden sind. Die Auswertung basiert auf einer Skala von –4 (ausgeprägt weiblich) bis +4 (ausgeprägt männlich).
+
+    *Ihr Score beträgt: –1,83*
+
+    *Was bedeutet das?*
+
+    Im Vergleich zu anderen männlichen Testteilnehmern, die im Durchschnitt einen Score von +2,24 erreichen, liegt ihr Ergebnis deutlich darunter. Dies weist darauf hin, dass ihre Antworten denen von Frauen ähnlicher sind als denen von Männern. In früheren Studien wurde ein solcher Score häufig mit einem weniger männlichen Selbstbild in Verbindung gebracht. Die folgende Grafik zeigt Ihren Wert im Vergleich zur typischen Verteilung unter männlichen Teilnehmern:
+
+    #align(center, image("../assets/DistributionMasculinityThreat.png", width: 80%))
+  ]
+)
+
+=== No-Threat Condition
+
+#block(
+  fill: luma(245),
+  inset: 1em,
+  radius: 4pt,
+  [
+    *Glückwunsch – du hast den Geschlechtsspezifischen Wissenstest abgeschlossen!*
+
+    Dieser Test wurde entwickelt, um Unterschiede im Wissen über geschlechtsspezifische Themen zu messen. Frühere Studien zeigen, dass bestimmte Wissensbereiche stärker mit traditionell männlich oder weiblich geprägten Rollen und Selbstbildern verbunden sind. Die Auswertung basiert auf einer Skala von –4 (ausgeprägt weiblich) bis +4 (ausgeprägt männlich).
+
+    *Ihr Score beträgt: +2,18*
+
+    *Was bedeutet das?*
+
+    Ihr Score liegt nahe beim Durchschnitt männlicher Teilnehmer, der bei +2,24 liegt. Das bedeutet, dass ihre Antworten typisch für männliche Testteilnehmer sind. In früheren Studien wurde ein solcher Score häufig mit einem ausgeglichenen und typischen Wissensprofil in geschlechtsspezifischen Themenbereichen in Verbindung gebracht. Die folgende Grafik zeigt Ihren Wert im Vergleich zur typischen Verteilung unter männlichen Teilnehmern:
+
+    #align(center, image("../assets/DistributionMasculinityNoThreat.png", width: 80%))
+  ]
+)
 
 
 == Word Fragment Completion Task
 
 #apa-figure(
   table(
-    align: (x, y) => if y == 0 and x >= 0 {
-      center
-    } else if x == 0 and y > 0 {
-      left
-    } else {
-      center
-    },
-    columns: (1fr, 2fr, 2fr),
+    columns: (auto, auto, 1fr),
+    align: (center, left, left),
+    stroke: none,
     table.hline(),
     table.header(
-      [Word Fragment],
-      [Aggressive Completion],
-      [Neutral Completion],
+      [Fragment], [Aggressive], [Neutral],
     ),
     table.hline(),
-    [\_UT], [WUT], [MUT, HUT], 
-    [\_ORN], [ZORN], [DORN, KORN, HORN],  
-    [\_IER], [GIER], [BIER, TIER, VIER],  
-    [\_AGE], [RAGE], [VAGE, TAGE, SAGE],  
-    [\_UNDE], [WUNDE], [RUNDE, HUNDE],  
-    [\_IEB], [DIEB, HIEB], [SIEB, LIEB, RIEB],  
-    [\_ASS], [HASS], [NASS, FASS, BASS, DASS],  
-    [\_OBEN], [TOBEN], [LOBEN, ROBEN],  
-    [\_AGEN], [JAGEN, WAGEN], [TAGEN, SAGEN, MAGEN, RAGEN],  
-    [\_AMPF], [KAMPF], [DAMPF],
-
-    
+    [\_UT], [Wut], [Mut, Hut, Gut, Tut],
+    [\_ORN], [Zorn], [Dorn, Korn, Horn, Vorn],
+    [\_IER], [Gier], [Bier, Tier, Vier, Hier, Pier],
+    [\_AGE], [Rage], [Vage, Tage, Sage, Lage, Page, Jage, Gage, Zage],
+    [\_UNDE], [Wunde], [Runde, Hunde, Munde, Kunde, Bunde],
+    [\_IEB], [Dieb, Hieb], [Sieb, Lieb, Rieb],
+    [\_ASS], [Hass], [Nass, Fass, Bass, Dass, Pass, Lass, Mass],
+    [\_OBEN], [Toben], [Loben, Hoben, Roben],
+    [\_AGEN], [Jagen, Wagen], [Sagen, Tagen, Magen, Ragen, Nagen, Lagen, Zagen, Hagen],
+    [\_AMPF], [Kampf], [Dampf, Mampf],
+    table.hline(),
   ),
-    label: "table:wfct",
-      caption: [Items for the Word Fragment Completion Task on Aggressive Cognition],
+  caption: [Word Fragment Completion Task: Aggressive Cognition Items],
+  note: [Fragment = word stem presented to participants. Aggressive = completions coded as aggressive cognition. Neutral = completions coded as neutral.],
+  label: "table:wfct-aggressive",
 )
+
 #apa-figure(
   table(
-    align: (x, y) => if y == 0 and x >= 0 {
-      center
-    } else if x == 0 and y > 0 {
-      left
-    } else {
-      center
-    },
-    columns: (1fr, 2fr, 2fr),
+    columns: (auto, auto, 1fr),
+    align: (center, left, left),
+    stroke: none,
     table.hline(),
     table.header(
-      [Word Fragment],
-      [Anxious Completion],
-      [Neutral Completion],
+      [Fragment], [Anxious], [Neutral],
     ),
     table.hline(),
-[\_ORGEN], [SORGEN], [MORGEN, BORGEN],  
-[\_ANGEN], [BANGEN], [FANGEN, WANGEN, SANGEN],  
-[\_EUE], [REUE], [NEUE],  
-[\_ROST], [TROST], [PROST],  
-[\_AST], [LAST], [MAST, FAST, RAST, BAST],  
-[\_EERE], [LEERE], [BEERE],  
-[\_ERN], [FERN], [KERN, GERN],  
-[\_ESSEL], [FESSEL], [KESSEL, NESSEL, SESSEL],  
-[\_ANISCH], [PANISCH], [MANISCH],  
-[\_ANNE], [PANNE], [KANNE, TANNE],    
+    [\_ORGEN], [Sorgen], [Morgen, Borgen],
+    [\_ANGEN], [Bangen], [Fangen, Wangen, Sangen, Rangen, Langen, Zangen],
+    [\_EUE], [Reue], [Neue],
+    [\_ROST], [Trost], [Prost, Frost],
+    [\_AST], [Last], [Mast, Fast, Rast, Bast, Hast, Gast],
+    [\_EERE], [Leere], [Beere, Heere, Teere],
+    [\_ERN], [Fern], [Kern, Gern, Lern, Bern],
+    [\_ESSEL], [Fessel], [Kessel, Sessel, Nessel],
+    [\_ANISCH], [Panisch], [Manisch],
+    [\_ANNE], [Panne], [Kanne, Tanne, Wanne],
+    table.hline(),
   ),
-    label: "table:wfct",
-      caption: [Items for the Word Fragment Completion Task on Anxious Cognition],
+  caption: [Word Fragment Completion Task: Anxious Cognition Items],
+  note: [Fragment = word stem presented to participants. Anxious = completions coded as anxious cognition. Neutral = completions coded as neutral.],
+  label: "table:wfct-anxious",
 )
 
 // == Manipulation Check
 // == Demographic Items
 
-== Power Analysis
+== Sample Size Planning
 
 #apa-figure(
   table(
@@ -196,20 +243,22 @@ Unten dargestellt ist dein Testergebnis zusammen mit der Verteilung aller Männe
 
 #apa-figure(
   caption: [Power Analysis for Masculinity Threat on Aggressive Cognition],
- image("../assets/PowerAnalysis1.png", height: 25%),
-  label: "fig:sample-bar-graph",
+  image("../assets/PowerAnalysisThreat.png", height: 25%),
+  label: "fig:power-analysis-threat",
 )
 
 #apa-figure(
-  caption: [Power Analysis for Masculinity Threat on Anxious Cognition],
- image("../assets/PowerAnalysis2.png", height: 25%),
-  label: "fig:sample-bar-graph",
-)
-
-#apa-figure(
-  caption: [Power Analysis for Moderation of Motivation for Masculine Behavior on Threat Effect],
- image("../assets/PowerAnalysis3.png", height: 25%),
-  label: "fig:sample-bar-graph",
+  grid(
+    columns: (auto, auto),
+    grid.cell(
+      image("../assets/PowerAnalysisAggressive.png", height: 25%)
+    ),
+    grid.cell(
+      image("../assets/PowerAnalysisAnxious.png", height: 25%),
+    )
+  ),
+  caption: [Power Analysis for Masculinity Threat on Aggressive & Anxious Cognition],
+  label: "fig:power-analysis-moderation",
 )
 
 = Results Supplement
