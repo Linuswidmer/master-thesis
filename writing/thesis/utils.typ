@@ -48,6 +48,29 @@
   text(first + " = " + meanFormatted + ", " + second + " = " + sdFormatted)
 }
 
+#let reportTStatistic(tValue: none, pValue: none, df: none) = {
+  if tValue == none or pValue == none or df == none {
+    return text("Error: tValue, pValue, and df must be provided.")
+  }
+
+  let t_formatted = str(calc.round(tValue, digits: 2))
+  let df_formatted = str(df)
+
+  let p_text = if pValue < 0.001 {
+    "< .001"
+  } else {
+    let p_rounded = calc.round(pValue, digits: 3)
+    let p_str = repr(p_rounded)
+    if p_str.starts-with("0.") {
+      p_str.slice(1)
+    } else {
+      p_str
+    }
+  }
+
+  text(emph("t") + "(" + df_formatted + ") = " + t_formatted + ", " + emph("p") + " = " + p_text)
+}
+
 #let reportModelFitIndices(cfi: none, tli: none, rmsea: none, srmr: none) = {
   // Format each index to 2 decimal places (APA standard for fit indices)
   let format_index = (value) => {

@@ -6,9 +6,9 @@ All statistical analyses were conducted on the proportion of aggressive (or anxi
 
 The word fragment completion task yields a count outcome bounded by the total number of trials, and therefore the dependent variable follows a binomial distribution. Accordingly, a Generalized Linear Model (GLM) with a binomial family and logit link function was used for all inferential tests.
 
-To ensure robustness, several diagnostic checks were performed. Prior to the main analyses, Levene's tests assessed homogeneity of variance across conditions. Model diagnostics were evaluated using simulated residuals via the DHARMa package, which is appropriate for GLMs with non-normal error distributions. Because influential observations may distort results, a sensitivity analysis was conducted by identifying cases exceeding a Cook's distance threshold of $4 / (n - k)$, removing them, and refitting the model to confirm the stability of findings.
+To ensure robustness, several diagnostic checks were performed. Prior to the main analyses, Levene's tests assessed homogeneity of variance across conditions. Model diagnostics were evaluated using simulated residuals via the DHARMa package (TODO cite), which is appropriate for GLMs with non-normal error distributions. Because influential observations may distort results (Aguinis, Gottfredson, & Joo, 2013), a sensitivity analysis was conducted by identifying cases exceeding a Cook's distance threshold of $4 / (n - k)$, removing them, and refitting the model to confirm the stability of findings.
 
-A significance level of $alpha = .05$ was applied throughout. To control the family-wise error rate across analyses within the same outcome domain (aggressive vs. anxious cognition), $p$-values were adjusted using the Bonferroni-Holm correction. Post-hoc power was calculated using G*Power 3 and was considered sufficient when exceeding 80%.
+A significance level of $alpha = .05$ was applied throughout. To control the family-wise error rate across analyses within the same outcome domain (aggressive vs. anxious cognition), $p$-values were adjusted using the Bonferroni-Holm correction (Abdi, 2010). Post-hoc power was calculated using G*Power 3 (Cunningham & McCrum-Gardner, 2007) and was considered sufficient when above the commonly used 80% criterion (Aberson, 2011).
 
 #apa-figure(
   caption: [Aggressive and Anxious Word Completion Scores by Threat Condition],
@@ -129,3 +129,15 @@ For the subsequent moderation analyses, subscale scores were computed as row mea
 
 === Autonomous Motivation on Anxious Cognition (Hypothesis 2b)
 ...
+
+== Experimental Manipulation Check
+To assess whether the experimental manipulation (threat vs. no-threat feedback on the Gender Knowledge Test) was effective, two measures were examined.
+
+First, participants were asked at the end of the questionnaire to indicate which feedback they had received, on a scale from 1 (stereotypically feminine) to 10 (stereotypically masculine).
+Descriptive statistics confirmed a clear distinction between conditions: the threat condition (#reportMeanAndSD(mean: 3.08, sd: 0.93)) reported substantially lower scores than the no-threat condition (#reportMeanAndSD(mean: 6.22, sd: 1.00)).
+This indicates that participants accurately recalled the feedback they received.
+
+Second, participants were asked to self-evaluate their gender knowledge on the same scale.
+Descriptive statistics showed lower self-evaluations in the threat condition (#reportMeanAndSD(mean: 5.71, sd: 1.43)) than in the no-threat condition (#reportMeanAndSD(mean: 6.79, sd: 1.38)).
+A $t$-test confirmed that participants in the threat condition rated their gender knowledge significantly lower than those in the no-threat condition (#reportTStatistic(tValue: 4.735, pValue: 0.00001, df: 154)).
+Together, these results indicate that the manipulation was successful in inducing a perceived threat to masculine identity.
