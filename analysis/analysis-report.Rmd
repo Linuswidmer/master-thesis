@@ -491,22 +491,20 @@ Interpretation
 - Allowing for a correlation between latent factors creates a better fit but still not sufficient
 - Mod indices suggest A correlation between Item MMBi5 and MMBi9, This makes conceptually sense, because they both deal with anti femininity. 
 
-### 4.1.6 Two-Factor Correlated + Residuals CFA
+### 4.1.6 Two-Factor Correlated + remove MMBi9 + Residuals CFA
 
 - 2 latent factors
 - correlation allowed between factors
-- allow correlated residuals
+- remove item MMBi9, because it poorly fits into the concept.
+- allow correlated residuals item 7 and 8
 ```{r }
 model_twof_cor_mod <- "
   # latent variables
   Pressured =~ MMBi1 + MMBi2 + MMBi3 + MMBi4 + MMBi5
-  Autonomous =~ MMBi6 + MMBi7 + MMBi8 + MMBi9
+  Autonomous =~ MMBi6 + MMBi7 + MMBi8
 
   Pressured ~~ Autonomous
 
-  # theory-based correlated residuals
-  MMBi3 ~~ MMBi4
-  MMBi5 ~~ MMBi9
   MMBi7 ~~ MMBi8
 "
 
@@ -551,14 +549,15 @@ df$regAutonomous <- scale(fs_reg[, "Autonomous"])
 
 Also compute Row means for visualizations
 ```{r}
-df$rowmeansAutonomous <- rowMeans(
-  df[mmb_autonomous_items],
-  na.rm = TRUE
-)
 
 df$rowmeansPressured <- rowMeans(
   df[mmb_pressured_items],
   na.rm = TRUE
+
+df$rowmeansAutonomous <- rowMeans(
+  df[setdiff(mmb_autonomous_items, "MMBi9")], # exclude item 9
+  na.rm = TRUE
+)
 )
 ```
 
