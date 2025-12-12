@@ -36,6 +36,34 @@ Finally, a sensitivity analysis was performed. After identifying and excluding f
 #linebreak()
 #linebreak()
 
+#linebreak()
+== Moderation of Masculinity Threat Effects
+
+=== Factor Structure Motivation For Masculine Behavior
+
+A crucial predecessor for the moderation analysis was the validation and reliability assessment of the MMB scale.
+The hypothesized two-factor model by @stanaland2021man constrained the factors Pressured motivation (Items 1–5) and Autonomous motivation (Items 6–9) to be uncorrelated.
+A Confirmatory Factor Analysis (CFA) was run to validate this model.
+Computing the Kaiser-Meyer-Olkin criterion on the item correlations yielded an overall Measure of Sampling Adequacy of .85, indicating the data were suitable for factor analysis. The fit indices of the CFA did non satidfy the predefined criteria: (CFI = [TODO], TLI = [TODO], RMSEA = [TODO], SRMR = [TODO]).
+
+To improve model fit and better understand the data structure, an Exploratory Factor Analysis (EFA) with oblimin rotation was conducted. 
+A parallel analysis and scree plot suggested retaining two factors. 
+The resulting factor loadings (displayed in Table (TODO)) showed a strong coherence for the first five items on the first factor (Pressured). 
+However, Item 9, "TODO" displayed a significant cross-loading on both factors (loading on Factor 1 and Factor 2), suggesting poor fit for this item within the intended structure.
+
+A subsequent CFA was conducted on the original 9 items, allowing for a correlation between the two latent factors. This notably improved model fit (CFI = [TODO], TLI = [TODO], RMSEA = [TODO], SRMR = [TODO]), yet the predefined criteria for fit were still not entirely satisfied.
+
+Given the EFA results, Item 9 was identified as problematic due to its high cross-loading and was removed from the scale for further analysis. 
+A subsequent examination of the Modification Indices also suggested a high residual covariance between Item 7 and Item 8, which makes conceptual sense as both items express a positive, internal emotional connection ("happy," "glad") to masculine identity. 
+A final CFA was run on the 8-item scale, allowing the correlation between the latent factors and between the residuals of Item 7 and Item 8. 
+This final model yielded the following fit indices: CFI = [TODO final fit], TLI = [TODO final fit], RMSEA = [TODO final fit], SRMR = [TODO final fit].
+This final model was deemed sufficient because the CFI and SRMR satisfied the target values of $0.95$ and $0.08$, respectively. 
+While the TLI was just below the target, it can be considered acceptable, and the RMSEA, though still elevated, was substantially reduced. 
+This pattern of fit indices may be partially attributed to the restricted final sample size ($N = 154$).
+
+Lastly, reliability scores were computed for the two subscales. McDonald’s omega ($omega$) was used because it does not assume tau-equivalence of the items. 
+Scores revealed excellent reliability for the Pressured scale ($omega = .93$) and acceptable reliability for the Autonomous scale ($omega = .7$). 
+For the subsequent moderation analysis, row means were used to compute scores for Pressured and Autonomous motivation, with Item 9 excluded from the Pressured scale.
 
 #apa-figure(
   grid(
@@ -50,24 +78,11 @@ Finally, a sensitivity analysis was performed. After identifying and excluding f
   label: "fig:moderation-masculinity-threat",
   note:[TODO]
 )
-#linebreak()
-== Moderation of Masculinity Threat Effects
-
-#ref(<fig:moderation-masculinity-threat>) illustrates the moderation of 
-
-===  Motivation For Masculine Behavior
-A crucial predecessor for the moderation of masculinity threat effects by MMB is the validity and reliability of the MMB scale:
-- 9 Items were conducted to assess the oarticipants Motivation for Mascuine Behavior and validate the hypothesized 2 factor structure.
-- Means and SD of Items can be found in Table (TODO).
-- The correlation between items is visualized in Figure (TODO).
-- Computing the Kaiser-Maier-Olkin criterion on the correlation of items yielded an overall MSA of .85, indicating a sampling adequacy for factor analysis.
-
-The hypothesized model by @stanaland2021man stated a latent factor for pressured motivation that loads on items 1-5, as well as a latent factor for pressured motivation loading on items 6 - 9 and constraining the covariance between the two latent factors to 0. 
-
-To validate the hypothesized factor structure by Stanaland et al. (2021), a confirmatory factor analysis was run and fit indices were evaluated:
 
 === Pressured Motivation on Aggressive Cognition (Hypothesis 2a)
 ...
+
+#ref(<fig:moderation-masculinity-threat>) illustrates the moderation of 
 
 === Autonomous Motivation on Anxious Cognition (Hypothesis 2b)
 ...
