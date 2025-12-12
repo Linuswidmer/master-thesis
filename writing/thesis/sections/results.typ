@@ -2,54 +2,62 @@
 #import "../utils.typ": *
 
 = Results
-All statistical analyses were conducted on the mean number of positively completed aggressive (or anxious) cognition word fragment trials for each participant.
+All statistical analyses were conducted on the proportion of aggressive (or anxious) word fragment completions for each participant.
 
-Given that the aggressive and anxious word fragment completion tasks naturally yield a count outcome bounded by the total number of trials, the dependent variable is assumed to follow a binomial distribution. Therefore, a Generalized Linear Model (GLM) with a binomial family and a logit link function (Logistic Regression) was used for all parametric inferential tests concerning mean differences. This approach is justified by the data's inherent distributional properties.
+The word fragment completion task yields a count outcome bounded by the total number of trials, and therefore the dependent variable follows a binomial distribution. Accordingly, a Generalized Linear Model (GLM) with a binomial family and logit link function was used for all inferential tests.
 
-To ensure the robustness and validity of the results, several checks were implemented. Prior to the main analyses, Levene's Tests were performed to assure the homogeneity of variance. Furthermore, residual Q-Q plots were inspected to ensure the normality of the residuals, confirming the suitability of the model framework. Because outliers may distort the validity of the results (Aguinis, Gottfredson, & Joo, 2013), a sensitivity analysis is included. This involved identifying and removing influential observations (using a threshold of $4 / (n - k)$) and refitting the model to confirm the stability of the findings.
+To ensure robustness, several diagnostic checks were performed. Prior to the main analyses, Levene's tests assessed homogeneity of variance across conditions. Model diagnostics were evaluated using simulated residuals via the DHARMa package, which is appropriate for GLMs with non-normal error distributions. Because influential observations may distort results, a sensitivity analysis was conducted by identifying cases exceeding a Cook's distance threshold of $4 / (n - k)$, removing them, and refitting the model to confirm the stability of findings.
 
-A conservative level of significance (_p_ = .05) was applied throughout all tests. To control the family-wise error rate across analyses within the same dataset (i.e., aggressive cognition trials vs. anxious cognition trials), all $p$-values were subjected to a Bonferroni-Holm correction (Abdi, 2010). Finally, achieved power was _post-hoc_ calculated using G\*Power 3 (Cunningham & McCrum-Gardner, 2007) and was considered sufficient when exceeding the commonly used $alpha = .80$ criterion (Aberson, 2011).
+A significance level of $alpha = .05$ was applied throughout. To control the family-wise error rate across analyses within the same outcome domain (aggressive vs. anxious cognition), $p$-values were adjusted using the Bonferroni-Holm correction. Post-hoc power was calculated using G*Power 3 and was considered sufficient when exceeding 80%.
 
 #apa-figure(
-  caption: [Boxplot aggressive and anxious cognition],
+  caption: [Aggressive and Anxious Word Completion Scores by Threat Condition],
   image("../images/aggressive-anxious-cognition-by-threat-boxplot.png"),
   label: "fig:agg-anx-cog-boxplot",
-  note:[TODO]
+  note: [Boxplots display the distribution of aggressive and anxious word completion scores (%) by experimental condition. The horizontal line represents the median, boxes represent the interquartile range, and whiskers extend to 1.5 times the interquartile range.]
 )
-#linebreak()
 
 == Masculinity Threat Effects
-#ref(<fig:agg-anx-cog-boxplot>) illustrates anxious and aggressive cognition values by threat condition.
+#ref(<fig:agg-anx-cog-boxplot>) displays the distribution of aggressive and anxious cognition scores by threat condition.
 
 === Masculinity Threat on Aggressive Cognition (Hypothesis 1a)
-For Hypothesis 1a, a higher mean of aggressive cognition in the threat condition compared to the no threat condition was predicted.
-Descriptive statistics, however, indicated a pattern contrary to the hypothesis: the mean aggressive cognition was lower in the threat condition (#reportMeanAndSD(mean: 19.5, sd: 12.3)) than in the no threat condition (#reportMeanAndSD(mean: 22.8, sd: 12.3)). 
+Hypothesis 1a predicted higher aggressive cognition in the threat condition compared to the no-threat condition.
+Contrary to this prediction, descriptive statistics indicated the opposite pattern: aggressive cognition was lower in the threat condition (#reportMeanAndSD(mean: 19.5, sd: 12.3)) than in the no-threat condition (#reportMeanAndSD(mean: 22.8, sd: 12.3)).
 
-Prior to the main analysis, the assumption checks were satisfied (report statistics ???). A GLM with a binomial distribution was conducted to test the effect of masculinity threat on aggressive cognition. The model revealed no statistically significant difference between the two conditions, #reportZStatistic(zValue: -0.1994, pValue: 0.111). Given the directional nature of the hypothesis (predicted effect $beta > 0$), and the observed effect going in the opposite direction, the one-sided $p$-value was $p = .944$, leading to a failure to reject the null hypothesis.
+Assumption checks were satisfactory: Levene's test indicated homogeneous variances, and DHARMa residual diagnostics revealed no significant deviations from the expected distribution.
+A binomial GLM was conducted to test the effect of threat condition on aggressive cognition.
+The model revealed no statistically significant difference between conditions (#reportZStatistic(zValue: -1.592, pValue: 0.111)).
+Given the directional hypothesis (predicted $beta > 0$) and the observed effect in the opposite direction, the one-tailed $p$-value was $p = .944$, leading to a failure to reject the null hypothesis.
 
-Finally, a sensitivity analysis was performed. After identifying and excluding five influential observations , the GLM was refitted on the reduced sample. The analysis continued to show no significant effect, #reportZStatistic(zValue: -0.191, pValue: 0.139) with a directed one-sided $p$-Value of $p = .93$.
+A sensitivity analysis was performed by identifying and excluding five influential observations.
+The GLM refitted on the reduced sample continued to show no significant effect (#reportZStatistic(zValue: -1.479, pValue: 0.139); one-tailed $p = .93$).
 
-=== Masculinity Threat on Aggressive Cognition (Hypothesis 1b)
-...
-#linebreak()
-#linebreak()
-#linebreak()
-#linebreak()
+=== Masculinity Threat on Anxious Cognition (Hypothesis 1b)
+Hypothesis 1b predicted higher anxious cognition in the threat condition compared to the no-threat condition.
+Descriptive statistics revealed virtually identical means across conditions: the threat condition (#reportMeanAndSD(mean: 0.28, sd: 0.13)) and the no-threat condition (#reportMeanAndSD(mean: 0.28, sd: 0.15)) showed no meaningful difference.
+
+Assumption checks were satisfactory: Levene's test indicated homogeneous variances, and DHARMa residual diagnostics revealed no significant deviations from the expected distribution.
+A binomial GLM was conducted to test the effect of threat condition on anxious cognition.
+The model revealed no statistically significant difference between conditions (#reportZStatistic(zValue: 0.177, pValue: 0.859)).
+Given the directional hypothesis (predicted $beta > 0$), the one-tailed $p$-value was $p = .430$, leading to a failure to reject the null hypothesis.
+
+A sensitivity analysis was performed by identifying and excluding five influential observations.
+The GLM refitted on the reduced sample continued to show no significant effect (#reportZStatistic(zValue: 1.04, pValue: 0.30); one-tailed $p = .15$).
 
 #linebreak()
 == Moderation of Masculinity Threat Effects
 
-=== Factor Structure Motivation For Masculine Behavior
+=== Factor Structure of Motivation for Masculine Behavior
 
-A crucial predecessor for the moderation analysis was the validation and reliability assessment of the MMB scale.
-The hypothesized two-factor model by #cite(<stanaland2021man>, form: "prose") constrained the factors Pressured motivation (Items 1–5) and Autonomous motivation (Items 6–9) to be uncorrelated.
-A Confirmatory Factor Analysis (CFA) was run to validate this model.
-Computing the Kaiser-Meyer-Olkin criterion on the item correlations yielded an overall Measure of Sampling Adequacy of .85, indicating the data were suitable for factor analysis. The fit indices of the CFA did non satisfy the predefined criteria: (#reportModelFitIndices(cfi: 0.851, tli: 0.801, rmsea: 0.179, srmr: 0.248)).
+Prior to the moderation analysis, the validity and reliability of the MMB scale were assessed.
+The Kaiser-Meyer-Olkin (KMO) criterion yielded an overall Measure of Sampling Adequacy of .85, indicating the data were suitable for factor analysis.
+The hypothesized two-factor model by #cite(<stanaland2021man>, form: "prose") specified uncorrelated latent factors for Pressured Motivation (Items 1–5) and Autonomous Motivation (Items 6–9).
+A Confirmatory Factor Analysis (CFA) was conducted to validate this structure; however, the fit indices did not satisfy the predefined criteria (#reportModelFitIndices(cfi: 0.851, tli: 0.801, rmsea: 0.179, srmr: 0.248)).
 
-To improve model fit and better understand the data structure, an Exploratory Factor Analysis (EFA) with oblimin rotation was conducted. 
-A parallel analysis and scree plot suggested retaining two factors. 
-The resulting factor loadings (displayed in #ref(<table:efa-mmb>)) showed a strong coherence for the first five items on the first factor (Pressured). 
-However, Item 9, "It is important to me not to act like a woman" displayed a significant cross-loading on both factors (loading on Factor 1 and Factor 2), suggesting poor fit for this item within the intended structure.
+To better understand the data structure, an Exploratory Factor Analysis (EFA) with oblimin rotation was conducted.
+A parallel analysis and scree plot supported a two-factor solution.
+The resulting factor loadings (#ref(<table:efa-mmb>)) showed strong coherence for Items 1–5 on the first factor (Pressured Motivation).
+However, Item 9 ("It is important to me not to be feminine") displayed a cross-loading on both factors, suggesting poor discriminant validity.
 
 #apa-figure(
   table(
@@ -69,15 +77,15 @@ However, Item 9, "It is important to me not to act like a woman" displayed a sig
       [Factor 2],
     ),
     table.hline(),
-    [1], [I present myself like the man I described because I want others' acceptance and approval.], [.83], [],
-    [2], [I act like the man I described because I want people to like me.], [.90], [],
-    [3], [I don't act like a woman because people wouldn't like me.], [.79], [],
-    [4], [I act like the man I described because that is what people expect from me.], [.89], [],
-    [5], [I am like the man I described around other people because that is how others think I should be.], [.78], [],
-    [6], [It is important to me not to act like a woman.], [], [.69],
-    [7], [It is important to me to behave like the man I described.], [], [.74],
-    [8], [It brings me pleasure if I behave like the man I described.], [], [.80],
-    [9], [I enjoy acting like the man I described.], [.39], [.39],
+    [1], [In general, I'm masculine because I want others' acceptance and approval.], [.83], [],
+    [2], [In general, I'm masculine because that is what people expect from me.], [.90], [],
+    [3], [I'm masculine because I want people to like me.], [.79], [],
+    [4], [I'm masculine around other people because that is how others think I should be.], [.89], [],
+    [5], [I'm not feminine because people wouldn't like me.], [.78], [],
+    [6], [It's important to me to be masculine.], [], [.69],
+    [7], [I enjoy being masculine.], [], [.74],
+    [8], [It makes me happy if I'm masculine.], [], [.80],
+    [9], [It is important to me not to be feminine.], [.39], [.39],
     table.hline(),
   ),
   caption: [EFA Factor Loadings for Motivation for Masculine Behavior Scale],
@@ -87,19 +95,18 @@ However, Item 9, "It is important to me not to act like a woman" displayed a sig
   label: "table:efa-mmb",
 )
 
-A subsequent CFA was conducted on the original 9 items, allowing for a correlation between the two latent factors. This notably improved model fit #reportModelFitIndices(cfi: 0.901, tli: 0.863, rmsea: 0.148, srmr: 0.099), yet the predefined criteria for fit were still not entirely satisfied.
+A subsequent CFA allowing correlation between the two latent factors notably improved model fit (#reportModelFitIndices(cfi: 0.901, tli: 0.863, rmsea: 0.148, srmr: 0.099)), yet the predefined criteria were still not satisfied.
 
-Given the EFA results, Item 9 was identified as problematic due to its high cross-loading and was removed from the scale for further analysis. 
-A subsequent examination of the Modification Indices also suggested a high residual covariance between Item 7 and Item 8, which makes conceptual sense as both items express a positive, internal emotional connection ("happy," "glad") to masculine identity. 
-A final CFA was run on the 8-item scale, allowing the correlation between the latent factors and between the residuals of Item 7 and Item 8. 
-This final model yielded the following fit indices #reportModelFitIndices(cfi: 0.966, tli: 0.947, rmsea: 0.098, srmr: 0.066).
-This final model was deemed sufficient because the CFI and SRMR satisfied the target values of $0.95$ and $0.08$, respectively. 
-While the TLI was just below the target, it can be considered acceptable, and the RMSEA, though still elevated, was substantially reduced. 
-This pattern of fit indices may be partially attributed to the restricted final sample size ($N = 154$).
+Based on the EFA results, Item 9 was removed due to its cross-loading.
+Examination of modification indices further suggested a residual covariance between Items 7 and 8, which is conceptually plausible as both items express positive affect toward masculine identity ("enjoy," "happy").
+A final CFA on the 8-item scale, allowing correlation between the latent factors and between the residuals of Items 7 and 8, yielded acceptable fit (#reportModelFitIndices(cfi: 0.966, tli: 0.947, rmsea: 0.098, srmr: 0.066)).
+The CFI and SRMR satisfied the target values of .95 and .08, respectively.
+While the TLI fell slightly below the .95 threshold and the RMSEA remained elevated, both showed substantial improvement.
+This pattern may be partially attributable to the limited sample size ($N = 154$).
 
-Lastly, reliability scores were computed for the two subscales. McDonald’s omega ($omega$) was used because it does not assume tau-equivalence of the items. 
-Scores revealed excellent reliability for the Pressured scale ($omega = .93$) and acceptable reliability for the Autonomous scale ($omega = .7$). 
-For the subsequent moderation analysis, row means were used to compute scores for Pressured and Autonomous motivation, with Item 9 excluded from the Pressured scale.
+Finally, reliability was assessed using McDonald's omega ($omega$), which does not assume tau-equivalence.
+The Pressured Motivation subscale showed excellent reliability ($omega = .93$), while the Autonomous Motivation subscale showed acceptable reliability ($omega = .70$).
+For the subsequent moderation analyses, subscale scores were computed as row means, with Item 9 excluded from the Autonomous Motivation scale.
 
 #apa-figure(
   grid(
