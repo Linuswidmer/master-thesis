@@ -159,8 +159,18 @@ Together, these results indicate that the manipulation was successful in inducin
 )
 
 To assess whether the aggressive word fragment task is a valid and reliable measure of aggressive cognition, internal consistency was examined (see #ref(<fig:corrplot-aggressive>) for correlations and #ref(<table:wfct-agg-descriptives>) for item descriptives).
-The tetrachoric correlation matrix revealed weak and inconsistent correlations among items, suggesting that the items do not form a coherent unidimensional construct.
-The Kaiser-Meyer-Olkin criterion yielded a Measure of Sampling Adequacy below the acceptable threshold, indicating the data were not suitable for factor analysis.
+The tetrachoric correlation matrix revealed weak and inconsistent correlations among items, including several negative correlations.
+If items measured the same latent construct, positive intercorrelations would be expected; this pattern suggests that the items do not form a coherent unidimensional construct.
+Moreover, Item 7 was negatively correlated with the first principal component, indicating it may measure a different construct than the remaining items.
+
+Item-level response rates revealed substantial variability in aggressive completion rates.
+Several items had very low positive rates, such as Item 5 (3.3%) and Item 1 (4.8%), while others exceeded 50%, such as Item 10 (63.8%) and Item 6 (51.3%).
+Additionally, some items showed elevated missing responses, with Items 8, 10, 9, and 7 each having more than 10 missing values.
+This imbalance compromises the scale's ability to discriminate between individuals.
+
+The Kaiser-Meyer-Olkin criterion yielded an overall MSA of .16, well below the acceptable threshold of .60, indicating the data were not suitable for factor analysis.
+Cronbach's alpha was $alpha = .36$, indicating poor internal consistency.
+Given the lack of evidence for unidimensionality and the poor reliability, the aggressive cognition score was computed as the proportion of aggressive completions (row means across items) rather than factor scores.
 
 == Test Quality: Anxious Cognition
 
@@ -172,5 +182,18 @@ The Kaiser-Meyer-Olkin criterion yielded a Measure of Sampling Adequacy below th
 )
 
 To assess whether the anxious word fragment task is a valid and reliable measure of anxious cognition, internal consistency was examined (see #ref(<fig:corrplot-anxious>) for correlations and #ref(<table:wfct-anx-descriptives>) for item descriptives).
-Similar to the aggressive cognition items, the tetrachoric correlation matrix revealed weak and inconsistent correlations among items.
-The Kaiser-Meyer-Olkin criterion yielded a Measure of Sampling Adequacy below the acceptable threshold, indicating the data were not suitable for factor analysis.
+Similar to the aggressive cognition items, the tetrachoric correlation matrix revealed weak and inconsistent correlations among items, including several negative correlations.
+This pattern suggests that the items do not form a coherent unidimensional construct.
+Furthermore, Items 2, 7, and 8 were negatively correlated with the first principal component, suggesting they may not measure the same construct as the remaining items.
+
+Item-level response rates revealed even greater variability than the aggressive cognition scale.
+Some items had very low positive rates, such as Item 2 (3.4%) and Item 8 (7.9%), while others were completed with the anxious word by the vast majority of participants, such as Item 9 (85.7%) and Item 3 (85.2%).
+Notably, Items 3 and 9 also showed substantial missingness, with 46 and 49 missing responses respectively—approximately 30% of the sample.
+This pattern suggests these items may have been particularly difficult or ambiguous for participants.
+
+The Kaiser-Meyer-Olkin criterion yielded an overall MSA of .30, below the acceptable threshold of .60, indicating the data were not suitable for factor analysis.
+Cronbach's alpha was $alpha = .09$, indicating unacceptable internal consistency.
+As with the aggressive cognition scale, the anxious cognition score was computed as the proportion of anxious completions (row means across items) rather than factor scores.
+
+In summary, neither the aggressive nor the anxious word fragment completion task demonstrated adequate psychometric properties in this sample.
+The lack of internal consistency and the substantial item-level variability in response rates and missingness cast doubt on the validity of these measures as indicators of latent aggressive or anxious cognition.
