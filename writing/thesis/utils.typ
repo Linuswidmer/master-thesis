@@ -47,3 +47,27 @@
 
   text(first + " = " + meanFormatted + ", " + second + " = " + sdFormatted)
 }
+
+#let reportModelFitIndices(cfi: none, tli: none, rmsea: none, srmr: none) = {
+  // Format each index to 2 decimal places (APA standard for fit indices)
+  let format_index = (value) => {
+    if value == none {
+      return "—"
+    }
+    let rounded = calc.round(value, digits: 2)
+    let str_val = repr(rounded)
+    // Remove leading zero for values < 1
+    if str_val.starts-with("0.") {
+      str_val.slice(1)
+    } else {
+      str_val
+    }
+  }
+
+  let cfi_fmt = format_index(cfi)
+  let tli_fmt = format_index(tli)
+  let rmsea_fmt = format_index(rmsea)
+  let srmr_fmt = format_index(srmr)
+
+  text("CFI = " + cfi_fmt + ", TLI = " + tli_fmt + ", RMSEA = " + rmsea_fmt + ", SRMR = " + srmr_fmt)
+}

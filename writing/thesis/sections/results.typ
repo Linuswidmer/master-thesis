@@ -44,11 +44,11 @@ Finally, a sensitivity analysis was performed. After identifying and excluding f
 A crucial predecessor for the moderation analysis was the validation and reliability assessment of the MMB scale.
 The hypothesized two-factor model by #cite(<stanaland2021man>, form: "prose") constrained the factors Pressured motivation (Items 1–5) and Autonomous motivation (Items 6–9) to be uncorrelated.
 A Confirmatory Factor Analysis (CFA) was run to validate this model.
-Computing the Kaiser-Meyer-Olkin criterion on the item correlations yielded an overall Measure of Sampling Adequacy of .85, indicating the data were suitable for factor analysis. The fit indices of the CFA did non satidfy the predefined criteria: (CFI = [TODO], TLI = [TODO], RMSEA = [TODO], SRMR = [TODO]).
+Computing the Kaiser-Meyer-Olkin criterion on the item correlations yielded an overall Measure of Sampling Adequacy of .85, indicating the data were suitable for factor analysis. The fit indices of the CFA did non satisfy the predefined criteria: (#reportModelFitIndices(cfi: 0.851, tli: 0.801, rmsea: 0.179, srmr: 0.248)).
 
 To improve model fit and better understand the data structure, an Exploratory Factor Analysis (EFA) with oblimin rotation was conducted. 
 A parallel analysis and scree plot suggested retaining two factors. 
-The resulting factor loadings (displayed in Table (TODO)) showed a strong coherence for the first five items on the first factor (Pressured). 
+The resulting factor loadings (displayed in #ref(<table:efa-mmb>)) showed a strong coherence for the first five items on the first factor (Pressured). 
 However, Item 9, "It is important to me not to act like a woman" displayed a significant cross-loading on both factors (loading on Factor 1 and Factor 2), suggesting poor fit for this item within the intended structure.
 
 #apa-figure(
@@ -87,12 +87,12 @@ However, Item 9, "It is important to me not to act like a woman" displayed a sig
   label: "table:efa-mmb",
 )
 
-A subsequent CFA was conducted on the original 9 items, allowing for a correlation between the two latent factors. This notably improved model fit (CFI = [TODO], TLI = [TODO], RMSEA = [TODO], SRMR = [TODO]), yet the predefined criteria for fit were still not entirely satisfied.
+A subsequent CFA was conducted on the original 9 items, allowing for a correlation between the two latent factors. This notably improved model fit #reportModelFitIndices(cfi: 0.901, tli: 0.863, rmsea: 0.148, srmr: 0.099), yet the predefined criteria for fit were still not entirely satisfied.
 
 Given the EFA results, Item 9 was identified as problematic due to its high cross-loading and was removed from the scale for further analysis. 
 A subsequent examination of the Modification Indices also suggested a high residual covariance between Item 7 and Item 8, which makes conceptual sense as both items express a positive, internal emotional connection ("happy," "glad") to masculine identity. 
 A final CFA was run on the 8-item scale, allowing the correlation between the latent factors and between the residuals of Item 7 and Item 8. 
-This final model yielded the following fit indices: CFI = [TODO final fit], TLI = [TODO final fit], RMSEA = [TODO final fit], SRMR = [TODO final fit].
+This final model yielded the following fit indices #reportModelFitIndices(cfi: 0.966, tli: 0.947, rmsea: 0.098, srmr: 0.066).
 This final model was deemed sufficient because the CFI and SRMR satisfied the target values of $0.95$ and $0.08$, respectively. 
 While the TLI was just below the target, it can be considered acceptable, and the RMSEA, though still elevated, was substantially reduced. 
 This pattern of fit indices may be partially attributed to the restricted final sample size ($N = 154$).
