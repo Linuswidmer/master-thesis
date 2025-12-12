@@ -49,9 +49,14 @@ The GLM refitted on the reduced sample continued to show no significant effect (
 
 === Factor Structure of Motivation for Masculine Behavior
 
--> include means, sds and a corrplot
+#apa-figure(
+  image("../images/corrplot-mmb.png", width: 70%),
+  caption: [Polychoric Correlation Matrix for MMB Items],
+  note: [Items 1–5 = Pressured Motivation subscale; Items 6–9 = Autonomous Motivation subscale. Rectangles indicate the hypothesized factor structure. Darker shading indicates stronger positive correlations.],
+  label: "fig:corrplot-mmb",
+)
 
-Prior to the moderation analysis, the validity and reliability of the MMB scale were assessed.
+Prior to the moderation analysis, the validity and reliability of the MMB scale were assessed (see #ref(<fig:corrplot-mmb>) for correlations and #ref(<table:mmb-descriptives>) for item descriptives).
 The Kaiser-Meyer-Olkin (KMO) criterion yielded an overall Measure of Sampling Adequacy of .85, indicating the data were suitable for factor analysis.
 The hypothesized two-factor model by #cite(<stanaland2021man>, form: "prose") specified uncorrelated latent factors for Pressured Motivation (Items 1–5) and Autonomous Motivation (Items 6–9).
 A Confirmatory Factor Analysis (CFA) was conducted to validate this structure; however, the fit indices did not satisfy the predefined criteria (#reportModelFitIndices(cfi: 0.851, tli: 0.801, rmsea: 0.179, srmr: 0.248)).

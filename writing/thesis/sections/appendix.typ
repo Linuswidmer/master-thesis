@@ -32,7 +32,7 @@ Answered on a 7 point Likert Scale ranging from "Stimme überhaupt nicht zu" to 
 + Ich bin nicht weiblich, weil ich glaube, dass mich die Leute sonst nicht mögen würden.
 === Autonomous Motivation Subscale
 + Es ist mir wichtig, männlich zu sein.
-+ Ich bin gerne männlich 
++ Ich bin gerne männlich
 + Es macht mich glücklich, wenn ich männlich bin.
 + Es ist mir wichtig, nicht weiblich zu sein.
 
@@ -156,8 +156,7 @@ Unten dargestellt ist dein Testergebnis zusammen mit der Verteilung aller Männe
 // == Manipulation Check
 // == Demographic Items
 
-
-= Power Analysis Supplement
+== Power Analysis
 
 #apa-figure(
   table(
@@ -213,3 +212,31 @@ Unten dargestellt ist dein Testergebnis zusammen mit der Verteilung aller Männe
   label: "fig:sample-bar-graph",
 )
 
+= Results Supplement
+
+#apa-figure(
+  table(
+    columns: (auto, 1fr, auto, auto),
+    align: (center, left, center, center),
+    stroke: none,
+    table.hline(),
+    table.header(
+      [Item], [Description], [_M_], [_SD_],
+    ),
+    table.hline(),
+    [1], [I'm masculine because I want others' acceptance and approval.], [3.55], [1.78],
+    [2], [I'm masculine because that is what people expect from me.], [3.75], [1.74],
+    [3], [I'm masculine because I want people to like me.], [3.35], [1.68],
+    [4], [I'm masculine around other people because that is how others think I should be.], [3.51], [1.74],
+    [5], [I'm not feminine because people wouldn't like me.], [2.97], [1.68],
+    table.hline(stroke: 0.5pt),
+    [6], [It's important to me to be masculine.], [4.06], [1.79],
+    [7], [I enjoy being masculine.], [5.29], [1.49],
+    [8], [It makes me happy if I'm masculine.], [4.32], [1.68],
+    [9], [It is important to me not to be feminine.], [3.26], [1.77],
+    table.hline(),
+  ),
+  caption: [Descriptive Statistics for Motivation for Masculine Behavior Items],
+  note: [_N_ = 154. Items 1–5 = Pressured Motivation subscale; Items 6–9 = Autonomous Motivation subscale. Items rated on a 7-point Likert scale (1 = strongly disagree, 7 = strongly agree).],
+  label: "table:mmb-descriptives",
+)
