@@ -1,4 +1,4 @@
-#import "@preview/versatile-apa:7.1.1": *
+#import "@preview/versatile-apa:7.1.5": *
 #import "utils.typ": *
 #import "@preview/muchpdf:0.1.0": muchpdf
 
@@ -9,52 +9,62 @@
 #let date = datetime.today().display()
 
 #show: versatile-apa.with(
-  title: doc-title,
- 
+  title: [
+    #set text(weight: "regular", size: 12pt)
+    #v(-3cm)
+    #align(right)[
+      #image("assets/hu-logo-cropped.svg", width: 103%)
+    ]
+    #align(left)[
+      #set par(leading: 0.4em)
+      #text(weight: "bold")[Faculty of Life Sciences] \
+      Institute of Psychology
+    ]
+    #v(1.5cm)
+    #align(center)[
+      #text(size: 14pt, weight: "bold")[Master Thesis]
+      #v(0.3cm)
+      for the attainment of the academic degree Master of Science
+    ]
+    #v(1cm)
+    #align(left)[
+      #text(size: 13pt, weight: "bold")[#doc-title]
+    ]
+
+    #v(1cm)
+    #date
+  ],
+
   authors: (
     (
       name: [
-        Master Thesis of
-        
-        L i n u s W i d m e r
+        #align(left)[
+          #v(1fr)
+          submitted by
+          #v(0.3cm)
+          #set par(leading: 0.4em)
+          Widmer, Linus \
+          Matriculation Number: 627542 \
+          Email: widmerli\@student.hu-berlin.de \
+          Birthdate & place: 17.08.1999, Bremen (Germany)
 
-        #linebreak()
-
-        Matriculation Number: _627542_
-
-        Mail: _widmerli\@student.hu-berlin.de_
+          #set par(leading: 0.4em)
+          First Examiner: Dr. Ulrich Klocke \
+          Second Examiner: Prof. Dr. Ursula Hess
+        ]
       ],
     ),
   ),
+
   affiliations: (
     (
       id: "AF-1",
-      name: [ #linebreak() 
-      Humboldt-University Berlin #linebreak() 
-Institute of Psychology #linebreak() 
-Chair of Social and Organizational Psychology
-
-    ],
+      name: [],
     ),
   ),
-  due-date: date,
-
-  // Student-specific fields
-  // course: [Course Code: Course Name],
-  instructor: [
-    #linebreak()
-    First Supervisor: _Dr. Ulrich Klocke_
-    
-    Second Supervisor: _Prof. Dr. Ursula Hess_
-  ],
 
   // Professional-specific fields
   running-head: [Motivation, Masculinity & Threat],
-  // author-notes: [
-  //   #include-orcid([Author Name], "0000-0000-0000-0000")
-
-  //   #lorem(50)
-  // ],
   keywords: ("Fragile Masculinity", "Identity Threat", "Motivation"),
   abstract: abstract-content,
 
