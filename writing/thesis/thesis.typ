@@ -1,4 +1,4 @@
-#import "@preview/versatile-apa:7.1.5": *
+#import "@preview/versatile-apa:7.1.1": *
 #import "utils.typ": *
 #import "@preview/muchpdf:0.1.0": muchpdf
 
@@ -85,16 +85,6 @@
 #include "sections/introduction.typ"
 #include "sections/methods.typ"
 #include "sections/results.typ"
-
-// #pagebreak()
-// #include "sections/quotes.typ"
-
-// #pagebreak()
-// #include "sections/computer-code.typ"
-
-// #pagebreak()
-// #include "sections/math.typ"
-
 #pagebreak()
 #bibliography(
   "bibliography/ref.bib", // or ref.yml
@@ -102,27 +92,22 @@
   title: auto,
 )
 
+// = Final thoughts
+// #lorem(50)
 
-
-// #pagebreak()
-// #include "sections/footnote.typ"
-
-// #pagebreak()
-// #include "sections/tables.typ"
-
-// #pagebreak()
-// #include "sections/figures.typ"
+// // = Acknowledgements
+// #lorem(50)
 
 #pagebreak()
 = Declaration of Independence
-#muchpdf(read("assets/12-a-Vorlage Eigenständigkeitserklärung-KI-Psychologie.pdf", encoding: none), height: 90%, width: 100%)
+#include "sections/declaration.typ"
 
 #show: appendix.with(
   heading-numbering: "A",
   supplement: "Appendix",
 )
 
-#pagebreak()
+// #pagebreak()
 #include "sections/appendix.typ"
 
 = List of Appendices
