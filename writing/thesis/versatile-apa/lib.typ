@@ -115,51 +115,51 @@
     }
   }
 
-  align(center)[
-    #for i in range(4) {
-      [~] + parbreak()
-    }
+  page(numbering: none, header: none)[
+    #align(center)[
+      #for i in range(4) {
+        [~] + parbreak()
+      }
 
-    #title
+      #title
 
-    ~
+      ~
 
-    #parbreak()
+      #parbreak()
 
-    #print-authors(authors, affiliations, language)
+      #print-authors(authors, affiliations, language)
 
-    #print-affiliations(authors, affiliations)
+      #print-affiliations(authors, affiliations)
 
-    #if type(course) == content and course != [] {
-      course
-    } else if type(course) != content {
-      panic("Course must be of type content: ", type(course))
-    }
+      #if type(course) == content and course != [] {
+        course
+      } else if type(course) != content {
+        panic("Course must be of type content: ", type(course))
+      }
 
-    #if type(instructor) == content and instructor != [] {
-      instructor
-    } else if type(instructor) != content {
-      panic("Instructor must be of type content: ", type(instructor))
-    }
+      #if type(instructor) == content and instructor != [] {
+        instructor
+      } else if type(instructor) != content {
+        panic("Instructor must be of type content: ", type(instructor))
+      }
 
-    #if ((type(due-date) == content and due-date != []) or (type(due-date) == str and due-date != "")) {
-      due-date
-    } else if type(due-date) != content {
-      panic("Due date must be of type content or string: ", type(due-date))
-    }
+      #if ((type(due-date) == content and due-date != []) or (type(due-date) == str and due-date != "")) {
+        due-date
+      } else if type(due-date) != content {
+        panic("Due date must be of type content or string: ", type(due-date))
+      }
 
-    #if author-notes != [] and author-notes != none {
-      v(1fr)
+      #if author-notes != [] and author-notes != none {
+        v(1fr)
 
-      strong(get-terms(language).at("Author Note"))
+        strong(get-terms(language).at("Author Note"))
 
-      align(left)[
-        #set par(first-line-indent: first-indent-length)
-        #author-notes
-      ]
-    }
-
-    #pagebreak()
+        align(left)[
+          #set par(first-line-indent: first-indent-length)
+          #author-notes
+        ]
+      }
+    ]
   ]
 
   show heading: set text(size: font-size)
