@@ -120,7 +120,7 @@
       [~] + parbreak()
     }
 
-    #strong(title)
+    #title
 
     ~
 

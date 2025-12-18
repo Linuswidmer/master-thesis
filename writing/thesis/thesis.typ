@@ -64,7 +64,6 @@
   ),
 
   // Professional-specific fields
-  running-head: [Motivation, Masculinity & Threat],
   keywords: ("Fragile Masculinity", "Identity Threat", "Motivation"),
   abstract: abstract-content,
 
