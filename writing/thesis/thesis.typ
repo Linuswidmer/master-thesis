@@ -1,4 +1,4 @@
-#import "@preview/versatile-apa:7.1.1": *
+#import "versatile-apa/lib.typ": *
 #import "utils.typ": *
 #import "@preview/muchpdf:0.1.0": muchpdf
 
