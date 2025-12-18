@@ -348,9 +348,6 @@ corrplot(cor_mmb,
   tl.srt = 45,
   diag = FALSE
 )
-
-# Save APA-style corrplot with cluster rectangles for items 1-5 (Pressured) and 6-9 (Autonomous)
-save_corrplot_apa(cor_mmb, "corrplot-mmb", cluster_groups = c(1, 5, 6, 9))
 ```
 
 **Interpretation**
@@ -634,8 +631,6 @@ corrplot::corrplot(cor_aggr,
   tl.srt = 45,
   diag = FALSE
 )
-
-save_corrplot_apa(cor_aggr, "corrplot-aggressive-cognition")
 ```
 -> a tetrachoric correlation is used, because responses are always binary 
 (aggressive, vs. non-aggressive response)
@@ -685,7 +680,7 @@ psych::alpha(cor_aggr, check.keys = FALSE)
 df$aggressiveWordCompletionScore <- rowMeans(
   replace(df[WFCT_aggression_items], is.na(df[WFCT_aggression_items]), 0)
 )
-df$aggressiveCognition <-df$aggressiveWordCompletionScore * 100
+df$aggressiveCognition <- df$aggressiveWordCompletionScore * 100
 ```
 
 ### 5.3.2 Visualization & Descriptives
@@ -695,7 +690,7 @@ summary_mean_sd(df, "aggressiveCognition")
 ```
 
 ```{r}
-plotHist("aggressiveCognition", c(0, 1), condition = NULL, binwidth = 0.1)
+plotHist("aggressiveCognition", c(0, 100), condition = NULL, binwidth = 1)
 ```
 
 ## Summary
@@ -728,7 +723,6 @@ corrplot::corrplot(cor_anx,
   diag = FALSE
 )
 
-save_corrplot_apa(cor_anx, "corrplot-anxious-cognition")
 ```
 -> a tetrachoric correlation is used, because responses are always binary 
 (aggressive, vs. non-aggressive)
@@ -782,11 +776,11 @@ df$anxiousCognition <-df$anxiousWordCompletionScore * 100
 
 ### 6.3.2 Visualization & Descriptives
 ```{r}
-summary_mean_sd(df, c("anxiousWordCompletionScore"))
+summary_mean_sd(df, c("anxiousCognition"))
 ```
 
 ```{r}
-plotHist("anxiousWordCompletionScore", c(0, 1), condition = NULL, binwidth = 0.1)
+plotHist("anxiousCognition", c(0, 100), condition = NULL, binwidth = 1)
 ```
 
 ## 6.4 Summary
@@ -1324,7 +1318,19 @@ summary(model_gkself)
 
 ...
 
+```{r, include=FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
 ## Additional Visualization & Descriptives
+
+### Corrplots
+
+```{r}
+save_corrplot_apa(cor_mmb, "corrplot-mmb", cluster_groups = c(1, 5, 6, 9))
+save_corrplot_apa(cor_aggr, "corrplot-aggressive-cognition")
+save_corrplot_apa(cor_anx, "corrplot-anxious-cognition")
+```
 
 ### Masculinity Threat Effects
 
