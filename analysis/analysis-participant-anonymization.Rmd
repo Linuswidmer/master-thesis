@@ -51,7 +51,6 @@ df_raw$SUSPICIONEXCLUSION <- FALSE
 ids_to_exclude <- c(252, 355, 365, 371, 421, 459, 466, 477, 502)
 
 df_raw$SUSPICIONEXCLUSION[df_raw$id %in% ids_to_exclude] <- TRUE
-
 ```
 
 save only relevant columns

@@ -250,7 +250,7 @@ p > .05 → equal variances (use Student’s t-test: var.equal = TRUE)
 
 ```{r}
 run_ttest(df, GKSELF, threatCondition,
-  alternative = "greater", var_equal = TRUE 
+  alternative = "greater", var_equal = TRUE
 )
 ```
 
@@ -429,7 +429,7 @@ print(efa_result_twof, cut = 0.3) # only loadings > .30
 
 ```{r warning=FALSE }
 # Create loadings matrix
-loadings_matrix <- as.data.frame(efa_result_twof$loadings[1:length(mmb_labels), ])
+loadings_matrix <- as.data.frame(efa_result_twof$loadings[seq_along(mmb_labels), ])
 
 # Format table
 loading_table <- data.frame(
@@ -459,9 +459,9 @@ loading_table %>%
     bootstrap_options = c("striped", "hover", "condensed"),
     latex_options = "hold_position"
   ) %>%
-  column_spec(2, width = "10cm") %>%  
+  column_spec(2, width = "10cm") %>%
   row_spec(0, bold = TRUE, background = "#f2f2f2") %>%
-  row_spec(1:nrow(loading_table), background = "white", color = "black")
+  row_spec(seq_len(nrow(loading_table)), background = "white", color = "black")
 ```
 
 **Interpretation**
@@ -554,7 +554,6 @@ df$regAutonomous <- scale(fs_reg[, "Autonomous"])
 
 Also compute Row means for visualizations
 ```{r}
-
 df$rowmeansPressured <- rowMeans(
   df[mmb_pressured_items],
   na.rm = TRUE
@@ -568,8 +567,8 @@ df$rowmeansAutonomous <- rowMeans(
 
 Decide which computation to use for later analysis
 ```{r}
-df$pressuredMotivation = df$rowmeansPressured
-df$autonomousMotivation = df$rowmeansAutonomous
+df$pressuredMotivation <- df$rowmeansPressured
+df$autonomousMotivation <- df$rowmeansAutonomous
 ```
 
 ### 4.3.2 Visualization & Descriptives
@@ -722,7 +721,6 @@ corrplot::corrplot(cor_anx,
   tl.srt = 45,
   diag = FALSE
 )
-
 ```
 -> a tetrachoric correlation is used, because responses are always binary 
 (aggressive, vs. non-aggressive)
@@ -771,7 +769,7 @@ psych::alpha(cor_anx, check.keys = FALSE)
 df$anxiousWordCompletionScore <- rowMeans(
   replace(df[WFCT_anxiety_items], is.na(df[WFCT_anxiety_items]), 0)
 )
-df$anxiousCognition <-df$anxiousWordCompletionScore * 100
+df$anxiousCognition <- df$anxiousWordCompletionScore * 100
 ```
 
 ### 6.3.2 Visualization & Descriptives
@@ -1336,23 +1334,23 @@ save_corrplot_apa(cor_anx, "corrplot-anxious-cognition")
 
 Aggressive and anxious word completions by threat condition
 ```{r}
-agg_anx_by_threat_boxplot <-  plotBox(
-    c("aggressiveCognition", "anxiousCognition"),
-    "threatCondition",
-    x_label = "Cognition Type",
-    y_label = "Word Completion Score (%)",
-    var_labels = c(
-      "aggressiveCognition" = "Aggressive",
-      "anxiousCognition" = "Anxious"
-    ),
-    fill_labels = c(
-      "noThreat" = "No Threat",
-      "threat" = "Threat"
-    ),
-    legend_title = "Condition",
-    ylim = c(0, 70),
-    legend_position = "top.left"
-  )
+agg_anx_by_threat_boxplot <- plotBox(
+  c("aggressiveCognition", "anxiousCognition"),
+  "threatCondition",
+  x_label = "Cognition Type",
+  y_label = "Word Completion Score (%)",
+  var_labels = c(
+    "aggressiveCognition" = "Aggressive",
+    "anxiousCognition" = "Anxious"
+  ),
+  fill_labels = c(
+    "noThreat" = "No Threat",
+    "threat" = "Threat"
+  ),
+  legend_title = "Condition",
+  ylim = c(0, 70),
+  legend_position = "top.left"
+)
 agg_anx_by_threat_boxplot
 save_plot(agg_anx_by_threat_boxplot, "aggressive-anxious-cognition-by-threat-boxplot")
 ```
@@ -1365,40 +1363,40 @@ summary_mean_sd(df, c("aggressiveWordCompletionScore", "anxiousWordCompletionSco
 
 ```{r}
 agg_moderation_pressured_motivation <- plotModeration(
-    x = "pressuredMotivation",
-    y = "aggressiveCognition",
-    condition = "threatCondition",
-    df = df,
-    x_label = "MMB Pressured Score",
-    y_label = "Agg. Word Completion Score (%)",
-    condition_labels = c(
-      "noThreat" = "No Threat",
-      "threat" = "Threat"
-    ),
-    legend_title = "Condition",
-    ylim = c(10, 30),
-    legend_position = "top.left"
-  )
+  x = "pressuredMotivation",
+  y = "aggressiveCognition",
+  condition = "threatCondition",
+  df = df,
+  x_label = "MMB Pressured Score",
+  y_label = "Agg. Word Completion Score (%)",
+  condition_labels = c(
+    "noThreat" = "No Threat",
+    "threat" = "Threat"
+  ),
+  legend_title = "Condition",
+  ylim = c(10, 30),
+  legend_position = "top.left"
+)
 agg_moderation_pressured_motivation
 save_plot(agg_moderation_pressured_motivation, "aggressive-cognition-pressured-motivation-line-chart")
 ```
 
 ```{r}
 anx_moderation_autonomous_motivation <- plotModeration(
-    x = "autonomousMotivation",
-    y = "anxiousCognition",
-    condition = "threatCondition",
-    df = df,
-    x_label = "MMB Autonomous Score",
-    y_label = "Anx. Word Completion Score (%)",
-    condition_labels = c(
-      "noThreat" = "No Threat",
-      "threat" = "Threat"
-    ),
-    legend_title = "Condition",
-    ylim = c(20, 40),
-    legend_position = "top.left"
-  )
+  x = "autonomousMotivation",
+  y = "anxiousCognition",
+  condition = "threatCondition",
+  df = df,
+  x_label = "MMB Autonomous Score",
+  y_label = "Anx. Word Completion Score (%)",
+  condition_labels = c(
+    "noThreat" = "No Threat",
+    "threat" = "Threat"
+  ),
+  legend_title = "Condition",
+  ylim = c(20, 40),
+  legend_position = "top.left"
+)
 anx_moderation_autonomous_motivation
 save_plot(anx_moderation_autonomous_motivation, "anxious-cognition-autonomous-motivation-line-chart")
 ```

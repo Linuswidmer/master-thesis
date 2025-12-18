@@ -166,7 +166,7 @@ plotBox <- function(cols, fill_var = NULL, x_label = NULL, y_label = NULL,
       "top.right" = c(0.98, 0.98),
       "bottom.left" = c(0.02, 0.02),
       "bottom.right" = c(0.98, 0.02),
-      c(0.02, 0.98)  # default to top.left
+      c(0.02, 0.98) # default to top.left
     )
     legend_hjust <- if (grepl("left", legend_position)) 0 else 1
     legend_vjust <- if (grepl("top", legend_position)) 1 else 0

@@ -27,9 +27,9 @@ check_normality_hist <- function(data, dv, group, binwidth = NULL) {
     )
 }
 
-# shapiro.test(df %>% 
-#   filter(threatCondition == "noThreat") %>% 
-#   pull(GKSELF)) 
+# shapiro.test(df %>%
+#   filter(threatCondition == "noThreat") %>%
+#   pull(GKSELF))
 
 check_homogeneity <- function(data, dv, group) {
   dv_sym <- ensym(dv)
@@ -67,7 +67,7 @@ run_ttest <- function(data, dv, group, alternative = "two.sided", var_equal = FA
 #'        if FALSE uses binomial (compatible with DHARMa diagnostics). Default FALSE.
 #' @return A list containing the GLM model and diagnostic information
 run_binomial_glm <- function(data, score_col, predictor, n_trials,
-                                  use_quasibinomial = FALSE) {
+                             use_quasibinomial = FALSE) {
   # Create success/failure counts
   data$glm_success <- data[[score_col]] * n_trials
   data$glm_failure <- n_trials - data$glm_success
@@ -202,7 +202,7 @@ glm_summary_table <- function(model, model_clean = NULL, labels = NULL, one_tail
 
           # Check if effect is in expected direction
           in_expected_dir <- (expected_dir == "positive" && estimate > 0) ||
-                             (expected_dir == "negative" && estimate < 0)
+            (expected_dir == "negative" && estimate < 0)
 
           if (in_expected_dir) {
             return(p_two / 2)
@@ -255,8 +255,9 @@ glm_summary_table <- function(model, model_clean = NULL, labels = NULL, one_tail
   # Apply custom labels if provided
   if (!is.null(labels)) {
     result$Term <- ifelse(result$Term %in% names(labels),
-                          labels[result$Term],
-                          result$Term)
+      labels[result$Term],
+      result$Term
+    )
   }
 
   # Reset row names
@@ -281,7 +282,7 @@ glm_summary_table <- function(model, model_clean = NULL, labels = NULL, one_tail
 #'        if FALSE uses binomial (compatible with DHARMa diagnostics). Default FALSE.
 #' @return A list containing the GLM model and the data with response matrix
 run_binomial_glm_moderation <- function(data, score_col, predictor, moderator, n_trials,
-                                             use_quasibinomial = FALSE) {
+                                        use_quasibinomial = FALSE) {
   # Create success/failure counts
   data$glm_success <- data[[score_col]] * n_trials
   data$glm_failure <- n_trials - data$glm_success
@@ -346,7 +347,7 @@ glm_remove_influential_moderation <- function(glm_result, diagnostics, predictor
 #' @param predictor_levels Optional: levels for factor conversion (default: c("noThreat", "threat"))
 #' @return Correlation coefficient
 check_multicollinearity <- function(data, predictor, moderator,
-                                     predictor_levels = c("noThreat", "threat")) {
+                                    predictor_levels = c("noThreat", "threat")) {
   predictor_numeric <- as.numeric(factor(data[[predictor]], levels = predictor_levels)) - 1
   correlation <- cor(predictor_numeric, data[[moderator]], use = "complete.obs")
 
