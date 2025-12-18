@@ -1,4 +1,4 @@
-#import "@preview/versatile-apa:7.1.1": apa-figure
+#import "../utils.typ": apa-figure
 
 = Materials Supplement
 

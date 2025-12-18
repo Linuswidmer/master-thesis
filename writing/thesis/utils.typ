@@ -1,3 +1,6 @@
+// Re-export apa-figure from local versatile-apa
+#import "versatile-apa/utils/apa-figure.typ": apa-figure
+
 #let citeWithPrefix(prefix: "", keys: none, suffix: "") = {
   let citationAuthor = cite(keys, form: "author")
   let citationYear = cite(keys, form: "year")

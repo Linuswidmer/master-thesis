@@ -1,4 +1,3 @@
-#import "@preview/versatile-apa:7.1.2": apa-figure
 #import "../utils.typ": *
 
 // Implicit introduction heading level 1
