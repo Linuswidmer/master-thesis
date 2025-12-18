@@ -1,5 +1,14 @@
 // Re-export apa-figure from local versatile-apa
 #import "versatile-apa/utils/apa-figure.typ": apa-figure
+#import "@preview/dashy-todo:0.1.3": todo as _todo
+
+// Wrapper with default position: right, smaller font, single spacing
+#let todo(..args) = {
+  set text(size: 0.8em)
+  set par(leading: 0.65em)
+  _todo(position: right, ..args)
+}
+
 
 #let citeWithPrefix(prefix: "", keys: none, suffix: "") = {
   let citationAuthor = cite(keys, form: "author")

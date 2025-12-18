@@ -1,4 +1,7 @@
-= Methods
+#import "../utils.typ": *
+
+= Method
+#todo[Include section "Ethical consderations and preregistration"]
 
 == Participants
 A priori power analysis indicated a required sample size of 229 participants (see Power Analysis section). Eligibility criteria included self-identification as male, native-level proficiency in German, and a minimum age of 18 years.

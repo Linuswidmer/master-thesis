@@ -1,6 +1,5 @@
 #import "versatile-apa/lib.typ": *
 #import "utils.typ": *
-#import "@preview/muchpdf:0.1.0": muchpdf
 
 #let doc-title = [Motivated Responses to a Masculinity Threat in a German Cultural Context]
 
