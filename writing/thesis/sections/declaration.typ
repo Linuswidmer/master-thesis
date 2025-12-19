@@ -8,7 +8,7 @@
 ) = {
 
   set text(font: "Libertinus Serif", size: 11pt, lang: "de")
-  set par(justify: true, leading: 0.65em)
+  set par(justify: true, leading: 0.65em, first-line-indent: 0pt)
 
   // Logo header
   align(right)[
@@ -40,7 +40,7 @@
   // Signature line
   [
     #if signature-image != none {
-      place(dx: 4cm, dy: -0.5cm)[#image(signature-image, width: 4cm)]
+      place(dx: 4cm, dy: -1cm)[#image(signature-image, width: 4cm)]
     }
     #location, #date
     #v(-0.3cm)
@@ -107,7 +107,7 @@
     [*falls relevant: betroffene Abschnitte* \ #text(size: 9pt)[(Bitte geben Sie Seitenzahlen an, sofern es nicht auf das gesamte Dokument zutrifft.)]],
     [*Nutzung* \ #text(size: 9pt)[(Bitte Zahl eintragen – siehe oben)]],
     // Data rows - fill in your usage
-    [ChatGPT], [], [],
+    [ChatGPT], [1, 2, 3, 4, 5, 6, 7, 8, 9], [],
     [Elicit.org], [], [],
   )
 
@@ -131,13 +131,13 @@
     [GitHub Copilot], [], [],
     [Perplexity AI], [], [],
     [ChatPDF], [], [],
-    [DeepL], [], [],
+    [DeepL], [3], [],
     [BingChat], [], [],
     [Gamma], [], [],
     [Humanata AI], [], [],
     [Keenious], [], [],
     [Monica], [], [],
-    [Claude], [], [],
+    [Claude], [1, 2, 3, 4, 5, 6, 7, 8, 9], [],
   )
 
   v(0.5cm)
@@ -174,4 +174,4 @@
 }
 
 // Call the function to render
-#declaration-page()
+#declaration-page(signature-image: "../assets/signature.jpg")
