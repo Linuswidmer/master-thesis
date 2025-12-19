@@ -127,14 +127,33 @@ For the subsequent moderation analyses, subscale scores were computed as row mea
   label: "fig:moderation-masculinity-threat",
   note:[TODO]
 )
+#todo[MMB Pressured only till 6 rn]
 
 === Pressured Motivation on Aggressive Cognition (Hypothesis 2a)
-...
+Hypothesis 2a predicted that the effect of masculinity threat on aggressive cognition would be moderated by pressured motivation to conform to masculinity norms.
+Specifically, men with higher pressured motivation were expected to show a stronger increase in aggressive cognition following threat compared to men with lower pressured motivation.
+As illustrated in #ref(<fig:moderation-masculinity-threat>), descriptive patterns showed a steeper positive slope between pressured motivation and aggressive cognition in the threat condition compared to the no-threat condition, consistent with the predicted interaction.
 
-#ref(<fig:moderation-masculinity-threat>) illustrates the moderation of 
+Assumption checks were satisfactory: Levene's test indicated homogeneous variances, and DHARMa residual diagnostics revealed no significant deviations from the expected distribution.
+A binomial GLM with threat condition, pressured motivation, and their interaction as predictors was conducted to test this moderation hypothesis.
+The model revealed no statistically significant main effect of threat condition (#reportZStatistic(zValue: -1.474, pValue: 0.141)), no significant main effect of pressured motivation (#reportZStatistic(zValue: 0.837, pValue: 0.403)), and no significant interaction effect (#reportZStatistic(zValue: 0.922, pValue: 0.357)).
+Given the directional hypothesis (predicted $beta > 0$ for the interaction), the one-tailed $p$-value was $p = .178$, leading to a failure to reject the null hypothesis.
+
+A sensitivity analysis was performed by identifying and excluding four influential observations.
+The GLM refitted on the reduced sample continued to show no significant interaction effect (#reportZStatistic(zValue: 1.453, pValue: 0.146); one-tailed $p = .073$), though the effect approached marginal significance. 
 
 === Autonomous Motivation on Anxious Cognition (Hypothesis 2b)
-...
+Hypothesis 2b predicted that the effect of masculinity threat on anxious cognition would be moderated by autonomous motivation to conform to masculinity norms.
+Specifically, men with higher autonomous motivation were expected to show a stronger increase in anxious cognition following threat compared to men with lower autonomous motivation.
+As illustrated in #ref(<fig:moderation-masculinity-threat>), descriptive patterns did not support this prediction: anxious cognition showed no meaningful change with increasing autonomous motivation in either condition.
+
+Assumption checks were satisfactory: Levene's test indicated homogeneous variances, and DHARMa residual diagnostics revealed no significant deviations from the expected distribution.
+A binomial GLM with threat condition, autonomous motivation, and their interaction as predictors was conducted to test this moderation hypothesis.
+The model revealed no statistically significant main effect of threat condition (#reportZStatistic(zValue: -0.02, pValue: 0.988)), no significant main effect of autonomous motivation (#reportZStatistic(zValue: -0.18, pValue: 0.855)), and no significant interaction effect (#reportZStatistic(zValue: 0.07, pValue: 0.946)).
+Given the directional hypothesis (predicted $beta > 0$ for the interaction), the one-tailed $p$-value was $p = .473$, leading to a failure to reject the null hypothesis.
+
+A sensitivity analysis was performed by identifying and excluding influential observations.
+The GLM refitted on the reduced sample continued to show no significant interaction effect (#reportZStatistic(zValue: 0.41, pValue: 0.678); one-tailed $p = .339$).
 
 == Experimental Manipulation Check
 To assess whether the experimental manipulation (threat vs. no-threat feedback on the Gender Knowledge Test) was effective, two measures were examined.
