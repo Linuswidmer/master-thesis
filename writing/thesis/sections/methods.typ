@@ -1,16 +1,28 @@
 #import "../utils.typ": *
 
 = Method
-#todo[Include section "Ethical consderations and preregistration"]
+== Ethical Considerations and Pre-Registration
+Prior to data collection, ethical considerations were addressed regarding the use of a deceptive experimental manipulation and its potential to elicit negative emotional reactions.
+To mitigate any persisting effects of this deception, the debriefing procedure adhered to established ethical guidelines for research involving deception, including dehoaxing, desensitization, justification of the deception, and an option to withdraw data #citeWithPrefix(prefix: "see", keys: <sommers2013forgoing>).
+Ethical approval for this study was granted by the Ethics Committee of the Department of Psychology at Humboldt University of Berlin.
+
+For transparency, the study's aims, hypotheses, methods, and data analytic plan were pre-registered on the Open Science Framework (https://osf.io/n6py4).
+Any deviations from the pre-registration are justified and reported in the relevant sections. 
 
 == Participants
-A priori power analysis indicated a required sample size of 229 participants (see Power Analysis section). Eligibility criteria included self-identification as male, native-level proficiency in German, and a minimum age of 18 years.
+An a priori power analysis indicated a required sample size of 229 participants (see Power Analysis section).
+Eligibility criteria included self-identification as male, native-level proficiency in German, and a minimum age of 18 years.
+A total of 196 participants were recruited over a two-month period by distributing flyers in social spaces and through an online study exchange platform.
+In exchange for participation, 1€ was donated to a men's counseling organization.
 
-Participants will be excluded based on the following predefined criteria: (a) producing fewer than 50% real words on the WFCT, indicating insufficient engagement or misunderstanding of the task; (b) expressing strong suspicion regarding the study's true purpose, particularly if they identify the feedback manipulation as fabricated; and (c) failing the manipulation check by incorrectly recalling the feedback received on the Gender Knowledge Test (i.e., below average, average, or above average).
+Participants were excluded based on pre-registered criteria.
+First, 8 participants withdrew consent after debriefing.
+Of the remaining sample, 13 participants did not meet eligibility requirements (9 reported a gender other than male, 3 were under 18 years of age, and 1 reported insufficient German proficiency).
+Furthermore, 9 participants were excluded for expressing strong suspicion about the study's true purpose, 11 for completing fewer than 50% real words on the WFCT, and 1 for missing all items on the MMB scale.
+After applying these criteria, 42 participants were excluded in total, resulting in a final sample of $N = 154$ (no-threat condition: $n = 78$; threat condition: $n = 76$).
 
-Participants will be recruited through the university, the author’s social environment, and social media platforms. In exchange for participation, individuals may choose between receiving course credit or entering a prize lottery.
-
-Ethical approval for this study will be sought from the Ethics Committee of the Department of Psychology at Humboldt University of Berlin.
+Participants ranged in age from 18 to 69 years (#reportMeanAndSD(mean: 30.6, sd: 10.9)).
+The sample was predominantly highly educated: 80.5% held at least a general university entrance qualification (Abitur), and 60.4% had completed a university degree.
 
 == Procedure
 The procedure was adapted from #cite(<stanaland2021man>, form: "prose") and translated into German. After providing informed consent, participants were informed that the study concerned personality, motivation and common knowledge ("Persönlichkeit, Motivation & Allgemeinwissen")in men. They were also reminded that eligibility required identifying as male, native-level proficiency in German, and a minimum age of 18 years.
