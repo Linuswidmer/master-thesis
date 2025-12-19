@@ -95,20 +95,7 @@ See #ref(<table:demographics>) for all items with German translations.
 The study employed a between-subjects experimental design. Participants were randomly assigned to one of two conditions of the independent variable: threat condition (_threatening feedback_ or _non-threatening feedback_). The primary dependent variable was performance on the WFCT to measure aggressive/anxious cognition. Additionally, motivation for masculine behavior was measured and examined as a moderator variable to assess whether it influenced the relationship between threat condition aggressive/anxious cognition, as measured by  WFCT performance. 
 
 == Power Analysis
-To determine the appropriate sample size, four a priori power analyses were conducted using G*Power 3.1 @faul2007g. Additionally, the statistical complexity of the measurement model for the Motivation for Masculine Behavior was explored. Effect sizes and G*Power analyses can be found in Appendix B.
-
-=== Masculinity threat effects
-Previous studies have reported medium-sized effects of masculinity threat on aggressive cognition ($d$ = 0.56) and anxious cognition ($d$ = 0.55), both measured via the WFCT. Based on these estimates, a priori power analyses were conducted using one-tailed independent samples t-tests ($alpha$ = .05, power = .80). The analyses indicated required sample sizes of 82 participants for detecting effects on aggressive cognition and 84 participants for anxious cognition.
-
-=== Moderation by motivation
-For the moderation of pressured motivation on aggressive cognition, a small effect size was assumed ($f$ = 0.17), consistent with prior findings on motivational moderators. Due to the absence of previous studies on the moderation of autonomous motivation on anxious cognition, the same conservative small effect size ($f$ = 0.17) was used. Based on a linear multiple regression model including three predictors (threat condition, autonomous or pressured motivation, and their two-way interaction), G*Power indicated a required sample size of 208 participants ($alpha$ = .05, power = .80).
-
-=== Factorial Structure of Motivation for Masculine Behavior
-
-To evaluate the hypothesized two-factor structure of the Motivation for Masculine Behavior scale via Confirmatory Factor Analysis (CFA), sample size requirements were determined based on common recommendations for CFA model stability. Following conservative guidelines, a minimum of 200 participants to ensure stable estimation and generalizability of the factor structure, particularly when factors are correlated and loadings are moderate @hoogland1998robustness.
-
-=== Final Target Sample Size
-Based on the largest required sample size (moderation analysis; 208 participants) and accounting for an estimated 10% exclusion rate, the final target sample size was set at 229 participants.
+An a priori power analysis indicated a required sample size of 229 participants (see Sample Size Planning section in the Appendix for details).
 
 == Data Analytic Plan
 All analyses will be conducted using RStudio 4.2.3 @RCoreTeam.
