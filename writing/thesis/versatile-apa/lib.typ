@@ -277,6 +277,25 @@
   set bibliography(style: "apa")
   show bibliography: set par(first-line-indent: 0in)
 
+  // Show rule for references to appendix figures/tables
+  show ref: it => context {
+    if it.element != none and it.element.func() == figure {
+      let el = it.element
+      let is-in-appendix = in-appendix.at(el.location())
+      if is-in-appendix {
+        let heading-num-format = appendix-heading-numbering-state.at(el.location())
+        let appendix-letter = numbering(heading-num-format, counter(heading).at(el.location()).first())
+        let fig-counter = counter(figure.where(kind: el.kind))
+        let fig-num = fig-counter.at(el.location()).first()
+        [#el.supplement #appendix-letter#fig-num]
+      } else {
+        it
+      }
+    } else {
+      it
+    }
+  }
+
   if (type(abstract) == content or type(abstract) == str) {
     // Only display the abstract if it's not empty
     if (abstract != [] and abstract != "") {

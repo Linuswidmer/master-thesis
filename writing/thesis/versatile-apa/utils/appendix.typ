@@ -1,5 +1,9 @@
 #import "languages.typ": *
 
+// State to track if we're in the appendix (for use by ref show rules)
+#let in-appendix = state("in-appendix", false)
+#let appendix-heading-numbering-state = state("appendix-heading-numbering", "A")
+
 // For supplement: either "Appendix", "Annex" or "Addendum"
 #let appendix(
   heading-numbering: "A",
@@ -11,8 +15,13 @@
   // there will be shown "A 1" instead of "A1"
   joined-figure-numbering: true,
   body,
-) = context {
-  show heading: set heading(supplement: get-terms(text.lang).at(supplement))
+) = {
+  // Mark that we're entering the appendix (outside context to avoid convergence issues)
+  in-appendix.update(true)
+  appendix-heading-numbering-state.update(heading-numbering)
+
+  context {
+    show heading: set heading(supplement: get-terms(text.lang).at(supplement))
   let multiple-level-1 = query(heading.where(level: 1, supplement: [#get-terms(text.lang).at(supplement)])).len() > 1
   let multiple-figures-on-level-1 = query(figure).len() > 1
   show heading.where(level: 1): set heading(numbering: heading-numbering) if multiple-level-1
@@ -24,27 +33,37 @@
   counter(figure.where(kind: table)).update(0)
   counter(figure.where(kind: math.equation)).update(0)
 
+  // Show rule for figure captions with appendix letter prefix
   show figure.caption: it => {
     set par(first-line-indent: 0in)
+    let appendix-letter = numbering(heading-numbering, counter(heading).get().first())
+    let fig-num = it.counter.display(it.numbering)
     align(left)[
       #if (joined-figure-numbering) [
-        *#it.supplement#context it.counter.display(it.numbering)*
+        *#it.supplement #appendix-letter#fig-num*
       ] else [
-        *#it.supplement #context it.counter.display(it.numbering)*
+        *#it.supplement #appendix-letter #fig-num*
       ]
 
       #emph(it.body)
     ]
   }
 
-  show heading.where(level: 1): it => align(center)[
-    #pagebreak()
-    #it.supplement
-    #if (multiple-level-1) {
-      numbering(it.numbering, ..counter(heading).at(it.location()))
-    }
-    #it
-  ]
+  show heading.where(level: 1): it => {
+    // Reset figure and table counters for each new appendix
+    counter(figure.where(kind: image)).update(0)
+    counter(figure.where(kind: table)).update(0)
+    counter(figure.where(kind: math.equation)).update(0)
+
+    align(center)[
+      #pagebreak()
+      #it.supplement
+      #if (multiple-level-1) {
+        numbering(it.numbering, ..counter(heading).at(it.location()))
+      }
+      #it
+    ]
+  }
 
   show heading.where(level: 2): it => par(first-line-indent: 0in)[
     #if (numbering-for-all) [
@@ -64,6 +83,7 @@
   )
 
   body
+  }
 }
 
 #let appendix-outline(
