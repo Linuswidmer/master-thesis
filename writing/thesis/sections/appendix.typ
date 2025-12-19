@@ -45,6 +45,8 @@ _English translation:_ Welcome to the study! This psychological study is conduct
 
 == Motivation for Masculine Behavior
 
+#ref(<table:mmb-items>) presents the nine items of the Motivation for Masculine Behavior scale with their original English wording and German translations.
+
 #apa-figure(
   table(
     columns: (auto, auto, 1fr, 1fr),
@@ -73,6 +75,8 @@ _English translation:_ Welcome to the study! This psychological study is conduct
 )
 
 == Gender Knowledge Test
+
+#ref(<table:gkt-items>) presents the 30 items of the Gender Knowledge Test with their original English wording and German translations.
 
 #apa-figure(
   table(
@@ -164,7 +168,7 @@ _English translation:_ Congratulations – you have completed the Gender Knowled
 
 == Word Fragment Completion Task
 
-Participants completed word fragments by typing the missing first letter. Each fragment could be completed as either a target word (aggressive or anxious) or a neutral word. A seven-second time limit was imposed per item to encourage spontaneous responses.
+Participants completed word fragments by typing the missing first letter. Each fragment could be completed as either a target word (aggressive or anxious) or a neutral word. A seven-second time limit was imposed per item to encourage spontaneous responses. #ref(<table:wfct-aggressive>) presents the aggressive cognition items, and #ref(<table:wfct-anxious>) presents the anxious cognition items.
 
 #apa-figure(
   table(
@@ -222,7 +226,7 @@ Participants completed word fragments by typing the missing first letter. Each f
 
 == Manipulation Check and Suspicion Probe
 
-The following items assessed participants' recall of the experimental feedback and their suspicions about the study's purpose.
+#ref(<table:manipulation-check>) presents the items used to assess participants' recall of the experimental feedback and their suspicions about the study's purpose.
 
 #apa-figure(
   table(
@@ -247,6 +251,8 @@ The following items assessed participants' recall of the experimental feedback a
 )
 
 == Demographic Questionnaire
+
+#ref(<table:demographics>) presents the demographic items administered at the end of the study.
 
 #apa-figure(
   table(
@@ -331,6 +337,8 @@ _English translation:_ Since we could not inform you about all aspects of the st
 
 == Sample Size Planning
 
+#ref(<table:effect-sizes>) summarizes effect sizes from prior studies on masculinity threat. #ref(<fig:power-analysis-threat>) and #ref(<fig:power-analysis-moderation>) display the G*Power analysis outputs used to determine the required sample size.
+
 #apa-figure(
   table(
     align: (x, y) => if y == 0 and x >= 0 {
@@ -388,6 +396,8 @@ _English translation:_ Since we could not inform you about all aspects of the st
 )
 
 = Results Supplement
+
+#ref(<table:mmb-descriptives>) presents descriptive statistics for the Motivation for Masculine Behavior items. #ref(<table:wfct-agg-descriptives>) and #ref(<table:wfct-anx-descriptives>) present response frequencies for the aggressive and anxious word fragment completion items, respectively.
 
 #apa-figure(
   table(
