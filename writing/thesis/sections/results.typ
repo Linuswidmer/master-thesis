@@ -1,9 +1,13 @@
 #import "../utils.typ": *
 
 = Results
+#todo[All analyses were be conducted using RStudio 4.5.2 \@RCoreTeam.]
+
 All statistical analyses were conducted on the proportion of aggressive (or anxious) word fragment completions for each participant.
 
 The word fragment completion task yields a count outcome bounded by the total number of trials, and therefore the dependent variable follows a binomial distribution. Accordingly, a Generalized Linear Model (GLM) with a binomial family and logit link function was used for all inferential tests.
+
+#todo[. These proportions will serve as the operationalization of aggressive and anxious cognition, respectively. Given that these are proportion-based variables bounded between 0 and 1, an arcsine square root transformation will be used ensure the independency of value and variance @winer1971statistical.]
 
 To ensure robustness, several diagnostic checks were performed. Prior to the main analyses, Levene's tests assessed homogeneity of variance across conditions. Model diagnostics were evaluated using simulated residuals via the DHARMa package @DHARMa. Because influential obsrvations may distort the validity of the results @aguinis2013best, a sensitivity analysis was conducted by identifying cases exceeding a Cook's distance threshold of $4 / (n - k)$, removing them, and refitting the model to confirm the stability of findings.
 
