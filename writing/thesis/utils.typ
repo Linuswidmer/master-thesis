@@ -106,3 +106,15 @@
 
   text("CFI = " + cfi_fmt + ", TLI = " + tli_fmt + ", RMSEA = " + rmsea_fmt + ", SRMR = " + srmr_fmt)
 }
+
+// Block for displaying original study materials (e.g., German questionnaire text)
+#let original-text(content) = {
+  set par(first-line-indent: 0pt)
+  block(
+    width: 100%,
+    inset: (left: 1em, top: 0.8em, bottom: 0.8em, right: 1em),
+    stroke: (left: 2pt + luma(180)),
+    fill: luma(250),
+    content
+  )
+}
