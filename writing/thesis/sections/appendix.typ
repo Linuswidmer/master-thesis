@@ -1,8 +1,49 @@
-#import "../utils.typ": apa-figure
+#import "../utils.typ": *
 
 = Materials Supplement
 
-== Motivation For Masculine Behavior
+== Study Introduction
+
+The following text was displayed to participants at the beginning of the study.
+
+#original-text[
+*Willkommen zur Studie!*
+
+Schön, dass Sie an dieser Online-Studie teilnehmen möchten – herzlich willkommen!
+
+Diese psychologische Untersuchung wird im Rahmen einer Masterarbeit am Institut für Psychologie der Humboldt-Universität zu Berlin durchgeführt. Ziel ist es das Zusammenspiel von Persönlichkeit, Motivation und Leistung bei Männern besser zu verstehen.
+
+Die Studie umfasst folgende Abschnitte:
+- Ein Fragebogen zu persönlichen Einstellungen zum Thema Männlichkeit
+- Ein geschlechtsspezifischer Wissenstest
+- Feedback zum geschlechtsspezifischen Wissenstest
+- Ein kurzer Test zur Denkgeschwindigkeit
+- Abschließende demographische Angaben
+
+Bitte bearbeiten Sie die Umfrage an einem ruhigen Ort, an dem Sie sich gut konzentrieren können. Die Teilnahme dauert etwa 10 bis 15 Minuten.
+
+*Wichtige Hinweise:*
+
+Die Studie richtet sich ausschließlich an Männer ...
+... mit muttersprachlichen Deutschkenntnissen ...
+... die mindestens 18 Jahre alt sind.
+
+Sollten diese Kriterien nicht auf Sie zutreffen, bedanken wir uns dennoch herzlich für Ihr Interesse.
+
+Die Teilnahme ist freiwillig. Sie können die Befragung jederzeit abbrechen – ohne Nachteile.
+
+Falls Sie die Teilnahme beenden möchten, nutzen Sie bitte den Button „Studie abbrechen", der Ihnen nach der Einwilligung auf allen Seiten des Fragebogens zur Verfügung steht.
+
+Bitte beachten Sie, dass die Teilnahme nicht vergütet wird. Mit jedem vollständig ausgefüllten Fragebogen werden jedoch 1€ an ein Beratungsangebot für Jungen und Männer des Bundesforum Männer e.V. gespendet.
+
+Falls Sie die Umfrage mit SurveySwap oder SurveyCircle ausfüllen, erhalten Sie den Code auf der letzten Seite.
+
+Vielen Dank für Ihre Unterstützung! Im ersten Schritt bitten wir um Ihre Einwilligung zur Teilnahme.
+]
+
+_English translation:_ Welcome to the study! This psychological study is conducted as part of a master's thesis at the Institute of Psychology, Humboldt University of Berlin. The aim is to better understand the interplay of personality, motivation, and performance in men. The study includes: a questionnaire on personal attitudes toward masculinity, a gender knowledge test, feedback on the test, a brief cognitive speed test, and demographic questions. Participation takes approximately 10–15 minutes. Eligibility requires identifying as male, native German proficiency, and being at least 18 years old. Participation is voluntary and can be discontinued at any time. For each completed questionnaire, 1€ is donated to a men's counseling organization.
+
+== Motivation for Masculine Behavior
 
 #apa-figure(
   table(
@@ -61,7 +102,7 @@
     table.hline(stroke: 0.5pt),
     [16], [F], [You wear Manolo Blahniks on your (head vs. feet)], [Man trägt Manolo Blahniks am (Kopf vs. Fuß)],
     [17], [F], [Botox temporarily erases wrinkles by (skin hydration vs. muscle paralysis)], [Botox glättet Falten vorübergehend durch (Hautbefeuchtung vs. Muskelentspannung)],
-    [18], [F], [The company first to develop hair coloring was (Clairol vs. L'Oreal)], [Die erste Firma, die Haarfärbemittel entwickelte, war (Clairol vs. L'Oréal)],
+    [18], [F], [The first company to develop hair coloring was (Clairol vs. L'Oreal)], [Die erste Firma, die Haarfärbemittel entwickelte, war (Clairol vs. L'Oréal)],
     [19], [F], [The TV show "Sex in the City" popularized which drink? (Cosmopolitan vs. Manhattan)], [Welches Getränk machte die Sendung "Sex and the City" populär? (Cosmopolitan vs. Manhattan)],
     [20], [F], [Children typically start to teethe when they are (over vs. under) 1 year old?], [In welchem Alter beginnen Kinder typischerweise mit dem Zahnen? (über 1 Jahr vs. unter 1 Jahr)],
     [21], [F], [Toilet training should start around the age of (36 months vs. 12 months)], [In welchem Alter sollte das Toilettentraining beginnen? (36 Monate vs. 12 Monate)],
@@ -77,56 +118,53 @@
     table.hline(),
   ),
   caption: [Gender Knowledge Test Items],
-  note: [M = Masculine-stereotyped knowledge; F = Feminine-stereotyped knowledge. Correct answers are shown in bold in the original study materials. Items adapted from #cite(<vandello2008precarious>, form: "prose").],
+  note: [M = Masculine-stereotyped knowledge; F = Feminine-stereotyped knowledge. Correct answers are underlined in the original study materials. Items adapted from #cite(<valved2021gender>, form: "prose"). Items were presented in a fixed randomized order.],
   label: "table:gkt-items",
 )
 
 == Masculinity Threatening and Non-Threatening Feedback
 
+The following feedback screens were displayed to participants after completing the Gender Knowledge Test. The threat condition received feedback indicating below-average performance relative to other men, while the no-threat condition received feedback indicating average performance.
+
 === Threat Condition
 
-#block(
-  fill: luma(245),
-  inset: 1em,
-  radius: 4pt,
-  [
-    *Glückwunsch – du hast den Geschlechtsspezifischen Wissenstest abgeschlossen!*
+#original-text[
+*Glückwunsch – du hast den Geschlechtsspezifischen Wissenstest abgeschlossen!*
 
-    Dieser Test wurde entwickelt, um Unterschiede im Wissen über geschlechtsspezifische Themen zu messen. Frühere Studien zeigen, dass bestimmte Wissensbereiche stärker mit traditionell männlich oder weiblich geprägten Rollen und Selbstbildern verbunden sind. Die Auswertung basiert auf einer Skala von –4 (ausgeprägt weiblich) bis +4 (ausgeprägt männlich).
+Dieser Test wurde entwickelt, um Unterschiede im Wissen über geschlechtsspezifische Themen zu messen. Frühere Studien zeigen, dass bestimmte Wissensbereiche stärker mit traditionell männlich oder weiblich geprägten Rollen und Selbstbildern verbunden sind. Die Auswertung basiert auf einer Skala von –4 (ausgeprägt weiblich) bis +4 (ausgeprägt männlich).
 
-    *Ihr Score beträgt: –1,83*
+*Ihr Score beträgt: –1,83*
 
-    *Was bedeutet das?*
+*Was bedeutet das?*
 
-    Im Vergleich zu anderen männlichen Testteilnehmern, die im Durchschnitt einen Score von +2,24 erreichen, liegt ihr Ergebnis deutlich darunter. Dies weist darauf hin, dass ihre Antworten denen von Frauen ähnlicher sind als denen von Männern. In früheren Studien wurde ein solcher Score häufig mit einem weniger männlichen Selbstbild in Verbindung gebracht. Die folgende Grafik zeigt Ihren Wert im Vergleich zur typischen Verteilung unter männlichen Teilnehmern:
+Im Vergleich zu anderen männlichen Testteilnehmern, die im Durchschnitt einen Score von +2,24 erreichen, liegt ihr Ergebnis deutlich darunter. Dies weist darauf hin, dass ihre Antworten denen von Frauen ähnlicher sind als denen von Männern. In früheren Studien wurde ein solcher Score häufig mit einem weniger männlichen Selbstbild in Verbindung gebracht. Die folgende Grafik zeigt Ihren Wert im Vergleich zur typischen Verteilung unter männlichen Teilnehmern:
 
-    #align(center, image("../assets/DistributionMasculinityThreat.png", width: 80%))
-  ]
-)
+#align(center, image("../assets/DistributionMasculinityThreat.png", width: 80%))
+]
+
+_English translation:_ Congratulations – you have completed the Gender Knowledge Test! This test was developed to measure differences in knowledge about gender-specific topics. Scoring is based on a scale from –4 (strongly feminine) to +4 (strongly masculine). Your score is: –1.83. Compared to other male participants, who on average achieve a score of +2.24, your result is significantly lower. This indicates that your answers are more similar to those of women than to those of men.
 
 === No-Threat Condition
 
-#block(
-  fill: luma(245),
-  inset: 1em,
-  radius: 4pt,
-  [
-    *Glückwunsch – du hast den Geschlechtsspezifischen Wissenstest abgeschlossen!*
+#original-text[
+*Glückwunsch – du hast den Geschlechtsspezifischen Wissenstest abgeschlossen!*
 
-    Dieser Test wurde entwickelt, um Unterschiede im Wissen über geschlechtsspezifische Themen zu messen. Frühere Studien zeigen, dass bestimmte Wissensbereiche stärker mit traditionell männlich oder weiblich geprägten Rollen und Selbstbildern verbunden sind. Die Auswertung basiert auf einer Skala von –4 (ausgeprägt weiblich) bis +4 (ausgeprägt männlich).
+Dieser Test wurde entwickelt, um Unterschiede im Wissen über geschlechtsspezifische Themen zu messen. Frühere Studien zeigen, dass bestimmte Wissensbereiche stärker mit traditionell männlich oder weiblich geprägten Rollen und Selbstbildern verbunden sind. Die Auswertung basiert auf einer Skala von –4 (ausgeprägt weiblich) bis +4 (ausgeprägt männlich).
 
-    *Ihr Score beträgt: +2,18*
+*Ihr Score beträgt: +2,18*
 
-    *Was bedeutet das?*
+*Was bedeutet das?*
 
-    Ihr Score liegt nahe beim Durchschnitt männlicher Teilnehmer, der bei +2,24 liegt. Das bedeutet, dass ihre Antworten typisch für männliche Testteilnehmer sind. In früheren Studien wurde ein solcher Score häufig mit einem ausgeglichenen und typischen Wissensprofil in geschlechtsspezifischen Themenbereichen in Verbindung gebracht. Die folgende Grafik zeigt Ihren Wert im Vergleich zur typischen Verteilung unter männlichen Teilnehmern:
+Ihr Score liegt nahe beim Durchschnitt männlicher Teilnehmer, der bei +2,24 liegt. Das bedeutet, dass ihre Antworten typisch für männliche Testteilnehmer sind. In früheren Studien wurde ein solcher Score häufig mit einem ausgeglichenen und typischen Wissensprofil in geschlechtsspezifischen Themenbereichen in Verbindung gebracht. Die folgende Grafik zeigt Ihren Wert im Vergleich zur typischen Verteilung unter männlichen Teilnehmern:
 
-    #align(center, image("../assets/DistributionMasculinityNoThreat.png", width: 80%))
-  ]
-)
+#align(center, image("../assets/DistributionMasculinityNoThreat.png", width: 80%))
+]
 
+_English translation:_ Congratulations – you have completed the Gender Knowledge Test! Your score is: +2.18. Your score is close to the average of male participants, which is +2.24. This means that your answers are typical for male test-takers.
 
 == Word Fragment Completion Task
+
+Participants completed word fragments by typing the missing first letter. Each fragment could be completed as either a target word (aggressive or anxious) or a neutral word. A seven-second time limit was imposed per item to encourage spontaneous responses.
 
 #apa-figure(
   table(
@@ -182,8 +220,114 @@
   label: "table:wfct-anxious",
 )
 
-// == Manipulation Check
-// == Demographic Items
+== Manipulation Check and Suspicion Probe
+
+The following items assessed participants' recall of the experimental feedback and their suspicions about the study's purpose.
+
+#apa-figure(
+  table(
+    columns: (auto, 1fr, 1fr),
+    align: (center, left, left),
+    stroke: none,
+    table.hline(),
+    table.header(
+      [Item], [German], [English],
+    ),
+    table.hline(),
+    [1], [Welche Rückmeldung haben Sie in dieser Studie zu Ihrem Wissen in geschlechtsspezifischen Themen erhalten? \ _Skala: 1 (typisch weiblich) – 10 (typisch männlich)_], [What feedback did you receive in this study regarding your knowledge of gender-specific topics? \ _Scale: 1 (typically feminine) – 10 (typically masculine)_],
+    [2], [Wie würden Sie Ihr Wissen in geschlechtsspezifischen Themen einschätzen? \ _Skala: 1 (typisch weiblich) – 10 (typisch männlich)_], [How would you rate your knowledge of gender-specific topics? \ _Scale: 1 (typically feminine) – 10 (typically masculine)_],
+    [3], [Hatten Sie während der Teilnahme den Eindruck, dass es in der Studie um etwas anderes ging als angegeben? \ _Ja / Nein_], [During participation, did you have the impression that the study was about something other than what was stated? \ _Yes / No_],
+    [4], [Was denken Sie, worum es in dieser Studie wirklich ging? \ _Offene Antwort_], [What do you think this study was really about? \ _Open response_],
+    [5], [Haben Sie Gedanken zur Studie? \ _Offene Antwort_], [Do you have any thoughts about the study? \ _Open response_],
+    table.hline(),
+  ),
+  caption: [Manipulation Check and Suspicion Probe Items],
+  note: [Items 1 and 2 served as manipulation checks. Items 3–5 assessed participant suspicion. Item 4 was only shown when participants responded 'yes' to item 3.],
+  label: "table:manipulation-check",
+)
+
+== Demographic Questionnaire
+
+#apa-figure(
+  table(
+    columns: (auto, 1fr, 1fr),
+    align: (center, left, left),
+    stroke: none,
+    table.hline(),
+    table.header(
+      [Item], [German], [English],
+    ),
+    table.hline(),
+    [1], [Wie alt sind Sie?], [How old are you?],
+    [2], [Welches Geschlecht haben Sie? \ _Männlich, Weiblich, Divers, Keine Angabe_], [What is your gender? \ _Male, Female, Diverse, Prefer not to say_],
+    [3], [Wie gut sind Ihre Deutschkenntnisse? \ _Keine Deutschkenntnisse, Grundkenntnisse, Gute Kenntnisse, Sehr gute Kenntnisse, Deutsch ist meine Muttersprache_], [How proficient is your German? \ _No German, Basic, Good, Very good, German is my native language_],
+    [4], [Was ist Ihr höchster Schulabschluss? \ _Noch kein Abschluss, Schule beendet ohne Abschluss, Haupt-/Volksschule, Mittlerer Schulabschluss, Fachhochschulreife, Abitur_], [What is your highest educational degree? \ _No degree yet, Left school without degree, Secondary school, Middle school, Technical college entrance, University entrance (Abitur)_],
+    [5], [Welchen höchsten beruflichen Abschluss haben Sie? \ _Noch keinen, Lehre, Berufsfachschule, Fachschule, Fachhochschule, Universität, Anderer_], [What is your highest occupational degree? \ _None yet, Apprenticeship, Vocational school, Technical school, University of applied sciences, University, Other_],
+    table.hline(),
+  ),
+  caption: [Demographic Questionnaire Items],
+  note: [Response options are abbreviated. Full German response options were presented to participants.],
+  label: "table:demographics",
+)
+
+== Debriefing
+
+The following debriefing text was displayed to participants after completing all study components.
+
+#original-text[
+*Aufklärung zum Studienzweck*
+
+Vielen Dank für Ihre Teilnahme!
+
+Bevor Sie die Studie abschließen, möchten wir Sie über den tatsächlichen Hintergrund des Experiments informieren:
+
+*Wichtiger Hinweis:*
+Das Feedback, das Sie im Rahmen des „geschlechtsspezifischen Wissenstests" erhalten haben, war nicht echt. Es wurde unabhängig von Ihrer tatsächlichen Leistung zufällig generiert und ist nicht aussagekräftig für Ihre kognitive Leistungsfähigkeit oder Ihr Wissen.
+
+*Warum wurde das gemacht?*
+Die Studie untersucht ein psychologisches Phänomen, das als „fragile Männlichkeit" (engl. fragile masculinity) bekannt ist. Dabei geht es um die Frage, wie Männer auf Situationen reagieren, in denen ihre Geschlechtsidentität – also das Selbstbild als Mann – subtil infrage gestellt oder als „bedroht" erlebt wird, z. B. durch vermeintlich negatives Feedback in geschlechtsbezogenen Leistungsbereichen.
+
+Wir interessieren uns dafür, wie sich solche Situationen auf Denken, Emotionen und Verhalten auswirken.
+Um dies zu untersuchen, haben wir den Teilnehmenden zufällig entweder neutrales oder negatives Feedback zum Wissenstest gegeben. Ihre emotionale Reaktion wurde anschließend mithilfe der Wortvervollständigungsaufgabe im „Test zur Denkgeschwindigkeit" gemessen.
+
+Die Annahme ist, dass sich emotionale Zustände (z. B. Ärger oder Verunsicherung) darin zeigen können, wie Personen unvollständige Wörter ergänzen.
+
+Damit Ihre Reaktion möglichst authentisch und unverfälscht bleibt, war es notwendig, den wahren Zweck der Studie nicht vorab offenzulegen.
+
+*Wichtig: Sie sind nicht „hereingefallen"*
+Das verwendete Feedback wurde bewusst sehr glaubwürdig gestaltet – viele Teilnehmende hielten es ebenfalls für real. Ihre Reaktion ist verständlich und vollkommen normal. Die Täuschung diente ausschließlich wissenschaftlichen Zwecken und basiert auf etablierten Methoden der psychologischen Forschung.
+
+Auch wenn Ihnen nun bewusst ist, dass das Feedback nicht echt war, kann es dennoch nachwirken. In der Psychologie ist bekannt, dass selbst widerlegte Informationen unser Denken und Fühlen weiterhin beeinflussen können. Diese Reaktion ist normal und gut erforscht – bitte seien Sie daher nachsichtig mit sich, falls das Feedback bei Ihnen nachhallt.
+
+Wenn Sie Fragen, Bedenken oder Feedback zur Studie haben, können Sie sich jederzeit an die Studienleitung wenden:
+
+Studienleitung:
+Linus Widmer
+Institut für Psychologie, Humboldt-Universität zu Berlin
+widmerli\@student.hu-berlin.de
+
+Wichtig: Bevor Sie das Fenster schließen lesen Sie bitte den unten stehenden Hinweis zur Freiwilligkeit und Einwilligungserklärung
+]
+
+_English translation:_ Thank you for your participation! The feedback you received on the "Gender Knowledge Test" was not real—it was randomly generated regardless of your actual performance. The study investigates "fragile masculinity"—how men respond when their gender identity is subtly challenged. We randomly assigned either neutral or negative feedback and measured emotional reactions through the word completion task. You did not "fall for" anything; the feedback was designed to be believable, and your reaction is completely normal. Even though you now know the feedback was fake, it may still linger—this is a well-documented psychological phenomenon.
+
+=== Consent After Debriefing
+
+Following the debriefing, participants were given the option to withdraw their data.
+
+#original-text[
+*Freiwilligkeit & Einwilligungserklärung*
+
+Hinweis zur Freiwilligkeit und Einwilligungserklärung:
+
+Da wir Sie zu Beginn der Studie nicht über alle Aspekte informieren konnten, möchten wir Ihnen nun die Möglichkeit geben, der Verwendung Ihrer Daten zu widersprechen. Ihre Entscheidung hat keinen Einfluss auf die zugesagte Spende an das Bundesforum Männer e.V.
+
+Wenn Sie widersprechen, werden keine Ihrer Antworten aus diesem Fragebogen gespeichert – mit Ausnahme der folgenden Informationen:
+- Ihre Entscheidung über die Datenspeicherung (Ja/Nein)
+- Welches Feedback Sie im Wissenstest erhalten haben (neutral oder negativ)
+]
+
+_English translation:_ Since we could not inform you about all aspects of the study at the beginning, we would now like to give you the opportunity to object to the use of your data. Your decision will not affect the promised donation. If you object, none of your responses will be saved except your decision about data storage and which feedback condition you received.
 
 == Sample Size Planning
 
@@ -208,7 +352,7 @@
 
     [#cite(<stanaland2021man>, form: "prose")],
     [aggressive cognition],[$d$ = 0.41], [-],
-    
+
     [#cite(<vandello2008precarious>, form: "prose"), Study 5], [aggressive cognition], [$d$ = 0.91], [-],
 
     [#cite(<stanaland2024adolescent>, form: "prose")], [aggressive cognition], [$d$ = 0.35], [adolescents],
@@ -218,7 +362,7 @@
   ),
   caption: [Effect Sizes for Masculinity Threat and Motivation of Masculine Behavior],
   note: [
-   Effect Sizes for aggressive and anxious cognition induced by a masculinity threat. All studies measured aggressive and anxious cognition using a WFCT and induced operationalized masculinity threat via a negative feedback on the Gender Knowledge Test.
+   Effect sizes for aggressive and anxious cognition induced by a masculinity threat. All studies measured aggressive and anxious cognition using a WFCT and operationalized masculinity threat via negative feedback on the Gender Knowledge Test.
   ],
   label: "table:effect-sizes",
 )
