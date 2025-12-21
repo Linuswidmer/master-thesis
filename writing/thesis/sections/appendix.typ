@@ -62,7 +62,6 @@ _English translation:_ Welcome to the study! This psychological study is conduct
     [3], [P], [I'm masculine because I want people to like me.], [Ich verhalte mich männlich, weil ich möchte, dass man mich mag.],
     [4], [P], [I'm masculine around other people because that is how others think I should be.], [Ich verhalte mich in Gegenwart anderer männlich, um ihre Erwartungen zu erfüllen.],
     [5], [P], [I'm not feminine because people wouldn't like me.], [Ich verhalte mich nicht weiblich, weil ich glaube, dass mich die Leute sonst nicht mögen würden.],
-    table.hline(stroke: 0.5pt),
     [6], [A], [It's important to me to be masculine.], [Es ist mir wichtig, männlich zu sein.],
     [7], [A], [I enjoy being masculine.], [Ich bin gerne männlich.],
     [8], [A], [It makes me happy if I'm masculine.], [Es macht mich glücklich, mich männlich zu verhalten.],
@@ -73,6 +72,67 @@ _English translation:_ Welcome to the study! This psychological study is conduct
   note: [P = Pressured Motivation subscale; A = Autonomous Motivation subscale. Items rated on a 7-point Likert scale (1 = "Disagree Strongly" to 7 = "Agree Strongly"). The original English Items are from #cite(<stanaland2023masculinity>, form: "prose") Study 2.],
   label: "table:mmb-items",
 )
+
+=== Documentation of the Translation of the Motivation for Masculine Behaviour Scale
+
+The translation of the MMB scale was conducted following the TRAPD protocol @harkness2010translation, using two independent native German, fluent English translators. In the first step, translators were given the original scale items and were instructed to find the most appropriate translation focusing on natural and semantically correct phrasing. #ref(<table:mmb-translator1>) and #ref(<table:mmb-translator2>) present the independent translations and translator comments from this initial translation phase.
+
+#apa-figure(
+  table(
+    columns: (auto, 1fr, 1fr, 1fr),
+    align: (center, left, left, left),
+    stroke: none,
+    table.hline(),
+    table.header(
+      [Item], [English (Original)], [German Translation], [Comments],
+    ),
+    table.hline(),
+    [1], [In general, I'm masculine because I want others' acceptance and approval.], [Im Allgemeinen bin ich männlich, weil ich von anderen akzeptiert und anerkannt werden will.], [„Acceptance and approval" wurde mit „akzeptiert und anerkannt" übersetzt, um sowohl emotionale als auch soziale Aspekte der Zustimmung wiederzugeben. „Im Allgemeinen" klingt natürlich.],
+    [2], [In general, I'm masculine because that is what people expect from me.], [Im Allgemeinen bin ich männlich, weil die Leute das von mir erwarten.], [Die Formulierung ist direkt und entspricht der Alltagssprache. „Die Leute" ist eine geläufige, allgemein gehaltene Übersetzung für „people".],
+    [3], [I'm masculine because I want people to like me.], [Ich bin männlich, weil ich möchte, dass man mich mag.], [Die Konstruktion mit „dass man mich mag" nutzt das unpersönliche „man", was im Deutschen üblich ist, um eine allgemeine Aussage über „people" zu treffen.],
+    [4], [I'm masculine around other people because that is how others think I should be.], [Ich verhalte mich in der Nähe anderer männlich, weil sie denken, dass ich so sein sollte.], [„Verhalte mich männlich" betont das Verhalten (performative Männlichkeit)],
+    [5], [I'm not feminine because people wouldn't like me.], [Ich bin nicht feminin, weil ich glaube, dass mich die Leute dann nicht mögen würden.], [„Ich glaube" wurde eingefügt, um die subjektive Wahrnehmung zu betonen – im Deutschen klingt es so natürlicher. „Dann" verstärkt die kausale Beziehung.],
+    [6], [It's important to me to be masculine.], [Es ist mir wichtig, männlich zu sein.], [Sehr direkte und idiomatische Übersetzung – stilistisch wie in Fragebögen oder formellen Aussagen gebräuchlich.],
+    [7], [I enjoy being masculine.], [Ich genieße es, männlich zu sein.], [Klare, wörtliche und gut klingende Übersetzung. „Es genießen" ist im Deutschen idiomatisch.],
+    [8], [It makes me happy if I'm masculine.], [Es macht mich glücklich, wenn ich männlich bin.], [Wörtlich, aber idiomatisch korrekt. Die Satzstruktur ist im Deutschen üblich und gut verständlich.],
+    [9], [It is important to me not to be feminine.], [Es ist mir wichtig, nicht feminin zu sein.], [Direkte Negation, die in dieser Form im Deutschen völlig natürlich klingt. Wichtig war, „nicht feminin" klar und nicht überbetont darzustellen.],
+    table.hline(),
+  ),
+  caption: [MMB Scale Translation: Translator 1],
+  note: [Items 1–5 = Pressured Motivation subscale; Items 6–9 = Autonomous Motivation subscale.],
+  label: "table:mmb-translator1",
+)
+
+#apa-figure(
+  table(
+    columns: (auto, 1fr, 1fr, 1fr),
+    align: (center, left, left, left),
+    stroke: none,
+    table.hline(),
+    table.header(
+      [Item], [English (Original)], [German Translation], [Comments],
+    ),
+    table.hline(),
+    [1], [In general, I'm masculine because I want others' acceptance and approval.], [Im Allgemeinen bin ich männlich, weil ich die Akzeptanz und Zustimmung anderer möchte.], ['Acceptance and approval' wird im Deutschen als 'Akzeptanz und Zustimmung' übersetzt.],
+    [2], [In general, I'm masculine because that is what people expect from me.], [Im Allgemeinen bin ich männlich, weil das von mir erwartet wird.], ['That is what people expect from me' wird im Deutschen als 'weil das von mir erwartet wird' übersetzt.],
+    [3], [I'm masculine because I want people to like me.], [Ich bin männlich, weil ich möchte, dass die Leute mich mögen.], [Keine besonderen Anmerkungen.],
+    [4], [I'm masculine around other people because that is how others think I should be.], [Ich bin in Gegenwart anderer männlich, weil andere denken, dass ich so sein sollte.], ['Around other people' wird im Deutschen als 'in Gegenwart anderer' übersetzt.],
+    [5], [I'm not feminine because people wouldn't like me.], [Ich bin nicht weiblich, weil die Leute mich dann nicht mögen würden.], [Keine besonderen Anmerkungen.],
+
+    [6], [It's important to me to be masculine.], [Es ist mir wichtig, männlich zu sein.], [Keine besonderen Anmerkungen.],
+    [7], [I enjoy being masculine.], [Ich genieße es, männlich zu sein.], [Keine besonderen Anmerkungen.],
+    [8], [It makes me happy if I'm masculine.], [Es macht mich glücklich, wenn ich männlich bin.], [Keine besonderen Anmerkungen.],
+    [9], [It is important to me not to be feminine.], [Es ist mir wichtig, nicht weiblich zu sein.], [Keine besonderen Anmerkungen.],
+    table.hline(),
+  ),
+  caption: [MMB Scale Translation: Translator 2],
+  note: [Items 1–5 = Pressured Motivation subscale; Items 6–9 = Autonomous Motivation subscale.],
+  label: "table:mmb-translator2",
+)
+
+The independent translations highlighted two key considerations for the review phase. First, both translators used the German word _männlich_ rather than the loanword _maskulin_, suggesting that _männlich_ (and correspondingly _weiblich_ for feminine) sounds more natural in everyday German. The terms _maskulin_ and _feminin_ are more commonly used in German to describe physical appearance rather than behavioral traits. Second, the translators predominantly used stative phrasing (_ich bin männlich_; "I am masculine") rather than agentic phrasing (_ich verhalte mich männlich_; "I behave masculinely").
+
+These observations were discussed with the thesis supervisor and other students during the review phase. Two decisions were made for the final translations. First, the translations retained _männlich_ and _weiblich_ rather than _maskulin_ and _feminin_, as these terms are more familiar in German when describing personal characteristics. Second, a mix of stative and agentic phrasings was adopted in the final version. The purely stative phrasing _ich bin männlich_ carries a connotation of "being a man" in German, which may imply an innate, ascribed property rather than an enacted behavior. To balance fidelity to the original English items with the recognition that masculinity involves behavioral choices, the final translations incorporated both phrasings. This approach is consistent with prior work on motivation to conform to gender norms by #cite(<good2010doing>, form: "prose"), which also employed varied item phrasings.
 
 == Gender Knowledge Test
 
