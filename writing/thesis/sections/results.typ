@@ -1,17 +1,19 @@
 #import "../utils.typ": *
 
 = Results
-#todo[All analyses were be conducted using RStudio 4.5.2 \@RCoreTeam.]
+All analyses were conducted using R version 4.5.2 @RCoreTeam.
 
-All statistical analyses were conducted on the proportion of aggressive (or anxious) word fragment completions for each participant.
+All statistical analyses were conducted on the proportion of aggressive (or anxious) word fragment completions for each participant. These proportions served as the operationalization of aggressive and anxious cognition, respectively.
 
-The word fragment completion task yields a count outcome bounded by the total number of trials, and therefore the dependent variable follows a binomial distribution. Accordingly, a Generalized Linear Model (GLM) with a binomial family and logit link function was used for all inferential tests.
+The pre-registered analysis plan specified an arcsine square root transformation to address the bounded nature of proportion data. 
+However, preliminary diagnostics on the transformed scores revealed violations of the homoscedasticity assumption. 
+Therefore, a deviation from the pre-registration was made: rather than analyzing transformed proportions with standard linear models, the analyses employed a Generalized Linear Model (GLM) with a binomial family and logit link function. This approach directly models the count of target completions out of total trials, appropriately accounting for the bounded and discrete nature of the outcome without requiring transformation.
 
-#todo[. These proportions will serve as the operationalization of aggressive and anxious cognition, respectively. Given that these are proportion-based variables bounded between 0 and 1, an arcsine square root transformation will be used ensure the independency of value and variance @winer1971statistical.]
+To ensure robustness, several diagnostic checks were performed.
+Prior to the main analyses, Levene's tests assessed homogeneity of variance across conditions. Model diagnostics were evaluated using simulated residuals via the DHARMa package @DHARMa.
+Because influential observations may distort the validity of the results @aguinis2013best, a sensitivity analysis was conducted by identifying cases exceeding a Cook's distance threshold of $4 / (n - k)$, removing them, and refitting the model to confirm the stability of findings.
 
-To ensure robustness, several diagnostic checks were performed. Prior to the main analyses, Levene's tests assessed homogeneity of variance across conditions. Model diagnostics were evaluated using simulated residuals via the DHARMa package @DHARMa. Because influential obsrvations may distort the validity of the results @aguinis2013best, a sensitivity analysis was conducted by identifying cases exceeding a Cook's distance threshold of $4 / (n - k)$, removing them, and refitting the model to confirm the stability of findings.
-
-A significance level of $alpha = .05$ was applied throughout. To control the family-wise error rate across analyses within the same outcome domain (aggressive vs. anxious cognition), $p$-values were adjusted using the Bonferroni-Holm correction  @abdi2010holm. Post-hoc power was calculated using G*Power 3 @cunningham2007power and was considered sufficient when above the commonly used 80% criterion @aberson2011applied.
+A significance level of $alpha = .05$ was applied throughout. Post-hoc power was calculated using G*Power 3 @cunningham2007power and was considered sufficient when above the commonly used 80% criterion @aberson2011applied.
 
 #apa-figure(
   caption: [Aggressive and Anxious Word Completion Scores by Threat Condition],
@@ -127,11 +129,10 @@ For the subsequent moderation analyses, subscale scores were computed as row mea
   image("../images/anxious-cognition-autonomous-motivation-line-chart.png"),
   )
 ),
-  caption: [Moderation of word completion scores by motivation for masculine behaviour],
+  caption: [Moderation of Word Completion Scores by Motivation for Masculine Behavior],
   label: "fig:moderation-masculinity-threat",
-  note:[TODO]
+  note: [Left panel: Aggressive word completion scores (%) by threat condition and pressured motivation. Right panel: Anxious word completion scores (%) by threat condition and autonomous motivation.]
 )
-#todo[MMB Pressured only till 6 rn]
 
 === Pressured Motivation on Aggressive Cognition (Hypothesis 2a)
 Hypothesis 2a predicted that the effect of masculinity threat on aggressive cognition would be moderated by pressured motivation to conform to masculinity norms.

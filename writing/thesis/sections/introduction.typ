@@ -47,6 +47,7 @@ In support of the idea that masculine identity fragility also manifests outside 
 Taken together, the prevalence of precarious manhood beliefs and empirical support from European populations make it plausible to expect compensatory responses to a masculinity threat in the present study. Although the present research is conducted in Germany — a country with relatively high gender equality #citeWithPrefix(prefix: "Rank 7/146;", keys: <wef2024gendergap>) - it is expected that threat effects still emerge, albeit potentially with smaller effect sizes. This expectation is supported by prior findings showing that in Norway, a country with even higher levels of gender equality #citeWithPrefix(prefix: "Rank 3/146;", keys: <wef2024gendergap>), men still exhibited increased aggressive cognition following a masculinity threat @valved2021gender. Accordingly, it is hypothesized: 
 
 ==== Hypothesis 1a
+#todo[a more meaningul heading?]
 Men exposed to a masculinity threat will exhibit higher levels of aggressive cognition than men receiving neutral feedback.
 
 ==== Hypothesis 1b

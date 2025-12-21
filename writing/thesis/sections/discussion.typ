@@ -26,7 +26,7 @@ Firstly, both translators avoided in their translation the use of the word 'mask
 - Different methods in assessing the MMB scale: #citeWithPrefix(keys: <stanaland2023masculinity>, prefix: "Study 1;") let participants describe their idea of an ideal men and then asked participants with regard to the ideal they described (e.g. In general, I present myself like the man I described because I want others’ acceptance and approval.). In contrast #citeWithPrefix(keys: <stanaland2023masculinity>, prefix: "Study 2;") that was aloso the base for this study, omitted the description of an ideal men and asked more generally "In general, I'm masculine because I want others' acceptance and approval.". Notably in their first study, #cite(<stanaland2021man>, form: "prose") observed a much smaller correlation between the two facors ($r = .15$) than in the second study $r = .5$. One may assume, that fourmulating of an ideal man helps participants distinguish better autnomous and pressured components of their masculinity. 
 
 === Conclusion on the MMB in a German sample
-- Successful translation of the scale and showed a valid and reliable measure for pressured and autonomous motivation for masculine behaviour that replicated previous studies @@stanaland2021man@stanaland2023masculinity. 
+- Successful translation of the scale and showed a valid and reliable measure for pressured and autonomous motivation for masculine behaviour that replicated previous studies @stanaland2021man@stanaland2023masculinity. 
 Future studies that want to investigate pressured and autonomous motivation for masculine behaviour may regard the "state vs. agenticness" of translating traits related to gender (being vs. doing gender), as well as consider the benefit of an introductory text.
 
 

@@ -1384,6 +1384,7 @@ agg_moderation_pressured_motivation <- plotModeration(
   ),
   legend_title = "Condition",
   ylim = c(10, 30),
+  xlim = c(1, 7),
   legend_position = "top.left"
 )
 agg_moderation_pressured_motivation

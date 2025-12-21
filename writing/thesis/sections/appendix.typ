@@ -579,9 +579,11 @@ Based on the largest required sample size (moderation analysis; 208 participants
 
 = Results Supplement
 
-#todo[The code can be viewd publicly (), an anonymized version of the data is supplied in the same repository. Anonymization involved coding all free text responses for syudy suspicion and removing the free text, as it may contain hints to the identity of the participant]
+The analysis code can be viewed publicly at #todo[add link]. An anonymized version of the data is supplied in the same repository. Anonymization involved coding all free-text responses for study suspicion and then removing the free-text content, as it may contain information that could identify participants.
 
-#ref(<table:mmb-descriptives>) presents descriptive statistics for the Motivation for Masculine Behavior items. #ref(<table:wfct-agg-descriptives>) and #ref(<table:wfct-anx-descriptives>) present response frequencies for the aggressive and anxious word fragment completion items, respectively.
+#ref(<table:mmb-descriptives>) presents descriptive statistics for the Motivation for Masculine Behavior items.
+
+== Motivation for Masculine Behaviour
 
 #apa-figure(
   table(
@@ -590,19 +592,19 @@ Based on the largest required sample size (moderation analysis; 208 participants
     stroke: none,
     table.hline(),
     table.header(
-      [Item], [Description], [_M_], [_SD_],
+      [Item], [German Item], [_M_], [_SD_],
     ),
     table.hline(),
-    [1], [I'm masculine because I want others' acceptance and approval.], [3.55], [1.78],
-    [2], [I'm masculine because that is what people expect from me.], [3.75], [1.74],
-    [3], [I'm masculine because I want people to like me.], [3.35], [1.68],
-    [4], [I'm masculine around other people because that is how others think I should be.], [3.51], [1.74],
-    [5], [I'm not feminine because people wouldn't like me.], [2.97], [1.68],
+    [1], [Im Allgemeinen verhalte ich mich männlich, weil ich die Akzeptanz und Anerkennung anderer möchte.], [3.55], [1.78],
+    [2], [Im Allgemeinen bin ich männlich, weil das von mir erwartet wird.], [3.75], [1.74],
+    [3], [Ich verhalte mich männlich, weil ich möchte, dass man mich mag.], [3.35], [1.68],
+    [4], [Ich verhalte mich in Gegenwart anderer männlich, um ihre Erwartungen zu erfüllen.], [3.51], [1.74],
+    [5], [Ich verhalte mich nicht weiblich, weil ich glaube, dass mich die Leute sonst nicht mögen würden.], [2.97], [1.68],
     table.hline(stroke: 0.5pt),
-    [6], [It's important to me to be masculine.], [4.06], [1.79],
-    [7], [I enjoy being masculine.], [5.29], [1.49],
-    [8], [It makes me happy if I'm masculine.], [4.32], [1.68],
-    [9], [It is important to me not to be feminine.], [3.26], [1.77],
+    [6], [Es ist mir wichtig, männlich zu sein.], [4.06], [1.79],
+    [7], [Ich bin gerne männlich.], [5.29], [1.49],
+    [8], [Es macht mich glücklich, mich männlich zu verhalten.], [4.32], [1.68],
+    [9], [Es ist mir wichtig, mich nicht weiblich zu verhalten.], [3.26], [1.77],
     table.hline(),
   ),
   caption: [Descriptive Statistics for Motivation for Masculine Behavior Items],
@@ -610,7 +612,9 @@ Based on the largest required sample size (moderation analysis; 208 participants
   label: "table:mmb-descriptives",
 )
 
-#todo[use the exact formulations of items]
+== Word Fragment Completion Task
+
+#ref(<table:wfct-agg-descriptives>) and #ref(<table:wfct-anx-descriptives>) present response frequencies for the aggressive and anxious word fragment completion items, respectively.
 
 #apa-figure(
   table(
