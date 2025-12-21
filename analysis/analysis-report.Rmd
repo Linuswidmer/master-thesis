@@ -1326,8 +1326,17 @@ knitr::opts_chunk$set(eval = FALSE)
 
 ```{r}
 save_corrplot_apa(cor_mmb, "corrplot-mmb", cluster_groups = c(1, 5, 6, 9))
-save_corrplot_apa(cor_aggr, "corrplot-aggressive-cognition")
-save_corrplot_apa(cor_anx, "corrplot-anxious-cognition")
+
+# Rename items for cleaner labels (remove "WFCT" prefix)
+cor_aggr_renamed <- cor_aggr
+rownames(cor_aggr_renamed) <- gsub("^WFCT", "", rownames(cor_aggr_renamed))
+colnames(cor_aggr_renamed) <- gsub("^WFCT", "", colnames(cor_aggr_renamed))
+save_corrplot_apa(cor_aggr_renamed, "corrplot-aggressive-cognition")
+
+cor_anx_renamed <- cor_anx
+rownames(cor_anx_renamed) <- gsub("^WFCT", "", rownames(cor_anx_renamed))
+colnames(cor_anx_renamed) <- gsub("^WFCT", "", colnames(cor_anx_renamed))
+save_corrplot_apa(cor_anx_renamed, "corrplot-anxious-cognition")
 ```
 
 ### Masculinity Threat Effects
