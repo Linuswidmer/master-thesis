@@ -49,6 +49,7 @@ The rationale for the deception was explained, and participants were offered the
 == Materials
 All original scales from #cite(<stanaland2021man>, form: "prose") were translated from English to German following the Translation, Review, Adjudication, Pretesting, and Documentation (TRAPD) protocol @harkness2010translation.
 Complete materials including all item wordings in both languages are provided in the Appendix.
+#todo("Stanaland uses different versions of the MMB scale, for this study the version was chosen that does not depend on a previous description of masculinity ideals")
 
 === Motivation for Masculine Behavior
 Nine items from the Motivation for Masculine Behavior scale @good2010doing were used to measure participants' motivation for enacting masculine behavior.

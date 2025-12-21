@@ -83,8 +83,8 @@ However, Item 9 ("It is important to me not to be feminine") displayed a cross-l
     table.header(
       [Item],
       [Description],
-      [Factor 1],
-      [Factor 2],
+      [Pressured Motivation Factor],
+      [Autonomous Motivation Factor],
     ),
     table.hline(),
     [1], [In general, I'm masculine because I want others' acceptance and approval.], [.83], [],
@@ -100,7 +100,7 @@ However, Item 9 ("It is important to me not to be feminine") displayed a cross-l
   ),
   caption: [EFA Factor Loadings for Motivation for Masculine Behavior Scale],
   note: [
-    Factor loadings below .30 are suppressed for clarity. Factor 1 = Pressured Motivation; Factor 2 = Autonomous Motivation. Extraction method: Maximum Likelihood with oblimin rotation.
+    Factor loadings below .30 are suppressed for clarity. Extraction method: Maximum Likelihood with oblimin rotation.
   ],
   label: "table:efa-mmb",
 )

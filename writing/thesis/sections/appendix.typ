@@ -58,19 +58,19 @@ _English translation:_ Welcome to the study! This psychological study is conduct
     ),
     table.hline(),
     [1], [P], [In general, I'm masculine because I want others' acceptance and approval.], [Im Allgemeinen verhalte ich mich männlich, weil ich die Akzeptanz und Anerkennung anderer möchte.],
-    [2], [P], [In general, I'm masculine because that is what people expect from me.], [Im Allgemeinen bin ich männlich, weil das von mir erwartet wird.],
+    [2], [P], [In general, I'm masculine because that is what people expect from me.], [Allgemeinen bin ich männlich, weil das von mir erwartet wird.],
     [3], [P], [I'm masculine because I want people to like me.], [Ich verhalte mich männlich, weil ich möchte, dass man mich mag.],
     [4], [P], [I'm masculine around other people because that is how others think I should be.], [Ich verhalte mich in Gegenwart anderer männlich, um ihre Erwartungen zu erfüllen.],
-    [5], [P], [I'm not feminine because people wouldn't like me.], [Ich bin nicht weiblich, weil ich glaube, dass mich die Leute sonst nicht mögen würden.],
+    [5], [P], [I'm not feminine because people wouldn't like me.], [Ich verhalte mich nicht weiblich, weil ich glaube, dass mich die Leute sonst nicht mögen würden.],
     table.hline(stroke: 0.5pt),
     [6], [A], [It's important to me to be masculine.], [Es ist mir wichtig, männlich zu sein.],
     [7], [A], [I enjoy being masculine.], [Ich bin gerne männlich.],
-    [8], [A], [It makes me happy if I'm masculine.], [Es macht mich glücklich, wenn ich männlich bin.],
-    [9], [A], [It is important to me not to be feminine.], [Es ist mir wichtig, nicht weiblich zu sein.],
+    [8], [A], [It makes me happy if I'm masculine.], [Es macht mich glücklich, mich männlich zu verhalten.],
+    [9], [A], [It is important to me not to be feminine.], [Es ist mir wichtig, mich nicht weiblich zu verhalten],
     table.hline(),
   ),
   caption: [Motivation for Masculine Behavior Scale Items],
-  note: [P = Pressured Motivation subscale; A = Autonomous Motivation subscale. Items rated on a 7-point Likert scale (1 = "Disagree Strongly" to 7 = "Agree Strongly").],
+  note: [P = Pressured Motivation subscale; A = Autonomous Motivation subscale. Items rated on a 7-point Likert scale (1 = "Disagree Strongly" to 7 = "Agree Strongly"). The original English Items are from #cite(<stanaland2023masculinity>, form: "prose") Study 2.],
   label: "table:mmb-items",
 )
 
@@ -441,6 +441,8 @@ Based on the largest required sample size (moderation analysis; 208 participants
   note: [_N_ = 154. Items 1–5 = Pressured Motivation subscale; Items 6–9 = Autonomous Motivation subscale. Items rated on a 7-point Likert scale (1 = strongly disagree, 7 = strongly agree).],
   label: "table:mmb-descriptives",
 )
+
+#todo[use the exact formulations of items]
 
 #apa-figure(
   table(

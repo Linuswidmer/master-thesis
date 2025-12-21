@@ -36,6 +36,7 @@ The EDT model of masculine identity offers a compelling framework for understand
 
 == The Present Research
 By investigating masculinity threat responses in a novel cultural context using a theoretically grounded motivational framework, the present research makes several key contributions. First, it extends the EDT model by assessing its cross-cultural generalizability. Second, it addresses limited empirical evidence for the pathways proposed by the EDT model. Third, it directly tests the model’s core predictions using implicit cognitive measures that capture both internalized and externalized threat responses. Through this multifaceted approach, the study aims to clarify the psychological processes that underlie fragile masculinity and deepen our understanding of how and why men respond differently when their gender identity is challenged.
+#todo[fragile mascuinity is only the externally motivated path of threat reaction]
 
 === Cross-Cultural Generalizability of Masculinity Threat Effects
 

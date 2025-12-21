@@ -83,6 +83,8 @@
 #include "sections/introduction.typ"
 #include "sections/methods.typ"
 #include "sections/results.typ"
+#include "sections/discussion.typ"
+
 #pagebreak()
 #bibliography(
   "bibliography/ref.bib", // or ref.yml
