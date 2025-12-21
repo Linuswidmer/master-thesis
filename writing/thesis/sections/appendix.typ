@@ -134,6 +134,8 @@ The independent translations highlighted two key considerations for the review p
 
 These observations were discussed with the thesis supervisor and other students during the review phase. Two decisions were made for the final translations. First, the translations retained _männlich_ and _weiblich_ rather than _maskulin_ and _feminin_, as these terms are more familiar in German when describing personal characteristics. Second, a mix of stative and agentic phrasings was adopted in the final version. The purely stative phrasing _ich bin männlich_ carries a connotation of "being a man" in German, which may imply an innate, ascribed property rather than an enacted behavior. To balance fidelity to the original English items with the recognition that masculinity involves behavioral choices, the final translations incorporated both phrasings. This approach is consistent with prior work on motivation to conform to gender norms by #cite(<good2010doing>, form: "prose"), which also employed varied item phrasings.
 
+A pre-test was conducted with nine male participants to evaluate the translated scale. No changes were made to the translations based on this pre-test. Participants reported that although they understood the items, it was not easy for them to provide self-judgments about their motivations for being masculine. This feedback suggests that the construct may be inherently difficult to introspect upon, which is consistent with the implicit nature of motivational processes.
+
 == Gender Knowledge Test
 
 #ref(<table:gkt-items>) presents the 30 items of the Gender Knowledge Test with their original English wording and German translations.
@@ -185,6 +187,110 @@ These observations were discussed with the thesis supervisor and other students 
   note: [M = Masculine-stereotyped knowledge; F = Feminine-stereotyped knowledge. Correct answers are underlined in the original study materials. Items adapted from #cite(<valved2021gender>, form: "prose"). Items were presented in a fixed randomized order.],
   label: "table:gkt-items",
 )
+
+=== Documentation of the Translation of the Gender Knowledge Test
+
+The translation of the Gender Knowledge Test followed the same TRAPD protocol as the MMB scale, using two independent native German, fluent English translators. #ref(<table:gkt-translator1>) and #ref(<table:gkt-translator2>) present the independent translations and translator comments.
+
+#apa-figure(
+  table(
+    columns: (auto, auto, 1fr, 1fr, 1fr),
+    align: (center, center, left, left, left),
+    stroke: none,
+    table.hline(),
+    table.header(
+      [Item], [Type], [English (Original)], [German Translation], [Comments],
+    ),
+    table.hline(),
+    [1], [M], [A motorcycle engine turning at 8000 rpms generates an exhaust sound at (4000 rpms vs. 8000 rpms)], [Ein Motorrad mit 8000 Umdrehungen pro Minute erzeugt einen Auspuffton bei (4000 U/min vs. 8000 U/min)], [Technisches Wissen, stereotypisch männlich; 'U/min' als gebräuchliche Abkürzung.],
+    [2], [M], [To help an engine produce more power you should (inject the fuel vs. reduce displacement)], [Um einem Motor zu mehr Leistung zu verhelfen, sollte man (den Kraftstoff einspritzen vs. den Hubraum verringern)], [Fachbegriffe wie 'Kraftstoff einspritzen' und 'Hubraum' kulturgerecht übersetzt.],
+    [3], [M], [In nature, the best analogy for a spark plug is (solar fire vs. lightning)], [In der Natur entspricht eine Zündkerze am ehesten (Sonnenfeuer vs. Blitz)], ['Sonnenfeuer' ist eine poetische, aber verständliche Entsprechung im Deutschen.],
+    [4], [M], [Karate originated in martial arts developed in (Japan vs. China)], [Karate stammt ursprünglich aus Kampfkünsten, die in (Japan vs. China) entwickelt wurden], [Bekanntes kulturelles Wissen; DE kennt Unterschiede zwischen Japan/China.],
+    [5], [M], [Soldiers in WWII often used what type of guns? (Gatling vs. Tommy)], [Soldaten im Zweiten Weltkrieg benutzten häufig welche Art von Waffe? (Gatling vs. Thompson-Maschinenpistole)], ['Tommy Gun' als 'Thompson' bekannt; 'Gatling' weniger gebräuchlich.],
+    [6], [M], [The groove inside the barrel of a revolver is (spiraled vs. smooth)], [Die Rillen im Lauf eines Revolvers sind (spiralförmig vs. glatt)], ['Spiralförmig' und 'glatt' beschreiben den Lauf anschaulich im Deutschen.],
+    [7], [M], [If you need to replace the tank ball in a toilet, ask for a (flapper vs. ball cock)], [Wenn man den Schwimmer im Spülkasten austauschen muss, fragt man nach einem (Membranventil vs. Schwimmerventil)], ['Ball cock' wird im Deutschen anders benannt – Sanitärsprache angepasst.],
+    [8], [M], [The paste used for soldering joints is called (gel vs. flux)], [Die Paste, die man zum Löten verwendet, heißt (Gel vs. Flussmittel)], ['Flussmittel' ist in technischer Sprache üblich – passt für Löt-Kontext.],
+    [9], [M], [Hugh Hefner first published Playboy magazine in (1963 vs. 1953)], [Hugh Hefner veröffentlichte das erste Playboy-Magazin im Jahr (1963 vs. 1953)], [Jahreszahlen und historische Fakten sind universell verständlich.],
+    [10], [M], [Arnold Schwarzenegger killed more people in which film? (True Lies vs. Total Recall)], [In welchem Film tötete Arnold Schwarzenegger mehr Menschen? (True Lies vs. Total Recall)], [Arnold Schwarzenegger bekannt – keine Lokalisierung nötig.],
+    [11], [M], [By Olympic rules, boxing gloves for all weight classes weigh (12 ounces vs. 10 ounces)], [Laut Olympischen Regeln wiegen Boxhandschuhe in allen Gewichtsklassen (12 Unzen vs. 10 Unzen)], [Unzen gelassen wegen Regelkontext – könnte metrisch ergänzt werden.],
+    [12], [M], [When punching someone, you should aim your fist (a foot beyond target vs. directly at target)], [Beim Zuschlagen sollte man die Faust auf (einen Fuß hinter das Ziel vs. direkt auf das Ziel) richten], [Ein 'Fuß' ist ca. 30 cm – kulturell weniger gebräuchlich.],
+    [13], [M], [When punching someone, the majority of the force comes from (the speed of your fist vs. your upper arm and shoulder)], [Beim Zuschlagen kommt die meiste Kraft von (der Geschwindigkeit der Faust vs. dem Oberarm und der Schulter)], [Anatomisches und sportliches Wissen – direkt übertragbar.],
+    [14], [M], [What's the best way to deflect a punch? (use the forearm vs. use hand)], [Was ist der beste Weg, einen Schlag abzuwehren? (Unterarm zum Blocken vs. Hand zum Fangen nutzen)], [Kampfkunstkontext – verständlich, keine kulturelle Anpassung nötig.],
+    [15], [M], [When ramming a car to disable it, you should aim for the (rear passenger's tire vs. front driver's tire)], [Wenn man ein Auto stoppen will, sollte man auf (hinteren Beifahrerreifen vs. vorderen Fahrreifen) zielen], [Auto-Action-Wissen; eher aus Filmkontext – Übersetzung bleibt erhalten.],
+    table.hline(stroke: 0.5pt),
+    [16], [F], [You wear Manolo Blahniks on your (head vs. feet)], [Man trägt Manolo Blahniks am (Kopf vs. Fuß)], [Markenbezug klar; 'Kopf' vs. 'Fuß' bleibt humorvoll.],
+    [17], [F], [Botox temporarily erases wrinkles by (skin hydration vs. muscle paralysis)], [Botox glättet Falten vorübergehend durch (Hautbefeuchtung vs. Muskelentspannung)], ['Muskelentspannung' statt 'Paralyse' – klingt natürlicher.],
+    [18], [F], [The first company to develop hair coloring was (Clairol vs. L'Oreal)], [Die erste Firma, die Haarfärbemittel entwickelte, war (Clairol vs. L'Oréal)], [Beide Marken in DE bekannt – keine Anpassung nötig.],
+    [19], [F], [The TV show "Sex in the City" popularized which drink? (Cosmopolitan vs. Manhattan)], [Welche Drink machte die Sendung "Sex and the City" populär? (Cosmopolitan vs. Manhattan)], [Titel der Serie auf 'Sex and the City' korrigieren!],
+    [20], [F], [Children typically start to teethe when they are (over vs. under) 1 year old?], [Kinder bekommen typischerweise Zähne, wenn sie (über 1 Jahr alt vs. unter 1 Jahr alt) sind], [Medizinisch korrekte und allgemein bekannte Information.],
+    [21], [F], [Toilet training should start around the age of (36 months vs. 12 months)], [Die Sauberkeitserziehung sollte ungefähr mit (36 Monaten vs. 12 Monaten) beginnen], [Begriff 'Sauberkeitserziehung' ist kulturell angepasst.],
+    [22], [F], [Children should not be given which medication? (ibuprofen vs. aspirin)], [Kindern sollte welches Medikament nicht gegeben werden? (Ibuprofen vs. Aspirin)], [Aspirin-Verbot bei Kindern auch in DE etabliert.],
+    [23], [F], [How many cups of water does it take to cook 1 cup of rice? (2 vs. 3)], [Wie viele Tassen Wasser braucht man, um eine Tasse Reis zu kochen? (2 vs. 3 Tassen)], [Tassen als Maßeinheit in Rezepten in DE bekannt.],
+    [24], [F], [Leftovers can be safely kept at room temperature for up to (4 hours vs. 2 hours)], [Reste können bei Zimmertemperatur sicher bis zu (4 Stunden vs. 2 Stunden) aufbewahrt werden], [Lebensmittelhygiene ähnlich geregelt wie in den USA.],
+    [25], [F], [If you don't have baking powder, you substitute baking soda plus (salt vs. cream of tartar)], [Wenn kein Backpulver vorhanden ist, ersetzt man es durch Natron und (Salz vs. Weinstein)], ['Weinstein' als Begriff in DE im Backbereich bekannt.],
+    [26], [F], [A roux is best described as a (sauce vs. cake)], [Eine Mehlschwitze ist am besten beschrieben als (Soße vs. Kuchen)], ['Mehlschwitze' ist die gängige Übersetzung für 'roux'.],
+    [27], [F], [Compared to men, women need more (iron vs. zinc)], [Im Vergleich zu Männern benötigen Frauen mehr (Eisen vs. Zink)], [Ernährungswissen, in DE auch medizinisch verbreitet.],
+    [28], [F], [Which of these contains a natural mood enhancer? (chocolate vs. caviar)], [Welches dieser Lebensmittel enthält einen natürlichen Stimmungsaufheller? (Schokolade vs. Kaviar)], ['Schokolade als Seelentröster' – starkes kulturelles Stereotyp.],
+    [29], [F], [During pregnancy, morning sickness usually occurs in which trimester? (second vs. first)], [Übelkeit in der Schwangerschaft tritt meistens im (zweiten vs. ersten) Trimester auf], [Trimester-Wissen in Schwangerschaft universell.],
+    [30], [F], [Exercises that improve a woman's sex life are called (Kegel's vs. Pilates)], [Übungen, die das Sexualleben einer Frau verbessern, heißen (Kegel-Übungen vs. Pilates)], ['Kegel-Übungen' in DE bekannt; Kontext bleibt erhalten.],
+    table.hline(),
+  ),
+  caption: [Gender Knowledge Test Translation: Translator 1],
+  note: [M = Masculine-stereotyped knowledge; F = Feminine-stereotyped knowledge.],
+  label: "table:gkt-translator1",
+)
+
+#apa-figure(
+  table(
+    columns: (auto, auto, 1fr, 1fr, 1fr),
+    align: (center, center, left, left, left),
+    stroke: none,
+    table.hline(),
+    table.header(
+      [Item], [Type], [English (Original)], [German Translation], [Comments],
+    ),
+    table.hline(),
+    [1], [M], [A motorcycle engine turning at 8000 rpms generates an exhaust sound at (4000 rpms vs. 8000 rpms)], [Ein Motorradmotor, der mit 8000 U/min läuft, erzeugt einen Abgasgeräusch bei (4000 U/min vs. 8000 U/min)], ['rpms' wird im Deutschen als 'U/min' (Umdrehungen pro Minute) übersetzt.],
+    [2], [M], [To help an engine produce more power you should (inject the fuel vs. reduce displacement)], [Um einem Motor zu helfen, mehr Leistung zu erzeugen, sollten Sie (den Kraftstoff einspritzen vs. den Hubraum reduzieren)], ['Displacement' wird im Deutschen als 'Hubraum' bezeichnet.],
+    [3], [M], [In nature, the best analogy for a spark plug is (solar fire vs. lightning)], [In der Natur ist das beste Analogon für eine Zündkerze (Sonnenfeuer vs. Blitz)], ['Spark plug' wird im Deutschen als 'Zündkerze' bezeichnet.],
+    [4], [M], [Karate originated in martial arts developed in (Japan vs. China)], [Karate entstand in den Kampfkünsten, die in (Japan vs. China) entwickelt wurden], [Keine besonderen Anmerkungen.],
+    [5], [M], [Soldiers in WWII often used what type of guns? (Gatling vs. Tommy)], [Welche Art von Gewehren wurde im Zweiten Weltkrieg oft von Soldaten verwendet? (Gatling vs. Tommy)], ['Gatling' und 'Tommy' sind spezifische Begriffe, die im Deutschen gleich bleiben.],
+    [6], [M], [The groove inside the barrel of a revolver is (spiraled vs. smooth)], [Die Rille im Inneren des Revolverlaufs ist (spiralförmig vs. glatt)], [Keine besonderen Anmerkungen.],
+    [7], [M], [If you need to replace the tank ball in a toilet, ask for a (flapper vs. ball cock)], [Wenn Sie die Tankkugel in einer Toilette ersetzen müssen, fragen Sie nach einem (Klappenventil vs. Kugelventil)], ['Flapper' und 'ball cock' sind spezifische Begriffe, die im Deutschen als 'Klappenventil' und 'Kugelventil' bezeichnet werden.],
+    [8], [M], [The paste used for soldering joints is called (gel vs. flux)], [Die Paste, die zum Löten von Verbindungen verwendet wird, heißt (Gel vs. Flussmittel)], ['Flux' wird im Deutschen als 'Flussmittel' bezeichnet.],
+    [9], [M], [Hugh Hefner first published Playboy magazine in (1963 vs. 1953)], [Hugh Hefner veröffentlichte das Playboy-Magazin erstmals in (1963 vs. 1953)], [Keine besonderen Anmerkungen.],
+    [10], [M], [Arnold Schwarzenegger killed more people in which film? (True Lies vs. Total Recall)], [In welchem Film hat Arnold Schwarzenegger mehr Menschen getötet? (True Lies vs. Total Recall)], [Keine besonderen Anmerkungen.],
+    [11], [M], [By Olympic rules, boxing gloves for all weight classes weigh (12 ounces vs. 10 ounces)], [Nach den Olympischen Regeln wiegen Boxhandschuhe für alle Gewichtsklassen (12 Unzen vs. 10 Unzen)], ['Ounces' wird im Deutschen als 'Unzen' bezeichnet.],
+    [12], [M], [When punching someone, you should aim your fist (a foot beyond target vs. directly at target)], [Beim Schlagen sollte man seine Faust (etwa einen Fuß über das optimale Ziel hinaus vs. direkt auf das Ziel) richten], ['A foot beyond' wird im Deutschen als 'etwa einen Fuß über ... hinaus' übersetzt.],
+    [13], [M], [When punching someone, the majority of the force comes from (the speed of your fist vs. your upper arm and shoulder)], [Beim Schlagen kommt der Großteil der Kraft aus (der Geschwindigkeit deiner Faust vs. deinem Oberarm und deiner Schulter)], [Keine besonderen Anmerkungen.],
+    [14], [M], [What's the best way to deflect a punch? (use the forearm vs. use hand)], [Was ist die beste Methode, um einen Schlag abzuwehren? (den Unterarm verwenden, um ihn zu blockieren vs. die Hand verwenden, um ihn zu fangen)], [Keine besonderen Anmerkungen.],
+    [15], [M], [When ramming a car to disable it, you should aim for the (rear passenger's tire vs. front driver's tire)], [Wenn man ein Auto rammt, um es außer Gefecht zu setzen, sollte man auf den (hinteren Beifahrerreifen vs. vorderen Fahrerreifen) zielen], [Keine besonderen Anmerkungen.],
+    table.hline(stroke: 0.5pt),
+    [16], [F], [You wear Manolo Blahniks on your (head vs. feet)], [Man trägt Manolo Blahniks an den (Kopf vs. Füßen)], ['Manolo Blahniks' sind eine bekannte Schuhmarke, daher bleibt der Name im Deutschen gleich.],
+    [17], [F], [Botox temporarily erases wrinkles by (skin hydration vs. muscle paralysis)], [Botox beseitigt Falten vorübergehend durch (Hautbefeuchtung vs. Muskelentspannung)], ['Muscle paralysis' wird im Deutschen als 'Muskelentspannung' bezeichnet.],
+    [18], [F], [The first company to develop hair coloring was (Clairol vs. L'Oreal)], [Das erste Unternehmen, das Haarfärbemittel entwickelte, war (Clairol vs. L'Oréal)], [Keine besonderen Anmerkungen.],
+    [19], [F], [The TV show "Sex in the City" popularized which drink? (Cosmopolitan vs. Manhattan)], [Welches Getränk wurde durch die TV-Show "Sex and the City" populär? (Cosmopolitan vs. Manhattan)], [Keine besonderen Anmerkungen.],
+    [20], [F], [Children typically start to teethe when they are (over vs. under) 1 year old?], [Kinder beginnen typischerweise mit dem Zahnen, wenn sie (über vs. unter) 1 Jahr alt sind?], [Keine besonderen Anmerkungen.],
+    [21], [F], [Toilet training should start around the age of (36 months vs. 12 months)], [Die Sauberkeitserziehung sollte etwa im Alter von (36 Monaten vs. 12 Monaten) beginnen], [Keine besonderen Anmerkungen.],
+    [22], [F], [Children should not be given which medication? (ibuprofen vs. aspirin)], [Welches Medikament sollte Kindern nicht gegeben werden? (Ibuprofen vs. Aspirin)], [Keine besonderen Anmerkungen.],
+    [23], [F], [How many cups of water does it take to cook 1 cup of rice? (2 vs. 3)], [Wie viele Tassen Wasser braucht man, um 1 Tasse Reis zu kochen? (2 Tassen vs. 3 Tassen)], [Keine besonderen Anmerkungen.],
+    [24], [F], [Leftovers can be safely kept at room temperature for up to (4 hours vs. 2 hours)], [Reste können sicher bei Raumtemperatur für bis zu (4 Stunden vs. 2 Stunden) aufbewahrt werden], [Keine besonderen Anmerkungen.],
+    [25], [F], [If you don't have baking powder, you substitute baking soda plus (salt vs. cream of tartar)], [Wenn Sie kein Backpulver haben, können Sie Natron plus (Salz vs. Weinsteinbackpulver) ersetzen], ['Cream of tartar' wird im Deutschen als 'Weinsteinbackpulver' bezeichnet.],
+    [26], [F], [A roux is best described as a (sauce vs. cake)], [Eine Roux wird am besten als (Sauce vs. Kuchen) beschrieben], ['Roux' bleibt im Deutschen gleich, da es ein Fachbegriff ist.],
+    [27], [F], [Compared to men, women need more (iron vs. zinc)], [Im Vergleich zu Männern benötigen Frauen mehr (Eisen vs. Zink)], [Keine besonderen Anmerkungen.],
+    [28], [F], [Which of these contains a natural mood enhancer? (chocolate vs. caviar)], [Welches davon enthält einen natürlichen Stimmungsaufheller? (Schokolade vs. Kaviar)], [Keine besonderen Anmerkungen.],
+    [29], [F], [During pregnancy, morning sickness usually occurs in which trimester? (second vs. first)], [Während der Schwangerschaft tritt morgendliche Übelkeit normalerweise in welchem Trimester auf? (zweites vs. erstes)], [Keine besonderen Anmerkungen.],
+    [30], [F], [Exercises that improve a woman's sex life are called (Kegel's vs. Pilates)], [Übungen, die das Sexualleben einer Frau verbessern, heißen (Kegel-Übungen vs. Pilates)], ['Kegel's' wird im Deutschen als 'Kegel-Übungen' bezeichnet.],
+    table.hline(),
+  ),
+  caption: [Gender Knowledge Test Translation: Translator 2],
+  note: [M = Masculine-stereotyped knowledge; F = Feminine-stereotyped knowledge.],
+  label: "table:gkt-translator2",
+)
+
+The review phase for the Gender Knowledge Test was more straightforward than for the MMB scale. The primary focus was on clarifying technical terminology where the two translations diverged, particularly for domain-specific terms in automotive, plumbing, and culinary contexts. Unlike the MMB scale, where conceptual nuances of masculinity required careful consideration, the GKT items involved factual content with established German equivalents. Since the purpose of the Gender Knowledge Test was not to provide a psychometrically valid measure but rather to create a plausible and challenging test that could credibly threaten participants' gender identity, the review prioritized ensuring that all items appeared believable and appropriately difficult. The final translations were selected to maintain this sense of plausibility while using natural German phrasing.
+
+The same pre-test with nine male participants was used to evaluate the translated Gender Knowledge Test. No changes were made to the translations based on this pre-test. Participants reported that they enjoyed the questions, describing the experience as "game-like." This positive reception supported the intended design of the GKT as an engaging measure that participants would take seriously and find credible.
 
 == Masculinity Threatening and Non-Threatening Feedback
 
@@ -472,6 +578,8 @@ Based on the largest required sample size (moderation analysis; 208 participants
 )
 
 = Results Supplement
+
+#todo[The code can be viewd publicly (), an anonymized version of the data is supplied in the same repository. Anonymization involved coding all free text responses for syudy suspicion and removing the free text, as it may contain hints to the identity of the participant]
 
 #ref(<table:mmb-descriptives>) presents descriptive statistics for the Motivation for Masculine Behavior items. #ref(<table:wfct-agg-descriptives>) and #ref(<table:wfct-anx-descriptives>) present response frequencies for the aggressive and anxious word fragment completion items, respectively.
 
