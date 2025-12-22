@@ -87,8 +87,7 @@
 
 #pagebreak()
 #bibliography(
-  "bibliography/ref.bib", // or ref.yml
-  full: true,
+  "bibliography/ref.bib",
   title: auto,
 )
 

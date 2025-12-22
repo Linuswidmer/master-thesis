@@ -14,6 +14,7 @@ An a priori power analysis indicated a required sample size of 229 participants 
 Eligibility criteria included self-identification as male, native-level proficiency in German, and a minimum age of 18 years.
 A total of 196 participants were recruited over a two-month period by distributing flyers in social spaces and through an online study exchange platform.
 In exchange for participation, 1€ was donated to a men's counseling organization.
+#todo[mention here, that the study aimed to collect a more broad (i.e. non studentic/ non-academic) sample with the flyering ]
 
 Participants were excluded based on pre-registered criteria.
 First, 8 participants withdrew consent after debriefing.
@@ -27,10 +28,13 @@ The sample was predominantly highly educated: 80.5% held at least a general univ
 == Procedure
 The procedure was adapted from #cite(<stanaland2021man>, form: "prose") and translated into German.
 After providing informed consent, participants were informed that the study concerned personality, motivation, and performance in men.
+#todo[also mention the German original version: "Persönlichkeit, Motivation & Leistung"].
 They were also reminded that eligibility required identifying as male, native-level proficiency in German, and a minimum age of 18 years.
 
 In the first section, participants completed the Motivation for Masculine Behavior scale.
+#todo[Scale was presented as "Einstellungen zum Thema Männlichkeit. Items were presented in a randomized order"]
 Next, they were informed they would complete a Gender Knowledge Test, supposedly measuring knowledge in areas typically associated with men or women in society.
+#todo[Presented as "Geschlechtsspezifischer Wissenstest"]
 Upon completion, participants received either (a) threatening feedback indicating worse performance than the average man, or (b) non-threatening feedback indicating performance comparable to the average man.
 This feedback was not based on participants' actual responses but was randomly assigned by experimental condition.
 
@@ -47,7 +51,7 @@ This included an explanation of the study's true purpose and a clarification tha
 The rationale for the deception was explained, and participants were offered the option to withdraw their data.
 
 == Materials
-The experimental procedure was adapted from #cite(<stanaland2021man>, form: "prose"). The Motivation for Masculine Behavior scale was taken from #cite(<stanaland2023masculinity>, form: "prose") Study 2, which uses a version of the scale that does not require a prior description of masculinity ideals. The Gender Knowledge Test was adapted from #cite(<valved2021gender>, form: "prose"). All materials were translated from English to German following the Translation, Review, Adjudication, Pretesting, and Documentation (TRAPD) protocol @harkness2010translation. Complete materials including all item wordings in both languages and documentation of the translation process are provided in the Appendix.
+The experimental procedure was adapted from #cite(<stanaland2021man>, form: "prose"). The Motivation for Masculine Behavior scale was taken from #cite(<stanaland2023masculinity>, form: "prose") Study 2, which uses a version of the scale that does not require a prior description of masculinity ideals. The Gender Knowledge Test was adapted from #cite(<valved2021gender>, form: "prose"). MMB scale and the GKT were translated from English to German following the Translation, Review, Adjudication, Pretesting, and Documentation (TRAPD) protocol @harkness2010translation. Complete materials including all item wordings in both languages and documentation of the translation process are provided in the Appendix.
 
 === Motivation for Masculine Behavior
 Nine items from the Motivation for Masculine Behavior scale were used to measure participants' motivation for enacting masculine behavior.
@@ -87,7 +91,7 @@ See #ref(<table:manipulation-check>) for all items with German translations.
 
 === Demographic Questionnaire
 Participants reported their age, gender, German language proficiency, highest educational degree, and highest occupational degree.
-See #ref(<table:demographics>) for all items with German translations. 
+See #ref(<table:demographics>) for all items with translations. 
 
 == Design
 The study employed a between-subjects experimental design with random assignment to one of two conditions: masculinity threat (threatening feedback) or no threat (non-threatening feedback). Two dependent variables were assessed: aggressive cognition and anxious cognition, each operationalized as the proportion of target word completions on the respective WFCT subscales. Motivation for masculine behavior was measured prior to the experimental manipulation and examined as a moderator. Specifically, pressured motivation was hypothesized to moderate the effect of threat on aggressive cognition, whereas autonomous motivation was hypothesized to moderate the effect of threat on anxious cognition.

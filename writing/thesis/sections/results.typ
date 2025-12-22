@@ -118,6 +118,7 @@ This pattern may be partially attributable to the limited sample size ($N = 154$
 
 Finally, reliability was assessed using McDonald's omega ($omega$), which does not assume tau-equivalence.
 The Pressured Motivation subscale showed excellent reliability ($omega = .93$), while the Autonomous Motivation subscale showed acceptable reliability ($omega = .70$).
+#todo[report here also the correlation between the two scales]
 For the subsequent moderation analyses, subscale scores were computed as row means, with Item 9 excluded from the Autonomous Motivation scale.
 
 #apa-figure(
