@@ -911,6 +911,29 @@ glm_summary_table(
 
 - ...
 
+### 7.3.6 Effect Size for Post-Hoc Power Analysis
+
+Cohen's d for comparing threat vs. no-threat groups:
+```{r}
+m1_agg <- mean(df$aggressiveCognition[df$threatCondition == "threat"], na.rm = TRUE)
+m2_agg <- mean(df$aggressiveCognition[df$threatCondition == "noThreat"], na.rm = TRUE)
+sd1_agg <- sd(df$aggressiveCognition[df$threatCondition == "threat"], na.rm = TRUE)
+sd2_agg <- sd(df$aggressiveCognition[df$threatCondition == "noThreat"], na.rm = TRUE)
+n1_agg <- sum(df$threatCondition == "threat" & !is.na(df$aggressiveCognition))
+n2_agg <- sum(df$threatCondition == "noThreat" & !is.na(df$aggressiveCognition))
+
+sd_pooled_agg <- sqrt(((n1_agg - 1) * sd1_agg^2 + (n2_agg - 1) * sd2_agg^2) / (n1_agg + n2_agg - 2))
+cohens_d_h1a <- (m1_agg - m2_agg) / sd_pooled_agg
+
+cat("=== H1a: Effect Size for G*Power ===\n")
+cat("M (threat):", round(m1_agg, 3), "\n")
+cat("M (noThreat):", round(m2_agg, 3), "\n")
+cat("SD pooled:", round(sd_pooled_agg, 3), "\n")
+cat("Cohen's d:", round(cohens_d_h1a, 3), "\n")
+cat("n (threat):", n1_agg, "\n")
+cat("n (noThreat):", n2_agg, "\n")
+```
+
 # 8. Effect of Threat Condition on Anxious Cognition (Hypothesis 1b)
 
 *Objectives:*
@@ -1035,6 +1058,29 @@ glm_summary_table(
 **Interpretation:**
 
 - ...
+
+### 8.3.6 Effect Size for Post-Hoc Power Analysis
+
+Cohen's d for comparing threat vs. no-threat groups:
+```{r}
+m1_anx <- mean(df$anxiousCognition[df$threatCondition == "threat"], na.rm = TRUE)
+m2_anx <- mean(df$anxiousCognition[df$threatCondition == "noThreat"], na.rm = TRUE)
+sd1_anx <- sd(df$anxiousCognition[df$threatCondition == "threat"], na.rm = TRUE)
+sd2_anx <- sd(df$anxiousCognition[df$threatCondition == "noThreat"], na.rm = TRUE)
+n1_anx <- sum(df$threatCondition == "threat" & !is.na(df$anxiousCognition))
+n2_anx <- sum(df$threatCondition == "noThreat" & !is.na(df$anxiousCognition))
+
+sd_pooled_anx <- sqrt(((n1_anx - 1) * sd1_anx^2 + (n2_anx - 1) * sd2_anx^2) / (n1_anx + n2_anx - 2))
+cohens_d_h1b <- (m1_anx - m2_anx) / sd_pooled_anx
+
+cat("=== H1b: Effect Size for G*Power ===\n")
+cat("M (threat):", round(m1_anx, 3), "\n")
+cat("M (noThreat):", round(m2_anx, 3), "\n")
+cat("SD pooled:", round(sd_pooled_anx, 3), "\n")
+cat("Cohen's d:", round(cohens_d_h1b, 3), "\n")
+cat("n (threat):", n1_anx, "\n")
+cat("n (noThreat):", n2_anx, "\n")
+```
 
 # 9. Moderation: Pressured Motivation on Aggressive Cognition (Hypothesis 2a)
 
@@ -1163,6 +1209,32 @@ glm_summary_table(
 motivation moderates the effect of threat condition on aggressive cognition
 - ...
 
+### 9.3.6 Effect Size for Post-Hoc Power Analysis
+
+Cohen's f² for the interaction term (R² change when adding interaction):
+```{r}
+# Model without interaction
+model_h2a_reduced <- lm(aggressiveCognition ~ threatCondition + pressuredMotivation, data = df)
+# Model with interaction
+model_h2a_full <- lm(aggressiveCognition ~ threatCondition * pressuredMotivation, data = df)
+
+r2_h2a_reduced <- summary(model_h2a_reduced)$r.squared
+r2_h2a_full <- summary(model_h2a_full)$r.squared
+r2_h2a_change <- r2_h2a_full - r2_h2a_reduced
+
+f2_h2a <- r2_h2a_change / (1 - r2_h2a_full)
+n_h2a <- nrow(model.frame(model_h2a_full))
+
+cat("=== H2a: Effect Size for G*Power ===\n")
+cat("R² (reduced model, no interaction):", round(r2_h2a_reduced, 4), "\n")
+cat("R² (full model, with interaction):", round(r2_h2a_full, 4), "\n")
+cat("R² change:", round(r2_h2a_change, 4), "\n")
+cat("Cohen's f²:", round(f2_h2a, 4), "\n")
+cat("Total N:", n_h2a, "\n")
+cat("Number of tested predictors: 1 (interaction)\n")
+cat("Total number of predictors: 3 (threat + pressured + interaction)\n")
+```
+
 # 10. Moderation: Autonomous Motivation on Anxious Cognition (Hypothesis 2b)
 
 *Objectives:*
@@ -1290,7 +1362,31 @@ glm_summary_table(
 motivation moderates the effect of threat condition on anxious cognition
 - ...
 
+### 10.3.6 Effect Size for Post-Hoc Power Analysis
 
+Cohen's f² for the interaction term (R² change when adding interaction):
+```{r}
+# Model without interaction
+model_h2b_reduced <- lm(anxiousCognition ~ threatCondition + autonomousMotivation, data = df)
+# Model with interaction
+model_h2b_full <- lm(anxiousCognition ~ threatCondition * autonomousMotivation, data = df)
+
+r2_h2b_reduced <- summary(model_h2b_reduced)$r.squared
+r2_h2b_full <- summary(model_h2b_full)$r.squared
+r2_h2b_change <- r2_h2b_full - r2_h2b_reduced
+
+f2_h2b <- r2_h2b_change / (1 - r2_h2b_full)
+n_h2b <- nrow(model.frame(model_h2b_full))
+
+cat("=== H2b: Effect Size for G*Power ===\n")
+cat("R² (reduced model, no interaction):", round(r2_h2b_reduced, 4), "\n")
+cat("R² (full model, with interaction):", round(r2_h2b_full, 4), "\n")
+cat("R² change:", round(r2_h2b_change, 4), "\n")
+cat("Cohen's f²:", round(f2_h2b, 4), "\n")
+cat("Total N:", n_h2b, "\n")
+cat("Number of tested predictors: 1 (interaction)\n")
+cat("Total number of predictors: 3 (threat + autonomous + interaction)\n")
+```
 
 # 11. Post Hoc Exploratory Analysis: MMB Effects on Self-Evaluated Gender Knowledge
 
