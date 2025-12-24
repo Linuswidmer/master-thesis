@@ -1292,13 +1292,30 @@ motivation moderates the effect of threat condition on anxious cognition
 
 
 
-# Post Hoc Exploratory Analysis
+# 11. Post Hoc Exploratory Analysis: MMB Effects on Self-Evaluated Gender Knowledge
 
-using GKSELF as a dependent variable, can we check if MMB moderates the impact of threatCondition on GKSELF
+*Rationale:*
 
-```{r}
-plotBox("GKSELF", "threatCondition")
-```
+Given the poor psychometric properties of the WFCT scales for aggressive and anxious cognition
+(KMO values of .16 and .30, respectively), we explore whether Motivation for Masculine Behaviour
+(MMB) predicts self-evaluated gender knowledge (GKSELF) as an alternative outcome measure.
+GKSELF demonstrated good properties in the manipulation check and provides a more reliable
+measure of participants' response to the experimental context.
+
+*Objectives:*
+
+- Assess if pressured motivation for masculine behaviour predicts self-evaluated gender knowledge
+- Assess if autonomous motivation for masculine behaviour predicts self-evaluated gender knowledge
+
+*Methodology:*
+
+- Visualization & Descriptives (same style as hypotheses 2a & 2b)
+- Linear regression with GKSELF as continuous outcome
+- Two-tailed tests (exploratory, no directional assumptions)
+
+## 11.1 Effect of Pressured Motivation on GKSELF
+
+### 11.1.1 Visualization
 
 ```{r}
 plotLine("pressuredMotivation", "GKSELF",
@@ -1306,15 +1323,57 @@ plotLine("pressuredMotivation", "GKSELF",
 )
 ```
 
-
 ```{r}
-model_gkself <- lm(GKSELF ~
-  threatCondition * rowmeansAutonomous, data = df)
-
-summary(model_gkself)
+summary_mean_sd(df, "GKSELF", "threatCondition")
 ```
 
-...
+### 11.1.2 Inference Statistics: Linear Regression
+
+```{r}
+lm_gkself_pressured <- lm(GKSELF ~ pressuredMotivation, data = df)
+summary(lm_gkself_pressured)
+```
+
+### 11.1.3 Model Diagnostics
+
+```{r}
+par(mfrow = c(2, 2))
+plot(lm_gkself_pressured)
+par(mfrow = c(1, 1))
+```
+
+**Interpretation:**
+
+- ...
+
+## 11.2 Effect of Autonomous Motivation on GKSELF
+
+### 11.2.1 Visualization
+
+```{r}
+plotLine("autonomousMotivation", "GKSELF",
+  condition = "threatCondition", df = df
+)
+```
+
+### 11.2.2 Inference Statistics: Linear Regression
+
+```{r}
+lm_gkself_autonomous <- lm(GKSELF ~ autonomousMotivation, data = df)
+summary(lm_gkself_autonomous)
+```
+
+### 11.2.3 Model Diagnostics
+
+```{r}
+par(mfrow = c(2, 2))
+plot(lm_gkself_autonomous)
+par(mfrow = c(1, 1))
+```
+
+**Interpretation:**
+
+- ...
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(eval = FALSE)
