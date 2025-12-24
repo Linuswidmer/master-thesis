@@ -14,6 +14,7 @@ Prior to the main analyses, Levene's tests assessed homogeneity of variance acro
 Because influential observations may distort the validity of the results @aguinis2013best, a sensitivity analysis was conducted by identifying cases exceeding a Cook's distance threshold of $4 / (n - k)$, removing them, and refitting the model to confirm the stability of findings.
 
 A significance level of $alpha = .05$ was applied throughout. Post-hoc power was calculated using G*Power 3 @cunningham2007power and was considered sufficient when above the commonly used 80% criterion @aberson2011applied.
+#todo[calculate post hoc power]
 
 #apa-figure(
   caption: [Aggressive and Anxious Word Completion Scores by Threat Condition],
@@ -53,6 +54,7 @@ The GLM refitted on the reduced sample continued to show no significant effect (
 == Moderation of Masculinity Threat Effects
 
 === Factor Structure of Motivation for Masculine Behavior
+#todo[] move this as the first section
 
 #apa-figure(
   image("../images/corrplot-mmb.png", width: 70%),
@@ -174,6 +176,7 @@ A $t$-test confirmed that participants in the threat condition rated their gende
 Together, these results indicate that the manipulation was successful in inducing a perceived threat to masculine identity.
 
 == Test Quality: Aggressive Cognition
+#todo[put both text quality sections into one]
 
 #apa-figure(
   image("../images/corrplot-aggressive-cognition.png", width: 70%),
@@ -221,3 +224,6 @@ As with the aggressive cognition scale, the anxious cognition score was computed
 
 In summary, neither the aggressive nor the anxious word fragment completion task demonstrated adequate psychometric properties in this sample.
 The lack of internal consistency and the substantial item-level variability in response rates and missingness cast doubt on the validity of these measures as indicators of latent aggressive or anxious cognition.
+
+== Post-hoc Exploratory Analysis
+#todo[include the GKSELF ??? is it interesing?]
