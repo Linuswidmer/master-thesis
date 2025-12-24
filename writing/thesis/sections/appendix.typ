@@ -669,3 +669,21 @@ The analysis code can be viewed publicly at #todo[add link]. An anonymized versi
   note: [Negative = neutral word completion; Positive = anxious word completion. % Positive calculated excluding missing responses.],
   label: "table:wfct-anx-descriptives",
 )
+
+== Sensitivity Power Analysis
+
+Sensitivity analyses were conducted using G*Power 3.1 to determine the minimum effect sizes detectable with 80% power at $alpha = .05$ given the achieved sample size.
+
+#apa-figure(
+  image("../assets/SensitivityAnalysisHypothesis1a1b.png", width: 80%),
+  caption: [Sensitivity Analysis for Hypotheses 1a and 1b],
+  note: [G*Power output for sensitivity analysis. Test family: t tests; Statistical test: Means: Difference between two independent means (two groups). With $n_1 = 79$, $n_2 = 75$, $alpha = .05$, and power = .80, the minimum detectable effect size is $d = 0.40$.],
+  label: "fig:sensitivity-h1",
+)
+
+#apa-figure(
+  image("../assets/SensitivityAnalysisHypothesis2a2b.png", width: 80%),
+  caption: [Sensitivity Analysis for Hypotheses 2a and 2b],
+  note: [G*Power output for sensitivity analysis. Test family: F tests; Statistical test: Linear multiple regression: Fixed model, R² increase. With $N = 154$, 3 predictors, 1 tested predictor (interaction), $alpha = .05$, and power = .80, the minimum detectable effect size is $f^2 = 0.052$.],
+  label: "fig:sensitivity-h2",
+)

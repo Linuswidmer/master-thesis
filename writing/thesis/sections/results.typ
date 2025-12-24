@@ -40,7 +40,7 @@ Given the directional hypothesis (predicted $beta > 0$) and the observed effect 
 A sensitivity analysis was performed by identifying and excluding five influential observations.
 The GLM refitted on the reduced sample continued to show no significant effect (#reportZStatistic(zValue: -1.479, pValue: 0.139); one-tailed $p = .93$).
 
-A sensitivity power analysis indicated that, given the sample size ($n_"threat" = 79$, $n_"no threat" = 75$), the study had 80% power to detect effects of $d >= 0.40$ at $alpha = .05$.
+A sensitivity power analysis (see #ref(<fig:sensitivity-h1>)) indicated that, given the sample size ($n_"threat" = 79$, $n_"no threat" = 75$), the study had 80% power to detect effects of $d >= 0.40$ at $alpha = .05$.
 The observed effect ($d = -0.27$) was in the opposite direction and smaller in magnitude than this threshold, suggesting the absence of the hypothesized effect rather than insufficient statistical power.
 
 === Masculinity Threat on Anxious Cognition (Hypothesis 1b)
@@ -55,7 +55,7 @@ Given the directional hypothesis (predicted $beta > 0$), the one-tailed $p$-valu
 A sensitivity analysis was performed by identifying and excluding five influential observations.
 The GLM refitted on the reduced sample continued to show no significant effect (#reportZStatistic(zValue: 1.04, pValue: 0.30); one-tailed $p = .15$).
 
-A sensitivity power analysis indicated that the study had 80% power to detect effects of $d >= 0.40$ at $alpha = .05$.
+A sensitivity power analysis (see #ref(<fig:sensitivity-h1>)) indicated that the study had 80% power to detect effects of $d >= 0.40$ at $alpha = .05$.
 The observed effect ($d = 0.03$) was substantially smaller than this threshold, suggesting the absence of a meaningful effect rather than insufficient statistical power.
 
 #linebreak()
@@ -158,7 +158,7 @@ Given the directional hypothesis (predicted $beta > 0$ for the interaction), the
 A sensitivity analysis was performed by identifying and excluding four influential observations.
 The GLM refitted on the reduced sample continued to show no significant interaction effect (#reportZStatistic(zValue: 1.453, pValue: 0.146); one-tailed $p = .073$), though the effect approached marginal significance.
 
-A sensitivity power analysis indicated that, with $N = 154$ and 3 predictors (threat condition, pressured motivation, and their interaction), the study had 80% power to detect interaction effects of $f^2 >= 0.052$ at $alpha = .05$.
+A sensitivity power analysis (see #ref(<fig:sensitivity-h2>)) indicated that, with $N = 154$ and 3 predictors (threat condition, pressured motivation, and their interaction), the study had 80% power to detect interaction effects of $f^2 >= 0.052$ at $alpha = .05$.
 This corresponds to a small-to-medium effect size according to Cohen's (1988) conventions.
 
 === Autonomous Motivation on Anxious Cognition (Hypothesis 2b)
@@ -174,8 +174,8 @@ Given the directional hypothesis (predicted $beta > 0$ for the interaction), the
 A sensitivity analysis was performed by identifying and excluding influential observations.
 The GLM refitted on the reduced sample continued to show no significant interaction effect (#reportZStatistic(zValue: 0.41, pValue: 0.678); one-tailed $p = .339$).
 
-A sensitivity power analysis indicated that the study had 80% power to detect interaction effects of $f^2 >= 0.052$ at $alpha = .05$.
-This corresponds to a small-to-medium effect size according to #cite(<cohen2013statistical>, form: "prose") conventions.
+A sensitivity power analysis (see #ref(<fig:sensitivity-h2>)) indicated that the study had 80% power to detect interaction effects of $f^2 >= 0.052$ at $alpha = .05$.
+This corresponds to a small-to-medium effect size according to Cohen's (1988) conventions.
 
 == Experimental Manipulation Check
 To assess whether the experimental manipulation (threat vs. no-threat feedback on the Gender Knowledge Test) was effective, two measures were examined.
