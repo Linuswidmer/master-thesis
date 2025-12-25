@@ -91,9 +91,20 @@ Could:
 
 == Theory Discussion
 
-- discuss control beliefs as a relevant factor for masculintiy threa responses
-- recent studies highlight a feminity threat response (...) -> challenges the notion that masculinity is precarious as opposed to femininity being naturally given. -> differences may actually be explained by control beliefs, or social desirability ?? 
+Discuss different theoretical approaches to why masculinity threat responses:
+1. The EDT Model
+- the current study did not provide evidence in favor of the EDT Model, since it did not show a moderation of masculinity threat effects by aggressive and anxious MMB.
+- yet this is likely to a failed measurement of aggressive and anxious behaviour, as the study failed to reproduce simple masculinity threat responses. 
+- Conslusion: It remains challenging to empirically test the proposition of the EDT Model. First research is pointing into that direction (cite studies, stanaland etc.) but more research is needed. Especially in the domain of autonomous motivation leading to increased anxious responses, no evidence was yet found for that. Thus Stanaland & Gaither (2021) even hypothesized that "Therefore, manhood may not be precarious in it's entirety but only fragile", and only an externalized pathway for the moderation of masculinity threat effects exists. Yet Vandello et al (2004), Study 4, (and others ??? look again into literature) found an increase of anxious cognition due to masculinity threat and further research is needed to explain the underlying mechanisms for this response.
+\
+\
+Another account for the affective response after a masculinity threat could be the control beliefs. This account has not beed discussed in the literature so far, but it could provide important insights.
+- Briefly explain control beliefs and why they  may have an impact on the response to a masculinity threat.
+... future studies should take this into account and may swith to a motivational x control belief model of masculinity threats.
+\
+\
+Outside of the context of identifying and studying mechanisms that underly masculinity threat responses, recent studies highlight a challenge to the idea of precarious manhood altogether: By studying female participants responses to a subjective femini threat (negative evaluation of physical femininity), #cite(<wittlin2024us>, form: "prose") female participants showed an increase in anxiety and reduced self-esteem. This challenges the original precarious manhood thesis, since it explained that manhood was something that must be earned, while womanhood is viewed as something inherently given. This naturalistic (is this the right word ???) view of manhood and womanhood has received criticism ever since @chrisler2013womanhood@addis2013theory.
+It may be beneficial, not just methdologically, but for egalitarianism in scientific research to decouple our traditional understandings in the binarity of gender and perceive masculinity and feminity on a more broad view (... something like that) 
 
-"Therefore, manhood may not be precarious in it's entirety but only fragile" (Stanaland & Gaither, 2021)
 == Conslusion
 ...write a sentence to each of the arguments made in the discussion.
