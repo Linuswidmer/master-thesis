@@ -950,11 +950,11 @@ anxious cognition
 ## 8.1 Visualization & Descriptives
 
 ```{r}
-plotBox("anxiousWordCompletionScore", "threatCondition")
+plotBox("anxiousCognition", "threatCondition")
 ```
 
 ```{r}
-summary_mean_sd(df, "anxiousWordCompletionScore", "threatCondition")
+summary_mean_sd(df, "anxiousCognition", "threatCondition")
 ```
 
 ## 8.2 Check T-Test Assumptions
