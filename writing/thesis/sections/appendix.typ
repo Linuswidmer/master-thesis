@@ -612,9 +612,30 @@ The analysis code can be viewed publicly at #todo[add link]. An anonymized versi
   label: "table:mmb-descriptives",
 )
 
-== Word Fragment Completion Task
+== Word Fragment Completion Task: Detailed Psychometric Properties
 
 #ref(<table:wfct-agg-descriptives>) and #ref(<table:wfct-anx-descriptives>) present response frequencies for the aggressive and anxious word fragment completion items, respectively.
+
+=== Aggressive Word Fragment Items
+
+Item-level response rates revealed substantial variability in aggressive completion rates.
+Several items had very low positive rates, including Item 5 (3.3%) and Item 1 (4.8%), while others exceeded 50%, such as Item 10 (63.8%) and Item 6 (51.3%).
+Items 8, 10, 9, and 7 each had more than 10 missing values, suggesting these fragments may have been more difficult or ambiguous.
+This imbalance compromises the scale's ability to discriminate between individuals.
+
+The tetrachoric correlation matrix revealed weak and inconsistent correlations among items, including several negative correlations.
+If items measured the same latent construct, positive intercorrelations would be expected; this pattern suggests that the items do not form a coherent unidimensional construct.
+Item 7 was negatively correlated with the first principal component, indicating it may measure a different construct than the remaining items.
+
+=== Anxious Word Fragment Items
+
+Item-level response rates revealed even greater variability than the aggressive items.
+Some items had very low positive rates, including Item 2 (3.4%) and Item 8 (7.9%), while others were completed with the anxious word by the vast majority of participants, such as Item 9 (85.7%) and Item 3 (85.2%).
+Notably, Items 3 and 9 also showed substantial missingness, with 46 and 49 missing responses respectively—approximately 30% of the sample.
+This pattern suggests these items may have been particularly difficult or ambiguous for participants.
+
+Similar to the aggressive items, the tetrachoric correlation matrix revealed weak and inconsistent correlations among items, including several negative correlations.
+Items 2, 7, and 8 were negatively correlated with the first principal component, suggesting they may not measure the same construct as the remaining items.
 
 #apa-figure(
   table(
