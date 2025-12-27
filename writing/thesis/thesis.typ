@@ -39,13 +39,13 @@
       name: [
         #align(left)[
           #v(1fr)
-          submitted by
-          #v(0.3cm)
+          Submitted by
+          #v(0.1cm)
           #set par(leading: 0.4em)
           Widmer, Linus \
           Matriculation Number: 627542 \
           Email: widmerli\@student.hu-berlin.de \
-          Birthdate & place: 17.08.1999, Bremen (Germany)
+          Date, Place of Birth: 17.08.1999, Bremen (Germany)
 
           #set par(leading: 0.4em)
           First Examiner: Dr. Ulrich Klocke \
@@ -79,16 +79,35 @@
 #outline()
 #pagebreak()
 
-= #doc-title
+// Enable section numbering for main content
+#set heading(numbering: "1.1")
+
+// Show heading numbers in the document
+#show heading: it => {
+  if it.numbering != none {
+    block[
+      #counter(heading).display(it.numbering)
+      #h(0.5em)
+      #it.body
+    ]
+  } else {
+    it
+  }
+}
+
+= Introduction
 #include "sections/introduction.typ"
 #include "sections/methods.typ"
 #include "sections/results.typ"
 #include "sections/discussion.typ"
 
+// Disable numbering for back matter
+#set heading(numbering: none)
+
 #pagebreak()
 #bibliography(
   "bibliography/ref.bib",
-  title: auto,
+  title: "References",
 )
 
 // = Final thoughts
