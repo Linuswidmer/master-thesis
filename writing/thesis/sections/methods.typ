@@ -1,6 +1,6 @@
 #import "../utils.typ": *
 
-= Methods
+= Method
 == Ethical Considerations and Pre-Registration
 Prior to data collection, ethical considerations were addressed regarding the use of a deceptive experimental manipulation.
 Ethical approval for this study was granted by the Ethics Committee of the Department of Psychology at Humboldt University of Berlin.
@@ -9,17 +9,20 @@ For transparency, the study's aims, hypotheses, methods, and data analytic plan 
 Any deviations from the pre-registration are justified and reported in the relevant sections. 
 
 == Sample and Recruitment 
-An a priori power analysis based on the effects of previous studies indicated a required sample size of 209 participants (see Appendix). To account for sample attrition, the final target sample size was chosen 10% higher at 229 participants.
+An a priori power analysis based on the effects of previous studies indicated a required sample size of 209 participants (see Appendix). 
+To account for sample attrition, the final target sample size was chosen 10% higher at 229 participants.
 Eligibility criteria included self-identification as male, native-level proficiency in German, and a minimum age of 18 years.
-
 In exchange for participation, 1€ was donated to a public men's rights organization.
 
 == Procedure
-The procedure was adapted from #cite(<stanaland2021man>, form: "prose") and translated into German.
-As the deception of the true purpose of the study was crucial to the operationalization of the masculinity threat, the participants were informed that the study concerned with personality, motivation, and performance ("Persönlichkeit, Motivation & Leistung") in men.
+The procedure was adapted from #cite(<stanaland2021man>, form: "prose") and translated into German and an online questionnaire.
+
+Participatns assessed the study via a link or QR code on the flyers.
+
+As the deception of the true purpose of the study was crucial to the studies success, participants were informed that the study concerned with personality, motivation and performance ("Persönlichkeit, Motivation & Leistung") in men.
 They were also reminded that eligibility required identifying as male, native-level proficiency in German, and a minimum age of 18 years.
 
-After providing informed consent, participants completed the seven randomized items of the MMB scale, presented as a attitude towards masculinity ("Einstellungen zum Thema Männlichkeit)".
+After providing informed consent, participants completed the nine randomized items of the MMB scale, presented as a attitudes towards masculinity ("Einstellungen zum Thema Männlichkeit)".
 
 Next, they were informed they would complete a test supposedly measuring knowledge in areas typically associated with men or women in society ("Geschlechtsspezifischer Wissenstest"). The items of the GKT were presented in a fixed randomized order.
 
@@ -30,9 +33,7 @@ Following the feedback, participants were instructed that they would compolete a
 They were instructed to complete each partial word by typing the complete word.
 Items were presented in randomized order, with a seven-second time limit per item to encourage spontaneous, intuitive responses.
 
-Participants then completed a demographic questionnaire.
-Afterward, they were asked whether they had any suspicions about the study's true purpose and, if so, were invited to describe them.
-As a manipulation check, all participants recalled the type of feedback they had received on the GKT and provided a self-evaluation of their own gender knowledge.
+Participants then completed a demographic questionnaire suspicion questions and the manipulation check.
 
 Upon completing all study components, participants received a full debriefing.
 This included an explanation of the study's true purpose and a clarification that the feedback provided during the Gender Knowledge Test was fabricated and randomly assigned.
@@ -42,7 +43,7 @@ The rationale for the deception was explained, and participants were offered the
 MMB scale and the GKT were translated from English to German following the Translation, Review, Adjudication, Pretesting, and Documentation (TRAPD) protocol @harkness2010translation. Complete materials including all item wordings in both languages and documentation of the translation process are provided in the Appendix.
 
 === Motivation for Masculine Behavior
-The MMB scale was taken from #cite(<stanaland2023masculinity>, form: "prose") Study 2, which uses a version of the scale that does not require a prior description of masculinity ideals
+The MMB scale was taken from #cite(<stanaland2023masculinity>, form: "prose") Study 2
 It consists out of nine items to measure participants' motivation for enacting masculine behavior.
 Responses were recorded on a 7-point Likert scale ranging from 1 (_strongly disagree_) to 7 (_strongly agree_).
 The scale comprises two subscales: Pressured Motivation (5 items; e.g., "In general, I'm masculine because I want others' acceptance and approval") and Autonomous Motivation (4 items; e.g., "I enjoy being masculine").
@@ -56,7 +57,7 @@ Each item presented one correct and one incorrect response option (e.g., "The pa
 See #ref(<table:gkt-items>) for all items with German translations.
 
 === Masculinity Threatening and Non-Threatening Feedback
-To administer the masculinity threat, participants were shown a diagram depicting a fictitious distribution of scores on the Gender Knowledge Test.
+To administer the masculinity threat, participants were shown a diagram depicting a fictitious distribution of scores on the GKT.
 In the threat condition, participants were told they scored –1.83, substantially below the purported male average of +2.24, with an accompanying statement that their answers were "more similar to women than to men."
 In the no-threat condition, participants were told they scored +2.18, close to the male average, indicating "typical" performance for male participants.
 Both conditions included a visual distribution graph highlighting the participant's position relative to other men.
@@ -82,7 +83,10 @@ Participants reported their age, gender, German language proficiency, highest ed
 See #ref(<table:demographics>) for all items with translations. 
 
 == Research Design
-The study employed a between-subjects experimental design with random assignment to one of two conditions: masculinity threat (threatening feedback) or no threat (non-threatening feedback). Two dependent variables were assessed: aggressive cognition and anxious cognition, each operationalized as the proportion of target word completions on the respective WFCT subscales. Motivation for masculine behavior was measured prior to the experimental manipulation and examined as a moderator. Specifically, pressured motivation was hypothesized to moderate the effect of threat on aggressive cognition, whereas autonomous motivation was hypothesized to moderate the effect of threat on anxious cognition.
+The study employed a between-subjects experimental design with random assignment to one of two conditions: masculinity threat (threatening feedback) or no threat (non-threatening feedback).
+Two dependent variables were assessed: aggressive cognition and anxious cognition, each operationalized as the proportion of target word completions on the respective WFCT subscales.
+MMB was measured prior to the experimental manipulation and examined as a moderator. 
+Specifically, pressured motivation was hypothesized to moderate the effect of threat on aggressive cognition, whereas autonomous motivation was hypothesized to moderate the effect of threat on anxious cognition.
 
 == Data Analysis
 All analyses were conducted using R version 4.5.2 @RCoreTeam.

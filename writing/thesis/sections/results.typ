@@ -4,7 +4,7 @@
 
 
 == Participants
-A final sample of 196 participants was collected, missing the goal of 229 participants from power analysis.
+A final sample of 196 participants was collected over the course of two months. This missed the goal of 229 participants from power analysis.
 
 Participants were excluded based on pre-registered criteria.
 First, 8 participants withdrew consent after debriefing.
