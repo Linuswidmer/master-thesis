@@ -51,12 +51,13 @@ Future studies that want to investigate pressured and autonomous motivation for 
 - In favor of this argument is a lack of construct validity, assessed via internal consitency of the aggressive and anxious word completion scales: Both scales showed practically no internal consistency of the items, meaning the items of the scales covaried randomly. 
 \
 \
-- The last possibility, could be that the study did not show a masculinity threat efffects, could be that the participants really di not experience aggressive or anxious emotion after a threatening feedback to their mascuinity.
+- The last possibility, could be that the study did not show a masculinity threat efffects, could be that the participants really did not experience aggressive or anxious emotion after a threatening feedback to their mascuinity.
 - This is a serious point to discuss, as it would have a serious implication on the theoretical background (precarious manhood, fragile masculinity).
-- Also it has to be regarded that the studied population was largely academic and it may have to be considered that this population may not reflect the German society at large.
-- Arguments speak against this hypothesis: Firstly, the population does demonstrate some kind of masculinity threat effect with regard to their self-evaluation of Gender Knowledge. But this masculinity threat effect does not reflect aggressive or anxious cognition!!!
-- TODO
-
+- Although a masculinityt threat effect was found with the lower self evaluation of Gender Knowledge, this must not be linked to an aggressive or anxious response.
+- A limitation that has to be regarded that the studied population was largely academic.
+\
+\
+In favor of the failure of dependent measures is the study by (TODO), that tried to establish a German WFCT with validated measures, but failed to do so. 
 
 == Measuring (Masculinity) Threat Response (or something like that)
 - As previously highlighted, the lack of validity of the WFCT is likely to have caused the non-observation of masculinity threat effects.
