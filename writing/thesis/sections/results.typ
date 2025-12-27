@@ -1,24 +1,20 @@
 #import "../utils.typ": *
 
 = Results
-All analyses were conducted using R version 4.5.2 @RCoreTeam.
 
-To validate the MMB scale, confirmatory factor analysis (CFA) and exploratory factor analysis (EFA) were used to assess item structure. Model fit was evaluated against the following criteria: comparative fit index (CFI) > .95, Tucker-Lewis Index (TLI) > .95, root mean square error of approximation (RMSEA) < .06, and standardized root mean square residual (SRMR) < .08.
 
-Hypothesis testing was conducted on aggressive and anxious word fragment completion scores for each participant.
-The pre-registered analysis plan specified an arcsine square root transformation to address the bounded nature of proportion data @winer1971statistical.
-However, preliminary diagnostics revealed violations of the homoscedasticity assumption on transformed scores.
-To address this, the analyses employed a generalized linear model (GLM) with a binomial family and logit link function.
-This approach directly models the count of target completions out of total trials, appropriately accounting for the bounded and discrete nature of the outcome without requiring transformation.
+== Participants
+A final sample of 196 participants was collected, missing the goal of 229 participants from power analysis.
 
-To ensure robustness, several diagnostic checks were performed.
-Prior to the main analyses, Levene's tests assessed homogeneity of variance across conditions. Model diagnostics were evaluated using simulated residuals via the DHARMa package @DHARMa.
-Because influential observations may distort the validity of the results @aguinis2013best, a sensitivity analysis was conducted by identifying cases exceeding a Cook's distance threshold of $4 / (n - k)$, removing them, and refitting the model to confirm the stability of findings.
+Participants were excluded based on pre-registered criteria.
+First, 8 participants withdrew consent after debriefing.
+Of the remaining sample, 13 participants did not meet eligibility requirements (9 reported a gender other than male, 3 were under 18 years of age, and 1 reported insufficient German proficiency).
+Furthermore, 9 participants were excluded for expressing strong suspicion about the study's true purpose (open-text responses were independently coded, and participants who correctly identified the masculinity threat manipulation were excluded), 11 for completing fewer than 50% real words on the WFCT, and 1 for missing all items on the MMB scale.
+After applying these criteria, 42 participants were excluded in total, resulting in a final sample of $N = 154$ (no-threat condition: $n = 78$; threat condition: $n = 76$).
 
-A significance level of $alpha = .05$ was applied throughout.
-To evaluate the detectability of effects, sensitivity analyses were conducted using G*Power 3 @cunningham2007power.
-Sensitivity analysis determines the minimum effect size detectable with 80% power at $alpha = .05$, avoiding the limitations of post-hoc observed power @hoenig2001abuse.
-If the observed effect is substantially smaller than the minimum detectable effect, this suggests absence of a meaningful effect rather than insufficient statistical power.
+Participants ranged in age from 18 to 69 years (#reportMeanAndSD(mean: 30.6, sd: 10.9)).
+The sample was predominantly highly educated: 80.5% held at least a general university entrance qualification (Abitur), and 60.4% had completed a university degree.
+
 
 == MMB validation
 
@@ -196,7 +192,7 @@ A $t$-test confirmed that participants in the threat condition rated their gende
 
 == Measurement Quality: Word Fragment Completion Task
 
-Given the null findings for all hypotheses despite a successful manipulation check, the psychometric properties of the Word Fragment Completion Task were examined to assess whether measurement issues may have contributed to the lack of observed effects.
+To assess potential problems with the dependent measures, the psychometric properties of the WFCT were assessef (see Appendix for detailed item-level analyses).
 
 === Aggressive Word Fragment Items
 
