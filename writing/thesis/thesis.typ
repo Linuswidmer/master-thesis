@@ -82,17 +82,26 @@
 // Enable section numbering for main content
 #set heading(numbering: "1.1")
 
-// Show heading numbers in the document
-#show heading: it => {
-  if it.numbering != none {
-    block[
-      #counter(heading).display(it.numbering)
-      #h(0.5em)
-      #it.body
-    ]
-  } else {
-    it
+// Override heading display to include numbering while preserving APA style
+#show heading.where(level: 1): it => {
+  let number = if it.numbering != none {
+    counter(heading).display(it.numbering) + h(0.5em)
   }
+  align(center, strong[#number#it.body])
+}
+
+#show heading.where(level: 2): it => {
+  let number = if it.numbering != none {
+    counter(heading).display(it.numbering) + h(0.5em)
+  }
+  par(first-line-indent: 0in, strong[#number#it.body])
+}
+
+#show heading.where(level: 3): it => {
+  let number = if it.numbering != none {
+    counter(heading).display(it.numbering) + h(0.5em)
+  }
+  par(first-line-indent: 0in, emph(strong[#number#it.body]))
 }
 
 = Introduction
