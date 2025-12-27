@@ -11,5 +11,7 @@ analysis_cache
 .vscode/
 
 writing/thesis/assets/signature.jpg
+writing/guidelines-writing.md
 
 CLAUDE.md
+.claude/
