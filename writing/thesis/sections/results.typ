@@ -10,13 +10,13 @@ Participants were excluded based on pre-registered criteria.
 First, 8 participants withdrew consent after debriefing.
 Of the remaining sample, 13 participants did not meet eligibility requirements (9 reported a gender other than male, 3 were under 18 years of age, and 1 reported insufficient German proficiency).
 Furthermore, 9 participants were excluded for expressing strong suspicion about the study's true purpose (open-text responses were independently coded, and participants who correctly identified the masculinity threat manipulation were excluded), 11 for completing fewer than 50% real words on the WFCT, and 1 for missing all items on the MMB scale.
-After applying these criteria, 42 participants were excluded in total, resulting in a final sample of $N = 154$ (no-threat condition: $n = 78$; threat condition: $n = 76$).
+After applying these criteria, 42 participants were excluded in total, resulting in a final sample of $N = 154$ ($n_"threat" = 79$, $n_"no-threat" = 75$).
 
 Participants ranged in age from 18 to 69 years (#reportMeanAndSD(mean: 30.6, sd: 10.9)).
 The sample was predominantly highly educated: 80.5% held at least a general university entrance qualification (Abitur), and 60.4% had completed a university degree.
 
 
-== MMB validation
+== Motivation For Masculine Behaviour Validation
 
 #apa-figure(
   image("../images/corrplot-mmb.png", width: 70%),
@@ -71,8 +71,6 @@ However, Item 9 ("It is important to me not to be feminine") displayed a cross-l
   label: "table:efa-mmb",
 )
 
-A subsequent CFA allowing correlation between the two latent factors notably improved model fit (#reportModelFitIndices(cfi: 0.901, tli: 0.863, rmsea: 0.148, srmr: 0.099)), yet the predefined criteria were still not satisfied.
-
 Based on the EFA results, Item 9 was removed due to its cross-loading.
 Examination of modification indices further suggested a residual covariance between Items 7 and 8.
 This modification is conceptually supported, as both items express positive affect toward masculine identity ("enjoy," "happy").
@@ -84,12 +82,9 @@ No further modifications were made, as additional changes could not be theoretic
 
 Finally, reliability was assessed using McDonald's omega ($omega$), which does not assume tau-equivalence.
 The Pressured Motivation subscale showed excellent reliability ($omega = .93$), while the Autonomous Motivation subscale showed acceptable reliability ($omega = .70$).
-#todo[where do the criteria come from]
+
 The two subscales showed a moderate positive correlation ($r = .39$).
 For the subsequent moderation analyses, subscale scores were computed as row means, with Item 9 excluded from the Autonomous Motivation scale.
-
-With the MMB scale validated, attention turns to the primary hypotheses concerning masculinity threat effects on cognitive outcomes.
-
 #apa-figure(
   caption: [Aggressive and Anxious Word Completion Scores by Threat Condition],
   image("../images/aggressive-anxious-cognition-by-threat-boxplot.png"),
@@ -111,7 +106,7 @@ Given the directional hypothesis (predicted $beta > 0$) and the observed effect 
 A sensitivity analysis was performed by identifying and excluding five influential observations.
 The GLM refitted on the reduced sample continued to show no significant effect (#reportZStatistic(zValue: -1.479, pValue: 0.139); one-tailed $p = .93$).
 
-A sensitivity power analysis (see #ref(<fig:sensitivity-h1>)) indicated that, given the sample size ($n_"threat" = 79$, $n_"no threat" = 75$), the study had 80% power to detect effects of $d >= 0.40$ at $alpha = .05$.
+A sensitivity power analysis (see #ref(<fig:sensitivity-h1>)) indicated that, given the sample size ($n_"threat" = 79$, $n_"no-threat" = 75$), the study had 80% power to detect effects of $d >= 0.40$ at $alpha = .05$.
 The observed effect ($d = -0.27$) was in the opposite direction and smaller in magnitude than this threshold, suggesting the absence of the hypothesized effect rather than insufficient statistical power.
 
 === Masculinity Threat on Anxious Cognition (Hypothesis 1b)
@@ -160,7 +155,7 @@ A sensitivity analysis was performed by identifying and excluding four influenti
 The GLM refitted on the reduced sample continued to show no significant interaction effect (#reportZStatistic(zValue: 1.453, pValue: 0.146); one-tailed $p = .073$), though the effect approached marginal significance.
 
 A sensitivity power analysis (see #ref(<fig:sensitivity-h2>)) indicated that, with $N = 154$ and 3 predictors (threat condition, pressured motivation, and their interaction), the study had 80% power to detect interaction effects of $f^2 >= 0.052$ at $alpha = .05$.
-This corresponds to a small-to-medium effect size according to Cohen's (1988) conventions.
+This corresponds to a small-to-medium effect size according to #cite(<cohen2013statistical>, form: "prose") conventions.
 
 === Autonomous Motivation on Anxious Cognition (Hypothesis 2b)
 Hypothesis 2b predicted that the effect of masculinity threat on anxious cognition would be moderated by autonomous motivation to conform to masculinity norms.
@@ -176,7 +171,7 @@ A sensitivity analysis was performed by identifying and excluding influential ob
 The GLM refitted on the reduced sample continued to show no significant interaction effect (#reportZStatistic(zValue: 0.41, pValue: 0.678); one-tailed $p = .339$).
 
 A sensitivity power analysis (see #ref(<fig:sensitivity-h2>)) indicated that the study had 80% power to detect interaction effects of $f^2 >= 0.052$ at $alpha = .05$.
-This corresponds to a small-to-medium effect size according to Cohen's (1988) conventions.
+This corresponds to a small-to-medium effect size according to #cite(<cohen2013statistical>, form: "prose") conventions.
 
 == Experimental Manipulation Check
 
@@ -190,34 +185,34 @@ Second, participants were asked to self-evaluate their gender knowledge on the s
 Descriptive statistics showed lower self-evaluations in the threat condition (#reportMeanAndSD(mean: 5.71, sd: 1.43)) than in the no-threat condition (#reportMeanAndSD(mean: 6.79, sd: 1.38)).
 A $t$-test confirmed that participants in the threat condition rated their gender knowledge significantly lower than those in the no-threat condition (#reportTStatistic(tValue: 4.735, pValue: 0.00001, df: 154)).
 
-== Measurement Quality: Word Fragment Completion Task
+// == Measurement Quality: Word Fragment Completion Task
 
-To assess potential problems with the dependent measures, the psychometric properties of the WFCT were assessef (see Appendix for detailed item-level analyses).
+// To assess potential problems with the dependent measures, the psychometric properties of the WFCT were assessef (see Appendix for detailed item-level analyses).
 
-=== Aggressive Word Fragment Items
+// === Aggressive Word Fragment Items
 
-#apa-figure(
-  image("../images/corrplot-aggressive-cognition.png", width: 70%),
-  caption: [Tetrachoric Correlation Matrix for Aggressive Word Fragment Items],
-  note: [Darker shading indicates stronger positive correlations. Item descriptives are provided in #ref(<table:wfct-agg-descriptives>).],
-  label: "fig:corrplot-aggressive",
-)
+// #apa-figure(
+//   image("../images/corrplot-aggressive-cognition.png", width: 70%),
+//   caption: [Tetrachoric Correlation Matrix for Aggressive Word Fragment Items],
+//   note: [Darker shading indicates stronger positive correlations. Item descriptives are provided in #ref(<table:wfct-agg-descriptives>).],
+//   label: "fig:corrplot-aggressive",
+// )
 
-The tetrachoric correlation matrix revealed weak and inconsistent correlations among items, including several negative correlations (see #ref(<fig:corrplot-aggressive>) and #ref(<table:wfct-agg-descriptives>)).
-Item completion rates varied substantially, ranging from 3.3% to 63.8%.
-The Kaiser-Meyer-Olkin criterion yielded an MSA of .16, well below the .60 threshold.
-Cronbach's alpha was $alpha = .36$, indicating poor internal consistency.
+// The tetrachoric correlation matrix revealed weak and inconsistent correlations among items, including several negative correlations (see #ref(<fig:corrplot-aggressive>) and #ref(<table:wfct-agg-descriptives>)).
+// Item completion rates varied substantially, ranging from 3.3% to 63.8%.
+// The Kaiser-Meyer-Olkin criterion yielded an MSA of .16, well below the .60 threshold.
+// Cronbach's alpha was $alpha = .36$, indicating poor internal consistency.
 
-=== Anxious Word Fragment Items
+// === Anxious Word Fragment Items
 
-#apa-figure(
-  image("../images/corrplot-anxious-cognition.png", width: 70%),
-  caption: [Tetrachoric Correlation Matrix for Anxious Word Fragment Items],
-  note: [Darker shading indicates stronger positive correlations. Item descriptives are provided in #ref(<table:wfct-anx-descriptives>).],
-  label: "fig:corrplot-anxious",
-)
+// #apa-figure(
+//   image("../images/corrplot-anxious-cognition.png", width: 70%),
+//   caption: [Tetrachoric Correlation Matrix for Anxious Word Fragment Items],
+//   note: [Darker shading indicates stronger positive correlations. Item descriptives are provided in #ref(<table:wfct-anx-descriptives>).],
+//   label: "fig:corrplot-anxious",
+// )
 
-The anxious items showed similar limitations (see #ref(<fig:corrplot-anxious>) and #ref(<table:wfct-anx-descriptives>)).
-Item completion rates ranged from 3.4% to 85.7%, with Items 3 and 9 showing approximately 30% missingness.
-The Kaiser-Meyer-Olkin criterion yielded an MSA of .30, below the .60 threshold.
-Cronbach's alpha was $alpha = .09$, indicating unacceptable internal consistency.
+// The anxious items showed similar limitations (see #ref(<fig:corrplot-anxious>) and #ref(<table:wfct-anx-descriptives>)).
+// Item completion rates ranged from 3.4% to 85.7%, with Items 3 and 9 showing approximately 30% missingness.
+// The Kaiser-Meyer-Olkin criterion yielded an MSA of .30, below the .60 threshold.
+// Cronbach's alpha was $alpha = .09$, indicating unacceptable internal consistency.
