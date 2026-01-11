@@ -2,21 +2,19 @@
 
 = Results
 
-
 == Participants
-A final sample of 196 participants was collected over the course of two months. This missed the goal of 229 participants from power analysis.
+A final sample of 196 participants was collected over the course of two months, falling short of the target of 229 participants from power analysis.
 
 Participants were excluded based on pre-registered criteria.
 First, 8 participants withdrew consent after debriefing.
 Of the remaining sample, 13 participants did not meet eligibility requirements (9 reported a gender other than male, 3 were under 18 years of age, and 1 reported insufficient German proficiency).
-Furthermore, 9 participants were excluded for expressing strong suspicion about the study's true purpose (open-text responses were independently coded, and participants who correctly identified the masculinity threat manipulation were excluded), 11 for completing fewer than 50% real words on the WFCT, and 1 for missing all items on the MMB scale.
+Furthermore, 9 participants were excluded for expressing strong suspicion about the study's true purpose; open-text responses were independently coded, and participants who correctly identified the masculinity threat manipulation were excluded. An additional 11 participants were excluded for completing fewer than 50% real words on the WFCT, and 1 for missing all items on the MMB scale.
 After applying these criteria, 42 participants were excluded in total, resulting in a final sample of $N = 154$ ($n_"threat" = 79$, $n_"no-threat" = 75$).
 
 Participants ranged in age from 18 to 69 years (#reportMeanAndSD(mean: 30.6, sd: 10.9)).
-The sample was predominantly highly educated: 80.5% held at least a general university entrance qualification (Abitur), and 60.4% had completed a university degree.
+The sample was predominantly highly educated: 80.5% held at least a general university entrance qualification, and 60.4% had completed a university degree.
 
-
-== Motivation For Masculine Behaviour Validation
+== MMB Scale Validation
 
 #apa-figure(
   image("../images/corrplot-mmb.png", width: 70%),
@@ -25,12 +23,12 @@ The sample was predominantly highly educated: 80.5% held at least a general univ
   label: "fig:corrplot-mmb",
 )
 
-Prior to the moderation analysis, the validity and reliability of the MMB scale were assessed (see #ref(<fig:corrplot-mmb>) for correlations and #ref(<table:mmb-descriptives>) for item descriptives).
-The Kaiser-Meyer-Olkin criterion yielded an overall Measure of Sampling Adequacy (MSA) of .85, indicating the data were suitable for factor analysis.
+Prior to hypothesis testing, the validity and reliability of the MMB scale were assessed (see #ref(<fig:corrplot-mmb>) for correlations and #ref(<table:mmb-descriptives>) for item descriptives).
+The Kaiser-Meyer-Olkin criterion yielded an overall Measure of Sampling Adequacy of .85, indicating the data were suitable for factor analysis.
 The hypothesized two-factor model by #cite(<stanaland2021man>, form: "prose") specified uncorrelated latent factors for Pressured Motivation (Items 1–5) and Autonomous Motivation (Items 6–9).
 A CFA was conducted to validate this structure; however, the fit indices did not satisfy the predefined criteria (#reportModelFitIndices(cfi: 0.851, tli: 0.801, rmsea: 0.179, srmr: 0.248)).
 
-To better understand the data structure, an EFA with oblimin rotation was conducted.
+To better understand the data structure, an EFA with correlated factors (oblimin rotation) was conducted.
 A parallel analysis and scree plot supported a two-factor solution.
 The resulting factor loadings (#ref(<table:efa-mmb>)) showed strong coherence for Items 1–5 on the first factor (Pressured Motivation) and moderate coherence for Items 6–9 on the second factor (Autonomous Motivation).
 However, Item 9 ("It is important to me not to be feminine") displayed a cross-loading on both factors, suggesting poor discriminant validity.
@@ -89,18 +87,18 @@ For the subsequent moderation analyses, subscale scores were computed as row mea
   caption: [Aggressive and Anxious Word Completion Scores by Threat Condition],
   image("../images/aggressive-anxious-cognition-by-threat-boxplot.png"),
   label: "fig:agg-anx-cog-boxplot",
-  note: [Boxplots display the distribution of aggressive and anxious word completion scores (%) by experimental condition. The horizontal line represents the median, boxes represent the interquartile range, and whiskers extend to 1.5 times the interquartile range.]
+  note: [Boxplots display the distribution of aggressive and anxious word completion scores (%) by experimental condition. The horizontal line represents the median, boxes represent the interquartile range (25% - 75%), and whiskers extend to 1.5 times the interquartile range.]
 )
 
 == Masculinity Threat Effects
 #ref(<fig:agg-anx-cog-boxplot>) displays the distribution of aggressive and anxious word completion scores by threat condition.
 
-=== Masculinity Threat on Aggressive Cognition (Hypothesis 1a)
+=== Hypothesis 1a: Masculinity Threat and Aggressive Cognition
 Hypothesis 1a predicted higher aggressive cognition in the threat condition compared to the no-threat condition.
 Contrary to this prediction, aggressive word completion scores were lower in the threat condition (#reportMeanAndSD(mean: 19.5, sd: 12.3)) than in the no-threat condition (#reportMeanAndSD(mean: 22.8, sd: 12.3)).
 
 Assumption checks were satisfactory: Levene's test indicated homogeneous variances, and DHARMa residual diagnostics revealed no significant deviations from the expected distribution.
-A binomial GLM revealed no statistically significant difference between conditions (#reportZStatistic(zValue: -1.592, pValue: 0.111)).
+A binomial GLM with threat condition as the predictor and aggressive word completions as the dependent variable revealed no statistically significant effect of condition (#reportZStatistic(zValue: -1.592, pValue: 0.111)).
 Given the directional hypothesis (predicted $beta > 0$) and the observed effect in the opposite direction, the one-tailed $p$-value was $p = .944$.
 
 A sensitivity analysis was performed by identifying and excluding five influential observations.
@@ -109,12 +107,12 @@ The GLM refitted on the reduced sample continued to show no significant effect (
 A sensitivity power analysis (see #ref(<fig:sensitivity-h1>)) indicated that, given the sample size ($n_"threat" = 79$, $n_"no-threat" = 75$), the study had 80% power to detect effects of $d >= 0.40$ at $alpha = .05$.
 The observed effect ($d = -0.27$) was in the opposite direction and smaller in magnitude than this threshold, suggesting the absence of the hypothesized effect rather than insufficient statistical power.
 
-=== Masculinity Threat on Anxious Cognition (Hypothesis 1b)
+=== Hypothesis 1b: Masculinity Threat and Anxious Cognition
 Hypothesis 1b predicted higher anxious cognition in the threat condition compared to the no-threat condition.
 Anxious word completion scores were virtually identical across conditions: threat condition (#reportMeanAndSD(mean: 28, sd: 12.8)) and no-threat condition (#reportMeanAndSD(mean: 27.6, sd: 14.5)).
 
 Assumption checks were satisfactory: Levene's test indicated homogeneous variances, and DHARMa residual diagnostics revealed no significant deviations from the expected distribution.
-A binomial GLM revealed no statistically significant difference between conditions (#reportZStatistic(zValue: 0.177, pValue: 0.859)).
+A binomial GLM with threat condition as the predictor and anxious word completions as the dependent variable revealed no statistically significant effect of condition (#reportZStatistic(zValue: 0.177, pValue: 0.859)).
 Given the directional hypothesis (predicted $beta > 0$), the one-tailed $p$-value was $p = .430$.
 
 A sensitivity analysis was performed by identifying and excluding five influential observations.
@@ -141,13 +139,13 @@ Having found no main effects of threat condition on either aggressive or anxious
   note: [Left panel: Aggressive word completion scores (%) by threat condition and pressured motivation. Right panel: Anxious word completion scores (%) by threat condition and autonomous motivation.]
 )
 
-=== Pressured Motivation on Aggressive Cognition (Hypothesis 2a)
+=== Hypothesis 2a: Pressured Motivation and Aggressive Cognition
 Hypothesis 2a predicted that the effect of masculinity threat on aggressive cognition would be moderated by pressured motivation to conform to masculinity norms.
 Specifically, men with higher pressured motivation were expected to show a stronger increase in aggressive cognition following threat compared to men with lower pressured motivation.
 As illustrated in #ref(<fig:moderation-masculinity-threat>), descriptive patterns showed a steeper positive slope between pressured motivation scores and aggressive word completion scores in the threat condition compared to the no-threat condition, consistent with the predicted interaction.
 
 Assumption checks were satisfactory: Levene's test indicated homogeneous variances, and DHARMa residual diagnostics revealed no significant deviations from the expected distribution.
-A binomial GLM with threat condition, pressured motivation, and their interaction as predictors was conducted to test this moderation hypothesis.
+A binomial GLM with aggressive word completions as the dependent variable and threat condition, pressured motivation, and their interaction as predictors was conducted to test this moderation hypothesis.
 The model revealed no statistically significant main effect of threat condition (#reportZStatistic(zValue: -1.474, pValue: 0.141)), no significant main effect of pressured motivation (#reportZStatistic(zValue: 0.837, pValue: 0.403)), and no significant interaction effect (#reportZStatistic(zValue: 0.922, pValue: 0.357)).
 Given the directional hypothesis (predicted $beta > 0$ for the interaction), the one-tailed $p$-value was $p = .178$, leading to a failure to reject the null hypothesis.
 
@@ -157,13 +155,13 @@ The GLM refitted on the reduced sample continued to show no significant interact
 A sensitivity power analysis (see #ref(<fig:sensitivity-h2>)) indicated that, with $N = 154$ and 3 predictors (threat condition, pressured motivation, and their interaction), the study had 80% power to detect interaction effects of $f^2 >= 0.052$ at $alpha = .05$.
 This corresponds to a small-to-medium effect size according to #cite(<cohen2013statistical>, form: "prose") conventions.
 
-=== Autonomous Motivation on Anxious Cognition (Hypothesis 2b)
+=== Hypothesis 2b: Autonomous Motivation and Anxious Cognition
 Hypothesis 2b predicted that the effect of masculinity threat on anxious cognition would be moderated by autonomous motivation to conform to masculinity norms.
 Specifically, men with higher autonomous motivation were expected to show a stronger increase in anxious cognition following threat compared to men with lower autonomous motivation.
 As illustrated in #ref(<fig:moderation-masculinity-threat>), descriptive patterns did not support this prediction: anxious word completion scores showed no meaningful change with increasing autonomous motivation scores in either condition.
 
 Assumption checks were satisfactory: Levene's test indicated homogeneous variances, and DHARMa residual diagnostics revealed no significant deviations from the expected distribution.
-A binomial GLM with threat condition, autonomous motivation, and their interaction as predictors was conducted to test this moderation hypothesis.
+A binomial GLM with anxious word completions as the dependent variable and threat condition, autonomous motivation, and their interaction as predictors was conducted to test this moderation hypothesis.
 The model revealed no statistically significant main effect of threat condition (#reportZStatistic(zValue: -0.02, pValue: 0.988)), no significant main effect of autonomous motivation (#reportZStatistic(zValue: -0.18, pValue: 0.855)), and no significant interaction effect (#reportZStatistic(zValue: 0.07, pValue: 0.946)).
 Given the directional hypothesis (predicted $beta > 0$ for the interaction), the one-tailed $p$-value was $p = .473$, leading to a failure to reject the null hypothesis.
 

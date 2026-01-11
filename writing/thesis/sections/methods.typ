@@ -2,37 +2,37 @@
 
 = Methods
 == Ethical Considerations and Pre-Registration
-Prior to data collection, ethical considerations were addressed regarding the use of a deceptive experimental manipulation.
-Ethical approval for this study was granted by the Ethics Committee of the Department of Psychology at Humboldt University of Berlin (reference nunber: 2025-41).
+Prior to data collection, ethical considerations were addressed, particularly regarding the use of a deceptive experimental manipulation.
+Ethical approval for this study was granted by the Ethics Committee of the Department of Psychology at Humboldt University of Berlin (reference number: 2025-41).
 
 For transparency, the study's aims, hypotheses, methods, and data analytic plan were pre-registered on the Open Science Framework (https://osf.io/n6py4).
-Any deviations from the pre-registration are justified and reported in the relevant sections. 
+Any deviations from the pre-registration are justified and reported in the relevant sections.
 
 == Sample and Recruitment
 A priori power analysis based on effect sizes from previous studies indicated a required sample size of 209 participants (see Appendix A, Sample Size Planning).
 The target sample size was set at 229 participants (10% higher to account for attrition).
 Eligibility criteria included self-identification as male, native-level proficiency in German, and a minimum age of 18 years.
 Participants were recruited via flyering in public spaces or an online study exchange portal (https://surveycircle.com).
-In exchange for participation, 1€ was donated to a public organization supporting men's counselling and public interests.
+In exchange for participation, 1€ was donated to a public organization supporting men's counselling and public interests (Bundesforum Männer e.V.).
 
 == Procedure
-The procedure was adapted from #cite(<stanaland2021man>, form: "prose") into an online questonnaire and translated into German.
+The procedure was adapted from #cite(<stanaland2021man>, form: "prose") into an online questionnaire and translated into German.
 Participants accessed the study via a link on the study exchange portal or a QR code on the flyers.
 
 Deception regarding the study's true purpose was crucial to the experimental design.
-Participants were therefore informed that the study concerned personality, motivation, and performance ("Persönlichkeit, Motivation & Leistung") in men.
+Participants were therefore informed that the study concerned men's personality, motivation, and performance.
 They were reminded that eligibility required identifying as male, native-level proficiency in German, and a minimum age of 18 years.
-After providing informed consent, participants completed the nine randomized items of the MMB scale, presented as attitudes towards masculinity ("Einstellungen zum Thema Männlichkeit").
+After providing informed consent, participants completed the nine items of the MMB scale in randomized order, presented as attitudes towards masculinity.
 
-Next, participants were informed they would complete a test measuring knowledge in areas typically associated with men or women in society ("Geschlechtsspezifischer Wissenstest").
-The items of the GKT were presented in a fixed randomized order.
+Next, participants were informed they would complete a test measuring knowledge in areas typically associated with men or women in society.
+The 30 items of the GKT were presented in a fixed order that had been randomized prior to data collection.
 
 Upon completion, participants received either (a) threatening feedback indicating worse performance than the average man, or (b) non-threatening feedback indicating performance comparable to the average man.
 This feedback was not based on participants' actual responses but was randomly assigned by experimental condition.
 
-Following the feedback, participants were told they would take a test measuring their speed of thought ("Test zur Denkgeschwindigkeit").
+Following the feedback, participants were told they would take a test measuring their speed of thought.
 In reality, they completed the 20 items of the WFCT.
-They were instructed to complete each word fragment by typing the complete word.
+They were instructed to complete word fragments by typing the complete word.
 Items were presented in randomized order, with a seven-second time limit per item to encourage spontaneous, intuitive responses.
 Participants then completed a demographic questionnaire, suspicion questions, and the manipulation check.
 
@@ -41,12 +41,11 @@ This included an explanation of the study's true purpose and a clarification tha
 The rationale for the deception was explained, and participants were offered the option to withdraw their data.
 
 == Materials
-This section describes the measures and materials used in the study.
 The MMB scale and GKT were translated from English to German following the Translation, Review, Adjudication, Pretesting, and Documentation (TRAPD) protocol @harkness2010translation.
 Complete materials including all item wordings in both languages and documentation of the translation process are provided in the Appendix.
 
 === Motivation for Masculine Behavior
-The MMB scale was taken from #cite(<stanaland2023masculinity>, form: "prose") Study 2.
+The MMB scale was taken from #cite(<stanaland2022fragile>, form: "prose") Study 2.
 It consists of nine items measuring participants' motivation for enacting masculine behavior.
 Responses were recorded on a 7-point Likert scale ranging from 1 (_strongly disagree_) to 7 (_strongly agree_).
 The scale comprises two subscales: Pressured Motivation (5 items; e.g., "In general, I'm masculine because I want others' acceptance and approval") and Autonomous Motivation (4 items; e.g., "I enjoy being masculine").
@@ -68,7 +67,7 @@ Both conditions included a visual distribution graph highlighting the participan
 
 === Word Fragment Completion Task
 The WFCT was used to assess aggressive and anxious cognition.
-Word fragments were developed by first identifying German words semantically related to aggression ("Wut" [anger], "Ärger" [frustration]) and anxiety ("Angst" [fear], "Furcht" [fear]) using the a word association thesaurus (https://wordassociations.net/de/).
+Word fragments were developed by first identifying German words semantically related to aggression ("Wut" [anger], "Ärger" [frustration]) and anxiety ("Angst" [fear], "Furcht" [fear]). Target words were identified using a word association thesaurus (https://wordassociations.net/de/).
 For each target word, potential word fragments were generated by removing the first letter.
 Each fragment could be completed as either a target word (aggressive or anxious) or a neutral word.
 For example, "\_UT" could become "WUT" (anger; aggressive) or "HUT" (hat; neutral).
@@ -79,6 +78,7 @@ See #ref(<table:wfct-aggressive>) and #ref(<table:wfct-anxious>) for all word fr
 Two manipulation check items verified that participants correctly perceived the experimental manipulation.
 First, participants recalled the type of feedback they received on the GKT on a scale from 1 (_typically feminine_) to 10 (_typically masculine_).
 Second, they provided a self-evaluation of their own gender knowledge on the same scale.
+
 To assess suspicion, participants indicated whether they believed the study concerned something other than what was stated.
 If they responded affirmatively, they were prompted to describe their suspicions.
 Participants were also given the opportunity to share any other thoughts about the study in an open-text field.
@@ -92,23 +92,20 @@ See #ref(<table:demographics>) for all items with translations.
 The study employed a between-subjects experimental design with random assignment to one of two conditions: masculinity threat (threatening feedback) or no-threat (non-threatening feedback).
 Two dependent variables were assessed: aggressive cognition and anxious cognition, each operationalized as the proportion of target word completions on the respective WFCT subscales.
 MMB was measured prior to the experimental manipulation and examined as a moderator.
-Specifically, pressured motivation was hypothesized to moderate the effect of threat on aggressive cognition, whereas autonomous motivation was hypothesized to moderate the effect of threat on anxious cognition.
 
 == Data Analysis
 All analyses were conducted using R version 4.5.2 @RCoreTeam.
-To validate the MMB scale, confirmatory factor analysis (CFA) and exploratory factor analysis (EFA) were used to assess item structure. Model fit was evaluated against the following criteria: comparative fit index (CFI) > .95, Tucker-Lewis Index (TLI) > .95, root mean square error of approximation (RMSEA) < .06, and standardized root mean square residual (SRMR) < .08.
+To validate the MMB scale, confirmatory factor analysis (CFA) and exploratory factor analysis (EFA) were used to assess item structure. Model fit was evaluated against the following criteria: comparative fit index (CFI) > .95, Tucker-Lewis Index (TLI) > .95, root mean square error of approximation (RMSEA) < .06, and standardized root mean square residual (SRMR) < .08 @hu1999cutoff.
 
 Hypothesis testing was conducted on aggressive and anxious word fragment completion scores for each participant.
 The pre-registered analysis plan specified an arcsine square root transformation to address the bounded nature of proportion data @winer1971statistical.
-However, preliminary diagnostics revealed violations of the homoscedasticity assumption on transformed scores.
-To address this, the analyses employed a generalized linear model (GLM) with a binomial family and logit link function.
+However, preliminary diagnostics revealed that the distribution of transformed scores was highly skewed, violating the normality assumption required for standard regression. To address this, the analyses employed a generalized linear model (GLM) with a binomial family and logit link function.
 This approach directly models the count of target completions out of total trials, appropriately accounting for the bounded and discrete nature of the outcome without requiring transformation.
 
 To ensure robustness, several diagnostic checks were performed.
 Prior to the main analyses, Levene's tests assessed homogeneity of variance across conditions.
-Model diagnostics were evaluated using simulated residuals via the DHARMa package @DHARMa.
-Influential observations may distort the validity of results @aguinis2013best.
-To address this, a sensitivity analysis identified cases exceeding a Cook's distance threshold of $4 / (n - k)$, removed them, and refitted the model to confirm the stability of findings.
+The distribution of residuals was evaluated using simulated residuals via the DHARMa package @DHARMa.
+To identify influential observations that may distort results @aguinis2013best, a sensitivity analysis flagged cases exceeding a Cook's distance threshold of $4 / (n - k)$, removed them, and refitted the model to confirm the stability of findings.
 
 A significance level of $alpha = .05$ was applied throughout.
 To evaluate the detectability of effects, sensitivity analyses were conducted using G*Power 3 @cunningham2007power.

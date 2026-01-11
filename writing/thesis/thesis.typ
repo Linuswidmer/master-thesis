@@ -67,7 +67,7 @@
   abstract: abstract-content,
 
   // Common fields
-  font-family: "Libertinus Serif",
+  font-family: "Times New Roman",
   font-size: 12pt,
   region: "us",
   language: "en",
@@ -75,6 +75,8 @@
   implicit-introduction-heading: false,
   abstract-as-description: true,
 )
+
+#set par(justify: true)
 
 #outline()
 #pagebreak()
@@ -133,6 +135,8 @@
   heading-numbering: "A",
   supplement: "Appendix",
 )
+
+#set par(justify: true)
 
 // #pagebreak()
 #include "sections/appendix.typ"
