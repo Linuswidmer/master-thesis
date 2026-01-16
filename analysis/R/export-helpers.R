@@ -23,22 +23,30 @@ save_corrplot_apa <- function(cor_matrix, name,
   file_path <- file.path(folder, paste0(name, ".png"))
 
   # Greyscale diverging palette: light for negative, dark for positive
-  grey_palette <- colorRampPalette(c("grey90", "grey10"))(200)
-
+  fixed_color <- "grey20"
   png(filename = file_path, width = width, height = height, units = "in", res = 300)
 
-  corrplot::corrplot.mixed(cor_matrix,
-    upper = "circle",
-    lower = "number",
+  # Use two separate corrplot calls for full control over legend
+  corrplot::corrplot(cor_matrix,
+    type = "upper",
+    method = "circle",
     order = "original",
     tl.col = "black",
     tl.pos = "lt",
     tl.cex = 0.9,
-    number.cex = 0.7,
-    upper.col = grey_palette,
-    lower.col = "black",
-    cl.cex = 0.8,
+    col = fixed_color,
+    cl.pos = "n",
     mar = c(0, 0, 1, 0)
+  )
+  corrplot::corrplot(cor_matrix,
+    type = "lower",
+    method = "number",
+    order = "original",
+    tl.pos = "n",
+    number.cex = 0.7,
+    col = "black",
+    cl.pos = "n",
+    add = TRUE
   )
 
   # Add rectangles around cluster groups if specified
@@ -58,7 +66,8 @@ save_corrplot_apa <- function(cor_matrix, name,
         xright = end_idx + 0.5,
         ytop = n - start_idx + 1.5,
         border = "black",
-        lwd = 2
+        lwd = 2,
+        xpd = TRUE
       )
     }
   }
