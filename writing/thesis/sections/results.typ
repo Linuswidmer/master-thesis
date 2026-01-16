@@ -2,36 +2,23 @@
 
 = Results
 
-== Participants
-A final sample of 196 participants was collected over the course of two months, falling short of the target of 229 participants from power analysis.
-
-Participants were excluded based on pre-registered criteria.
-First, 8 participants withdrew consent after debriefing.
-Of the remaining sample, 13 participants did not meet eligibility requirements (9 reported a gender other than male, 3 were under 18 years of age, and 1 reported insufficient German proficiency).
-Furthermore, 9 participants were excluded for expressing strong suspicion about the study's true purpose; open-text responses were independently coded, and participants who correctly identified the masculinity threat manipulation were excluded. An additional 11 participants were excluded for completing fewer than 50% real words on the WFCT, and 1 for missing all items on the MMB scale.
-After applying these criteria, 42 participants were excluded in total, resulting in a final sample of $N = 154$ ($n_"threat" = 79$, $n_"no-threat" = 75$).
-
-Participants ranged in age from 18 to 69 years (#reportMeanAndSD(mean: 30.6, sd: 10.9)).
-The sample was predominantly highly educated: 80.5% held at least a general university entrance qualification, and 60.4% had completed a university degree.
-
 == MMB Scale Validation
 
+#ref(<fig:corrplot-mmb>) illustrates the correlations between individual items, while #ref(<table:mmb-descriptives>) provides the corresponding item descriptives. 
 #apa-figure(
   image("../images/corrplot-mmb.png", width: 70%),
-  caption: [Polychoric Correlation Matrix for MMB Items],
-  note: [Items 1–5 = Pressured Motivation subscale; Items 6–9 = Autonomous Motivation subscale. Rectangles indicate the hypothesized factor structure. Darker shading indicates stronger positive correlations.],
+  caption: [Polychoric Correlation Matrix for MMB Scale],
+  note: [Polychoric correlations of MMB items. Rectangles indicate the hypothesized factor structure: Items 1–5 = Pressured Motivation subscale; Items 6–9 = Autonomous Motivation subscale. Larger circles indicate stronger positive correlations.],
   label: "fig:corrplot-mmb",
 )
-
-Prior to hypothesis testing, the validity and reliability of the MMB scale were assessed (see #ref(<fig:corrplot-mmb>) for correlations and #ref(<table:mmb-descriptives>) for item descriptives).
-The Kaiser-Meyer-Olkin criterion yielded an overall Measure of Sampling Adequacy of .85, indicating the data were suitable for factor analysis.
+The Kaiser-Meyer-Olkin (KMO) criterion yielded an overall Measure of Sampling Adequacy of $.85$, confirming that the data were suitable for factor analysis.
 The hypothesized two-factor model by #cite(<stanaland2021man>, form: "prose") specified uncorrelated latent factors for Pressured Motivation (Items 1–5) and Autonomous Motivation (Items 6–9).
-A CFA was conducted to validate this structure; however, the fit indices did not satisfy the predefined criteria (#reportModelFitIndices(cfi: 0.851, tli: 0.801, rmsea: 0.179, srmr: 0.248)).
+A CFA was conducted to validate this structure; however predefined criteria were not met by fit indices (#reportModelFitIndices(cfi: 0.851, tli: 0.801, rmsea: 0.179, srmr: 0.248)).
 
-To better understand the data structure, an EFA with correlated factors (oblimin rotation) was conducted.
-A parallel analysis and scree plot supported a two-factor solution.
-The resulting factor loadings (#ref(<table:efa-mmb>)) showed strong coherence for Items 1–5 on the first factor (Pressured Motivation) and moderate coherence for Items 6–9 on the second factor (Autonomous Motivation).
-However, Item 9 ("It is important to me not to be feminine") displayed a cross-loading on both factors, suggesting poor discriminant validity.
+To better understand the data structure, an EFA allowing for correlated factors (oblimin rotation) was conducted.
+The resulting factor loadings are displayed in #ref(<table:efa-mmb>). Items 1–5 showed a strong coherence on the first factor (Pressured Motivation).
+Items 6–9 showed moderate coherence on the second factor representing Autonomous Motivation.
+However, Item 9 ("It is important to me not to be feminine") displayed a significant cross-loading on both factors.
 
 #apa-figure(
   table(
@@ -62,36 +49,38 @@ However, Item 9 ("It is important to me not to be feminine") displayed a cross-l
     [9], [It is important to me not to be feminine.], [.39], [.39],
     table.hline(),
   ),
-  caption: [EFA Factor Loadings for Motivation for Masculine Behavior Scale],
+  caption: [EFA Factor Loadings for the MMB Scale],
   note: [
+    English item versions of MMB Scale.
     Factor loadings below .30 are suppressed for clarity. Extraction method: Maximum Likelihood with oblimin rotation.
   ],
   label: "table:efa-mmb",
 )
 
-Based on the EFA results, Item 9 was removed due to its cross-loading.
+Based on the EFA results, Item 9 was removed due to its cross-loading and low loading on it's hypothesized factor.
 Examination of modification indices further suggested a residual covariance between Items 7 and 8.
 This modification is conceptually supported, as both items express positive affect toward masculine identity ("enjoy," "happy").
-A final CFA on the 8-item scale yielded an almost acceptable fit (#reportModelFitIndices(cfi: 0.966, tli: 0.947, rmsea: 0.098, srmr: 0.066)).
+A final CFA on the 8-item scale with correlated residulas yielded an almost acceptable fit (#reportModelFitIndices(cfi: 0.966, tli: 0.947, rmsea: 0.098, srmr: 0.066)).
 The CFI and SRMR satisfied the target values of .95 and .08, respectively.
 While the TLI fell slightly below the .95 threshold and the RMSEA remained elevated, both showed substantial improvement.
-This pattern may be partially attributable to the limited sample size ($N = 154$).
 No further modifications were made, as additional changes could not be theoretically justified and would risk overfitting the model to the data.
 
-Finally, reliability was assessed using McDonald's omega ($omega$), which does not assume tau-equivalence.
+For the subsequent moderation analyses, subscale scores were computed as row means, with Items 1–5 for Pressured Motivation and Items 6–8 for Autonomous Motivation. The two subscales showed a moderate positive correlation ($r = .39$).
+
+Finally, reliability was assessed using McDonald's omega ($omega$).
 The Pressured Motivation subscale showed excellent reliability ($omega = .93$), while the Autonomous Motivation subscale showed acceptable reliability ($omega = .70$).
 
-The two subscales showed a moderate positive correlation ($r = .39$).
-For the subsequent moderation analyses, subscale scores were computed as row means, with Item 9 excluded from the Autonomous Motivation scale.
+
+== Masculinity Threat Effects
+
+#ref(<fig:agg-anx-cog-boxplot>) displays the distribution of aggressive and anxious word completion scores by threat condition.
+
 #apa-figure(
   caption: [Aggressive and Anxious Word Completion Scores by Threat Condition],
-  image("../images/aggressive-anxious-cognition-by-threat-boxplot.png"),
+  image("../images/aggressive-anxious-cognition-by-threat-boxplot.png",  width: 70%),
   label: "fig:agg-anx-cog-boxplot",
   note: [Boxplots display the distribution of aggressive and anxious word completion scores (%) by experimental condition. The horizontal line represents the median, boxes represent the interquartile range (25% - 75%), and whiskers extend to 1.5 times the interquartile range.]
 )
-
-== Masculinity Threat Effects
-#ref(<fig:agg-anx-cog-boxplot>) displays the distribution of aggressive and anxious word completion scores by threat condition.
 
 === Hypothesis 1a: Masculinity Threat and Aggressive Cognition
 Hypothesis 1a predicted higher aggressive cognition in the threat condition compared to the no-threat condition.
@@ -104,7 +93,7 @@ Given the directional hypothesis (predicted $beta > 0$) and the observed effect 
 A sensitivity analysis was performed by identifying and excluding five influential observations.
 The GLM refitted on the reduced sample continued to show no significant effect (#reportZStatistic(zValue: -1.479, pValue: 0.139); one-tailed $p = .93$).
 
-A sensitivity power analysis (see #ref(<fig:sensitivity-h1>)) indicated that, given the sample size ($n_"threat" = 79$, $n_"no-threat" = 75$), the study had 80% power to detect effects of $d >= 0.40$ at $alpha = .05$.
+A sensitivity power analysis (see #ref(<fig:sensitivity-h1>)) indicated that the study had 80% power to detect effects of $d >= 0.40$ at $alpha = .05$.
 The observed effect ($d = -0.27$) was in the opposite direction and smaller in magnitude than this threshold, suggesting the absence of the hypothesized effect rather than insufficient statistical power.
 
 === Hypothesis 1b: Masculinity Threat and Anxious Cognition
@@ -123,7 +112,7 @@ The observed effect ($d = 0.03$) was substantially smaller than this threshold, 
 
 == Moderation of Masculinity Threat Effects
 
-Having found no main effects of threat condition on either aggressive or anxious cognition, the moderation hypotheses were tested to examine whether individual differences in motivation for masculine behavior influenced threat responses.
+#ref(<fig:moderation-masculinity-threat>) displays the distribution of aggressive and anxious word completion scores by threat condition and Pressured and Autonomous Motivation.
 
 #apa-figure(
   grid(
