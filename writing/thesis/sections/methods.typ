@@ -17,17 +17,17 @@ Eligibility criteria included self-identification as male, native-level proficie
 To achieve a representative sample, participants were initially recruited via flyers in public spaces such as libraries, gyms, and cafes. Due to a limited response rate from these physical locations, 100 participants were recruited through an online study exchange portal (https://surveycircle.com) whose members are primarily young and academic.
 In exchange for participation, 1€ was donated to a public organization supporting men's counselling and public interests (Bundesforum Männer e.V.).
 
-A final sample of 196 participants was collected over a two-month period. Although this fell short of the target of 229 participants identified in the power analysis, data collection was concluded due to time constraints of the project.
+A final sample of 196 participants was collected over a two-month period. Although this fell short of the target of 229 participants, data collection was concluded due to time constraints of the project.
 
 Several participants were excluded based on pre-registered criteria to ensure data quality. @fig:consort-flowchart provides an overview of participant flow and exclusions, that were made due to withdrawal of consent, failing to meet eligibility criteria, failing attention checks and suspicion. 
-
-After applying all exclusion criteria, 42 participants were removed in total. This resulted in a final analytical sample of $N = 154$ ($n_"threat" = 79$, $n_"no-threat" = 75$)..
 
 #apa-figure(
   caption: [CONSORT Flowchart of Participant Exclusions],
   consort-flowchart,
   label: "fig:consort-flowchart",
 )
+
+After applying all exclusion criteria, 42 participants were removed in total. This resulted in a final analytical sample of $N = 154$ ($n_"threat" = 79$, $n_"no-threat" = 75$).
 
 The final sample ranged in age from 18 to 69 years (#reportMeanAndSD(mean: 30.6, sd: 10.9)).
 The participants were predominantly highly educated: $80.5%$ held at least a general university entrance qualification, and $60.4%$ had completed a university degree.
@@ -48,9 +48,9 @@ Participants completed the study on their own electronic devices, accessing the 
 Participants were informed that they would participate in a study concerning men's personality, motivation, and performance.
 They were reminded that eligibility required identifying as male, native-level proficiency in German, and a minimum age of 18 years. By proceeding, participants self-confirmed their eligibility. Afterwards, they provided informed consent.
 
-First, participants were asked to provide their personal opinions on various attitudes toward masculinity. This section consisted of nine items from the MMB scale, which were presented in a randomized order to each participant.
+First, participants were asked to provide their opinions on several items framed as attitudes toward masculinity. This section consisted of nine items from the MMB scale, which were presented in a randomized order to each participant.
 
-Next, participants were told they would complete a test measuring knowledge in areas typically associated with different genders in society. They were presented with the 30 items of the GKT in a pre-randomized fixed order. Each item required participants to select the correct answer from two provided response options.
+Next, participants were told they would complete a test measuring knowledge in areas typically associated with different genders in society. The 30 items of the GKT were presented in a fixed, pre-randomized order across all participants. Each item required participants to select the correct answer from two provided response options.
 
 Upon completion, participants received feedback about their test performance. This feedback was not based on participants' actual responses but was randomly assigned by experimental condition. The feedback was either (a) threatening feedback indicating worse performance than the average man, or (b) non-threatening feedback indicating performance comparable to the average man.
 
@@ -108,7 +108,7 @@ Participants were also given the opportunity to share any other thoughts about t
 == Data Analysis
 Data analysis was performed using R version 4.5.2 @RCoreTeam. An anonymized dataset and the corresponding analysis code have been made publicly available via GitHub (https://github.com/Linuswidmer/master-thesis).
 
-To validate the MMB scale, the item structure was assessed using both confirmatory factor analysis (CFA) and exploratory factor analysis (EFA). Model fit was evaluated according to the criteria established by @hu1999cutoff: Comparative Fit Index (CFI) $> .95$, Tucker-Lewis Index (TLI) $> .95$, Root Mean Square Error of Approximation (RMSEA) $< .06$, and Standardized Root Mean Square Residual (SRMR) $< .08$.
+To validate the MMB scale, the item structure was assessed using both confirmatory factor analysis (CFA) and exploratory factor analysis (EFA). Model fit was evaluated according to the criteria established by #cite(<hu1999cutoff>, form: "prose"): Comparative Fit Index (CFI) $> .95$, Tucker-Lewis Index (TLI) $> .95$, Root Mean Square Error of Approximation (RMSEA) $< .06$, and Standardized Root Mean Square Residual (SRMR) $< .08$.
 
 Hypothesis testing was conducted on the proportion of aggressive and anxious completed word fragments for each participant.
 The pre-registered analysis plan specified an arcsine square root transformation to address the bounded nature of proportion data @winer1971statistical.
