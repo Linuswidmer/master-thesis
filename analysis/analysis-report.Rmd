@@ -1496,7 +1496,47 @@ save_corrplot_apa(cor_anx_renamed, "corrplot-anxious-cognition")
 
 ### Masculinity Threat Effects
 
-Aggressive and anxious word completions by threat condition
+Aggressive word completions by threat condition
+```{r}
+agg_by_threat_boxplot <- plotBox(
+  "aggressiveCognition",
+  "threatCondition",
+  x_label = "",
+  y_label = "Aggressive Word Completion Score (%)",
+  var_labels = c("aggressiveCognition" = ""),
+  fill_labels = c(
+    "noThreat" = "No Threat",
+    "threat" = "Threat"
+  ),
+  legend_title = "Condition",
+  ylim = c(0, 70),
+  legend_position = "top.left"
+)
+agg_by_threat_boxplot
+save_plot(agg_by_threat_boxplot, "aggressive-cognition-by-threat-boxplot")
+```
+
+Anxious word completions by threat condition
+```{r}
+anx_by_threat_boxplot <- plotBox(
+  "anxiousCognition",
+  "threatCondition",
+  x_label = "",
+  y_label = "Anxious Word Completion Score (%)",
+  var_labels = c("anxiousCognition" = ""),
+  fill_labels = c(
+    "noThreat" = "No Threat",
+    "threat" = "Threat"
+  ),
+  legend_title = "Condition",
+  ylim = c(0, 70),
+  legend_position = "top.left"
+)
+anx_by_threat_boxplot
+save_plot(anx_by_threat_boxplot, "anxious-cognition-by-threat-boxplot")
+```
+
+Combined plot (for reference)
 ```{r}
 agg_anx_by_threat_boxplot <- plotBox(
   c("aggressiveCognition", "anxiousCognition"),
@@ -1516,7 +1556,6 @@ agg_anx_by_threat_boxplot <- plotBox(
   legend_position = "top.left"
 )
 agg_anx_by_threat_boxplot
-save_plot(agg_anx_by_threat_boxplot, "aggressive-anxious-cognition-by-threat-boxplot")
 ```
 
 ```{r}
