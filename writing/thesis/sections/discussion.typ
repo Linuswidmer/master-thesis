@@ -1,111 +1,124 @@
 #import "../utils.typ": *
-
 = Discussion
-The current studies aim was to replicate masculinity threat effects and their motivational moderators in a German cultural sample.
-Based on the proprtion of aggressively and anxiously completed items in the WFCT, the results of this study did not reveal the hypothesized increase of aggressively and anxiously coded items in the threat condition. 
-Furthermore, this effect of the threat motivation was not moderated by the pressured and autonomous motivation to be masculine for aggressive and anxious trials repsectively.
-Nonetheless, also the failure to replicate these effects highlights prolific insights into the assessment of masculinity threatetenign effects and the motivation for gendered behaviour, that will be beneficial to future work.
 
-== Motivation for Masculine Behaviour in a German Sample
-A key objective of the current study was to establish a translation of the MMB in a German cultiral sample and test whether it reveals the same two-factorial structure distinguishing autonomous and pressured motivation to be masculine.
-=== Factorial Structure of the MMB Scale
-- The CFA showed a sufficiently good fit for a two-factor model on the scale with a few constraints:
-- Firstly #cite(<stanaland2021man>, form: "prose") original model showed the two factors to be uncorrelated. The current study did not show this, as a modeling the factors as uncorrelated produced a bad model fit. From a theoretical perspective, it makes sense to consider these two factors as correlated, since: 1. The underlying constructs are actually related (which is plausible, considering that my own ideals and the expectations of others influence each other). 2. It may be hard for participants to distinguish between their internal and external motivations in these 'simple' one-line sentence. Additionally, the original studies by #cite(<good2010doing>, form: "prose") that investiagted the distinction between external and internal pressured motivation to conform to a gender stereotype, also reported a moderate correlation between their two factors ($r = ...$ ).
-- Secondly, one item of the autonomous motivation scale ("Es ist mir wichtig, mich nicht weiblich zu verhalten", original: [It is important to me not to be feminine]) was excluded from the scale, because it showed equally high loadings (.39) on the pressured and autonomous factor. Interestingly, a very similar pattern emerged in the original validation of the scale #citeWithPrefix(keys: <stanaland2023masculinity>, prefix: "Study 2;"), where the item loaded only marginally higher on autonomous than pressured motivation (pressured: .36, autonomous: .43). The fact that this pattern seems to emerge consistently is interesting and may stem from an inhernt property of the item: It may be, that the rejection of femininity may inherently be somethig that is associated with an external pressure, rather than an intrinsic motivation. In the current study, we chose to exclude the item, because it showed a poor fit into the hypothesized structure and removing is significantly improved the model fit.
-- Thirdly, a resdiual covariate was allowed for items seven and eight of the autonomous motivation factor. This was justified, beacuse both items express positive affect toward masculine identity ("enjoy," "happy") and allowing for the correlation significantly improved the model fit.
-In summary ...
+The present study aimed to replicate masculinity threat effects and examine their motivational moderators in a German sample. Contrary to the hypotheses, the results did not reveal the predicted increases in aggressive or anxious cognition following a masculinity threat, nor were these relationships moderated by pressured or autonomous motivation. While these results contrast with previous findings in North American contexts, the following section examines various factors that may have contributed to the absence of the predicted masculinity threat responses.
 
-=== Sample considerations/translation
-Although participants largely come from an academic background, this did not yield very low MMB agreements (previous consideration that a largely universitarian sample may be biased).
-\
-\
-A lot of people in the sample however reported suspicion and were able to identify the true purpose of the study (i.e. experimental manipulation of feedback). This provides a significant challenge when conducting this paradigm in an academic sample, since the participants are more sceptical/ more used to experimental manipulations.
+== Analysis of the Absence of Masculinity Threat Responses
 
-=== Scale construction
-- Different methods in assessing the MMB scale: #citeWithPrefix(keys: <stanaland2023masculinity>, prefix: "Study 1;") let participants describe their idea of an ideal men and then asked participants with regard to the ideal they described (e.g. In general, I present myself like the man I described because I want others’ acceptance and approval.). In contrast #citeWithPrefix(keys: <stanaland2023masculinity>, prefix: "Study 2;") that was aloso the base for this study, omitted the description of an ideal men and asked more generally "In general, I'm masculine because I want others' acceptance and approval.". Notably in their first study, #cite(<stanaland2021man>, form: "prose") observed a much smaller correlation between the two facors ($r = .15$) than in the second study $r = .5$. 
-As this study again produced a high correlation between the two factors, one may assume, that fourmulating of an ideal man helps participants distinguish better autnomous and pressured components of their masculinity. 
-\
-\
-Difficulties translating the scale (männlich sein, vs. männlich verhalten) discussed in the Appendix ...\
--> current results show that the items were comprehensible and none of the items produces severe bottom or ceiling effects.\
--> No factor emerged in the FA that would suggest a facor for phrasing acting vs. state
+=== Experimental Manipulation
 
-=== Conclusion on the MMB in a German sample
-- Successful translation of the scale and showed a valid and reliable measure for pressured and autonomous motivation for masculine behaviour that replicated previous studies @stanaland2021man@stanaland2023masculinity. 
-Future studies that want to investigate pressured and autonomous motivation for masculine behaviour may regard the "state vs. agenticness" of translating traits related to gender (being vs. doing gender), as well as consider the benefit of an introductory text.
+Despite the null results, the experimental manipulation itself appeared successful. Manipulation checks confirmed that participants in the threat condition attended to the feedback and perceived it as credible, reporting a significant decrease in their self-evaluated masculinity compared to the control group. This suggests that the study successfully induced a cognitive appraisal of threat. 
 
-== Masculinity Threat Effects
-- The study failed to show mascuinity threat effects: Both the hypothesized higher  aggressive and anxious word completions (Hypothesis 1a & 1b), as well as the moderation of this effect via automous and pressured motivation (Hypothesis 2a & 2b) remained non-significant. 
-- Three possible reasons for the current sample not showing masculinity threat effects: 1. Failure in operationalization of the threat (i.e. participants did not perceive the stimuli as a threat).  2. There is an issue with the WFCT as a dependent measure for aggressive an anxious cognition. 3. German participants truly do not react with aggressive or anxious responses to a threat to their masculinity (this would challenge the theoretical framework in a German context).
-\
-\ 
-- The first reason for this could be that the study failed to  successfullty induct a masculinity threat to the participants.  
-- However, with regard to this, the study contained two checks of experimental maniplation:
-- Fistly, participants were asked to recall the feedback that they got from the GKT. Participants in the threat condition reported that their gender knowledge was rated much more feminine feedback than participants in the no threat condition. This shows that participants paid attention to the feedback, as well as the feedback was comprehensible. 
-- Secondly, participants were asked to evaluate their own Gender Knowledge from typically feminine to typically masculne. Participants in the threat condition reported a significantly less masculine masculine gender knowledge, than people in the threat condition. This shows that the feedback the participants reveived was also credible.
-- Summing up, these results indicate, that the operationalization of masculinity threat was successful.
-\
-\
-- The second reason for failing to measure a masculinity threat response, could be an issue with the WFCT as a dependent measure for aggresive and anxious cognition.
-- The current study used this measure, as previous studies were able to successfully use this measure in an English version
-- In favor of this argument is a lack of construct validity, assessed via internal consitency of the aggressive and anxious word completion scales: Both scales showed practically no internal consistency of the items, meaning the items of the scales covaried randomly. 
-\
-\
-- The last possibility, could be that the study did not show a masculinity threat efffects, could be that the participants really did not experience aggressive or anxious emotion after a threatening feedback to their mascuinity.
-- This is a serious point to discuss, as it would have a serious implication on the theoretical background (precarious manhood, fragile masculinity).
-- Although a masculinityt threat effect was found with the lower self evaluation of Gender Knowledge, this must not be linked to an aggressive or anxious response.
-- A limitation that has to be regarded that the studied population was largely academic.
-\
-\
-In favor of the failure of dependent measures is the study by (TODO), that tried to establish a German WFCT with validated measures, but failed to do so. 
+=== Sample Considerations
 
-== Measuring (Masculinity) Threat Response (or something like that)
-- As previously highlighted, the lack of validity of the WFCT is likely to have caused the non-observation of masculinity threat effects.
-Discuss the benefits, as well as disadvantages of dependent measures for aggressive and anxious cogniotion
-1. WFCT
-- Advantages: Implicit, which is particularly relevant with a dependent measure that is subject to social desirability (anxious response is incongruent to a masculine stereotype and thus may be underreported). Also participants may not be self-aware to their emotions and thus not be able to report them.
-- Disadvantages: Very high measurement error -> there are so many reasons why a subject may complete a word fragment in one way or another -> it would need a lot of items and participants to counter that. An unpublished study by (TODO) tried to cross-validate a word fragment completion task with established measures of aggressive responses, but failed to do so.
-2. Self-reporting:
-- Advantage: High validity
-- Disadvantage: Subject to sicial desirability & lack of self-awareness
-3. More implicit measures
-- e.g. assessing aggressive cognition via agreement to discriminatory statements (e.g. TODO). 
-- Advantage: Good validity, has been successfully used in many studies (TODO).
-- Disadvantage: More difficult in studentic/academic samples (as the agreement to discriminatory statements may be generally very low (TODO)).
-4. Behvioral measures
-- e.g. aggressive behaviour (TODO), stress levels (TODO) ...
-Advantages: High validity, less subject to social desirability or self-awareness problems.
-Disadvantages: High cost for setup.
-\
-\
-Summary: Future studies for masculinity threat effects \
-Should:
-- Implement measures to verify operationalization of masculinity threats (e.g. like in the current study)
-- Include suspicion checks (like open text responses)
-- Use validated measures for measuring threat response
-- pay attention to social desirability and self-awareness problems
-- pay attention to the interference between their dependent measures and population being studies (e.g. agreement to statements)
-Could:
-- Use distractor items, to hide the purpose of the study
-- Use open text fields to ask about the purpose of the study
-- use implicit measures, like the agreement to discriminatory statements
+The study’s ability to detect the consequences of this threat was constrained by the final sample size ($N = 196$), which fell short of the goal of $229$ participants. Furthermore, significant sample attrition (approximately 22%) occurred following attention checks, suspicion, withdrawal of consent, and eligibility criteria. These factors may be attributable to the high academic composition of the sample, as research-savvy populations are often more prone to suspicion, and online questionnaire formats frequently result in lower levels of participant attention.
+Nevertheless, post-hoc power analysis indicated that the study still maintained sufficient power ($1 - beta = .96$) to detect the hypothesized medium-sized masculinity threat effects. Only for the moderation effect, which was assumed to be small, did an insufficient level of test power remain ($1 - \beta = .56$).
 
-== Theory Discussion
+=== Issues with Dependent Measures
 
-Discuss different theoretical approaches to why masculinity threat responses:
-1. The EDT Model
-- the current study did not provide evidence in favor of the EDT Model, since it did not show a moderation of masculinity threat effects by aggressive and anxious MMB.
-- yet this is likely to a failed measurement of aggressive and anxious behaviour, as the study failed to reproduce simple masculinity threat responses. 
-- Conslusion: It remains challenging to empirically test the proposition of the EDT Model. First research is pointing into that direction (cite studies, stanaland etc.) but more research is needed. Especially in the domain of autonomous motivation leading to increased anxious responses, no evidence was yet found for that. Thus Stanaland & Gaither (2021) even hypothesized that "Therefore, manhood may not be precarious in it's entirety but only fragile", and only an externalized pathway for the moderation of masculinity threat effects exists. Yet Vandello et al (2004), Study 4, (and others ??? look again into literature) found an increase of anxious cognition due to masculinity threat and further research is needed to explain the underlying mechanisms for this response.
-\
-\
-Another account for the affective response after a masculinity threat could be the control beliefs. This account has not beed discussed in the literature so far, but it could provide important insights.
-- Briefly explain control beliefs and why they  may have an impact on the response to a masculinity threat.
-... future studies should take this into account and may swith to a motivational x control belief model of masculinity threats.
-\
-\
-Outside of the context of identifying and studying mechanisms that underly masculinity threat responses, recent studies highlight a challenge to the idea of precarious manhood altogether: By studying female participants responses to a subjective femini threat (negative evaluation of physical femininity), #cite(<wittlin2024us>, form: "prose") female participants showed an increase in anxiety and reduced self-esteem. This challenges the original precarious manhood thesis, since it explained that manhood was something that must be earned, while womanhood is viewed as something inherently given. This naturalistic (is this the right word ???) view of manhood and womanhood has received criticism ever since @chrisler2013womanhood@addis2013theory.
-It may be beneficial, not just methdologically, but for egalitarianism in scientific research to decouple our traditional understandings in the binarity of gender and perceive masculinity and feminity on a more broad view (... something like that) 
+The most plausible explanation for the absence of significant effects concerns the poor measurement quality of the WFCT. While the manipulation successfully induced a threat, the instrument used to capture the resulting cognitive state proved unreliable, as evidenced by extremely poor internal consistency ($alpha$ as low as $.09$) and inadequate sampling adequacy (KMO $< .30$).
 
-== Conslusion
-...write a sentence to each of the arguments made in the discussion.
+This lack of reliability likely stems from the inherent difficulty of designing a WFCT that isolates specific cognitive activation from "lexical noise." In any language, a participant’s completion of a fragment is influenced by a multitude of factors unrelated to the experimental threat, such as individual vocabulary size, word frequency, and "orthographic neighborhood density"—the number of alternative words that can be formed from a single fragment.
+
+While it is theoretically possible to construct a valid WFCT in German, doing so requires balancing these complex lexical variables to ensure that the target word is neither too obvious nor too obscure. In the present study, the high level of measurement error suggests that these uncontrolled factors may have overwhelmed the subtle signal of threat-induced cognitive activation. This mirrors the findings of #cite(<kugler2022>, form: "prose"), who demonstrated that while German WFCT can track stable trait aggression, they struggle to capture the acute, state-level shifts in cognition required for experimental research.
+
+== Measuring Masculinity Threat Response
+
+The psychometric failure of the WFCT highlights a broader challenge in masculinity research: the difficulty of selecting a measure that effectively balances social desirability bias, construct validity, and the ability to differentiate between distinct threat responses.
+This necessitates a careful weighing of alternative formats that might better optimize the trade-off between sensitivity and reliability in future studies.
+
+=== Self-Report & Attitdudinal Measures
+
+Explicit self-report measures of emotional states offer high face validity and are well-established in psychological research as a primary method for capturing subjective experience (e.g., @robinson2002belief). Several studies have successfully assessed masculinity threat responses through self-reported emotions such as anger, shame, pride, and public discomfort @valved2021gender @vescio2025masculinity. The primary limitation of this approach is its susceptibility to social desirability bias. Reporting feelings of anxiety or shame may itself be perceived as unmasculine, leading men to underreport these responses. This concern is particularly acute in this context, as masculine identity threat is inherently tied to concerns about appearing insufficiently masculine.
+
+An alternative approach involves assessing threat responses through attitudinal outcomes. Masculinity threats have been shown to increase the justification of social inequality @weaver2015justification or tolerance for sexual violence @vescio2025masculinity. 
+These measures offer a balance between practical feasibility and construct validity, as attitudes can be assessed through standard questionnaire formats while remaining less transparent than direct emotion reports. 
+However, attitudinal measures may be particularly problematic in highly educated samples, where baseline endorsement of discriminatory attitudes tends to be low. Furthermore, attitudinal measures fail to distinguish between internalized and externalized responses. Because a single attitude can stem from either defensive aggression or compensatory anxiety, these measures capture the behavioral "output" of a threat rather than the specific cognitive process that triggered it.
+
+=== Implicit Measures
+
+Implicit measures, such as the WFCT used in this study, are initially chosen because they offer significant theoretical advantages. Internalized responses like shame or anxiety are often incongruent with masculine norms and may be consciously denied in self-reports. By measuring the automatic activation of cognitions, implicit tasks can theoretically detect these genuine threat effects without relying on introspective access or willingness to report.
+
+To retain the advantages of implicit testing while avoiding the lexical noise of word fragments, researchers might instead employ associative tasks like the Implicit Association Test (IAT). Rather than relying on the spontaneous completion of fragments, the IAT measures the relative strength of associations between concepts (e.g., "Self" and "Weakness"). This format is generally more robust across languages and less influenced by individual vocabulary differences or word frequencies.
+
+However, the validity of the IAT for capturing acute psychological shifts remains a subject of significant debate. While the IAT-Anxiety has demonstrated strong internal consistency and predictive validity for trait-level anxiety and behavioral outcomes @egloff2002predictive, subsequent research found that the measure failed to register significant changes following experimental state-anxiety inductions @schmukle2004does. This suggests that while associative measures are psychometrically more stable than word fragments, they may be more sensitive to stable personality dispositions than to the fleeting, state-level cognitions triggered by a masculinity threat.
+
+=== Behavioral Measures
+Behavioral measures provide perhaps the most direct assessment of threat-relevant outcomes. Research has demonstrated masculinity threat effects on aggressive driving behavior in simulators @braly2018masculine and on the voluntary administration of electrical shocks @fowler2017threatened. These measures bypass the primary limitations of self-reports, as participants often do not recognize that their behavior reflects a defensive response to a psychological threat.
+
+The primary disadvantage of behavioral approaches is that they are often resource-intensive and difficult to implement in large-scale online studies. To address this, future research could utilize game-like paradigms to measure masculinity threat responses. Such paradigms yield multiple advantages: First, in-game behavior can be evaluated automatically, providing a highly reliable and objective measure of response that is less susceptible to the "lexical noise" found in word completion tasks. Second, the interactive nature of a game-like task can be constructed to capture both internalized and externalized responses—for instance, by measuring cautious vs. aggressive playstyles following a threat. Finally, as participants in the present study reported that the GKT and WFCT were experienced as challenging and motivating, gamified measures may mitigate the attention problems and high attrition rates often faced in online research settings.
+
+=== Recommendations for Future Research
+
+Based on the present findings, several recommendations emerge for future research. First, researchers should prioritize validated dependent measures with established psychometric properties, particularly when working in non-English contexts. If new implicit tasks are developed, they must undergo thorough pilot testing and lexical validation to ensure the signal is not lost to noise. Second, while manipulation checks are essential to confirm that threats are perceived as intended, researchers must recognize that successful induction does not guarantee detectable effects if the measurement tool is insensitive. Third, researchers should consider "triangulating" threat responses by combining subtle self-reports with more robust associative or behavioral measures to capture both internalized and externalized pathways. Finally, the target population must match the measure; academic samples may require more sophisticated, gamified, or indirect behavioral paradigms to bypass high levels of research suspicion and social desirability.
+
+== Validation of the German MMB Scale 
+
+While the study did not observe the hypothesized moderation effects, it successfully established a psychometrically sound German translation of the MMB scale. Unlike the WFCT, the MMB scale demonstrated adequate variability even within a highly educated sample, suggesting that the academic background of participants did not result in a conscious rejection of traditional masculinity norms which would have resulted in "floor effects." However, the validation process revealed three specific challenges that required careful refinement of the scale’s factorial and linguistic structure.
+
+The first challenge concerned the relationship between the two latent factors. While the original model suggested they might be orthogonal, the German data required allowing pressured and autonomous motivation to correlate to achieve an acceptable fit. This shift from an orthogonal to a correlated model provides a theoretical solution that aligns with the foundational work of @good2010doing; a man's personal ideals (autonomous) do not develop in a vacuum but in constant dialogue with societal expectations (pressured). The internalization of these norms implies an inherent overlap rather than a total separation of motivational sources.
+
+The second challenge involved the poor discriminant validity of Item 9 ("It is important to me not to be feminine"). This item demonstrated significant cross-loading, a pattern that mirrors the observations of @stanaland2021man in the original validation. The solution of excluding this item highlights that the "rejection of femininity" may be a more complex construct than a simple motivational driver. Because anti-femininity is a core, externally enforced tenet of traditional masculine socialization, it may be inherently difficult for participants to experience such attitudes as purely autonomous, reflecting the deep-seated nature of gender binaries.
+
+The final challenge was the linguistic translation of the scale. The primary difficulty lay in finding a phrasing that accurately reflects the nuanced personal choice of endorsing masculinity ideals—both internally and externally—without sounding non-intuitive to German participants. To address this, the solution was to employ a strategic mix of trait-like formulations ("männlich sein") and agentic, behavioral expressions ("sich männlich verhalten"). This balanced approach preserved the meaning of the English items while ensuring the scale remained accessible to a German-speaking sample.
+
+These refinements provide a clear roadmap for future research. By employing a correlated two-factor model and a refined item set, researchers can now reliably assess the motivational drivers of masculine behavior in German-speaking populations, pairing this validated instrument with more robust dependent measures in future investigations.
+
+=== Theretical Considerations
+
+While the psychometric limitations of the WFCT provide a compelling explanation for the null findings, a purely methodological critique may be incomplete. Recent empirical developments have imposed significant challenges to the EDT model and the precarious manhood thesis as a whole, suggesting that the absence of effects may reflect broader theoretical boundary conditions.
+
+== Challenges to EDT Model 
+
+The failure to detect the predicted moderation effects warrants a closer examination of the EDT model’s structural assumptions. Specifically, three key challenges emerge from the current literature and the present results.
+
+First, there is a persistent lack of empirical evidence for the autonomous-anxious pathway. While the pressured-aggression link has seen some support, the prediction that autonomous motivation leads to increased anxious cognition has not been consistently replicated @stanaland2021man. This suggests that the motivational drivers of internalized threat responses may be more complex than a simple linear moderation.
+
+Second, the model assumes a parallel structure for internalized and externalized responses, which contrasts with alternative frameworks suggesting a sequential relationship. Other scholars propose that men may initially experience internal distress—such as shame or anxiety—which then escalates into outward aggression as a form of compensation @vescio2025masculinity. In this view, externalized responses are not independent of anxiety but are a functional relief for the discomfort it causes @jakupcak2005masculinity. If aggression is a secondary reaction to an primary anxious state, the EDT model’s attempt to split these paths by motivation may overlook the dynamic nature of threat regulation.
+
+Third, a significant "missing link" in the current framework is the role of control beliefs. In general psychological theory, the appraisal of an event as a "threat" versus a "challenge" depends heavily on a person's perceived agency to manage the situation @lazarus1984stress. Regardless of whether a man’s motivation is pressured or autonomous, his response may be determined by his perceived ability to "restore" his status. If a participant perceives high control over his gender performance, he may favor proactive behaviors over the anxious or aggressive cognitions captured by implicit tasks. In German samples, where gender roles may be negotiated with more flexibility due to higher societal equality, these control beliefs might play a more dominant role than motivational orientation alone.
+
+== Challenges to Precarious Manhood
+
+Beyond the specific parameters of the EDT model, the present findings contribute to a growing theoretical debate regarding the inherent vulnerability of gender identity. Traditionally, the precarious manhood thesis has posited a fundamental asymmetry: while womanhood is viewed as a biological "given," manhood is framed as a tenuous social status that must be earned through continuous validation and can be revoked upon failure @vandello2013hard.
+
+However, recent evidence has begun to dismantle this binary assumption. #cite(<wittlin2024us>, form: "prose") demonstrated that threats to femininity—specifically regarding physical appearance evoke anxiety and self-esteem deficits in women that closely mirror the "precarious" responses previously attributed only to men. These findings suggest that gender precariousness may be more symmetric than originally theorized, rooted in the social construction of gendered expectations rather than the specific nature of masculinity @chrisler2013womanhood @addis2013theory.
+
+If the "uniqueness" of masculinity's precariousness is receding, particularly in egalitarian cultures, the absence of traditional threat-response patterns may reflect a broader theoretical shift. Future research should move away from the assumption that masculinity is uniquely volatile and instead examine gender identity as a multi-dimensional construct where precariousness can be experienced across the gender spectrum.
+
+// === Interactional factors
+// - Describe here which interactional factors may be important when studying fragile masculinity. How do sexual orienation or race influence the compensatory response?
+
+== Conclusion
+
+The present study aimed to replicate masculinity threat effects and test predictions of the EDT model in a German sample. None of the four hypotheses were supported: neither main effects of threat on aggressive or anxious cognition nor moderation by pressured or autonomous motivation reached statistical significance. These null findings are attributed to inadequate measurement rather than absence of the underlying phenomena, given the poor psychometric properties of the German WFCT.
+
+Despite these limitations, the study makes two positive contributions. First, the manipulation checks demonstrate that the masculinity threat paradigm can successfully induce perceived threats in German samples, providing a foundation for future studies with better outcome measures. Second, the validated German translation of the MMB scale enables future research on masculine motivation in German-speaking populations.
+
+Future research on masculinity threat effects should prioritize validated dependent measures with established psychometric properties. Word fragment completion tasks, while theoretically attractive for their implicit nature, may not transfer reliably across languages and should be thoroughly validated before use in substantive hypothesis testing. Alternative approaches—including self-report measures, behavioral paradigms, and physiological indicators—each carry their own limitations but may provide more reliable assessments of threat-induced cognition and affect. The continued development and validation of masculinity threat paradigms remains an important goal for understanding how gender identity shapes psychological responses to social evaluation.
+
+
+// == Motivation for Masculine Behaviour in a German Sample
+
+// Despite the null findings regarding masculinity threat effects, the present study makes a positive contribution by establishing a validated German translation of the MMB scale. This section discusses the factorial structure of the translated scale, considerations regarding the sample and translation process, and implications for future use.
+
+// === Factorial Structure of the MMB Scale
+
+// The CFA revealed that the hypothesized two-factor structure—distinguishing pressured motivation from autonomous motivation—provided an acceptable fit to the data, albeit with several modifications from the original model. 
+// The most notable departure from the original #cite(<stanaland2021man>, form: "prose") specification was the need to model the two factors as correlated rather than orthogonal. Constraining the factors to be uncorrelated produced poor model fit, whereas allowing them to correlate improved fit substantially.
+// #todo[remove "the most notable" expressison, because the removal of an item is also very very notable].
+
+// This correlation between pressured and autonomous motivation is theoretically plausible. A man's personal ideals regarding masculinity are not formed in isolation but develop in dialogue with societal expectations. The internalization process through which external norms become personal values implies that pressured and autonomous motivation should show some overlap. Supporting this interpretation, the original studies by #cite(<good2010doing>, form: "prose") that investigated the distinction between internal and external motivation to conform to gender stereotypes also reported moderate correlations between factors.
+
+// A second modification involved excluding Item 9 ("It is important to me not to be feminine") from the autonomous motivation subscale. This item showed equal loadings (.39) on both factors, indicating poor discriminant validity. Notably, a similar pattern emerged in the original validation by #cite(<stanaland2023masculinity>, form: "prose"), where Item 9 loaded only marginally higher on autonomous (.43) than pressured (.36) motivation. The consistent cross-loading suggests that rejection of femininity may inherently involve externally referenced standards rather than purely intrinsic motivation. Anti-femininity norms are among the earliest and most consistently enforced aspects of masculine socialization, which may make it difficult for men to experience such attitudes as autonomous rather than imposed.
+
+// === Translation Considerations
+
+// An initial concern was that the predominantly academic sample might show restricted variance on the MMB scale, with highly educated participants uniformly rejecting traditional masculinity norms. However, the data did not support this concern. Both subscales showed adequate variability, with no evidence of floor effects that would compromise measurement validity.
+
+// A more significant challenge involved the translation process itself. German offers multiple ways to express the concept of "being masculine," ranging from trait-like formulations ("männlich sein") to more agentic expressions ("sich männlich verhalten"). The former implies a stable characteristic, whereas the latter suggests behavioral enactment. This distinction maps onto broader debates in gender research about whether masculinity is best understood as a fixed trait or a performative accomplishment. The present translation opted for a mix of formulations, attempting to preserve the meaning of each English item as closely as possible. Post-hoc analyses revealed no evidence of a method factor distinguishing state-like from agentic items, suggesting that participants did not systematically differentiate between these framings.
+
+// === Implications for Future Use
+
+// The successful validation of the German MMB scale enables future research on motivation for masculine behavior in German-speaking populations. Researchers wishing to use the scale should note several recommendations. First, the two-factor structure should be modeled with correlated rather than uncorrelated factors. Second, Item 9 may be omitted given its consistent cross-loading pattern, or researchers may choose to retain it and examine whether the cross-loading replicates in their data. Third, the distinction between trait-like and agentic phrasings of masculinity items warrants continued attention, although the present study found no evidence that this distinction affected factor structure.
+// #todo[and a miox between bith structures may be a good compromise for translations]
