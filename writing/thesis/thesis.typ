@@ -7,6 +7,8 @@
 
 #let date = datetime.today().display()
 
+#set par(justify: true)
+
 #show: versatile-apa.with(
   title: [
     #set text(weight: "regular", size: 12pt)
@@ -63,7 +65,7 @@
   ),
 
   // Professional-specific fields
-  keywords: ("Fragile Masculinity", "Identity Threat", "Motivation"),
+  keywords: ("Fragile Masculinity", "Masculinity Threat", "Motivation for Masculine Behaviour"),
   abstract: abstract-content,
 
   // Common fields
@@ -76,7 +78,6 @@
   abstract-as-description: true,
 )
 
-#set par(justify: true)
 
 #outline()
 #pagebreak()
