@@ -5,10 +5,11 @@
 = Results
 
 == Participants
-A final sample of 196 participants was collected over a two-month period. 
-Although this fell short of the target of 229 participants, data collection was concluded due to time constraints of the project.
-Several participants were excluded based on pre-registered criteria to ensure data quality. @fig:consort-flowchart provides an overview of participant flow and exclusions, that were made due to withdrawal of consent, failing to meet eligibility criteria, failing attention checks and suspicion. 
-After applying all exclusion criteria, 42 participants were removed in total. This resulted in a final analytical sample of $N = 154$ ($n_"threat" = 79$, $n_"no-threat" = 75$).
+Data collection was conducted over a two-month period, resulting in an initial sample of 196 participants.
+Although this fell short of the original target ($N = 229$), collection was concluded due to project time constraints.
+To ensure data quality, several participants were removed based on pre-registered exclusion criteria.
+As illustrated in the CONSORT flowchart (@fig:consort-flowchart), exclusions were made for withdrawal of consent, failure to meet eligibility criteria, failed attention checks, and identified suspicion regarding the manipulation.
+After applying these criteria, 42 participants were removed, yielding a final analytical sample of $N = 154$ ($n_"threat" = 79$, $n_"no-threat" = 75$).
 
 #apa-figure(
   caption: [CONSORT Flowchart of Participant Exclusions],
@@ -17,10 +18,10 @@ After applying all exclusion criteria, 42 participants were removed in total. Th
   note: [MMB = Motivation for Masculine Behaviour; WFCT = Word Fragment Completion Task]
 )
 
-Based on this sample size, the study achieved a power of $1 - beta = .96$ to detect the expected medium effect ($d = 0.55$) of the masculinity threat. However, for the hypothesized moderation, assuming a small effect size ($f = 0.17$), the power was considerably lower at $1 - beta = .56$.
+Based on this final sample size, a post-hoc power analysis indicated that the study achieved a power of $1 - beta = .96$ to detect the expected medium effect ($d = 0.55$) of the masculinity threat. However, for the hypothesized moderation, assuming a small effect size ($f = 0.17$), the power was considerably lower at $1 - beta = .56$.
 
 The final sample ranged in age from 18 to 69 years (#reportMeanAndSD(mean: 30.6, sd: 10.9)).
-The participants were predominantly highly educated: $80.5%$ held at least a general university entrance qualification, and $60.4%$ had completed a university degree.
+Participants were predominantly highly educated, with $80.5%$ holdingat least a general university entrance qualification (_Abitur_), and $60.4%$ having completed a university degree.
 
 == Statistical Analysis
 
