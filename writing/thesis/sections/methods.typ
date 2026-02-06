@@ -22,8 +22,8 @@ In exchange for participation, 1€ was donated to a public organization support
 The procedure was adapted from #cite(<stanaland2021man>, form: "prose") into an online questionnaire and translated into German.
 Participants completed the session on their own electronic devices, accessing the survey via a link on the study exchange portal or a QR code provided on recruitment flyers. Upon accessing the survey, participants were informed that the study concerned men's personality, motivation, and performance. Eligibility requirements—identifying as male, possessing native-level proficiency in German, and being at least 18 years of age—were clearly stated, and participants self-confirmed their eligibility and provided informed consent before proceeding.
 
-The session began with the assessment of trait motivations using the MMB scale, where the nine items were presented in a randomized order to prevent sequence effects. Following this, participants completed the Gender Knowledge Test (GKT). The GKT was described as a validated measure of gender-relevant knowledge, designed to provide credible feedback on the participants' masculinity and to facilitate the experimental manipulation. The test items were presented in a fixed, pre-randomized sequence. Upon completion, a brief loading screen was displayed to simulate the real-time calculation of results, thereby increasing the credibility of the subsequent feedback.
-Participants then received fabricated results that constituted either the masculinity threat or the control condition. To assess the immediate impact of this feedback on cognitive activation, participants completed the WFCT to measure the accessibility of aggressive and anxious concepts. In the final stage of the session, participants provided demographic information and responded to manipulation check items.
+The session began with the assessment of trait motivations using the MMB scale, where the nine items were presented in a randomized order to prevent sequence effects. Following this, participants completed the Gender Knowledge Test. This test was described as a validated measure of gender-relevant knowledge, designed to provide credible feedback on the participants' masculinity and to facilitate the experimental manipulation. The test items were presented in a fixed, pre-randomized sequence. Upon completion, a brief loading screen was displayed to simulate the real-time calculation of results, thereby increasing the credibility of the subsequent feedback.
+Participants then received fabricated results that constituted either the masculinity threat or the control condition. To assess the immediate impact of this feedback on cognitive activation, participants completed the Word Fragment Completion Task to measure the accessibility of aggressive and anxious concepts. In the final stage of the session, participants provided demographic information and responded to manipulation check items.
 Upon completion, a comprehensive debriefing was provided, explaining the study’s true purpose and clarifying that the feedback regarding test performance was fabricated and randomly assigned. The rationale for the use of deception was explicitly detailed, and participants were offered the final option to withdraw their data from the study.
 
 == Measures
@@ -94,27 +94,27 @@ The two subscales showed a moderate positive correlation ($r = .39$).
 Reliability was assessed using McDonald's omega ($omega$), indicating excellent reliability for the Pressured Motivation subscale ($omega = .93$) and acceptable reliability for the Autonomous Motivation subscale ($omega = .70$).
 
 === Gender Knowledge Test
-The GKT, originally developed by #cite(<rudman2004reactions>, form: "prose"), was used in a version culturally adapted for European participants by #cite(<valved2021gender>, form: "prose").
+The Gender Knowledge Test, originally developed by #cite(<rudman2004reactions>, form: "prose"), was used in a version culturally adapted for European participants by #cite(<valved2021gender>, form: "prose").
 The test included thirty items that were balanced across stereotypically masculine domains (e.g., sports, combat, home repair) and feminine domains (e.g., cooking, childcare, fashion).
 To ensure the credibility of the subsequent bogus feedback, items were designed with moderate to high difficulty, making it difficult for participants to accurately estimate their own performance. 
 Each item featured a forced-choice format with one correct and one incorrect response option (e.g., "The paste used for soldering joints is called: gel vs. flux"; "The first company to develop hair coloring was: Clairol vs. L'Oréal").
 
 === Masculinity Threatening and Control Feedback
-To administer the masculinity threat, participants were shown a diagram depicting a fictitious distribution of scores on the GKT.
+To administer the masculinity threat, participants were shown a diagram depicting a fictitious distribution of scores on the Gender Knowledge Test.
 The scale ranged from -4 (representing a maximum feminine score) to +4 (representing a maximum masculine score).
 In the threat condition, participants were told they scored –1.83, a value positioned substantially below the alleged male average of +2.24.
 To reinforce the nature of the threat, this score was accompanied by a statement that their answers were "more similar to women than to men."
 In the control (no-threat) condition, participants were told they scored +2.18, placing them close to the male average and indicating "typical" performance for male participants. In both conditions, the visual distribution graph served to anchor the feedback by explicitly highlighting the participant's position relative to the male norm.
 
 === Word Fragment Completion Task
-The WFCT was first developed by #cite(<vandello2008precarious>, form: "prose") to implicitly assess aggressive and anxious cognition. 
+The Word Fragment Completion Task was first developed by #cite(<vandello2008precarious>, form: "prose") to implicitly assess aggressive and anxious cognition. 
 For the current study, a German version was developed consisting of ten aggressive and ten anxious word fragments. 
 These fragments were created by identifying German target words semantically related to aggression (e.g., "Wut" [anger]) and anxiety (e.g., "Bangen" [to fear]) using a word association thesaurus (https://wordassociations.net/de/). 
 Potential fragments were generated by removing the first letter of each target word, ensuring each could be completed as either the target word or a neutral alternative (e.g., "\_UT" becoming "WUT" [anger] or "HUT" [hat]). 
 To mask the task’s true purpose, it was presented as a measure of "speed of thought." 
 Word fragments were displayed individually with a seven-second time limit to encourage spontaneous, intuitive responses.
 
-Following data collection, the psychometric properties of the WFCT were evaluated to assess the reliability of these newly developed items. 
+Following data collection, the psychometric properties of the Word Fragment Completion Task were evaluated to assess the reliability of these newly developed items. 
 Diagnostic analyses revealed substantial deficits in the task's measurement quality. 
 The tetrachoric correlation matrices for both the aggressive (#ref(<fig:corrplot-aggressive>)) and anxious (#ref(<fig:corrplot-anxious>)) subscales showed weak, inconsistent, and occasionally negative correlations among items. 
 For the aggressive items, completion rates varied substantially (3.3% to 63.8%), and the Kaiser-Meyer-Olkin (KMO) criterion yielded a Measure of Sampling Adequacy (MSA) of .16—well below the acceptable .60 threshold. 
@@ -139,7 +139,7 @@ The anxious items exhibited even greater instability; completion rates ranged fr
 Demographic data were collected to provide an overview of the sample's characteristics.
 Participants reported their age, gender, and German proficiency, followed by their highest educational and occupational qualifications.
 The effectiveness of the experimental manipulation was verified using two check items.
-First, participants recalled the type of feedback they received on the GKT on a scale from 1 (_typically feminine_) to 10 (_typically masculine_). 
+First, participants recalled the type of feedback they received on the Gender Knowledge Test on a scale from 1 (_typically feminine_) to 10 (_typically masculine_). 
 Results confirmed that participants correctly interpreted the masculinity feedback, as participants in the threat condition reported lower scores (#reportMeanAndSD(mean: 3.08, sd: 0.93)) than those in the no-threat condition (#reportMeanAndSD(mean: 6.22, sd: 1.00)).
 Second, they provided a self-evaluation of their own gender knowledge on the same scale. 
 Consistent with the intended effect, the masculinity feedback was perceived as credible.

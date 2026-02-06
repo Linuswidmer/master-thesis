@@ -288,9 +288,9 @@ The translation of the Gender Knowledge Test followed the same TRAPD protocol as
   label: "table:gkt-translator2",
 )
 
-The review phase for the Gender Knowledge Test was more straightforward than for the MMB scale. The primary focus was on clarifying technical terminology where the two translations diverged, particularly for domain-specific terms in automotive, plumbing, and culinary contexts. Unlike the MMB scale, where conceptual nuances of masculinity required careful consideration, the GKT items involved factual content with established German equivalents. Since the purpose of the Gender Knowledge Test was not to provide a psychometrically valid measure but rather to create a plausible and challenging test that could credibly threaten participants' gender identity, the review prioritized ensuring that all items appeared believable and appropriately difficult. The final translations were selected to maintain this sense of plausibility while using natural German phrasing.
+The review phase for the Gender Knowledge Test was more straightforward than for the MMB scale. The primary focus was on clarifying technical terminology where the two translations diverged, particularly for domain-specific terms in automotive, plumbing, and culinary contexts. Unlike the MMB scale, where conceptual nuances of masculinity required careful consideration, the Gender Knowledge Test items involved factual content with established German equivalents. Since the purpose of the Gender Knowledge Test was not to provide a psychometrically valid measure but rather to create a plausible and challenging test that could credibly threaten participants' gender identity, the review prioritized ensuring that all items appeared believable and appropriately difficult. The final translations were selected to maintain this sense of plausibility while using natural German phrasing.
 
-The same pre-test with nine male participants was used to evaluate the translated Gender Knowledge Test. No changes were made to the translations based on this pre-test. Participants reported that they enjoyed the questions, describing the experience as "game-like." This positive reception supported the intended design of the GKT as an engaging measure that participants would take seriously and find credible.
+The same pre-test with nine male participants was used to evaluate the translated Gender Knowledge Test. No changes were made to the translations based on this pre-test. Participants reported that they enjoyed the questions, describing the experience as "game-like." This positive reception supported the intended design of the Gender Knowledge Test as an engaging measure that participants would take seriously and find credible.
 
 == Masculinity Threatening and Non-Threatening Feedback
 
@@ -507,7 +507,7 @@ To determine the appropriate sample size, four a priori power analyses were cond
 
 === Masculinity Threat Effects
 
-Previous studies have reported medium-sized effects of masculinity threat on aggressive cognition ($d$ = 0.56) and anxious cognition ($d$ = 0.55), both measured via the WFCT. Based on these estimates, a priori power analyses were conducted using one-tailed independent samples t-tests ($alpha$ = .05, power = .80). The analyses indicated required sample sizes of 82 participants for detecting effects on aggressive cognition and 84 participants for anxious cognition (see #ref(<fig:power-analysis-threat>)).
+Previous studies have reported medium-sized effects of masculinity threat on aggressive cognition ($d$ = 0.56) and anxious cognition ($d$ = 0.55), both measured via the Word Fragment Completion Task. Based on these estimates, a priori power analyses were conducted using one-tailed independent samples t-tests ($alpha$ = .05, power = .80). The analyses indicated required sample sizes of 82 participants for detecting effects on aggressive cognition and 84 participants for anxious cognition (see #ref(<fig:power-analysis-threat>)).
 
 === Moderation by Motivation
 
@@ -552,16 +552,19 @@ Based on the largest required sample size (moderation analysis; 208 participants
   ),
   caption: [Effect Sizes for Masculinity Threat and Motivation of Masculine Behavior],
   note: [
-   Effect sizes for aggressive and anxious cognition induced by a masculinity threat. All studies measured aggressive and anxious cognition using a WFCT and operationalized masculinity threat via negative feedback on the Gender Knowledge Test.
+   Effect sizes for aggressive and anxious cognition induced by a masculinity threat. All studies measured aggressive and anxious cognition using a Word Fragment Completion Task and operationalized masculinity threat via negative feedback on the Gender Knowledge Test.
   ],
   label: "table:effect-sizes",
 )
+
 
 #apa-figure(
   caption: [Power Analysis for Masculinity Threat on Aggressive Cognition],
   image("../assets/PowerAnalysisThreat.png", height: 25%),
   label: "fig:power-analysis-threat",
 )
+
+#todo[hier stimmt was nicht]
 
 #apa-figure(
   grid(
