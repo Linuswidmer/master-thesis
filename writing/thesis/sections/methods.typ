@@ -93,18 +93,12 @@ Subscale scores were computed as means using the refined structure: Pressured Mo
 The two subscales showed a moderate positive correlation ($r = .39$). 
 Reliability was assessed using McDonald's omega ($omega$), indicating excellent reliability for the Pressured Motivation subscale ($omega = .93$) and acceptable reliability for the Autonomous Motivation subscale ($omega = .70$).
 
-=== Gender Knowledge Test
-The Gender Knowledge Test, originally developed by #cite(<rudman2004reactions>, form: "prose"), was used in a version culturally adapted for European participants by #cite(<valved2021gender>, form: "prose").
-The test included thirty items that were balanced across stereotypically masculine domains (e.g., sports, combat, home repair) and feminine domains (e.g., cooking, childcare, fashion).
-To ensure the credibility of the subsequent bogus feedback, items were designed with moderate to high difficulty, making it difficult for participants to accurately estimate their own performance. 
+=== Masculinity Threat Induction
+The masculinity threat was administered by requiring participants to complete a test supposedly measuring their knowledge of gender-specific topics and subsequently providing them with feedback regarding their performance. The task utilized a culturally adapted version of the Gender Knowledge Test, originally developed by #cite(<rudman2004reactions>, form: "prose") and updated for European participants by #cite(<valved2021gender>, form: "prose").
+This test consisted of thirty forced-choice items balanced across stereotypically masculine domains, such as sports and home repair, and feminine domains, such as childcare and fashion. To ensure the credibility of the subsequent bogus feedback, the items were designed with moderate to high difficulty so that participants could not easily estimate their own performance
 Each item featured a forced-choice format with one correct and one incorrect response option (e.g., "The paste used for soldering joints is called: gel vs. flux"; "The first company to develop hair coloring was: Clairol vs. L'Oréal").
 
-=== Masculinity Threatening and Control Feedback
-To administer the masculinity threat, participants were shown a diagram depicting a fictitious distribution of scores on the Gender Knowledge Test.
-The scale ranged from -4 (representing a maximum feminine score) to +4 (representing a maximum masculine score).
-In the threat condition, participants were told they scored –1.83, a value positioned substantially below the alleged male average of +2.24.
-To reinforce the nature of the threat, this score was accompanied by a statement that their answers were "more similar to women than to men."
-In the control (no-threat) condition, participants were told they scored +2.18, placing them close to the male average and indicating "typical" performance for male participants. In both conditions, the visual distribution graph served to anchor the feedback by explicitly highlighting the participant's position relative to the male norm.
+Following the test, participants were shown a diagram depicting a fictitious distribution of scores to anchor the manipulation. The scale ranged from a maximum feminine score of -4 to a maximum masculine score of +4. In the threat condition, participants were informed they had scored -1.83, a value positioned substantially below the alleged male average of +2.24. To reinforce the psychological impact of the threat, this score was accompanied by an explicit statement that their responses were more similar to women than to men. Conversely, participants in the control condition were told they scored +2.18, placing them close to the male average and indicating a typical performance for male participants. In both conditions, the visual distribution graph served to anchor the feedback by highlighting the participant's position relative to the alleged male norm.
 
 === Word Fragment Completion Task
 The Word Fragment Completion Task was first developed by #cite(<vandello2008precarious>, form: "prose") to implicitly assess aggressive and anxious cognition. 
