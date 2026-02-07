@@ -79,7 +79,7 @@
 
     // Split to conditions
     edge(<randomized>, <threat>, "-|>"),
-    edge(<randomized>, <no-threat>, "-|>"),
+    edge(<randomized>, <control>, "-|>"),
 
     // Threat condition
     node((0.3, 5), align(center)[
@@ -87,11 +87,11 @@
       ($n = 79$)
     ], width: 40mm, name: <threat>),
 
-    // No-threat condition
+    // Control condition
     node((1.7, 5), align(center)[
-      No-threat condition \
+      Control condition \
       ($n = 75$)
-    ], width: 40mm, name: <no-threat>),
+    ], width: 40mm, name: <control>),
   )
 }
 

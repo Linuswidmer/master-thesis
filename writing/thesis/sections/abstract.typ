@@ -2,7 +2,7 @@ Shame, anxiety, and aggression are common responses by men who feel their mascul
 Recent empirical work suggests that these diverse reactions can be explained by distinct motivational pathways @stanaland2023masculinity.
 Although initial evidence supports these associations @stanaland2021man @stanaland2024adolescent, the data remain limited and the generalizability of these findings to non-US contexts has not yet been established.
 The current study tested masculinity threat responses and their motivational pathways using an experimental design in a German cultural context ($N = 196$).
-It was hypothesized that men in the masculinity-threat condition would exhibit increased aggressive and anxious cognitions, and that these responses would be predicted by pressured and autonomous motivations, respectively.
+It was hypothesized that men in the masculinity-threat condition would exhibit increased aggressive and anxious cognitions, and that these responses would be predicted by pressured and autonomous motivations for masculine behavior, respectively.
 Contrary to these predictions, aggressive and anxious cognitions did not differ significantly between the experimental groups, nor did pressured or autonomous motivation significantly predict cognitive outcomes.
 These findings likely reflect limitations in the measurement quality of the cognitive assessments in a German context rather than a true absence of masculinity-threatening effects. 
 Consequently, the results highlight the need for methodologically robust and culturally sensitive instruments to accurately capture the nuances of masculinity threat responses.

@@ -294,7 +294,7 @@ The same pre-test with nine male participants was used to evaluate the translate
 
 == Masculinity Threatening and Non-Threatening Feedback
 
-The following feedback screens were displayed to participants after completing the Gender Knowledge Test. The threat condition received feedback indicating below-average performance relative to other men, while the no-threat condition received feedback indicating average performance.
+The following feedback screens were displayed to participants after completing the Gender Knowledge Test. The threat condition received feedback indicating below-average performance relative to other men, while the control condition received feedback indicating average performance.
 
 === Threat Condition
 
@@ -314,7 +314,7 @@ Im Vergleich zu anderen männlichen Testteilnehmern, die im Durchschnitt einen S
 
 _English translation:_ Congratulations – you have completed the Gender Knowledge Test! This test was developed to measure differences in knowledge about gender-specific topics. Scoring is based on a scale from –4 (strongly feminine) to +4 (strongly masculine). Your score is: –1.83. Compared to other male participants, who on average achieve a score of +2.24, your result is significantly lower. This indicates that your answers are more similar to those of women than to those of men.
 
-=== No-Threat Condition
+=== Control Condition
 
 #original-text[
 *Glückwunsch – du hast den Geschlechtsspezifischen Wissenstest abgeschlossen!*
