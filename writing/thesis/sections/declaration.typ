@@ -138,9 +138,10 @@
     [Keenious], [], [],
     [Monica], [], [],
     [Claude], [1, 2, 3, 4, 5, 6, 7, 8, 9], [],
+    [Gemini], [6, 7, 9], [],
   )
 
-  v(0.5cm)
+  // v(0.5cm)
 
   [
     Sofern Sie sich unsicher sind, ob ein Programm unter "künstliche Intelligenz" fällt, tragen Sie es ein. Es erwachsen Ihnen keine Nachteile durch die Nennung des Programms. Sollten Sie weitere Programme verwendet haben, können Sie diese in die leeren Zeilen eintragen.

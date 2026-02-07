@@ -2,6 +2,8 @@
 
 = Materials Supplement
 
+The following sections contain the original materials used in the study.
+
 == Study Introduction
 
 The following text was displayed to participants at the beginning of the study.
@@ -24,8 +26,10 @@ Bitte bearbeiten Sie die Umfrage an einem ruhigen Ort, an dem Sie sich gut konze
 
 *Wichtige Hinweise:*
 
-Die Studie richtet sich ausschließlich an Männer ...
+Die Studie richtet sich ausschließlich an Männer ... 
+
 ... mit muttersprachlichen Deutschkenntnissen ...
+
 ... die mindestens 18 Jahre alt sind.
 
 Sollten diese Kriterien nicht auf Sie zutreffen, bedanken wir uns dennoch herzlich für Ihr Interesse.
@@ -36,9 +40,11 @@ Falls Sie die Teilnahme beenden möchten, nutzen Sie bitte den Button „Studie 
 
 Bitte beachten Sie, dass die Teilnahme nicht vergütet wird. Mit jedem vollständig ausgefüllten Fragebogen werden jedoch 1€ an ein Beratungsangebot für Jungen und Männer des Bundesforum Männer e.V. gespendet.
 
-Falls Sie die Umfrage mit SurveySwap oder SurveyCircle ausfüllen, erhalten Sie den Code auf der letzten Seite.
+Falls Sie die Umfrage mit SurveyCircle ausfüllen, erhalten Sie den Code auf der letzten Seite.
 
-Vielen Dank für Ihre Unterstützung! Im ersten Schritt bitten wir um Ihre Einwilligung zur Teilnahme.
+Vielen Dank für Ihre Unterstützung! 
+
+Im ersten Schritt bitten wir um Ihre *Einwilligung zur Teilnahme*.
 ]
 
 _English translation:_ Welcome to the study! This psychological study is conducted as part of a master's thesis at the Institute of Psychology, Humboldt University of Berlin. The aim is to better understand the interplay of personality, motivation, and performance in men. The study includes: a questionnaire on personal attitudes toward masculinity, a gender knowledge test, feedback on the test, a brief cognitive speed test, and demographic questions. Participation takes approximately 10–15 minutes. Eligibility requires identifying as male, native German proficiency, and being at least 18 years old. Participation is voluntary and can be discontinued at any time. For each completed questionnaire, 1€ is donated to a men's counseling organization.
@@ -69,13 +75,15 @@ _English translation:_ Welcome to the study! This psychological study is conduct
     table.hline(),
   ),
   caption: [Motivation for Masculine Behavior Scale Items],
-  note: [P = Pressured Motivation subscale; A = Autonomous Motivation subscale. Items rated on a 7-point Likert scale (1 = "Disagree Strongly" to 7 = "Agree Strongly"). The original English Items are from #cite(<stanaland2023masculinity>, form: "prose") Study 2.],
+  note: [P = Pressured Motivation subscale; A = Autonomous Motivation subscale. Items rated on a 7-point Likert scale (1 = "Disagree Strongly" to 7 = "Agree Strongly"). The original English Items are from #cite(<stanaland2021man>, form: "prose").],
   label: "table:mmb-items",
 )
 
-=== Documentation of the Translation of the Motivation for Masculine Behaviour Scale
+The transfer of the MMB scale from English to German was conducted following the Translation, Review, Adjudication, Pretesting, and Documentation protocol @harkness2010translation.
 
-The translation of the MMB scale was conducted following the TRAPD protocol @harkness2010translation, using two independent native German, fluent English translators. In the first step, translators were given the original scale items and were instructed to find the most appropriate translation focusing on natural and semantically correct phrasing. #ref(<table:mmb-translator1>) and #ref(<table:mmb-translator2>) present the independent translations and translator comments from this initial translation phase.
+=== Translation
+
+Two independent native German, fluent English translators were given the original scale items and were instructed to find the most appropriate translation focusing on natural and semantically correct phrasing. #ref(<table:mmb-translator1>) and #ref(<table:mmb-translator2>) present the independent translations and translator comments from this initial translation phase.
 
 #apa-figure(
   table(
@@ -98,7 +106,7 @@ The translation of the MMB scale was conducted following the TRAPD protocol @har
     [9], [It is important to me not to be feminine.], [Es ist mir wichtig, nicht feminin zu sein.], [Direkte Negation, die in dieser Form im Deutschen völlig natürlich klingt. Wichtig war, „nicht feminin" klar und nicht überbetont darzustellen.],
     table.hline(),
   ),
-  caption: [MMB Scale Translation: Translator 1],
+  caption: [Motivation for Masculine Behavior Scale Translation: Translator 1],
   note: [Items 1–5 = Pressured Motivation subscale; Items 6–9 = Autonomous Motivation subscale.],
   label: "table:mmb-translator1",
 )
@@ -125,18 +133,28 @@ The translation of the MMB scale was conducted following the TRAPD protocol @har
     [9], [It is important to me not to be feminine.], [Es ist mir wichtig, nicht weiblich zu sein.], [Keine besonderen Anmerkungen.],
     table.hline(),
   ),
-  caption: [MMB Scale Translation: Translator 2],
+  caption: [Motivation for Masculine Behavior Scale Translation: Translator 2],
   note: [Items 1–5 = Pressured Motivation subscale; Items 6–9 = Autonomous Motivation subscale.],
   label: "table:mmb-translator2",
 )
 
+=== Review and Adjudication
+
 The independent translations highlighted two key considerations for the review phase. First, both translators used the German word _männlich_ rather than the loanword _maskulin_, suggesting that _männlich_ (and correspondingly _weiblich_ for feminine) sounds more natural in everyday German. The terms _maskulin_ and _feminin_ are more commonly used in German to describe physical appearance rather than behavioral traits. Second, the translators predominantly used stative phrasing (_ich bin männlich_; "I am masculine") rather than agentic phrasing (_ich verhalte mich männlich_; "I behave masculinely").
 
-These observations were discussed with the thesis supervisor and other students during the review phase. Two decisions were made for the final translations. First, the translations retained _männlich_ and _weiblich_ rather than _maskulin_ and _feminin_, as these terms are more familiar in German when describing personal characteristics. Second, a mix of stative and agentic phrasings was adopted in the final version. The purely stative phrasing _ich bin männlich_ carries a connotation of "being a man" in German, which may imply an innate, ascribed property rather than an enacted behavior. To balance fidelity to the original English items with the recognition that masculinity involves behavioral choices, the final translations incorporated both phrasings. This approach is consistent with prior work on motivation to conform to gender norms by #cite(<good2010doing>, form: "prose"), which also employed varied item phrasings.
+These observations were discussed with the thesis supervisor and other students during the review phase. Two decisions were made for the final translations. First, the translations retained _männlich_ and _weiblich_ rather than _maskulin_ and _feminin_, as these terms are more familiar in German when describing personal characteristics. Second, a mix of static and agentic phrasings was adopted in the final version. The purely statuc phrasing _ich bin männlich_ carries a connotation of "being a man" in German, which may imply an innate, ascribed property rather than an enacted behavior. To balance fidelity to the original English items with the recognition that masculinity involves behavioral choices, the final translations incorporated both phrasings. This approach is consistent with prior work on motivation to conform to gender norms by #cite(<good2010doing>, form: "prose"), which also employed varied item phrasings.
+
+=== Pre-Test
 
 A pre-test was conducted with nine male participants to evaluate the translated scale. No changes were made to the translations based on this pre-test. Participants reported that although they understood the items, it was not easy for them to provide self-judgments about their motivations for being masculine. This feedback suggests that the construct may be inherently difficult to introspect upon, which is consistent with the implicit nature of motivational processes.
 
-== Gender Knowledge Test
+== Masculinity Threat Induction
+
+The masculinity threat was administered by requiring participants to complete a test (Gender Knowledge Test) supposedly measuring their knowledge of gender-specific topics and subsequently providing them with feedback regarding their performance.
+
+=== Gender Knowledge Test
+
+The transfer of the Gender Knowlesge Test items (orignally from @rudman2004reactions, used in a culturally adapted version by @valved2021gender) from English to German was conducted following the Translation, Review, Adjudication, Pretesting, and Documentation protocol @harkness2010translation.
 
 #ref(<table:gkt-items>) presents the 30 items of the Gender Knowledge Test with their original English wording and German translations.
 
@@ -188,9 +206,8 @@ A pre-test was conducted with nine male participants to evaluate the translated 
   label: "table:gkt-items",
 )
 
-=== Documentation of the Translation of the Gender Knowledge Test
-
-The translation of the Gender Knowledge Test followed the same TRAPD protocol as the MMB scale, using two independent native German, fluent English translators. #ref(<table:gkt-translator1>) and #ref(<table:gkt-translator2>) present the independent translations and translator comments.
+==== Translation
+Two independent native German, fluent English translators were given the original scale items and were instructed to find the most appropriate translation focusing on natural and semantically correct phrasing. #ref(<table:gkt-translator1>) and #ref(<table:gkt-translator2>) present the independent translations and translator comments.
 
 #apa-figure(
   table(
@@ -288,15 +305,17 @@ The translation of the Gender Knowledge Test followed the same TRAPD protocol as
   label: "table:gkt-translator2",
 )
 
+==== Review & Adjudication
 The review phase for the Gender Knowledge Test was more straightforward than for the MMB scale. The primary focus was on clarifying technical terminology where the two translations diverged, particularly for domain-specific terms in automotive, plumbing, and culinary contexts. Unlike the MMB scale, where conceptual nuances of masculinity required careful consideration, the Gender Knowledge Test items involved factual content with established German equivalents. Since the purpose of the Gender Knowledge Test was not to provide a psychometrically valid measure but rather to create a plausible and challenging test that could credibly threaten participants' gender identity, the review prioritized ensuring that all items appeared believable and appropriately difficult. The final translations were selected to maintain this sense of plausibility while using natural German phrasing.
 
+==== Pre-Test
 The same pre-test with nine male participants was used to evaluate the translated Gender Knowledge Test. No changes were made to the translations based on this pre-test. Participants reported that they enjoyed the questions, describing the experience as "game-like." This positive reception supported the intended design of the Gender Knowledge Test as an engaging measure that participants would take seriously and find credible.
 
-== Masculinity Threatening and Non-Threatening Feedback
+=== Masculinity Threatening and Non-Threatening Feedback
 
 The following feedback screens were displayed to participants after completing the Gender Knowledge Test. The threat condition received feedback indicating below-average performance relative to other men, while the control condition received feedback indicating average performance.
 
-=== Threat Condition
+==== Threat Condition
 
 #original-text[
 *Glückwunsch – du hast den Geschlechtsspezifischen Wissenstest abgeschlossen!*
@@ -334,7 +353,10 @@ _English translation:_ Congratulations – you have completed the Gender Knowled
 
 == Word Fragment Completion Task
 
-Participants completed word fragments by typing the missing first letter. Each fragment could be completed as either a target word (aggressive or anxious) or a neutral word. A seven-second time limit was imposed per item to encourage spontaneous responses. #ref(<table:wfct-aggressive>) presents the aggressive cognition items, and #ref(<table:wfct-anxious>) presents the anxious cognition items.
+For the current study, a German version of the Word Fragment Completion Task was developed consisting of ten aggressive and ten anxious word fragments. 
+These fragments were created by identifying German target words semantically related to aggression (e.g., "Wut" [anger]) and anxiety (e.g., "Bangen" [to fear]) using a word association thesaurus (https://wordassociations.net/de/). 
+Potential fragments were generated by removing the first letter of each target word, ensuring each could be completed as either the target word or a neutral alternative (e.g., "\_UT" becoming "WUT" [anger] or "HUT" [hat]). 
+#ref(<table:wfct-aggressive>) presents the aggressive cognition items, and #ref(<table:wfct-anxious>) presents the anxious cognition items.
 
 #apa-figure(
   table(
@@ -501,25 +523,9 @@ Wenn Sie widersprechen, werden keine Ihrer Antworten aus diesem Fragebogen gespe
 
 _English translation:_ Since we could not inform you about all aspects of the study at the beginning, we would now like to give you the opportunity to object to the use of your data. Your decision will not affect the promised donation. If you object, none of your responses will be saved except your decision about data storage and which feedback condition you received.
 
-== Sample Size Planning
+= Sample Size Planning
 
-To determine the appropriate sample size, four a priori power analyses were conducted using G*Power 3.1 @faul2007g. Additionally, the statistical complexity of the measurement model for the Motivation for Masculine Behavior was explored. #ref(<table:effect-sizes>) summarizes effect sizes from prior studies on masculinity threat.
-
-=== Masculinity Threat Effects
-
-Previous studies have reported medium-sized effects of masculinity threat on aggressive cognition ($d$ = 0.56) and anxious cognition ($d$ = 0.55), both measured via the Word Fragment Completion Task. Based on these estimates, a priori power analyses were conducted using one-tailed independent samples t-tests ($alpha$ = .05, power = .80). The analyses indicated required sample sizes of 82 participants for detecting effects on aggressive cognition and 84 participants for anxious cognition (see #ref(<fig:power-analysis-threat>)).
-
-=== Moderation by Motivation
-
-For the moderation of pressured motivation on aggressive cognition, a small effect size was assumed ($f$ = 0.17), consistent with prior findings on motivational moderators. Due to the absence of previous studies on the moderation of autonomous motivation on anxious cognition, the same conservative small effect size ($f$ = 0.17) was used. Based on a linear multiple regression model including three predictors (threat condition, autonomous or pressured motivation, and their two-way interaction), G*Power indicated a required sample size of 208 participants ($alpha$ = .05, power = .80; see #ref(<fig:power-analysis-moderation>)).
-
-=== Factorial Structure of Motivation for Masculine Behavior
-
-To evaluate the hypothesized two-factor structure of the Motivation for Masculine Behavior scale via Confirmatory Factor Analysis (CFA), sample size requirements were determined based on common recommendations for CFA model stability. Following conservative guidelines, a minimum of 200 participants to ensure stable estimation and generalizability of the factor structure, particularly when factors are correlated and loadings are moderate @hoogland1998robustness.
-
-=== Final Target Sample Size
-
-Based on the largest required sample size (moderation analysis; 208 participants) and accounting for an estimated 10% exclusion rate, the final target sample size was set at 229 participants.
+To determine the appropriate sample size, four a priori power analyses were conducted using G*Power 3.1 @faul2007g. Additionally, the statistical complexity of the measurement model for the Motivation for Masculine Behavior scale was explored. #ref(<table:effect-sizes>) summarizes effect sizes from prior studies on masculinity threat.
 
 #apa-figure(
   table(
@@ -547,7 +553,7 @@ Based on the largest required sample size (moderation analysis; 208 participants
 
     [#cite(<stanaland2024adolescent>, form: "prose")], [aggressive cognition], [$d$ = 0.35], [adolescents],
 
-    [#cite(<stanaland2024adolescent>, form: "prose")], [pressured motivation], [$f$ = 0.17], [adolescents],
+    [#cite(<stanaland2021man>, form: "prose")], [pressured motivation], [$f$ = 0.17], [adolescents],
     table.hline(),
   ),
   caption: [Effect Sizes for Masculinity Threat and Motivation of Masculine Behavior],
@@ -558,35 +564,51 @@ Based on the largest required sample size (moderation analysis; 208 participants
 )
 
 
-#apa-figure(
-  caption: [Power Analysis for Masculinity Threat on Aggressive Cognition],
-  image("../assets/PowerAnalysisThreat.png", height: 25%),
-  label: "fig:power-analysis-threat",
-)
+== Masculinity Threat Effects
 
-#todo[hier stimmt was nicht]
-
+Previous studies have reported medium-sized effects of masculinity threat on aggressive cognition ($d$ = 0.56) and anxious cognition ($d$ = 0.55), both measured via the Word Fragment Completion Task. Based on these estimates, a priori power analyses were conducted using one-tailed independent samples t-tests ($alpha$ = .05, power = .80). The analyses indicated required sample sizes of 82 participants for detecting effects on aggressive cognition and 84 participants for anxious cognition (see #ref(<fig:power-analysis-threat>)).
 #apa-figure(
-  grid(
+  caption: [Power Analysis for Masculinity Threat on Aggressive and Anxious Cognition],
+    grid(
     columns: (auto, auto),
     grid.cell(
-      image("../assets/PowerAnalysisAggressive.png", height: 25%)
+      image("../assets/PowerAnalysisThreat.png", height: 25%)
     ),
     grid.cell(
       image("../assets/PowerAnalysisAnxious.png", height: 25%),
     )
   ),
+  // image("../assets/PowerAnalysisThreat.png", height: 25%),
+  note: [Left = Masculinity threat on aggressive cognition; Right = Masculinity Threat on Anxious Cognition],
+  label: "fig:power-analysis-threat",
+)
+
+== Moderation by Motivation
+
+For the moderation of pressured motivation on aggressive cognition, a small effect size was assumed ($f$ = 0.17), based on prior findings on motivational moderators @stanaland2021man. Due to the absence of previous studies on the moderation of autonomous motivation on anxious cognition, the same conservative small effect size ($f$ = 0.17) was used. Based on a linear multiple regression model including three predictors (threat condition, autonomous or pressured motivation, and their two-way interaction), G*Power indicated a required sample size of 208 participants ($alpha$ = .05, power = .80; see #ref(<fig:power-analysis-moderation>)).
+
+#apa-figure(
+  image("../assets/PowerAnalysisModeration.png", height: 25%),
   caption: [Power Analysis for Masculinity Threat on Aggressive & Anxious Cognition],
   label: "fig:power-analysis-moderation",
 )
 
+== Factorial Structure of Motivation for Masculine Behavior
+
+To evaluate the hypothesized two-factor structure of the Motivation for Masculine Behavior scale via Confirmatory Factor Analysis, sample size requirements were determined based on common recommendations for CFA model stability. Following conservative guidelines, a minimum of 200 participants to ensure stable estimation and generalizability of the factor structure, particularly when factors are correlated and loadings are moderate @hoogland1998robustness.
+
+== Final Target Sample Size
+
+Based on the largest required sample size (moderation analysis; 208 participants) and accounting for an estimated 10% exclusion rate, the final target sample size was set at 229 participants.
+
 = Results Supplement
 
-The analysis code can be viewed publicly at #todo[add link]. An anonymized version of the data is supplied in the same repository. Anonymization involved coding all free-text responses for study suspicion and then removing the free-text content, as it may contain information that could identify participants.
+The analysis code can be viewed publicly at (https://github.com/Linuswidmer/master-thesis). An anonymized version of the data is supplied in the same repository. Anonymization involved coding all free-text responses for study suspicion and then removing the free-text content, as it may contain information that could identify participants.
 
-#ref(<table:mmb-descriptives>) presents descriptive statistics for the Motivation for Masculine Behavior items.
+The following sections provide additional statistic details about the scales and tests conducted.
 
 == Motivation for Masculine Behaviour
+#ref(<table:mmb-descriptives>) presents descriptive statistics for the Motivation for Masculine Behavior items.
 
 #apa-figure(
   table(
@@ -610,35 +632,17 @@ The analysis code can be viewed publicly at #todo[add link]. An anonymized versi
     [9], [Es ist mir wichtig, mich nicht weiblich zu verhalten.], [3.26], [1.77],
     table.hline(),
   ),
-  caption: [Descriptive Statistics for Motivation for Masculine Behavior Items],
+  caption: [Descriptive Statistics for Motivation for Masculine Behavior Scale],
   note: [_N_ = 154. Items 1–5 = Pressured Motivation subscale; Items 6–9 = Autonomous Motivation subscale. Items rated on a 7-point Likert scale (1 = strongly disagree, 7 = strongly agree).],
   label: "table:mmb-descriptives",
 )
 
-== Word Fragment Completion Task: Detailed Psychometric Properties
+== Word Fragment Completion Task
 
 #ref(<table:wfct-agg-descriptives>) and #ref(<table:wfct-anx-descriptives>) present response frequencies for the aggressive and anxious word fragment completion items, respectively.
 
 === Aggressive Word Fragment Items
-
-Item-level response rates revealed substantial variability in aggressive completion rates.
-Several items had very low positive rates, including Item 5 (3.3%) and Item 1 (4.8%), while others exceeded 50%, such as Item 10 (63.8%) and Item 6 (51.3%).
-Items 8, 10, 9, and 7 each had more than 10 missing values, suggesting these fragments may have been more difficult or ambiguous.
-This imbalance compromises the scale's ability to discriminate between individuals.
-
-The tetrachoric correlation matrix revealed weak and inconsistent correlations among items, including several negative correlations.
-If items measured the same latent construct, positive intercorrelations would be expected; this pattern suggests that the items do not form a coherent unidimensional construct.
-Item 7 was negatively correlated with the first principal component, indicating it may measure a different construct than the remaining items.
-
-=== Anxious Word Fragment Items
-
-Item-level response rates revealed even greater variability than the aggressive items.
-Some items had very low positive rates, including Item 2 (3.4%) and Item 8 (7.9%), while others were completed with the anxious word by the vast majority of participants, such as Item 9 (85.7%) and Item 3 (85.2%).
-Notably, Items 3 and 9 also showed substantial missingness, with 46 and 49 missing responses respectively—approximately 30% of the sample.
-This pattern suggests these items may have been particularly difficult or ambiguous for participants.
-
-Similar to the aggressive items, the tetrachoric correlation matrix revealed weak and inconsistent correlations among items, including several negative correlations.
-Items 2, 7, and 8 were negatively correlated with the first principal component, suggesting they may not measure the same construct as the remaining items.
+#ref(<table:wfct-agg-descriptives>) presents response frequencies for the aggressive word fragment completion items.
 
 #apa-figure(
   table(
@@ -667,6 +671,18 @@ Items 2, 7, and 8 were negatively correlated with the first principal component,
   label: "table:wfct-agg-descriptives",
 )
 
+Item-level response rates revealed substantial variability in aggressive completion rates.
+Several items had very low positive rates, including Item 5 (3.3%) and Item 1 (4.8%), while others exceeded 50%, such as Item 10 (63.8%) and Item 6 (51.3%).
+Items 8, 10, 9, and 7 each had more than 10 missing values, suggesting these fragments may have been more difficult or ambiguous.
+This imbalance compromises the scale's ability to discriminate between individuals.
+
+The tetrachoric correlation (#ref(<fig:corrplot-aggressive>)) revealed weak and inconsistent correlations among items, including several negative correlations.
+If items measured the same latent construct, positive intercorrelations would be expected; this pattern suggests that the items do not form a coherent unidimensional construct.
+Item 7 was negatively correlated with the first principal component, indicating it may measure a different construct than the remaining items.
+
+=== Anxious Word Fragment Items
+#ref(<table:wfct-anx-descriptives>) presents response frequencies for the anxious word fragment completion items.
+
 #apa-figure(
   table(
     columns: (auto, auto, auto, auto, auto, auto),
@@ -694,20 +710,54 @@ Items 2, 7, and 8 were negatively correlated with the first principal component,
   label: "table:wfct-anx-descriptives",
 )
 
-== Sensitivity Power Analysis
+Item-level response rates revealed even greater variability than the aggressive items.
+Some items had very low positive rates, including Item 2 (3.4%) and Item 8 (7.9%), while others were completed with the anxious word by the vast majority of participants, such as Item 9 (85.7%) and Item 3 (85.2%).
+Notably, Items 3 and 9 also showed substantial missingness, with 46 and 49 missing responses respectively—approximately 30% of the sample.
+This pattern suggests these items may have been particularly difficult or ambiguous for participants.
 
-Sensitivity analyses were conducted using G*Power 3.1 to determine the minimum effect sizes detectable with 80% power at $alpha = .05$ given the achieved sample size.
+Similar to the aggressive items, the tetrachoric correlation matrix (#ref(<fig:corrplot-anxious>)) revealed weak and inconsistent correlations among items, including several negative correlations.
+Items 2, 7, and 8 were negatively correlated with the first principal component, suggesting they may not measure the same construct as the remaining items.
+
+== Post-hoc Power Analysis
+
+Post-hoc power analysis were conducted using G*Power 3.1 @cunningham2007power to determine the achieved test power.
+
+=== Masculinity Threat Effects
+
+A post-hoc power analysis indicated that the study achieved a power of $1 - beta = .96$ to detect the expected medium effect ($d = 0.55$) of the masculinity threat (@fig:power-masculinity-threat).
 
 #apa-figure(
-  image("../assets/SensitivityAnalysisHypothesis1a1b.png", width: 80%),
-  caption: [Sensitivity Analysis for Hypotheses 1a and 1b],
-  note: [G*Power output for sensitivity analysis. Test family: t tests; Statistical test: Means: Difference between two independent means (two groups). With $n_1 = 79$, $n_2 = 75$, $alpha = .05$, and power = .80, the minimum detectable effect size is $d = 0.40$.],
-  label: "fig:sensitivity-h1",
+  image("../assets/PostHocAchievedPowerMasculinityThreat.png", width: 80%),
+  caption: [Post-hoc Power Analysis for Masculinity Threat Effects],
+  note: [G*Power output for post-hoc power analysis. Test family: t tests; Statistical test: Means: Difference between two independent means (two groups). With $n_1 = 79$, $n_2 = 75$, $alpha = .05$, assumed effect size $d = 0.55$. Post-hoc achieved power was $1 - beta = .96$.],
+  label: "fig:power-masculinity-threat",
 )
 
+=== Moderation of Masculinity Threat Effects
+
+A post-hoc power analysis indicated that the study achieved a power of $1 - beta = .56$ to detect the expected smalle effect ($f = 0.17$) of the masculinity threat (@fig:power-masculinity-threat-moderation).
+
 #apa-figure(
-  image("../assets/SensitivityAnalysisHypothesis2a2b.png", width: 80%),
-  caption: [Sensitivity Analysis for Hypotheses 2a and 2b],
-  note: [G*Power output for sensitivity analysis. Test family: F tests; Statistical test: Linear multiple regression: Fixed model, R² increase. With $N = 154$, 3 predictors, 1 tested predictor (interaction), $alpha = .05$, and power = .80, the minimum detectable effect size is $f^2 = 0.052$.],
-  label: "fig:sensitivity-h2",
+  image("../assets/PostHocAchievedPowerModeration.png", width: 80%),
+  caption: [Post-hoc Power Analysis for Moderation of Masculinity Threat Effects],
+  note: [G*Power output for post-hoc power analysis. Test family: F tests; Statistical test: Linear Multiple Regression: Fixed Model, $R^2$ increase. With $n = 154$, $alpha = .05$, number of tested preditors = $1$, number of total predictors = $3$ assumed effect size $f = 0.17$. Post-hoc achieved power was $1 - beta = .56$.],
+  label: "fig:power-masculinity-threat-moderation",
 )
+
+// == Sensitivity Power Analysis
+
+// Sensitivity analyses were conducted using G*Power 3.1 to determine the minimum effect sizes detectable with 80% power at $alpha = .05$ given the achieved sample size.
+
+// #apa-figure(
+//   image("../assets/SensitivityAnalysisHypothesis1a1b.png", width: 80%),
+//   caption: [Sensitivity Analysis for Hypotheses 1a and 1b],
+//   note: [G*Power output for sensitivity analysis. Test family: t tests; Statistical test: Means: Difference between two independent means (two groups). With $n_1 = 79$, $n_2 = 75$, $alpha = .05$, and power = .80, the minimum detectable effect size is $d = 0.40$.],
+//   label: "fig:sensitivity-h1",
+// )
+
+// #apa-figure(
+//   image("../assets/SensitivityAnalysisHypothesis2a2b.png", width: 80%),
+//   caption: [Sensitivity Analysis for Hypotheses 2a and 2b],
+//   note: [G*Power output for sensitivity analysis. Test family: F tests; Statistical test: Linear multiple regression: Fixed model, R² increase. With $N = 154$, 3 predictors, 1 tested predictor (interaction), $alpha = .05$, and power = .80, the minimum detectable effect size is $f^2 = 0.052$.],
+//   label: "fig:sensitivity-h2",
+// )
