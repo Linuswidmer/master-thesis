@@ -15,7 +15,7 @@ After applying these criteria, 42 participants were removed, yielding a final an
   caption: [CONSORT Flowchart of Participant Exclusions],
   consort-flowchart,
   label: "fig:consort-flowchart",
-  note: [MMB = Motivation for Masculine Behaviour; WFCT = Word Fragment Completion Task]
+  note: [MMB = Motivation for Masculine Behavior; WFCT = Word Fragment Completion Task]
 )
 
 Based on this final sample size, a post-hoc power analysis indicated that the study achieved a power of $1 - beta = .96$ to detect the expected medium effect ($d = 0.55$) of the masculinity threat. However, for the hypothesized moderation, assuming a small effect size ($f = 0.17$), the power was considerably lower at $1 - beta = .56$.

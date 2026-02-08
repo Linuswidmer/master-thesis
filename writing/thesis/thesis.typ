@@ -65,7 +65,7 @@
   ),
 
   // Professional-specific fields
-  keywords: ("Fragile Masculinity", "Masculinity Threat", "Motivation for Masculine Behaviour"),
+  keywords: ("Fragile Masculinity", "Masculinity Threat", "Motivation for Masculine Behavior"),
   abstract: abstract-content,
 
   // Common fields

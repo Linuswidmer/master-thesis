@@ -2,7 +2,7 @@
 #import "@preview/versatile-apa:7.1.1": apa-figure
 
 = Methods
-To examine responses to masculinity threats and their hypothesized moderators, the study employed a between-subjects experimental design. The primary experimental manipulation involved the administration of either a masculinity threat or a non-threatening control condition. The dependent variables consisted of aggressive and anxious cognition, while pressured and autonomous motivation for masculine behaviour were examined as continuous moderators of the masculinity threat response.
+To examine responses to masculinity threats and their hypothesized moderators, the study employed a between-subjects experimental design. The primary experimental manipulation involved the administration of either a masculinity threat or a non-threatening control condition. The dependent variables consisted of aggressive and anxious cognition, while pressured and autonomous motivation for masculine behavior were examined as continuous moderators of the masculinity threat response.
 
 == Ethical Considerations and Pre-Registration
 Prior to data collection, ethical considerations were addressed, particularly regarding the use of a deceptive experimental manipulation.
@@ -30,7 +30,7 @@ Upon completion, a comprehensive debriefing was provided, explaining the study�
 All translations followed the Translation, Review, Adjudication, Pretesting, and Documentation protocol @harkness2010translation.
 Complete materials including all item wordings in German and English and documentation of the translation process are provided in Appendix A.
 
-=== Motivation for Masculine Behavior
+=== Motivation for Masculine Behavior Scale
 The MMB scale was adapted from #cite(<stanaland2021man>, form: "prose") and translated into German. The scale originally consisted of nine items designed to measure participants' underlying motivations for enacting masculine behavior. Responses were recorded on a 7-point Likert scale ranging from 1 (_strongly disagree_) to 7 (_strongly agree_). To minimize participant suspicion regarding the scale’s purpose, the items were presented under the heading "Attitudes Toward Masculinity".
 
 The scale is theorized to comprise two subscales: Pressured Motivation (Items 1–5), reflecting extrinsic social pressure, and Autonomous Motivation (Items 6–9), reflecting intrinsic enjoyment and personal importance.
@@ -111,9 +111,9 @@ Word fragments were displayed individually with a seven-second time limit to enc
 Following data collection, the psychometric properties of the Word Fragment Completion Task were evaluated to assess the reliability of these newly developed items. 
 Diagnostic analyses revealed substantial deficits in the task's measurement quality. 
 The tetrachoric correlation matrices for both the aggressive (#ref(<fig:corrplot-aggressive>)) and anxious (#ref(<fig:corrplot-anxious>)) subscales showed weak, inconsistent, and occasionally negative correlations among items. 
-For the aggressive items, completion rates varied substantially (3.3% to 63.8%), and the Kaiser-Meyer-Olkin (KMO) criterion yielded a Measure of Sampling Adequacy (MSA) of .16—well below the acceptable .60 threshold. 
+For the aggressive items, positive completion rates varied substantially (3.3% to 63.8%; see @table:wfct-agg-descriptives), and the Kaiser-Meyer-Olkin (KMO) criterion yielded a Measure of Sampling Adequacy (MSA) of .16—well below the acceptable .60 threshold. 
 Internal consistency was similarly poor ($alpha = .36$). 
-The anxious items exhibited even greater instability; completion rates ranged from 3.4% to 85.7%, and the subscale reached an MSA of only .30 with an unacceptable Cronbach’s alpha ($alpha = .09$).
+The anxious items exhibited even greater instability; positive completion rates ranged from 3.4% to 85.7% (@table:wfct-anx-descriptives), and the subscale reached an MSA of only .30 with an unacceptable Cronbach’s alpha ($alpha = .09$).
 
 #apa-figure(
   image("../images/corrplot-aggressive-cognition.png"),
