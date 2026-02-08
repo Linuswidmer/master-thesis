@@ -1604,3 +1604,54 @@ anx_moderation_autonomous_motivation <- plotModeration(
 anx_moderation_autonomous_motivation
 save_plot(anx_moderation_autonomous_motivation, "anxious-cognition-autonomous-motivation-line-chart")
 ```
+
+### Age
+
+```{r}
+# Example Usage:
+histogram_age <- plotHistAPA(
+  score_col = "AGE",
+  df = df,
+  x_range = c(18, 70),
+  binwidth = 2,
+  x_label = "Participant Age (Years)",
+  y_label = "Frequency",
+  legend_title = "Group",
+  legend_position = "top.right"
+)
+save_plot(histogram_age, "sample-histogram-age")
+```
+
+
+```{r}
+histogram_gkfeedback <- plotHistAPA(
+  score_col = "GKFEEDBACK",
+  df = df,
+  x_range = c(1, 10),
+  binwidth = 1,
+  x_label = "Score",
+  y_label = "Frequency",
+  condition = "threatCondition",
+  condition_labels = c("noThreat" = "Control", "threat" = "Threat"),
+  legend_title = "Group",
+  legend_position = "top.right"
+)
+histogram_gkfeedback
+save_plot(histogram_gkfeedback, "histogram-gkfeedback")
+
+histogram_gkself <- plotHistAPA(
+  score_col = "GKSELF",
+  df = df,
+  x_range = c(1, 10),
+  binwidth = 1,
+  x_label = "Score",
+  y_label = "Frequency",
+  condition = "threatCondition",
+  condition_labels = c("noThreat" = "Control", "threat" = "Threat"),
+  legend_title = "Group",
+  legend_position = "top.right"
+)
+
+histogram_gkself
+save_plot(histogram_gkself, "histogram-gkself")
+```

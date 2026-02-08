@@ -296,3 +296,90 @@ plotModeration <- function(x, y, condition, df, x_label = NULL, y_label = NULL,
 
   return(p)
 }
+
+#' Create APA-style Histogram
+#'
+#' @param score_col Name of the continuous variable for the x-axis
+#' @param df Data frame containing the variables
+#' @param x_range Optional numeric vector of length 2 for x-axis limits
+#' @param condition Optional name of categorical variable for grouping
+#' @param binwidth Width of the histogram bins. Default: 0.4
+#' @param x_label Optional custom label for x-axis
+#' @param y_label Custom label for y-axis. Default: "Count"
+#' @param condition_labels Optional named vector to rename condition levels
+#' @param legend_title Optional custom title for the legend
+#' @param legend_position Position: "top.left", "top.right", etc. Default: "top.right"
+#' @return A ggplot object
+plotHistAPA <- function(score_col, df, x_range = NULL, condition = NULL, binwidth = 0.4,
+                        x_label = NULL, y_label = "Count", condition_labels = NULL,
+                        legend_title = NULL, legend_position = "top.right") {
+  palette <- c("#D3D3D3", "#808080")
+  score_sym <- sym(score_col)
+  plot_df <- df
+
+  # 1. Handle Conditions and Labels
+  if (!is.null(condition)) {
+    # Apply custom labels/ordering if provided
+    if (!is.null(condition_labels)) {
+      plot_df[[condition]] <- factor(plot_df[[condition]],
+        levels = names(condition_labels),
+        labels = condition_labels
+      )
+    } else {
+      plot_df[[condition]] <- factor(plot_df[[condition]])
+    }
+
+    cond_sym <- sym(condition)
+    p <- ggplot(plot_df, aes(x = !!score_sym, fill = !!cond_sym)) +
+      geom_histogram(binwidth = binwidth, color = "black", position = "dodge", alpha = 0.8) +
+      scale_fill_manual(values = palette)
+  } else {
+    p <- ggplot(plot_df, aes(x = !!score_sym)) +
+      geom_histogram(binwidth = binwidth, fill = palette[1], color = "black")
+  }
+
+  # 2. APA Theme and Styling
+  p <- p + theme_apa() +
+    theme(
+      axis.title.y = element_text(face = "bold"),
+      axis.title.x = element_text(face = "bold")
+    ) +
+    scale_y_continuous(expand = c(0, 0))
+
+  # 3. Labels
+  x_lab <- if (!is.null(x_label)) x_label else score_col
+  p <- p + labs(x = x_lab, y = y_label)
+
+  if (!is.null(legend_title)) {
+    p <- p + labs(fill = legend_title)
+  }
+
+  # 4. Axis Limits
+  if (!is.null(x_range)) {
+    p <- p + coord_cartesian(xlim = x_range)
+  }
+
+  # 5. Legend Positioning (matching your plotModeration logic)
+  if (!is.null(condition) && legend_position != "none") {
+    legend_coords <- switch(legend_position,
+      "top.left"     = c(0.02, 0.98),
+      "top.right"    = c(0.98, 0.98),
+      "bottom.left"  = c(0.02, 0.02),
+      "bottom.right" = c(0.98, 0.02),
+      c(0.98, 0.98) # Default top right for histograms often looks better
+    )
+
+    p <- p + theme(
+      legend.position = legend_coords,
+      legend.justification = c(
+        if (grepl("left", legend_position)) 0 else 1,
+        if (grepl("top", legend_position)) 1 else 0
+      ),
+      legend.background = element_rect(fill = "white", color = "black", linewidth = 0.2)
+    )
+  } else if (is.null(condition)) {
+    p <- p + theme(legend.position = "none")
+  }
+
+  return(p)
+}
