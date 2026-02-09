@@ -1,6 +1,6 @@
 #import "../utils.typ": *
 
-= Materials Supplement
+= Materials and Measures Supplement
 
 The following sections contain the original materials used in the study.
 

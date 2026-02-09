@@ -28,7 +28,7 @@ Upon completion, a comprehensive debriefing was provided, explaining the studyâ€
 
 == Measures
 All translations followed the Translation, Review, Adjudication, Pretesting, and Documentation protocol @harkness2010translation.
-Complete materials including all item wordings in German and English and documentation of the translation process are provided in Appendix A.
+Complete materials including all item wordings in German and English, documentation of the translation process and additional statistics are provided in Appendix A.
 
 === Motivation for Masculine Behavior Scale
 The MMB scale was adapted from #cite(<stanaland2021man>, form: "prose") and translated into German. The scale originally consisted of nine items designed to measure participants' underlying motivations for enacting masculine behavior. Responses were recorded on a 7-point Likert scale ranging from 1 (_strongly disagree_) to 7 (_strongly agree_). To minimize participant suspicion regarding the scaleâ€™s purpose, the items were presented under the heading "Attitudes Toward Masculinity".
