@@ -143,4 +143,4 @@ An independent samples $t$-test confirmed this difference was significant, #repo
 To assess suspicion, participants indicated whether they believed the study concerned something other than what was stated.
 If they responded affirmatively, they were prompted to describe their suspicions.
 Finally, an open-text field allowed participants to share additional thoughts.
-Nine participants correctly identified the experimental manipulation of the feedback and were flagged for exclusion during the data cleaning process.
+Eight participants correctly identified the experimental manipulation of the feedback and were flagged for exclusion during the data cleaning process.
