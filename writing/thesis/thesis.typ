@@ -33,7 +33,8 @@
     ]
 
     #v(1cm)
-    #date
+    #let today = datetime.today()
+    #today.display("[day]-[month]-[year]")
   ],
 
   authors: (

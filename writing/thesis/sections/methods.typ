@@ -12,7 +12,7 @@ Any deviations from the pre-registration are justified and reported in the relev
 
 == Sample and Recruitement
 To determine the required sample size, a series of a priori power analyses were conducted using G*Power 3.1 @cunningham2007power. First, power analyses for the main effects of masculinity threat were based on effect sizes reported by #cite(<vandello2008precarious>, form: "prose") ($d = 0.55$ & $d = 0.91$) and #cite(<stanaland2021man>, form: "prose") ($d = 0.41$). For independent samples $t$-tests (one-tailed, $alpha = .05$, power = .80), an estimated medium effect size of $d approx 0.55$ indicated a required sample size of approximately 84 participants.
-Second, a power analysis was conducted for the hypothesized moderation effects. An effect size of $f = 0.17$ was assumed for the interaction between threat and motivation, based on the findings by #cite(<stanaland2024adolescent>, form: "prose"). For a linear multiple regression including three predictors (condition, motivation, and their interaction), this analysis indicated that 208 participants were required to achieve 80% power at $alpha = .05$.
+Second, a power analysis was conducted for the hypothesized moderation effects. An effect size of $f = 0.17$ ($f^2 = 0.03$) was assumed for the interaction between threat and motivation, based on the findings by #cite(<stanaland2024adolescent>, form: "prose"). For a linear multiple regression including three predictors (condition, motivation, and their interaction), this analysis indicated that 208 participants were required to achieve 80% power at $alpha = .05$.
 Because the moderation analysis represented the most stringent requirement, the final target sample size was based on this calculation. To account for a potential 10% exclusion rate, the target was set at 229 participants.
 
 To achieve a representative sample, participants were initially recruited via flyers in public spaces such as libraries, gyms, and cafes. Due to a limited response rate from these physical locations, 100 participants were recruited through an online study exchange portal (https://surveycircle.com) whose members are primarily young and academic.
@@ -36,7 +36,7 @@ The MMB scale was adapted from #cite(<stanaland2021man>, form: "prose") and tran
 The scale is theorized to comprise two subscales: Pressured Motivation (Items 1–5), reflecting extrinsic social pressure, and Autonomous Motivation (Items 6–9), reflecting intrinsic enjoyment and personal importance.
 To validate this, the item structure was first assessed via Confirmatory Factor Analysis (CFA).
 Model fit was evaluated against the criteria established by #cite(<hu1999cutoff>, form: "prose"): CFI and TLI $> .95$, RMSEA $< .06$, and SRMR $< .08$. 
-The initial CFA for the hypothesized two-factor model demonstrated poor fit (#reportModelFitIndices(cfi: 0.851, tli: 0.801, rmsea: 0.179, srmr: 0.248)).
+The initial CFA for the hypothesized two-factor model demonstrated poor fit ($#reportModelFitIndices(cfi: 0.851, tli: 0.801, rmsea: 0.179, srmr: 0.248)$).
 Diagnostic inspection of the polychoric correlation matrix (#ref(<fig:corrplot-mmb>)) and a subsequent Exploratory Factor Analysis with correlated factors (#ref(<table:efa-mmb>)) identified the sources of this poor fit. 
 While Items 1–5 showed strong coherence on the Pressured Motivation factor, the Autonomous Motivation factor was less distinct. Notably, Item 9 ("It is important to me not to be feminine") exhibited significant cross-loadings on both factors.
 
@@ -78,7 +78,7 @@ While Items 1–5 showed strong coherence on the Pressured Motivation factor, th
   ),
   caption: [Factor Loadings on the Motivation for Masculine Behavior Scale],
   note: [
-    English item versions of MMB Scale.
+    English item versions of Motivation for Masculine Behavior Scale.
     Factor loadings below .30 are suppressed for clarity. Extraction method: Maximum Likelihood with oblimin rotation.
   ],
   label: "table:efa-mmb",
@@ -86,7 +86,7 @@ While Items 1–5 showed strong coherence on the Pressured Motivation factor, th
 
 Based on these results, Item 9 was removed. Furthermore, modification indices suggested a residual covariance between Items 7 and 8. 
 This adjustment is conceptually grounded, as both items express positive affect toward masculine identity ("enjoy," "happy") rather than distinct motivational drivers.
-A final CFA on the refined 8-item scale incorporating this correlated residual yielded a substantially improved fit (#reportModelFitIndices(cfi: 0.966, tli: 0.947, rmsea: 0.098, srmr: 0.066)).
+A final CFA on the refined 8-item scale incorporating this correlated residual yielded a substantially improved fit ($#reportModelFitIndices(cfi: 0.966, tli: 0.947, rmsea: 0.098, srmr: 0.066)$).
 While the TLI and RMSEA remained slightly outside ideal thresholds, the CFI and SRMR satisfied target values.
 No further modifications were pursued to avoid overfitting and maintain theoretical integrity.
 Subscale scores were computed as means using the refined structure: Pressured Motivation (Items 1–5) and Autonomous Motivation (Items 6–8). 
@@ -139,6 +139,7 @@ Second, they provided a self-evaluation of their own gender knowledge on the sam
 Consistent with the intended effect, the masculinity feedback was perceived as credible.
 Participants in the threat condition reported lower scores (#reportMeanAndSD(mean: 5.71, sd: 1.43)) than those in the control condition (#reportMeanAndSD(mean: 6.79, sd: 1.38)). 
 An independent samples $t$-test confirmed this difference was significant, #reportTStatistic(tValue: 4.735, pValue: 0.00001, df: 154).
+
 To assess suspicion, participants indicated whether they believed the study concerned something other than what was stated.
 If they responded affirmatively, they were prompted to describe their suspicions.
 Finally, an open-text field allowed participants to share additional thoughts.

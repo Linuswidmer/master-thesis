@@ -107,7 +107,7 @@
     [*falls relevant: betroffene Abschnitte* \ #text(size: 9pt)[(Bitte geben Sie Seitenzahlen an, sofern es nicht auf das gesamte Dokument zutrifft.)]],
     [*Nutzung* \ #text(size: 9pt)[(Bitte Zahl eintragen – siehe oben)]],
     // Data rows - fill in your usage
-    [ChatGPT], [1, 2, 3, 4, 5, 6, 7, 8, 9], [],
+    [ChatGPT], [], [1, 2, 3, 4, 5, 6, 7, 8, 9],
     [Elicit.org], [], [],
   )
 
@@ -131,14 +131,14 @@
     [GitHub Copilot], [], [],
     [Perplexity AI], [], [],
     [ChatPDF], [], [],
-    [DeepL], [3], [],
+    [DeepL], [], [3],
     [BingChat], [], [],
     [Gamma], [], [],
     [Humanata AI], [], [],
     [Keenious], [], [],
     [Monica], [], [],
-    [Claude], [1, 2, 3, 4, 5, 6, 7, 8, 9], [],
-    [Gemini], [6, 7, 9], [],
+    [Claude], [], [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    [Gemini], [], [6, 7, 9],
   )
 
   // v(0.5cm)

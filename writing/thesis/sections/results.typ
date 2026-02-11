@@ -119,7 +119,7 @@ Aggressive cognition scores as a function of pressured motivation and experiment
   image("../images/aggressive-cognition-pressured-motivation-line-chart.png", width: 70%),
   caption: [Moderation of Aggressive Word Completion Scores by Pressured Motivation],
   label: "fig:moderation-agg-masculinity-threat",
-  note: [Aggressive word completion scores (%) by threat condition and pressured motivation]
+  note: [Aggressive word completion scores (%) by threat condition and pressured motivation.]
 )
 
 A binomial GLM with aggressive word completions as the dependent variable and threat condition, pressured motivation, and their interaction as predictors was conducted to test this moderation hypothesis.
